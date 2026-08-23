@@ -1,3 +1,4 @@
-select{
-    .cards_personagens display:grid;
+.cards_personagens {
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
 }
