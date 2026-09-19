@@ -1,52 +1,236 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PersonagensRPG</title>
+    <meta name="author" content="11 Estudantes de tecnologia">
+
+    <title>CodeWorld</title>
+
+    <!-- Fontes do projeto: Chakra Petch (display) e Share Tech Mono (rotulos tecnicos) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&amp;family=Share+Tech+Mono&amp;display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <section>
-        <article>
-            <ul class="cards_personagens">
-                <li class="personagem_HTML">
-                    <button id="abrir_detalhes_HTML">Ver Detalhes</button>
-                    <h2>HTML</h2>
-                    <span>A Estrutura</span>
-                    <img src="imagem HTML.jpg" alt="Descrição Física do Personagem HTML">
-                </li>
-                <li class="personagem_CSS">
-                    <button id="abrir_detalhes_CSS">Ver Detalhes</button>
-                    <h2>CSS</h2>
-                    <span>O Artífice</span>
-                    <img src="imagem CSS.jpg" alt="Descrição Física do Personagem CSS">
-                </li>
-            </ul>
-            <dialog id="detalhe_personagem_html">
-                <article class="personagem_HTML">
-                    <h2>HTML</h2>
-                    <h3>sobre</h3>
-                    <p>HTML é um dos personagens do RPG e é representado por ser mais resistente, tendo uma postura mais sólida e sendo a linha de frente em qualquer batalha </p>
-                    <p>Habilidades:
-                        ataque: 2/5
-                        defesa: 4/5
-                    </p>
-                </article>
-            </dialog>
-            <dialog id="detalhes_personagem_CSS">
-                <article class="personagem_CSS">
-                    <h2>CSS</h2>
-                    <h3>sobre</h3>
-                    <p>É tambem um dos personagens do RPG, conhecido por ser assistente do HTML, css se caracteriza por ataques numa distancia segura e um poder de suporte</p>
-                    <p>habilidades:
-                        ataque: 1/5
-                        defesa: 2/5
-                        cura
-                    </p>
-                </article>
-            </dialog>
-        </article>
-    </section>
+
+    <!-- ==================================================================
+         CABEÇALHO / NAVBAR — fixa no topo
+         ================================================================== -->
+    <header class="cw-cabecalho">
+        <div class="cw-cabecalho-interno">
+
+            <a class="cw-logo" href="#nexus" aria-label="CodeWorld, ir para a seção Nexus">CODEWORLD</a>
+
+            <nav class="cw-nav" aria-label="Navegação principal">
+                <ul class="cw-nav-lista">
+                    <li class="cw-nav-item">
+                        <a class="cw-nav-link cw-nav-ativo" href="#nexus" aria-current="true">NEXUS</a>
+                    </li>
+                    <li class="cw-nav-item">
+                        <a class="cw-nav-link" href="#universo">UNIVERSO</a>
+                    </li>
+                    <li class="cw-nav-item">
+                        <a class="cw-nav-link" href="#personagens">PERSONAGENS</a>
+                    </li>
+                    <li class="cw-nav-item">
+                        <a class="cw-nav-link" href="#mapa">MAPA</a>
+                    </li>
+                    <li class="cw-nav-item">
+                        <a class="cw-nav-link" href="#missoes">MISSÕES</a>
+                    </li>
+                    <li class="cw-nav-item">
+                        <a class="cw-nav-link" href="#arquivos">ARQUIVOS</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="cw-cabecalho-direita">
+
+                <p class="cw-status">
+                    <span class="cw-status-ponto" aria-hidden="true">●</span>ONLINE
+                </p>
+
+                <!-- Painel de acessibilidade: <details> nativo, sem JS.
+                     Todos os controles internos são INERTES (apenas visuais). -->
+                <details class="cw-acessibilidade">
+                    <summary class="cw-acessibilidade-botao">
+                        <span class="cw-acessibilidade-icone" aria-hidden="true">▣</span>ACESSIBILIDADE
+                    </summary>
+
+                    <div class="cw-acessibilidade-painel">
+
+                        <p class="cw-rotulo-sistema">[ SISTEMA ]</p>
+                        <p class="cw-acessibilidade-titulo">PAINEL DE ACESSIBILIDADE</p>
+
+                        <div class="cw-acessibilidade-grupo">
+                            <p class="cw-rotulo-sistema">IDIOMA / LANGUAGE</p>
+                            <div class="cw-acessibilidade-opcoes">
+                                <span class="cw-opcao cw-opcao--ativa">PT-BR</span>
+                                <span class="cw-opcao">EN</span>
+                            </div>
+                        </div>
+
+                        <div class="cw-acessibilidade-grupo">
+                            <p class="cw-rotulo-sistema">TEMA</p>
+                            <div class="cw-acessibilidade-opcoes">
+                                <span class="cw-opcao cw-opcao--ativa">ESCURO</span>
+                                <span class="cw-opcao">CLARO</span>
+                            </div>
+                        </div>
+
+                        <div class="cw-acessibilidade-grupo">
+                            <p class="cw-rotulo-sistema">TAMANHO DA FONTE</p>
+                            <div class="cw-acessibilidade-opcoes">
+                                <span class="cw-opcao cw-opcao--fonte">A-</span>
+                                <span class="cw-opcao cw-opcao--fonte cw-opcao--marcada">A</span>
+                                <span class="cw-opcao cw-opcao--fonte">A+</span>
+                                <span class="cw-opcao cw-opcao--fonte">A++</span>
+                            </div>
+                        </div>
+
+                        <div class="cw-acessibilidade-grupo">
+                            <div class="cw-toggle">
+                                <span class="cw-rotulo-sistema">ALTO CONTRASTE</span>
+                                <span class="cw-toggle-trilho" aria-hidden="true">
+                                    <span class="cw-toggle-botao"></span>
+                                </span>
+                            </div>
+                            <div class="cw-toggle">
+                                <span class="cw-rotulo-sistema">REDUZIR MOVIMENTO</span>
+                                <span class="cw-toggle-trilho" aria-hidden="true">
+                                    <span class="cw-toggle-botao"></span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <p class="cw-acessibilidade-status">STATUS: CONFIGURAÇÕES SALVAS</p>
+
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================================================================
+         CONTEÚDO PRINCIPAL — 7 seções empilhadas (single page)
+         ================================================================== -->
+    <main>
+
+        <!-- ---------- SEÇÃO 01 // NEXUS ---------- -->
+        <div class="cw-faixa">
+            <section class="cw-secao" id="nexus">
+                <header class="cw-titulo-secao">
+                    <p class="cw-rotulo-sistema">SISTEMA CONSOLE</p>
+                    <h1 class="cw-titulo-secao-texto">
+                        <span class="cw-titulo-secao-linha">CODEWORLD</span>
+                    </h1>
+                </header>
+                <!-- CONTEÚDO: prompt 01 -->
+            </section>
+        </div>
+
+        <!-- ---------- SEÇÃO 02 // UNIVERSO ---------- -->
+        <div class="cw-faixa cw-faixa--alt">
+            <section class="cw-secao" id="universo">
+                <header class="cw-titulo-secao">
+                    <p class="cw-rotulo-sistema">VISÃO GERAL DO UNIVERSO</p>
+                    <h2 class="cw-titulo-secao-texto">
+                        <span class="cw-titulo-secao-linha">O UNIVERSO</span>
+                        <span class="cw-titulo-secao-linha cw-titulo-secao-linha--destaque">CODEWORLD</span>
+                    </h2>
+                </header>
+                <!-- CONTEÚDO: prompt 02 -->
+            </section>
+        </div>
+
+        <!-- ---------- SEÇÃO 03 // PERSONAGENS ---------- -->
+        <div class="cw-faixa">
+            <section class="cw-secao" id="personagens">
+                <header class="cw-titulo-secao">
+                    <p class="cw-rotulo-sistema">BASE DE DADOS DE AGENTES</p>
+                    <h2 class="cw-titulo-secao-texto">
+                        <span class="cw-titulo-secao-linha">PERSONAGENS</span>
+                    </h2>
+                </header>
+                <!-- CONTEÚDO: prompts 03, 04, 05 -->
+            </section>
+        </div>
+
+        <!-- ---------- SEÇÃO 04 // MAPA ---------- -->
+        <div class="cw-faixa cw-faixa--alt">
+            <section class="cw-secao" id="mapa">
+                <header class="cw-titulo-secao">
+                    <p class="cw-rotulo-sistema">VISÃO GERAL</p>
+                    <h2 class="cw-titulo-secao-texto">
+                        <span class="cw-titulo-secao-linha">MAPA DO</span>
+                        <span class="cw-titulo-secao-linha cw-titulo-secao-linha--destaque">CODEWORLD</span>
+                    </h2>
+                </header>
+                <!-- CONTEÚDO: prompt 06 -->
+            </section>
+        </div>
+
+        <!-- ---------- SEÇÃO 05 // MISSÕES ---------- -->
+        <div class="cw-faixa">
+            <section class="cw-secao" id="missoes">
+                <header class="cw-titulo-secao">
+                    <p class="cw-rotulo-sistema">CENTRAL DE OPERAÇÕES</p>
+                    <h2 class="cw-titulo-secao-texto">
+                        <span class="cw-titulo-secao-linha">MISSÕES</span>
+                        <span class="cw-titulo-secao-linha cw-titulo-secao-linha--destaque">DISPONÍVEIS</span>
+                    </h2>
+                </header>
+                <!-- CONTEÚDO: prompt 07 -->
+            </section>
+        </div>
+
+        <!-- ---------- SEÇÃO 06 // ARQUIVOS ---------- -->
+        <div class="cw-faixa cw-faixa--alt">
+            <section class="cw-secao" id="arquivos">
+                <header class="cw-titulo-secao">
+                    <p class="cw-rotulo-sistema">BANCO DE DADOS CONFIDENCIAL</p>
+                    <h2 class="cw-titulo-secao-texto">
+                        <span class="cw-titulo-secao-linha">ARQUIVOS</span>
+                    </h2>
+                </header>
+                <!-- CONTEÚDO: prompt 08 -->
+            </section>
+        </div>
+
+        <!-- ---------- SEÇÃO 07 // SISTEMA ---------- -->
+        <div class="cw-faixa">
+            <section class="cw-secao" id="sistema">
+                <header class="cw-titulo-secao">
+                    <p class="cw-rotulo-sistema">PERFIL DO OPERADOR</p>
+                    <h2 class="cw-titulo-secao-texto">
+                        <span class="cw-titulo-secao-linha">SISTEMA</span>
+                    </h2>
+                </header>
+                <!-- CONTEÚDO: prompt 08 -->
+            </section>
+        </div>
+
+    </main>
+
+    <!-- ==================================================================
+         RODAPÉ
+         ================================================================== -->
+    <footer class="cw-rodape">
+        <div class="cw-rodape-interno">
+            <p class="cw-rodape-marca">CODEWORLD</p>
+            <p class="cw-rodape-credito">Por 11 Estudantes de tecnologia</p>
+            <p class="cw-rotulo-sistema">PROJETO ACADÊMICO // FRONT END 2025</p>
+        </div>
+    </footer>
+
 </body>
+
 </html>

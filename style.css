@@ -1,4 +1,822 @@
-.cards_personagens {
-    display: grid;
-    grid-template-columns: 200px 200px 200px;
+/* ==========================================================================
+   CODEWORLD — folha de estilo única
+   Prompt 00: tokens, reset, componentes base, navbar, rodapé e breakpoints.
+   Todo nome de classe começa com "cw-" para não conflitar no repositório
+   compartilhado dos 11 alunos.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. TOKENS DE DESIGN
+   Único lugar do arquivo onde existe valor de cor literal.
+   ========================================================================== */
+
+:root {
+    /* Cores de marca */
+    --cw-magenta: #e30071;
+    --cw-magenta-claro: #ff3d9a;
+    --cw-ciano: #00f2fe;
+    --cw-ciano-escuro: #00b8c4;
+    --cw-verde: #29f58a;
+    /* status ONLINE */
+    --cw-ambar: #ffb020;
+    /* alertas */
+    --cw-vermelho: #ff3b4e;
+    /* nível de ameaça */
+
+    /* Superfícies */
+    --cw-fundo: #08060f;
+    /* fundo da página */
+    --cw-fundo-alt: #0d0a16;
+    /* faixas alternadas */
+    --cw-superficie: #14111f;
+    /* cards e painéis */
+    --cw-superficie-alt: #1b1729;
+    /* cards elevados, inputs */
+    --cw-borda: rgba(0, 242, 254, 0.18);
+    --cw-borda-magenta: rgba(227, 0, 113, 0.35);
+
+    /* Texto */
+    --cw-texto: #e8e6f0;
+    --cw-texto-suave: #9a94ad;
+    --cw-texto-fraco: #5f5875;
+
+    /* Brilho neon */
+    --cw-glow-magenta: 0 0 12px rgba(227, 0, 113, 0.45);
+    --cw-glow-ciano: 0 0 12px rgba(0, 242, 254, 0.40);
+
+    /* Tipografia */
+    --cw-fonte-display: 'Chakra Petch', sans-serif;
+    --cw-fonte-mono: 'Share Tech Mono', monospace;
+
+    /* Espaçamento fluido */
+    --cw-gap: clamp(0.75rem, 2vw, 1.5rem);
+    --cw-gap-secao: clamp(3rem, 6vw, 6rem);
+    --cw-largura-max: 1440px;
+    --cw-raio: 4px;
+    /* cantos quase retos, estética técnica */
+    --cw-altura-navbar: 64px;
+
+    /* ---- Tokens auxiliares ----
+       Derivados das cores acima. Existem para que nenhuma cor literal
+       precise aparecer fora deste bloco. */
+    --cw-branco: #ffffff;
+    --cw-roxo: #8b3df0;
+    --cw-borda-roxa: rgba(139, 61, 240, 0.45);
+    --cw-magenta-suave: rgba(227, 0, 113, 0.12);
+    --cw-ciano-suave: rgba(0, 242, 254, 0.12);
+    --cw-verde-suave: rgba(41, 245, 138, 0.12);
+    --cw-ambar-suave: rgba(255, 176, 32, 0.12);
+    --cw-vermelho-suave: rgba(255, 59, 78, 0.12);
+    --cw-fundo-vidro: rgba(8, 6, 15, 0.82);
+    /* navbar translúcida para o blur */
+    --cw-listra: rgba(0, 242, 254, 0.06);
+    /* listras do wireframe */
+    --cw-sombra-painel: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+
+/* ==========================================================================
+   2. RESET
+   Único bloco onde tags genéricas são estilizadas.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--cw-fundo);
+    color: var(--cw-texto);
+    font-family: var(--cw-fonte-display);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.6;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 700;
+    line-height: 1.15;
+    text-wrap: balance;
+}
+
+
+/* ==========================================================================
+   3. TIPOGRAFIA BASE
+   ========================================================================== */
+
+/* Rótulo técnico do design: mono, maiúsculo, espaçado. */
+.cw-rotulo-sistema {
+    font-family: var(--cw-fonte-mono);
+    font-size: 0.7rem;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--cw-texto-suave);
+}
+
+/* Cabeçalho padrão de seção: barra magenta + rótulo + título grande. */
+.cw-titulo-secao {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: var(--cw-gap);
+    border-left: 3px solid var(--cw-magenta);
+    margin-bottom: var(--cw-gap-secao);
+}
+
+.cw-titulo-secao-texto {
+    font-family: var(--cw-fonte-display);
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+}
+
+.cw-titulo-secao-linha {
+    display: block;
+}
+
+/* Segunda linha do título em magenta. */
+.cw-titulo-secao-linha--destaque {
+    color: var(--cw-magenta);
+}
+
+
+/* ==========================================================================
+   4. COMPONENTES BASE
+   ========================================================================== */
+
+/* -------- 4.1 Wireframe: placeholder de toda imagem do site --------------
+   Troque a <div> por uma <img> quando a arte existir. */
+.cw-wireframe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: var(--cw-ratio, 1);
+    padding: var(--cw-gap);
+    background-color: var(--cw-superficie);
+    background-image: repeating-linear-gradient(45deg,
+            var(--cw-listra) 0,
+            var(--cw-listra) 1px,
+            transparent 1px,
+            transparent 10px);
+    border: 1px dashed var(--cw-borda);
+    border-radius: var(--cw-raio);
+    text-align: center;
+}
+
+.cw-wireframe span,
+.cw-wireframe-rotulo {
+    font-family: var(--cw-fonte-mono);
+    font-size: 0.7rem;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--cw-texto-fraco);
+}
+
+/* -------- 4.2 Painel: caixa base de card ------------------------------- */
+.cw-painel {
+    background-color: var(--cw-superficie);
+    border: 1px solid var(--cw-borda);
+    border-radius: var(--cw-raio);
+    padding: var(--cw-gap);
+}
+
+.cw-painel--destaque {
+    border-color: var(--cw-borda-magenta);
+    box-shadow: var(--cw-glow-magenta);
+}
+
+/* -------- 4.3 Botões ---------------------------------------------------- */
+.cw-botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--cw-fonte-display);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid transparent;
+    border-radius: 0;
+    background-color: transparent;
+    color: var(--cw-texto);
+    cursor: pointer;
+    transition: 180ms ease;
+}
+
+.cw-botao--primario {
+    background-color: var(--cw-magenta);
+    border-color: var(--cw-magenta);
+    color: var(--cw-branco);
+}
+
+.cw-botao--primario:hover {
+    background-color: var(--cw-magenta-claro);
+    border-color: var(--cw-magenta-claro);
+    box-shadow: var(--cw-glow-magenta);
+}
+
+.cw-botao--fantasma {
+    border-color: var(--cw-magenta);
+    color: var(--cw-magenta);
+}
+
+.cw-botao--fantasma:hover {
+    background-color: var(--cw-magenta-suave);
+}
+
+.cw-botao--ciano {
+    border-color: var(--cw-ciano);
+    color: var(--cw-ciano);
+}
+
+.cw-botao--ciano:hover {
+    background-color: var(--cw-ciano-suave);
+}
+
+/* Controle que dependeria de JS: aparência normal, sem hover. */
+.cw-botao--inerte {
+    cursor: default;
+}
+
+.cw-botao--inerte:hover {
+    box-shadow: none;
+}
+
+.cw-botao--primario.cw-botao--inerte:hover {
+    background-color: var(--cw-magenta);
+    border-color: var(--cw-magenta);
+}
+
+.cw-botao--fantasma.cw-botao--inerte:hover,
+.cw-botao--ciano.cw-botao--inerte:hover {
+    background-color: transparent;
+}
+
+/* -------- 4.4 Badge ----------------------------------------------------- */
+.cw-badge {
+    display: inline-block;
+    font-family: var(--cw-fonte-mono);
+    font-size: 0.65rem;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    color: var(--cw-texto-suave);
+}
+
+.cw-badge--magenta {
+    color: var(--cw-magenta-claro);
+    background-color: var(--cw-magenta-suave);
+}
+
+.cw-badge--ciano {
+    color: var(--cw-ciano);
+    background-color: var(--cw-ciano-suave);
+}
+
+.cw-badge--verde {
+    color: var(--cw-verde);
+    background-color: var(--cw-verde-suave);
+}
+
+.cw-badge--ambar {
+    color: var(--cw-ambar);
+    background-color: var(--cw-ambar-suave);
+}
+
+.cw-badge--vermelho {
+    color: var(--cw-vermelho);
+    background-color: var(--cw-vermelho-suave);
+}
+
+/* -------- 4.5 Barra de progresso ---------------------------------------
+   Largura do preenchimento vem de style="--cw-progresso: 68%". */
+.cw-barra-progresso {
+    width: 100%;
+    height: 4px;
+    background-color: var(--cw-superficie-alt);
+    border-radius: var(--cw-raio);
+    overflow: hidden;
+}
+
+.cw-barra-progresso-preenchimento {
+    display: block;
+    height: 100%;
+    width: var(--cw-progresso, 0%);
+    background-image: linear-gradient(90deg, var(--cw-magenta), var(--cw-magenta-claro));
+}
+
+
+/* ==========================================================================
+   5. CABEÇALHO / NAVBAR
+   ========================================================================== */
+
+.cw-cabecalho {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--cw-altura-navbar);
+    background-color: var(--cw-fundo-vidro);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--cw-borda-magenta);
+}
+
+.cw-cabecalho-interno {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--cw-gap);
+    height: 100%;
+    max-width: var(--cw-largura-max);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* -------- 5.1 Logo ------------------------------------------------------ */
+.cw-logo,
+.cw-rodape-marca {
+    font-family: var(--cw-fonte-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    background-image: linear-gradient(90deg, var(--cw-magenta), var(--cw-ciano));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* -------- 5.2 Navegação ------------------------------------------------- */
+.cw-nav-lista {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: clamp(0.75rem, 2vw, 1.75rem);
+}
+
+.cw-nav-link {
+    display: inline-block;
+    font-family: var(--cw-fonte-display);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    color: var(--cw-texto-suave);
+    padding-block: 0.4rem;
+    transition: color 180ms ease, background-color 180ms ease;
+}
+
+.cw-nav-link:hover,
+.cw-nav-link:focus-visible {
+    color: var(--cw-magenta);
+}
+
+/* Estado ativo estático: sem JS não há como acompanhar a rolagem. */
+.cw-nav-ativo {
+    color: var(--cw-magenta);
+    border: 1px solid var(--cw-magenta);
+    padding: 0.4rem 0.9rem;
+}
+
+/* -------- 5.3 Área direita: status + acessibilidade --------------------- */
+.cw-cabecalho-direita {
+    display: flex;
+    align-items: center;
+    gap: var(--cw-gap);
+}
+
+.cw-status {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--cw-fonte-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+    color: var(--cw-texto-suave);
+}
+
+.cw-status-ponto {
+    color: var(--cw-verde);
+    animation: cw-pulsar 2.4s ease-in-out infinite;
+}
+
+@keyframes cw-pulsar {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+}
+
+
+/* ==========================================================================
+   6. PAINEL DE ACESSIBILIDADE (<details> nativo, controles inertes)
+   ========================================================================== */
+
+.cw-acessibilidade {
+    position: relative;
+}
+
+.cw-acessibilidade-botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--cw-fonte-display);
+    font-weight: 600;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    padding: 0.45rem 0.8rem;
+    border: 1px solid var(--cw-ciano);
+    border-radius: var(--cw-raio);
+    color: var(--cw-ciano);
+    cursor: pointer;
+    list-style: none;
+    transition: background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.cw-acessibilidade-botao::-webkit-details-marker {
+    display: none;
+}
+
+.cw-acessibilidade-botao:hover,
+.cw-acessibilidade-botao:focus-visible {
+    background-color: var(--cw-ciano-suave);
+    box-shadow: var(--cw-glow-ciano);
+}
+
+.cw-acessibilidade-icone {
+    font-size: 0.85rem;
+}
+
+.cw-acessibilidade-painel {
+    position: absolute;
+    top: calc(100% + 0.6rem);
+    right: 0;
+    z-index: 110;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    width: 280px;
+    padding: var(--cw-gap);
+    background-color: var(--cw-superficie);
+    border: 1px solid var(--cw-borda);
+    border-radius: var(--cw-raio);
+    box-shadow: var(--cw-sombra-painel);
+}
+
+.cw-acessibilidade-titulo {
+    font-family: var(--cw-fonte-display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--cw-texto);
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--cw-magenta);
+    margin-top: -0.5rem;
+}
+
+.cw-acessibilidade-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.cw-acessibilidade-opcoes {
+    display: flex;
+    gap: 0.4rem;
+}
+
+/* Segmentos inertes: apenas aparência. */
+.cw-opcao {
+    flex: 1 1 0;
+    text-align: center;
+    font-family: var(--cw-fonte-mono);
+    font-size: 0.65rem;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.4rem;
+    border: 1px solid var(--cw-borda-roxa);
+    border-radius: var(--cw-raio);
+    color: var(--cw-texto-suave);
+    cursor: default;
+}
+
+.cw-opcao--ativa {
+    background-image: linear-gradient(90deg, var(--cw-magenta), var(--cw-roxo));
+    border-color: var(--cw-magenta);
+    color: var(--cw-branco);
+}
+
+.cw-opcao--fonte {
+    flex: 1 1 0;
+    background-color: var(--cw-superficie-alt);
+    border-color: var(--cw-borda);
+}
+
+.cw-opcao--marcada {
+    border-color: var(--cw-magenta);
+    color: var(--cw-magenta);
+}
+
+/* Toggle desenhado em CSS, sempre na posição desligada. */
+.cw-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.cw-toggle-trilho {
+    position: relative;
+    flex: 0 0 auto;
+    width: 38px;
+    height: 20px;
+    background-color: var(--cw-superficie-alt);
+    border: 1px solid var(--cw-borda);
+    border-radius: 999px;
+}
+
+.cw-toggle-botao {
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--cw-texto-fraco);
+    border-radius: 50%;
+}
+
+.cw-acessibilidade-status {
+    font-family: var(--cw-fonte-mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--cw-magenta);
+}
+
+
+/* ==========================================================================
+   7. FAIXAS E SEÇÕES
+   ========================================================================== */
+
+.cw-faixa {
+    width: 100%;
+}
+
+/* Seções pares recebem o fundo alternado em largura total. */
+.cw-faixa--alt {
+    background-color: var(--cw-fundo-alt);
+}
+
+.cw-secao {
+    max-width: var(--cw-largura-max);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2.5rem);
+    padding-block: var(--cw-gap-secao);
+    /* impede que a navbar fixa cubra o título ao usar as âncoras */
+    scroll-margin-top: var(--cw-altura-navbar);
+    /* apenas nesta fase: mantém o esqueleto navegável enquanto vazio */
+    min-height: 40vh;
+}
+
+
+/* ==========================================================================
+   8. RODAPÉ
+   ========================================================================== */
+
+.cw-rodape {
+    width: 100%;
+    border-top: 1px solid var(--cw-borda);
+    padding-block: 2rem;
+}
+
+.cw-rodape-interno {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: var(--cw-largura-max);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2.5rem);
+    text-align: center;
+}
+
+.cw-rodape-credito {
+    font-family: var(--cw-fonte-display);
+    font-size: 0.9rem;
+    color: var(--cw-texto-suave);
+}
+
+
+/* ==========================================================================
+   9. FOCO VISÍVEL
+   ========================================================================== */
+
+.cw-logo:focus-visible,
+.cw-nav-link:focus-visible,
+.cw-botao:focus-visible,
+.cw-acessibilidade-botao:focus-visible {
+    outline: 2px solid var(--cw-ciano);
+    outline-offset: 3px;
+}
+
+
+/* ==========================================================================
+   10. RESPONSIVIDADE
+   Base do arquivo = layout do Figma (≥ 1280px, máximo 1440px).
+   ========================================================================== */
+
+/* -------- 10.1 Entre 768px e 1279px: navbar compacta -------------------- */
+@media (max-width: 1279px) {
+
+    .cw-cabecalho-interno,
+    .cw-secao,
+    .cw-rodape-interno {
+        padding-inline: clamp(0.75rem, 3vw, 1.5rem);
+    }
+
+    .cw-logo {
+        font-size: 1.1rem;
+    }
+
+    .cw-nav-lista {
+        gap: clamp(0.5rem, 1.4vw, 1rem);
+    }
+
+    .cw-nav-link {
+        font-size: 0.72rem;
+        letter-spacing: 0.06em;
+    }
+
+    .cw-nav-ativo {
+        padding: 0.35rem 0.6rem;
+    }
+
+    .cw-cabecalho-direita {
+        gap: 0.75rem;
+    }
+}
+
+/* -------- 10.2 Abaixo de 768px: navegação rolável horizontal ------------ */
+@media (max-width: 767px) {
+
+    :root {
+        /* o cabeçalho passa a ter duas linhas */
+        --cw-altura-navbar: 104px;
+    }
+
+    .cw-cabecalho {
+        height: auto;
+        min-height: var(--cw-altura-navbar);
+    }
+
+    .cw-cabecalho-interno {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        height: auto;
+        padding-block: 0.6rem;
+        row-gap: 0.55rem;
+    }
+
+    .cw-logo {
+        order: 1;
+    }
+
+    .cw-cabecalho-direita {
+        order: 2;
+    }
+
+    /* links viram uma linha horizontal rolável abaixo do logo */
+    .cw-nav {
+        order: 3;
+        flex: 1 0 100%;
+        min-width: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .cw-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .cw-nav-lista {
+        gap: 1rem;
+        width: max-content;
+        padding-right: 0.25rem;
+    }
+
+    /* o indicador ONLINE some */
+    .cw-status {
+        display: none;
+    }
+
+    /* o painel de acessibilidade ocupa a largura total do cabeçalho */
+    .cw-acessibilidade {
+        position: static;
+    }
+
+    .cw-acessibilidade-painel {
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: auto;
+    }
+
+    /* títulos no valor mínimo do clamp() */
+    .cw-titulo-secao-texto {
+        font-size: 2rem;
+    }
+
+    .cw-titulo-secao {
+        margin-bottom: var(--cw-gap);
+    }
+}
+
+
+/* ==========================================================================
+   11. PREFERÊNCIA DE MOVIMENTO REDUZIDO
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .cw-status-ponto {
+        animation: none;
+    }
+
+    .cw-botao,
+    .cw-nav-link,
+    .cw-acessibilidade-botao {
+        transition: none;
+    }
 }
