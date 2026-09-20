@@ -1,125 +1,57 @@
 /* ==========================================================================
-   CODEWORLD — folha de estilo única
-   Prompt 00: tokens, reset, componentes base, navbar, rodapé e breakpoints.
-   Todo nome de classe começa com "cw-" para não conflitar no repositório
-   compartilhado dos 11 alunos.
+   CODEWORLD // style.css
+   Portal de página única - 11 Estudantes de tecnologia
+
+   Índice
+   01. Reset e base
+   02. Variáveis do projeto
+   03. Tipografia e utilitários
+   04. Componentes reaproveitados
+   05. Cabeçalho
+   06. Regras gerais das seções
+   07. Seção NEXUS
+   08. Seção UNIVERSO
+   09. Seção PERSONAGENS
+   10. Seção MAPA
+   11. Seção MISSÕES
+   12. Seção ARQUIVOS
+   13. Seção SISTEMA
+   14. Rodapé
+   15. Foco e acessibilidade
+   16. Responsivo
+
+   Obs: as classes do HTML são escritas com espaço ("card agente"), ou seja,
+   viram várias classes. Por isso os seletores daqui são compostos
+   (.card.agente) - escrever só .agente pegaria elementos errados.
    ========================================================================== */
 
 
 /* ==========================================================================
-   1. TOKENS DE DESIGN
-   Único lugar do arquivo onde existe valor de cor literal.
+   01. RESET E BASE
    ========================================================================== */
-
-:root {
-    /* Cores de marca */
-    --cw-magenta: #e30071;
-    --cw-magenta-claro: #ff3d9a;
-    --cw-ciano: #00f2fe;
-    --cw-ciano-escuro: #00b8c4;
-    --cw-verde: #29f58a;
-    /* status ONLINE */
-    --cw-ambar: #ffb020;
-    /* alertas */
-    --cw-vermelho: #ff3b4e;
-    /* nível de ameaça */
-
-    /* Superfícies */
-    --cw-fundo: #08060f;
-    /* fundo da página */
-    --cw-fundo-alt: #0d0a16;
-    /* faixas alternadas */
-    --cw-superficie: #14111f;
-    /* cards e painéis */
-    --cw-superficie-alt: #1b1729;
-    /* cards elevados, inputs */
-    --cw-borda: rgba(0, 242, 254, 0.18);
-    --cw-borda-magenta: rgba(227, 0, 113, 0.35);
-
-    /* Texto */
-    --cw-texto: #e8e6f0;
-    --cw-texto-suave: #9a94ad;
-    --cw-texto-fraco: #5f5875;
-
-    /* Brilho neon */
-    --cw-glow-magenta: 0 0 12px rgba(227, 0, 113, 0.45);
-    --cw-glow-ciano: 0 0 12px rgba(0, 242, 254, 0.40);
-
-    /* Tipografia */
-    --cw-fonte-display: 'Chakra Petch', sans-serif;
-    --cw-fonte-mono: 'Share Tech Mono', monospace;
-
-    /* Espaçamento fluido */
-    --cw-gap: clamp(0.75rem, 2vw, 1.5rem);
-    --cw-gap-secao: clamp(3rem, 6vw, 6rem);
-    --cw-largura-max: 1440px;
-    --cw-raio: 4px;
-    /* cantos quase retos, estética técnica */
-    --cw-altura-navbar: 64px;
-
-    /* ---- Tokens auxiliares ----
-       Derivados das cores acima. Existem para que nenhuma cor literal
-       precise aparecer fora deste bloco. */
-    --cw-branco: #ffffff;
-    --cw-roxo: #8b3df0;
-    --cw-borda-roxa: rgba(139, 61, 240, 0.45);
-    --cw-magenta-suave: rgba(227, 0, 113, 0.12);
-    --cw-ciano-suave: rgba(0, 242, 254, 0.12);
-    --cw-verde-suave: rgba(41, 245, 138, 0.12);
-    --cw-ambar-suave: rgba(255, 176, 32, 0.12);
-    --cw-vermelho-suave: rgba(255, 59, 78, 0.12);
-    --cw-fundo-vidro: rgba(8, 6, 15, 0.82);
-    /* navbar translúcida para o blur */
-    --cw-listra: rgba(0, 242, 254, 0.06);
-    /* listras do wireframe */
-    --cw-sombra-painel: 0 18px 40px rgba(0, 0, 0, 0.55);
-}
-
-
-/* ==========================================================================
-   2. RESET
-   Único bloco onde tags genéricas são estilizadas.
-   ========================================================================== */
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
 
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html {
     scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
 }
 
 body {
-    min-height: 100vh;
-    background-color: var(--cw-fundo);
-    color: var(--cw-texto);
-    font-family: var(--cw-fonte-display);
-    font-weight: 400;
-    font-size: 1rem;
+    background-color: var(--fundo);
+    color: var(--texto);
+    font-family: var(--fonte-titulo);
     line-height: 1.6;
-    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
 }
 
-img,
-picture,
-svg,
-video {
+img {
     display: block;
     max-width: 100%;
-}
-
-ul,
-ol {
-    list-style: none;
+    height: auto;
 }
 
 a {
@@ -127,696 +59,1474 @@ a {
     text-decoration: none;
 }
 
-button,
-input,
-select,
-textarea {
-    font: inherit;
-    color: inherit;
+ul,
+ol {
+    list-style: none;
 }
 
 h1,
 h2,
 h3,
 h4 {
-    font-weight: 700;
     line-height: 1.15;
     text-wrap: balance;
 }
 
+input,
+button {
+    font: inherit;
+    color: inherit;
+}
+
 
 /* ==========================================================================
-   3. TIPOGRAFIA BASE
+   02. VARIÁVEIS DO PROJETO
    ========================================================================== */
 
-/* Rótulo técnico do design: mono, maiúsculo, espaçado. */
-.cw-rotulo-sistema {
-    font-family: var(--cw-fonte-mono);
-    font-size: 0.7rem;
-    line-height: 1.4;
-    text-transform: uppercase;
+:root {
+    /* Cores da marca */
+    --magenta: #e30071;
+    --magenta-claro: #ff3d9a;
+    --ciano: #00f2fe;
+    --verde: #29f58a;
+    --ambar: #ffb020;
+    --vermelho: #ff3b4e;
+    --roxo: #8b3df0;
+
+    /* Fundos e superfícies */
+    --fundo: #08060f;
+    --fundo-alt: #0d0a16;
+    --superficie: #14111f;
+    --superficie-alt: #1b1729;
+
+    /* Bordas */
+    --borda: rgba(0, 242, 254, 0.18);
+    --borda-magenta: rgba(227, 0, 113, 0.35);
+
+    /* Texto */
+    --texto: #e8e6f0;
+    --texto-suave: #9a94ad;
+    --texto-fraco: #5f5875;
+
+    /* Brilho neon */
+    --brilho-magenta: 0 0 12px rgba(227, 0, 113, 0.45);
+    --brilho-ciano: 0 0 12px rgba(0, 242, 254, 0.40);
+
+    /* Tipografia */
+    --fonte-titulo: 'Chakra Petch', sans-serif;
+    --fonte-mono: 'Share Tech Mono', monospace;
+
+    /* Medidas */
+    --espaco: clamp(1rem, 2vw, 1.5rem);
+    --espaco-secao: clamp(3rem, 6vw, 6rem);
+    --margem-lateral: clamp(1rem, 4vw, 2.5rem);
+    --largura-conteudo: 1200px;
+    --raio: 4px;
+    --altura-cabecalho: 64px;
+}
+
+
+/* ==========================================================================
+   03. TIPOGRAFIA E UTILITÁRIOS
+   ========================================================================== */
+
+/* Rótulo técnico: fonte mono, maiúsculo e espaçado. Usado no site inteiro. */
+.rotulo.sistema {
+    font-family: var(--fonte-mono);
+    font-size: 0.72rem;
     letter-spacing: 0.12em;
-    color: var(--cw-texto-suave);
-}
-
-/* Cabeçalho padrão de seção: barra magenta + rótulo + título grande. */
-.cw-titulo-secao {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding-left: var(--cw-gap);
-    border-left: 3px solid var(--cw-magenta);
-    margin-bottom: var(--cw-gap-secao);
-}
-
-.cw-titulo-secao-texto {
-    font-family: var(--cw-fonte-display);
-    font-weight: 700;
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.05;
-    letter-spacing: 0.01em;
     text-transform: uppercase;
+    color: var(--texto-suave);
 }
 
-.cw-titulo-secao-linha {
-    display: block;
+/* Segunda palavra dos títulos, em magenta. */
+.destaque {
+    color: var(--magenta);
 }
 
-/* Segunda linha do título em magenta. */
-.cw-titulo-secao-linha--destaque {
-    color: var(--cw-magenta);
+.credito {
+    color: var(--texto-suave);
+}
+
+/* Número grande dos painéis de progresso. */
+.contagem {
+    font-family: var(--fonte-mono);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1;
+    color: var(--ciano);
+}
+
+/* Cursor piscando dos terminais. */
+.cursor {
+    display: inline-block;
+    color: var(--verde);
+    animation: piscar 1s steps(2, start) infinite;
+}
+
+@keyframes piscar {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Linhas de terminal. */
+.linhas.console {
+    font-family: var(--fonte-mono);
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--verde);
+    word-break: break-word;
 }
 
 
 /* ==========================================================================
-   4. COMPONENTES BASE
+   04. COMPONENTES REAPROVEITADOS
    ========================================================================== */
 
-/* -------- 4.1 Wireframe: placeholder de toda imagem do site --------------
-   Troque a <div> por uma <img> quando a arte existir. */
-.cw-wireframe {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    aspect-ratio: var(--cw-ratio, 1);
-    padding: var(--cw-gap);
-    background-color: var(--cw-superficie);
-    background-image: repeating-linear-gradient(45deg,
-            var(--cw-listra) 0,
-            var(--cw-listra) 1px,
-            transparent 1px,
-            transparent 10px);
-    border: 1px dashed var(--cw-borda);
-    border-radius: var(--cw-raio);
-    text-align: center;
-}
-
-.cw-wireframe span,
-.cw-wireframe-rotulo {
-    font-family: var(--cw-fonte-mono);
-    font-size: 0.7rem;
-    line-height: 1.4;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--cw-texto-fraco);
-}
-
-/* -------- 4.2 Painel: caixa base de card ------------------------------- */
-.cw-painel {
-    background-color: var(--cw-superficie);
-    border: 1px solid var(--cw-borda);
-    border-radius: var(--cw-raio);
-    padding: var(--cw-gap);
-}
-
-.cw-painel--destaque {
-    border-color: var(--cw-borda-magenta);
-    box-shadow: var(--cw-glow-magenta);
-}
-
-/* -------- 4.3 Botões ---------------------------------------------------- */
-.cw-botao {
+/* -------- 4.1 Botões -----------------------------------------------------
+   Só .primario e .secundario recebem aparência de botão. A classe .botao
+   sozinha também aparece no interruptor do painel de acessibilidade
+   (.botao.chave), que é outra coisa. */
+.botao.primario,
+.botao.secundario {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    font-family: var(--cw-fonte-display);
-    font-weight: 600;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0.75rem 1.5rem;
+    padding: 0.7rem 1.4rem;
     border: 1px solid transparent;
-    border-radius: 0;
-    background-color: transparent;
-    color: var(--cw-texto);
-    cursor: pointer;
-    transition: 180ms ease;
-}
-
-.cw-botao--primario {
-    background-color: var(--cw-magenta);
-    border-color: var(--cw-magenta);
-    color: var(--cw-branco);
-}
-
-.cw-botao--primario:hover {
-    background-color: var(--cw-magenta-claro);
-    border-color: var(--cw-magenta-claro);
-    box-shadow: var(--cw-glow-magenta);
-}
-
-.cw-botao--fantasma {
-    border-color: var(--cw-magenta);
-    color: var(--cw-magenta);
-}
-
-.cw-botao--fantasma:hover {
-    background-color: var(--cw-magenta-suave);
-}
-
-.cw-botao--ciano {
-    border-color: var(--cw-ciano);
-    color: var(--cw-ciano);
-}
-
-.cw-botao--ciano:hover {
-    background-color: var(--cw-ciano-suave);
-}
-
-/* Controle que dependeria de JS: aparência normal, sem hover. */
-.cw-botao--inerte {
-    cursor: default;
-}
-
-.cw-botao--inerte:hover {
-    box-shadow: none;
-}
-
-.cw-botao--primario.cw-botao--inerte:hover {
-    background-color: var(--cw-magenta);
-    border-color: var(--cw-magenta);
-}
-
-.cw-botao--fantasma.cw-botao--inerte:hover,
-.cw-botao--ciano.cw-botao--inerte:hover {
-    background-color: transparent;
-}
-
-/* -------- 4.4 Badge ----------------------------------------------------- */
-.cw-badge {
-    display: inline-block;
-    font-family: var(--cw-fonte-mono);
-    font-size: 0.65rem;
-    line-height: 1.4;
+    border-radius: var(--raio);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 0.2rem 0.6rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
+}
+
+.botao.primario {
+    background-color: var(--magenta);
+    color: #fff;
+}
+
+.botao.primario:hover,
+.botao.primario:focus-visible {
+    background-color: var(--magenta-claro);
+    box-shadow: var(--brilho-magenta);
+}
+
+.botao.secundario {
+    background-color: transparent;
+    border-color: var(--ciano);
+    color: var(--ciano);
+}
+
+.botao.secundario:hover,
+.botao.secundario:focus-visible {
+    background-color: rgba(0, 242, 254, 0.12);
+    box-shadow: var(--brilho-ciano);
+}
+
+/* -------- 4.2 Selos ------------------------------------------------------ */
+.selo.status,
+.selo.ameaca,
+.selo.bloqueado,
+.selo.principal,
+.selo.secundaria,
+.selo.epica {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    align-self: flex-start;
+    padding: 0.2rem 0.7rem;
     border: 1px solid currentColor;
-    border-radius: 999px;
-    color: var(--cw-texto-suave);
+    border-radius: 99px;
+    font-family: var(--fonte-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
-.cw-badge--magenta {
-    color: var(--cw-magenta-claro);
-    background-color: var(--cw-magenta-suave);
+.selo.status {
+    color: var(--verde);
 }
 
-.cw-badge--ciano {
-    color: var(--cw-ciano);
-    background-color: var(--cw-ciano-suave);
+.selo.ameaca,
+.selo.principal {
+    color: var(--vermelho);
 }
 
-.cw-badge--verde {
-    color: var(--cw-verde);
-    background-color: var(--cw-verde-suave);
+.selo.bloqueado {
+    color: var(--texto-fraco);
 }
 
-.cw-badge--ambar {
-    color: var(--cw-ambar);
-    background-color: var(--cw-ambar-suave);
+.selo.secundaria {
+    color: var(--ciano);
 }
 
-.cw-badge--vermelho {
-    color: var(--cw-vermelho);
-    background-color: var(--cw-vermelho-suave);
+.selo.epica {
+    color: var(--ambar);
 }
 
-/* -------- 4.5 Barra de progresso ---------------------------------------
-   Largura do preenchimento vem de style="--cw-progresso: 68%". */
-.cw-barra-progresso {
+/* -------- 4.3 Opções (acessibilidade, filtros e abas) -------------------- */
+.opcao {
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    background-color: var(--superficie-alt);
+    font-family: var(--fonte-mono);
+    font-size: 0.75rem;
+    color: var(--texto-suave);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.opcao.ativa {
+    border-color: var(--magenta);
+    background-color: rgba(227, 0, 113, 0.14);
+    color: var(--texto);
+}
+
+.opcoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.opcoes .opcao {
+    flex: 1;
+}
+
+/* -------- 4.4 Barra de progresso ----------------------------------------
+   A largura de cada preenchimento é definida na seção correspondente. */
+.barra.progresso {
     width: 100%;
-    height: 4px;
-    background-color: var(--cw-superficie-alt);
-    border-radius: var(--cw-raio);
+    height: 6px;
+    border-radius: 99px;
+    background-color: var(--superficie-alt);
     overflow: hidden;
 }
 
-.cw-barra-progresso-preenchimento {
-    display: block;
+.preenchimento.progresso {
     height: 100%;
-    width: var(--cw-progresso, 0%);
-    background-image: linear-gradient(90deg, var(--cw-magenta), var(--cw-magenta-claro));
+    width: 0;
+    border-radius: 99px;
+    background-image: linear-gradient(90deg, var(--magenta), var(--magenta-claro));
+}
+
+/* -------- 4.5 Painéis e cartões ------------------------------------------ */
+.painel.progresso,
+.painel.filtros,
+.painel.controles,
+.painel.detalhes,
+.painel.combate,
+.bloco.terminal,
+.bloco.log,
+.bloco.diagnostico,
+.cartao.operador,
+.card.linguagem,
+.card.agente,
+.card.territorio,
+.card.missao,
+.card.evento,
+.card.recompensa,
+.card.arquivo,
+.formulario.dados,
+.formulario.senha {
+    padding: var(--espaco);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    background-color: var(--superficie);
+}
+
+/* -------- 4.6 Teclas do mapa e interruptor da acessibilidade ------------- */
+.tecla {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 0.4rem;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    background-color: var(--superficie-alt);
+    font-family: var(--fonte-mono);
+    font-size: 0.8rem;
+    color: var(--ciano);
+}
+
+/* Interruptor sempre desligado: é só aparência, não há JavaScript. */
+.chave {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 38px;
+    height: 20px;
+    border: 1px solid var(--borda);
+    border-radius: 99px;
+    background-color: var(--superficie-alt);
+}
+
+.botao.chave {
+    display: block;
+    width: 14px;
+    height: 14px;
+    margin: 2px 0 0 2px;
+    border-radius: 50%;
+    background-color: var(--texto-suave);
 }
 
 
 /* ==========================================================================
-   5. CABEÇALHO / NAVBAR
+   05. CABEÇALHO
    ========================================================================== */
 
-.cw-cabecalho {
+header {
     position: sticky;
     top: 0;
     z-index: 100;
-    height: var(--cw-altura-navbar);
-    background-color: var(--cw-fundo-vidro);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--cw-borda-magenta);
-}
-
-.cw-cabecalho-interno {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--cw-gap);
-    height: 100%;
-    max-width: var(--cw-largura-max);
-    margin-inline: auto;
-    padding-inline: clamp(1rem, 4vw, 2.5rem);
+    gap: var(--espaco);
+    min-height: var(--altura-cabecalho);
+    padding: 0 var(--margem-lateral);
+    border-bottom: 1px solid var(--borda-magenta);
+    background-color: rgba(8, 6, 15, 0.85);
+    backdrop-filter: blur(8px);
 }
 
-/* -------- 5.1 Logo ------------------------------------------------------ */
-.cw-logo,
-.cw-rodape-marca {
-    font-family: var(--cw-fonte-display);
-    font-weight: 700;
+.logo a,
+.logo.rodape {
     font-size: 1.25rem;
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-    background-image: linear-gradient(90deg, var(--cw-magenta), var(--cw-ciano));
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    background-image: linear-gradient(90deg, var(--magenta), var(--ciano));
     -webkit-background-clip: text;
     background-clip: text;
-    -webkit-text-fill-color: transparent;
     color: transparent;
 }
 
-/* -------- 5.2 Navegação ------------------------------------------------- */
-.cw-nav-lista {
+header nav ul {
     display: flex;
-    flex-wrap: nowrap;
     align-items: center;
-    gap: clamp(0.75rem, 2vw, 1.75rem);
+    gap: clamp(0.75rem, 2vw, 2rem);
 }
 
-.cw-nav-link {
-    display: inline-block;
-    font-family: var(--cw-fonte-display);
-    font-weight: 600;
+header nav a {
     font-size: 0.8rem;
-    text-transform: uppercase;
+    font-weight: 600;
     letter-spacing: 0.1em;
+    color: var(--texto-suave);
     white-space: nowrap;
-    color: var(--cw-texto-suave);
-    padding-block: 0.4rem;
-    transition: color 180ms ease, background-color 180ms ease;
+    transition: color 180ms ease;
 }
 
-.cw-nav-link:hover,
-.cw-nav-link:focus-visible {
-    color: var(--cw-magenta);
+header nav a:hover,
+header nav a:focus-visible {
+    color: var(--magenta);
 }
 
-/* Estado ativo estático: sem JS não há como acompanhar a rolagem. */
-.cw-nav-ativo {
-    color: var(--cw-magenta);
-    border: 1px solid var(--cw-magenta);
-    padding: 0.4rem 0.9rem;
-}
-
-/* -------- 5.3 Área direita: status + acessibilidade --------------------- */
-.cw-cabecalho-direita {
+.area.direita {
     display: flex;
     align-items: center;
-    gap: var(--cw-gap);
+    gap: var(--espaco);
 }
 
-.cw-status {
+/* Indicador ONLINE com o ponto pulsando. */
+.status.online {
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    font-family: var(--cw-fonte-mono);
+    font-family: var(--fonte-mono);
     font-size: 0.7rem;
     letter-spacing: 0.12em;
-    white-space: nowrap;
-    color: var(--cw-texto-suave);
+    color: var(--verde);
 }
 
-.cw-status-ponto {
-    color: var(--cw-verde);
-    animation: cw-pulsar 2.4s ease-in-out infinite;
+.ponto {
+    color: var(--verde);
+    text-shadow: 0 0 6px var(--verde);
+    animation: pulsar 2s ease-in-out infinite;
 }
 
-@keyframes cw-pulsar {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
+@keyframes pulsar {
     50% {
         opacity: 0.35;
     }
 }
 
-
-/* ==========================================================================
-   6. PAINEL DE ACESSIBILIDADE (<details> nativo, controles inertes)
-   ========================================================================== */
-
-.cw-acessibilidade {
+/* -------- 5.1 Painel de acessibilidade ----------------------------------- */
+details.acessibilidade {
     position: relative;
 }
 
-.cw-acessibilidade-botao {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: var(--cw-fonte-display);
-    font-weight: 600;
-    font-size: 0.7rem;
-    text-transform: uppercase;
+details.acessibilidade summary {
+    padding: 0.45rem 0.9rem;
+    border: 1px solid var(--ciano);
+    border-radius: var(--raio);
+    font-size: 0.75rem;
     letter-spacing: 0.08em;
+    color: var(--ciano);
     white-space: nowrap;
-    padding: 0.45rem 0.8rem;
-    border: 1px solid var(--cw-ciano);
-    border-radius: var(--cw-raio);
-    color: var(--cw-ciano);
     cursor: pointer;
     list-style: none;
-    transition: background-color 180ms ease, box-shadow 180ms ease;
 }
 
-.cw-acessibilidade-botao::-webkit-details-marker {
+details.acessibilidade summary::-webkit-details-marker {
     display: none;
 }
 
-.cw-acessibilidade-botao:hover,
-.cw-acessibilidade-botao:focus-visible {
-    background-color: var(--cw-ciano-suave);
-    box-shadow: var(--cw-glow-ciano);
+details.acessibilidade summary:hover {
+    background-color: rgba(0, 242, 254, 0.12);
 }
 
-.cw-acessibilidade-icone {
-    font-size: 0.85rem;
-}
-
-.cw-acessibilidade-painel {
+.painel.acessibilidade {
     position: absolute;
-    top: calc(100% + 0.6rem);
+    top: calc(100% + 0.5rem);
     right: 0;
-    z-index: 110;
+    z-index: 10;
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
+    gap: 1rem;
     width: 280px;
-    padding: var(--cw-gap);
-    background-color: var(--cw-superficie);
-    border: 1px solid var(--cw-borda);
-    border-radius: var(--cw-raio);
-    box-shadow: var(--cw-sombra-painel);
+    padding: var(--espaco);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    background-color: var(--superficie);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
 }
 
-.cw-acessibilidade-titulo {
-    font-family: var(--cw-fonte-display);
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--cw-texto);
-    padding-bottom: 0.4rem;
-    border-bottom: 1px solid var(--cw-magenta);
-    margin-top: -0.5rem;
+.titulo.painel {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--magenta);
+    font-weight: 600;
 }
 
-.cw-acessibilidade-grupo {
+.grupo.acessibilidade {
     display: flex;
     flex-direction: column;
-    gap: 0.45rem;
+    gap: 0.5rem;
 }
 
-.cw-acessibilidade-opcoes {
+/* Os dois grupos com interruptor ficam em linha. */
+.grupo.acessibilidade:has(.chave) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Atalho para o perfil, no canto do cabeçalho. */
+.perfil.atalho img {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--borda);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+/* ==========================================================================
+   06. REGRAS GERAIS DAS SEÇÕES
+   ========================================================================== */
+
+main > section {
+    position: relative;
+    overflow: hidden;
     display: flex;
+    flex-direction: column;
+    gap: calc(var(--espaco-secao) / 2);
+    padding: var(--espaco-secao) var(--margem-lateral);
+    scroll-margin-top: var(--altura-cabecalho);
+}
+
+/* Faixas alternadas, para separar uma seção da outra. */
+#SECAO-UNIVERSO,
+#SECAO-MAPA,
+#SECAO-ARQUIVOS {
+    background-color: var(--fundo-alt);
+}
+
+/* Todo filho direto da seção fica centralizado e com largura máxima. */
+main > section > * {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: var(--largura-conteudo);
+    margin-inline: auto;
+}
+
+/* Imagem de fundo da seção: cobre tudo, bem apagada, atrás do conteúdo. */
+.visual.fundo {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    margin: 0;
+    object-fit: cover;
+    opacity: 0.14;
+    pointer-events: none;
+}
+
+/* Cabeçalho de cada seção: barra magenta + rótulo + título. */
+.visao.geral {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--magenta);
+}
+
+.visao.geral h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    letter-spacing: 0.02em;
+}
+
+/* O texto corrido não passa de 65 caracteres por linha, para leitura. */
+.visao.geral p:not(.rotulo) {
+    max-width: 65ch;
+    color: var(--texto-suave);
+}
+
+/* Título dos blocos internos. */
+.bloco h3,
+.painel h3 {
+    margin-bottom: var(--espaco);
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ciano);
+}
+
+
+/* ==========================================================================
+   07. SEÇÃO NEXUS
+   ========================================================================== */
+
+#CODEWORLD {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - var(--altura-cabecalho));
+}
+
+.sistema.console {
+    width: 100%;
+    padding: var(--espaco);
+    border: 1px solid var(--borda);
+    border-left: 3px solid var(--verde);
+    border-radius: var(--raio);
+    background-color: rgba(8, 6, 15, 0.75);
+}
+
+.sistema.console .rotulo.sistema {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.conteudo.inicial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaco);
+    text-align: center;
+}
+
+.conteudo.inicial h1 {
+    font-size: clamp(3rem, 12vw, 7rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    background-image: linear-gradient(90deg, var(--magenta), var(--ciano));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.acoes.inicial {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--espaco);
+}
+
+
+/* ==========================================================================
+   08. SEÇÃO UNIVERSO
+   ========================================================================== */
+
+/* Os três parágrafos de abertura ficam um pouco mais largos. */
+.visao.geral.do.universo p:not(.rotulo) {
+    max-width: 80ch;
+    margin-top: 0.75rem;
+}
+
+/* Prévia do trailer. */
+.trailer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaco);
+}
+
+.trailer img {
+    width: 100%;
+    aspect-ratio: 2820 / 1472;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    object-fit: cover;
+}
+
+/* Grade das 7 linguagens. */
+.lista.linguagens {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--espaco);
+}
+
+.card.linguagem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
+    transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.card.linguagem:hover {
+    border-color: var(--ciano);
+    transform: translateY(-4px);
+}
+
+.card.linguagem img {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--raio);
+}
+
+.card.linguagem h4 {
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+}
+
+.card.linguagem .botao.secundario {
+    margin-top: auto;
+}
+
+/* O card da Super IA é o único inimigo: borda e brilho magenta. */
+.card.linguagem.inimiga {
+    grid-column: 1 / -1;
+    border-color: var(--borda-magenta);
+    box-shadow: var(--brilho-magenta);
+}
+
+.card.linguagem.inimiga p {
+    color: var(--texto-suave);
+}
+
+.card.linguagem.inimiga .selo.ameaca {
+    align-self: center;
+}
+
+/* Citação da Super IA. */
+.mensagem.superia {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: var(--espaco) calc(var(--espaco) * 1.5);
+    border-left: 3px solid var(--magenta);
+    background-color: var(--superficie);
+    border-radius: var(--raio);
+}
+
+.mensagem.superia p:not(.rotulo) {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-style: italic;
+    line-height: 1.5;
+}
+
+.mensagem.superia footer {
+    font-family: var(--fonte-mono);
+    font-size: 0.8rem;
+    color: var(--magenta);
+}
+
+/* Linha do tempo: risco vertical com um ponto em cada marco. */
+.lista.marcos {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco);
+    padding-left: 2rem;
+    border-left: 2px solid var(--borda);
+}
+
+.marco {
+    position: relative;
+}
+
+.marco::before {
+    content: '';
+    position: absolute;
+    top: 0.4rem;
+    left: calc(-2rem - 7px);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--ciano);
+}
+
+.marco h4 {
+    margin-bottom: 0.3rem;
+    font-size: 1.05rem;
+    color: var(--ciano);
+}
+
+.marco p {
+    max-width: 70ch;
+    color: var(--texto-suave);
+}
+
+/* O marco "ATUALMENTE" é o ponto em que a história está agora. */
+.marco.atual::before {
+    background-color: var(--magenta);
+    box-shadow: var(--brilho-magenta);
+}
+
+.marco.atual h4 {
+    color: var(--magenta);
+}
+
+
+/* ==========================================================================
+   09. SEÇÃO PERSONAGENS
+   ========================================================================== */
+
+/* Painel de progresso: contagem à esquerda, sprite à direita. */
+.painel.progresso {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 0.5rem var(--espaco);
+}
+
+.painel.progresso .barra.progresso,
+.painel.progresso .rotulo.sistema,
+.painel.progresso .contagem {
+    grid-column: 1;
+}
+
+.sprite.agente {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    width: 80px;
+    align-self: center;
+}
+
+#SECAO-PERSONAGENS .painel.progresso .preenchimento.progresso {
+    width: 16.6%;
+}
+
+/* Filtros em linha. */
+.painel.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: var(--espaco);
+}
+
+.painel.filtros h3 {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.grupo.filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.painel.filtros .botao.secundario {
+    margin-left: auto;
+}
+
+/* Grade dos 6 agentes. */
+.lista.agentes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--espaco);
+}
+
+.card.agente {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.card.agente:hover {
+    transform: translateY(-4px);
+}
+
+.card.agente img {
+    width: 100%;
+    aspect-ratio: 616 / 837;
+    border-radius: var(--raio);
+    object-fit: cover;
+}
+
+.card.agente h3 {
+    font-size: 1.3rem;
+    letter-spacing: 0.06em;
+}
+
+.funcao.agente {
+    color: var(--texto-suave);
+}
+
+/* Agente liberado: destaque em magenta. */
+.card.agente.ativo {
+    border-color: var(--borda-magenta);
+    box-shadow: var(--brilho-magenta);
+}
+
+/* Agentes ainda bloqueados: imagem apagada e sem cor. */
+.card.agente.bloqueado img {
+    filter: grayscale(1);
+    opacity: 0.45;
+}
+
+.card.agente.bloqueado h3 {
+    color: var(--texto-fraco);
+}
+
+
+/* ==========================================================================
+   10. SEÇÃO MAPA
+   ========================================================================== */
+
+#SECAO-MAPA .painel.progresso .preenchimento.progresso {
+    width: 85%;
+}
+
+/* A arte do mapa é a única imagem real do site. */
+.mapa.codeworld {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaco);
+}
+
+.mapa.codeworld img {
+    width: 100%;
+    max-width: 700px;
+    border-radius: var(--raio);
+}
+
+/* Controles do mapa. */
+.painel.controles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espaco) calc(var(--espaco) * 2);
+}
+
+.painel.controles h3 {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.grupo.controle {
+    display: flex;
+    align-items: center;
     gap: 0.4rem;
 }
 
-/* Segmentos inertes: apenas aparência. */
-.cw-opcao {
-    flex: 1 1 0;
-    text-align: center;
-    font-family: var(--cw-fonte-mono);
-    font-size: 0.65rem;
-    line-height: 1.4;
-    letter-spacing: 0.08em;
-    padding: 0.35rem 0.4rem;
-    border: 1px solid var(--cw-borda-roxa);
-    border-radius: var(--cw-raio);
-    color: var(--cw-texto-suave);
-    cursor: default;
+.grupo.controle .rotulo.sistema {
+    margin-left: 0.3rem;
 }
 
-.cw-opcao--ativa {
-    background-image: linear-gradient(90deg, var(--cw-magenta), var(--cw-roxo));
-    border-color: var(--cw-magenta);
-    color: var(--cw-branco);
+/* Os 4 territórios. */
+.lista.territorios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--espaco);
 }
 
-.cw-opcao--fonte {
-    flex: 1 1 0;
-    background-color: var(--cw-superficie-alt);
-    border-color: var(--cw-borda);
-}
-
-.cw-opcao--marcada {
-    border-color: var(--cw-magenta);
-    color: var(--cw-magenta);
-}
-
-/* Toggle desenhado em CSS, sempre na posição desligada. */
-.cw-toggle {
+.card.territorio {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 0.35rem;
+    border-left: 3px solid var(--borda);
+}
+
+.card.territorio h3 {
+    font-size: 1.15rem;
+}
+
+.linguagens.territorio {
+    font-family: var(--fonte-mono);
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+}
+
+.card.territorio.ativo {
+    border-left-color: var(--verde);
+}
+
+.card.territorio.inimigo {
+    border-left-color: var(--magenta);
+    box-shadow: var(--brilho-magenta);
+}
+
+/* Detalhes do nível selecionado. */
+.painel.detalhes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.painel.detalhes h3 {
+    margin-bottom: 0;
+    color: var(--texto);
+    text-transform: none;
+}
+
+.painel.detalhes p {
+    max-width: 70ch;
+    color: var(--texto-suave);
+}
+
+/* Lista de informações: rótulo em cima, valor embaixo.
+   O fluxo por coluna mantém cada dt junto do seu dd - numa grade comum
+   eles virariam itens soltos e as duplas se desalinhariam. */
+.informacoes.nivel,
+.informacoes.missao {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(140px, 1fr);
+    gap: 0 var(--espaco);
+    width: 100%;
+    margin-top: 0.5rem;
+    padding-top: var(--espaco);
+    border-top: 1px solid var(--borda);
+}
+
+.informacoes.nivel dd,
+.informacoes.missao dd {
+    margin-top: 0.2rem;
+    font-weight: 600;
+    color: var(--ciano);
+}
+
+/* Eventos globais. */
+.lista.eventos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--espaco);
+}
+
+.card.evento {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    border-left: 3px solid var(--ambar);
+}
+
+.card.evento p:not(.rotulo):not(.tempo) {
+    color: var(--texto-suave);
+}
+
+.card.evento.alerta {
+    border-left-color: var(--vermelho);
+}
+
+.tempo.evento {
+    font-family: var(--fonte-mono);
+    font-size: 1.1rem;
+    color: var(--ambar);
+}
+
+.card.evento.alerta .tempo.evento {
+    color: var(--vermelho);
+}
+
+
+/* ==========================================================================
+   11. SEÇÃO MISSÕES
+   ========================================================================== */
+
+/* Abas ATIVAS / CONCLUÍDAS / DIÁRIAS. */
+.abas.missoes,
+.abas.perfil {
+    display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
 }
 
-.cw-toggle-trilho {
-    position: relative;
-    flex: 0 0 auto;
-    width: 38px;
-    height: 20px;
-    background-color: var(--cw-superficie-alt);
-    border: 1px solid var(--cw-borda);
-    border-radius: 999px;
+/* Missão em destaque. */
+.card.missao.ativa {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: flex-start;
+    border-color: var(--borda-magenta);
+    box-shadow: var(--brilho-magenta);
 }
 
-.cw-toggle-botao {
-    position: absolute;
-    top: 50%;
-    left: 3px;
-    transform: translateY(-50%);
-    width: 12px;
-    height: 12px;
-    background-color: var(--cw-texto-fraco);
+.card.missao.ativa h3 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: var(--vermelho);
+}
+
+.card.missao.ativa > p:not(.rotulo):not(.selo) {
+    color: var(--texto-suave);
+}
+
+/* Lista das outras missões. */
+.lista.missoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--espaco);
+}
+
+.lista.missoes .card.missao {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: flex-start;
+}
+
+.lista.missoes .card.missao h4 {
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.lista.missoes .card.missao p:not(.selo):not(.nivel):not(.experiencia) {
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+}
+
+.nivel.missao,
+.experiencia.missao {
+    font-family: var(--fonte-mono);
+    font-size: 0.8rem;
+    color: var(--ciano);
+}
+
+.card.missao.epica {
+    border-color: rgba(255, 176, 32, 0.4);
+}
+
+/* Painel de combate: agente contra a IA. */
+.painel.combate {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: var(--espaco);
+}
+
+.painel.combate > .rotulo.sistema {
+    grid-column: 1 / -1;
+}
+
+.lado.combate {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.lado.combate h4 {
+    font-size: 1.4rem;
+    color: var(--ciano);
+}
+
+.lado.combate.inimigo {
+    text-align: right;
+}
+
+.lado.combate.inimigo h4 {
+    color: var(--vermelho);
+}
+
+.vida.agente {
+    font-family: var(--fonte-mono);
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+}
+
+.painel.combate .lado.combate .preenchimento.progresso {
+    width: 82%;
+    background-image: linear-gradient(90deg, var(--verde), var(--ciano));
+}
+
+.painel.combate .lado.combate.inimigo .preenchimento.progresso {
+    width: 100%;
+    background-image: linear-gradient(90deg, var(--vermelho), var(--magenta));
+}
+
+.contra {
+    font-family: var(--fonte-mono);
+    font-size: 1.5rem;
+    color: var(--magenta);
+}
+
+/* Terminal de código do desafio. */
+.bloco.terminal {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.codigo.terminal {
+    width: 100%;
+    padding: var(--espaco);
+    border: 1px solid var(--borda);
+    border-left: 3px solid var(--ciano);
+    border-radius: var(--raio);
+    background-color: var(--fundo);
+    font-family: var(--fonte-mono);
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--verde);
+    overflow-x: auto;
+}
+
+.dica {
+    font-size: 0.9rem;
+    color: var(--ambar);
+}
+
+/* Log do combate. */
+.lista.log {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+    font-family: var(--fonte-mono);
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+}
+
+/* Recompensas. */
+.lista.recompensas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--espaco);
+    margin-bottom: var(--espaco);
+}
+
+.card.recompensa {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    text-align: center;
+    align-items: center;
+}
+
+.valor.recompensa {
+    font-family: var(--fonte-mono);
+    font-size: 1.2rem;
+    color: var(--ambar);
+}
+
+.bloco.recompensas .botao.secundario {
+    margin-top: var(--espaco);
+}
+
+
+/* ==========================================================================
+   12. SEÇÃO ARQUIVOS
+   ========================================================================== */
+
+/* Ficha da Super IA: retrato, status e o terminal de acesso. */
+.card.arquivo.superia {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: flex-start;
+    border-color: var(--borda-magenta);
+    box-shadow: var(--brilho-magenta);
+}
+
+.card.arquivo.superia img {
+    width: 100%;
+    aspect-ratio: 1586 / 992;
+    border-radius: var(--raio);
+    object-fit: cover;
+}
+
+.card.arquivo.superia h3 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    color: var(--magenta);
+}
+
+.dossie.superia {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.dossie.superia h3 {
+    margin-bottom: 0.5rem;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    letter-spacing: 0.04em;
+}
+
+.dossie.superia p:not(.rotulo) {
+    max-width: 80ch;
+    color: var(--texto-suave);
+}
+
+
+/* ==========================================================================
+   13. SEÇÃO SISTEMA
+   ========================================================================== */
+
+/* Cartão do operador. */
+.cartao.operador {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--espaco);
+}
+
+.cartao.operador img {
+    width: 96px;
+    height: 96px;
+    border: 2px solid var(--magenta);
     border-radius: 50%;
+    object-fit: cover;
 }
 
-.cw-acessibilidade-status {
-    font-family: var(--cw-fonte-mono);
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--cw-magenta);
+.cartao.operador h3 {
+    font-size: 1.5rem;
+}
+
+.patente.operador {
+    font-family: var(--fonte-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--ciano);
+}
+
+.cartao.operador .botao.secundario {
+    margin-left: auto;
+}
+
+/* Diagnóstico do sistema. */
+.lista.diagnostico {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    font-family: var(--fonte-mono);
+    font-size: 0.85rem;
+    color: var(--verde);
+}
+
+/* Formulários. */
+.formulario.dados,
+.formulario.senha {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--espaco);
+}
+
+.formulario.dados > .rotulo.sistema,
+.formulario.senha > .rotulo.sistema,
+.formulario.dados > h3,
+.formulario.senha > h3 {
+    grid-column: 1 / -1;
+}
+
+.formulario.dados > h3,
+.formulario.senha > h3 {
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--ciano);
+}
+
+.campo.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.campo.formulario label {
+    font-family: var(--fonte-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: var(--texto-suave);
+}
+
+.campo.formulario input {
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    background-color: var(--superficie-alt);
+    transition: border-color 180ms ease;
+}
+
+.campo.formulario input:focus {
+    outline: none;
+    border-color: var(--ciano);
+    box-shadow: var(--brilho-ciano);
+}
+
+.acoes.formulario {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espaco);
 }
 
 
 /* ==========================================================================
-   7. FAIXAS E SEÇÕES
+   14. RODAPÉ
    ========================================================================== */
 
-.cw-faixa {
-    width: 100%;
-}
-
-/* Seções pares recebem o fundo alternado em largura total. */
-.cw-faixa--alt {
-    background-color: var(--cw-fundo-alt);
-}
-
-.cw-secao {
-    max-width: var(--cw-largura-max);
-    margin-inline: auto;
-    padding-inline: clamp(1rem, 4vw, 2.5rem);
-    padding-block: var(--cw-gap-secao);
-    /* impede que a navbar fixa cubra o título ao usar as âncoras */
-    scroll-margin-top: var(--cw-altura-navbar);
-    /* apenas nesta fase: mantém o esqueleto navegável enquanto vazio */
-    min-height: 40vh;
-}
-
-
-/* ==========================================================================
-   8. RODAPÉ
-   ========================================================================== */
-
-.cw-rodape {
-    width: 100%;
-    border-top: 1px solid var(--cw-borda);
-    padding-block: 2rem;
-}
-
-.cw-rodape-interno {
+footer {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    max-width: var(--cw-largura-max);
-    margin-inline: auto;
-    padding-inline: clamp(1rem, 4vw, 2.5rem);
+    padding: var(--espaco-secao) var(--margem-lateral);
+    border-top: 1px solid var(--borda);
     text-align: center;
 }
 
-.cw-rodape-credito {
-    font-family: var(--cw-fonte-display);
-    font-size: 0.9rem;
-    color: var(--cw-texto-suave);
-}
-
 
 /* ==========================================================================
-   9. FOCO VISÍVEL
+   15. FOCO E ACESSIBILIDADE
    ========================================================================== */
 
-.cw-logo:focus-visible,
-.cw-nav-link:focus-visible,
-.cw-botao:focus-visible,
-.cw-acessibilidade-botao:focus-visible {
-    outline: 2px solid var(--cw-ciano);
+a:focus-visible,
+summary:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--ciano);
     outline-offset: 3px;
 }
 
-
-/* ==========================================================================
-   10. RESPONSIVIDADE
-   Base do arquivo = layout do Figma (≥ 1280px, máximo 1440px).
-   ========================================================================== */
-
-/* -------- 10.1 Entre 768px e 1279px: navbar compacta -------------------- */
-@media (max-width: 1279px) {
-
-    .cw-cabecalho-interno,
-    .cw-secao,
-    .cw-rodape-interno {
-        padding-inline: clamp(0.75rem, 3vw, 1.5rem);
-    }
-
-    .cw-logo {
-        font-size: 1.1rem;
-    }
-
-    .cw-nav-lista {
-        gap: clamp(0.5rem, 1.4vw, 1rem);
-    }
-
-    .cw-nav-link {
-        font-size: 0.72rem;
-        letter-spacing: 0.06em;
-    }
-
-    .cw-nav-ativo {
-        padding: 0.35rem 0.6rem;
-    }
-
-    .cw-cabecalho-direita {
-        gap: 0.75rem;
-    }
-}
-
-/* -------- 10.2 Abaixo de 768px: navegação rolável horizontal ------------ */
-@media (max-width: 767px) {
-
-    :root {
-        /* o cabeçalho passa a ter duas linhas */
-        --cw-altura-navbar: 104px;
-    }
-
-    .cw-cabecalho {
-        height: auto;
-        min-height: var(--cw-altura-navbar);
-    }
-
-    .cw-cabecalho-interno {
-        flex-wrap: wrap;
-        justify-content: space-between;
-        height: auto;
-        padding-block: 0.6rem;
-        row-gap: 0.55rem;
-    }
-
-    .cw-logo {
-        order: 1;
-    }
-
-    .cw-cabecalho-direita {
-        order: 2;
-    }
-
-    /* links viram uma linha horizontal rolável abaixo do logo */
-    .cw-nav {
-        order: 3;
-        flex: 1 0 100%;
-        min-width: 0;
-        overflow-x: auto;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .cw-nav::-webkit-scrollbar {
-        display: none;
-    }
-
-    .cw-nav-lista {
-        gap: 1rem;
-        width: max-content;
-        padding-right: 0.25rem;
-    }
-
-    /* o indicador ONLINE some */
-    .cw-status {
-        display: none;
-    }
-
-    /* o painel de acessibilidade ocupa a largura total do cabeçalho */
-    .cw-acessibilidade {
-        position: static;
-    }
-
-    .cw-acessibilidade-painel {
-        top: 100%;
-        left: 0;
-        right: 0;
-        width: auto;
-    }
-
-    /* títulos no valor mínimo do clamp() */
-    .cw-titulo-secao-texto {
-        font-size: 2rem;
-    }
-
-    .cw-titulo-secao {
-        margin-bottom: var(--cw-gap);
-    }
-}
-
-
-/* ==========================================================================
-   11. PREFERÊNCIA DE MOVIMENTO REDUZIDO
-   ========================================================================== */
-
+/* Respeita quem pediu menos movimento no sistema. */
 @media (prefers-reduced-motion: reduce) {
-
     html {
         scroll-behavior: auto;
     }
 
-    .cw-status-ponto {
-        animation: none;
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* ==========================================================================
+   16. RESPONSIVO
+   ========================================================================== */
+
+/* -------- 16.1 Até 1023px: combate e cabeçalho mais compactos ------------ */
+@media (max-width: 1023px) {
+    .painel.combate {
+        grid-template-columns: 1fr;
+        text-align: left;
     }
 
-    .cw-botao,
-    .cw-nav-link,
-    .cw-acessibilidade-botao {
-        transition: none;
+    .lado.combate.inimigo {
+        text-align: left;
+    }
+
+    .contra {
+        justify-self: center;
+    }
+
+    header nav a {
+        font-size: 0.75rem;
+        letter-spacing: 0.06em;
+    }
+}
+
+/* -------- 16.2 Até 767px: cabeçalho em duas linhas ----------------------- */
+@media (max-width: 767px) {
+    :root {
+        --altura-cabecalho: 108px;
+    }
+
+    header {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-block: 0.75rem;
+    }
+
+    /* O menu vira uma linha que rola de lado. */
+    header nav {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    header nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    header nav ul {
+        justify-content: flex-start;
+        padding-bottom: 0.25rem;
+    }
+
+    .status.online {
+        display: none;
+    }
+
+    .painel.acessibilidade {
+        width: min(280px, calc(100vw - 2rem));
+    }
+
+    .painel.progresso {
+        grid-template-columns: 1fr;
+    }
+
+    .sprite.agente {
+        grid-column: 1;
+        grid-row: auto;
+        justify-self: center;
+    }
+
+    .painel.filtros .botao.secundario,
+    .cartao.operador .botao.secundario {
+        margin-left: 0;
+    }
+
+    .lista.marcos {
+        padding-left: 1.25rem;
+    }
+
+    .marco::before {
+        left: calc(-1.25rem - 7px);
+    }
+
+    /* No celular as duplas viram uma por linha: rótulo à esquerda, valor à direita. */
+    .informacoes.nivel,
+    .informacoes.missao {
+        grid-template-rows: none;
+        grid-auto-flow: row;
+        grid-auto-columns: auto;
+        grid-template-columns: auto 1fr;
+        gap: 0.4rem var(--espaco);
+    }
+
+    .informacoes.nivel dd,
+    .informacoes.missao dd {
+        margin-top: 0;
+        text-align: right;
     }
 }
