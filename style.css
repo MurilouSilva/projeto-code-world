@@ -18,7 +18,7 @@
    13. Seção SISTEMA
    14. Rodapé
    15. Foco e acessibilidade
-   16. Responsivo
+   16. Responsividade e Adaptação Mobile/Tablet
 
    Obs: as classes do HTML são escritas com espaço ("card agente"), ou seja,
    viram várias classes. Por isso os seletores daqui são compostos
@@ -30,7 +30,7 @@
    01. RESET E BASE
    ========================================================================== */
 
-* {
+   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -183,10 +183,7 @@ button {
    04. COMPONENTES REAPROVEITADOS
    ========================================================================== */
 
-/* -------- 4.1 Botões -----------------------------------------------------
-   Só .primario e .secundario recebem aparência de botão. A classe .botao
-   sozinha também aparece no interruptor do painel de acessibilidade
-   (.botao.chave), que é outra coisa. */
+/* -------- 4.1 Botões ----------------------------------------------------- */
 .botao.primario,
 .botao.secundario {
     display: inline-flex;
@@ -299,8 +296,7 @@ button {
     flex: 1;
 }
 
-/* -------- 4.4 Barra de progresso ----------------------------------------
-   A largura de cada preenchimento é definida na seção correspondente. */
+/* -------- 4.4 Barra de progresso ---------------------------------------- */
 .barra.progresso {
     width: 100%;
     height: 6px;
@@ -357,7 +353,6 @@ button {
     color: var(--ciano);
 }
 
-/* Interruptor sempre desligado: é só aparência, não há JavaScript. */
 .chave {
     display: inline-block;
     flex-shrink: 0;
@@ -434,7 +429,6 @@ header nav a:focus-visible {
     gap: var(--espaco);
 }
 
-/* Indicador ONLINE com o ponto pulsando. */
 .status.online {
     display: flex;
     align-items: center;
@@ -510,14 +504,12 @@ details.acessibilidade summary:hover {
     gap: 0.5rem;
 }
 
-/* Os dois grupos com interruptor ficam em linha. */
 .grupo.acessibilidade:has(.chave) {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
-/* Atalho para o perfil, no canto do cabeçalho. */
 .perfil.atalho img {
     width: 34px;
     height: 34px;
@@ -541,14 +533,12 @@ main > section {
     scroll-margin-top: var(--altura-cabecalho);
 }
 
-/* Faixas alternadas, para separar uma seção da outra. */
 #SECAO-UNIVERSO,
 #SECAO-MAPA,
 #SECAO-ARQUIVOS {
     background-color: var(--fundo-alt);
 }
 
-/* Todo filho direto da seção fica centralizado e com largura máxima. */
 main > section > * {
     position: relative;
     z-index: 1;
@@ -557,7 +547,6 @@ main > section > * {
     margin-inline: auto;
 }
 
-/* Imagem de fundo da seção: cobre tudo, bem apagada, atrás do conteúdo. */
 .visual.fundo {
     position: absolute;
     inset: 0;
@@ -571,7 +560,6 @@ main > section > * {
     pointer-events: none;
 }
 
-/* Cabeçalho de cada seção: barra magenta + rótulo + título. */
 .visao.geral {
     display: flex;
     flex-direction: column;
@@ -585,13 +573,11 @@ main > section > * {
     letter-spacing: 0.02em;
 }
 
-/* O texto corrido não passa de 65 caracteres por linha, para leitura. */
 .visao.geral p:not(.rotulo) {
     max-width: 65ch;
     color: var(--texto-suave);
 }
 
-/* Título dos blocos internos. */
 .bloco h3,
 .painel h3 {
     margin-bottom: var(--espaco);
@@ -657,13 +643,11 @@ main > section > * {
    08. SEÇÃO UNIVERSO
    ========================================================================== */
 
-/* Os três parágrafos de abertura ficam um pouco mais largos. */
 .visao.geral.do.universo p:not(.rotulo) {
     max-width: 80ch;
     margin-top: 0.75rem;
 }
 
-/* Prévia do trailer. */
 .trailer {
     display: flex;
     flex-direction: column;
@@ -679,7 +663,6 @@ main > section > * {
     object-fit: cover;
 }
 
-/* Grade das 7 linguagens. */
 .lista.linguagens {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -715,7 +698,6 @@ main > section > * {
     margin-top: auto;
 }
 
-/* O card da Super IA é o único inimigo: borda e brilho magenta. */
 .card.linguagem.inimiga {
     grid-column: 1 / -1;
     border-color: var(--borda-magenta);
@@ -730,7 +712,6 @@ main > section > * {
     align-self: center;
 }
 
-/* Citação da Super IA. */
 .mensagem.superia {
     display: flex;
     flex-direction: column;
@@ -753,7 +734,6 @@ main > section > * {
     color: var(--magenta);
 }
 
-/* Linha do tempo: risco vertical com um ponto em cada marco. */
 .lista.marcos {
     display: flex;
     flex-direction: column;
@@ -788,7 +768,6 @@ main > section > * {
     color: var(--texto-suave);
 }
 
-/* O marco "ATUALMENTE" é o ponto em que a história está agora. */
 .marco.atual::before {
     background-color: var(--magenta);
     box-shadow: var(--brilho-magenta);
@@ -803,7 +782,6 @@ main > section > * {
    09. SEÇÃO PERSONAGENS
    ========================================================================== */
 
-/* Painel de progresso: contagem à esquerda, sprite à direita. */
 .painel.progresso {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -828,7 +806,6 @@ main > section > * {
     width: 16.6%;
 }
 
-/* Filtros em linha. */
 .painel.filtros {
     display: flex;
     flex-wrap: wrap;
@@ -851,7 +828,6 @@ main > section > * {
     margin-left: auto;
 }
 
-/* Grade dos 6 agentes. */
 .lista.agentes {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -885,13 +861,11 @@ main > section > * {
     color: var(--texto-suave);
 }
 
-/* Agente liberado: destaque em magenta. */
 .card.agente.ativo {
     border-color: var(--borda-magenta);
     box-shadow: var(--brilho-magenta);
 }
 
-/* Agentes ainda bloqueados: imagem apagada e sem cor. */
 .card.agente.bloqueado img {
     filter: grayscale(1);
     opacity: 0.45;
@@ -910,7 +884,6 @@ main > section > * {
     width: 85%;
 }
 
-/* A arte do mapa é a única imagem real do site. */
 .mapa.codeworld {
     display: flex;
     flex-direction: column;
@@ -924,7 +897,6 @@ main > section > * {
     border-radius: var(--raio);
 }
 
-/* Controles do mapa. */
 .painel.controles {
     display: flex;
     flex-wrap: wrap;
@@ -946,7 +918,6 @@ main > section > * {
     margin-left: 0.3rem;
 }
 
-/* Os 4 territórios. */
 .lista.territorios {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -979,7 +950,6 @@ main > section > * {
     box-shadow: var(--brilho-magenta);
 }
 
-/* Detalhes do nível selecionado. */
 .painel.detalhes {
     display: flex;
     flex-direction: column;
@@ -998,9 +968,6 @@ main > section > * {
     color: var(--texto-suave);
 }
 
-/* Lista de informações: rótulo em cima, valor embaixo.
-   O fluxo por coluna mantém cada dt junto do seu dd - numa grade comum
-   eles virariam itens soltos e as duplas se desalinhariam. */
 .informacoes.nivel,
 .informacoes.missao {
     display: grid;
@@ -1021,7 +988,6 @@ main > section > * {
     color: var(--ciano);
 }
 
-/* Eventos globais. */
 .lista.eventos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -1058,7 +1024,6 @@ main > section > * {
    11. SEÇÃO MISSÕES
    ========================================================================== */
 
-/* Abas ATIVAS / CONCLUÍDAS / DIÁRIAS. */
 .abas.missoes,
 .abas.perfil {
     display: flex;
@@ -1066,7 +1031,6 @@ main > section > * {
     gap: 0.5rem;
 }
 
-/* Missão em destaque. */
 .card.missao.ativa {
     display: flex;
     flex-direction: column;
@@ -1085,7 +1049,6 @@ main > section > * {
     color: var(--texto-suave);
 }
 
-/* Lista das outras missões. */
 .lista.missoes {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -1120,7 +1083,6 @@ main > section > * {
     border-color: rgba(255, 176, 32, 0.4);
 }
 
-/* Painel de combate: agente contra a IA. */
 .painel.combate {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -1173,7 +1135,6 @@ main > section > * {
     color: var(--magenta);
 }
 
-/* Terminal de código do desafio. */
 .bloco.terminal {
     display: flex;
     flex-direction: column;
@@ -1200,7 +1161,6 @@ main > section > * {
     color: var(--ambar);
 }
 
-/* Log do combate. */
 .lista.log {
     display: flex;
     flex-direction: column;
@@ -1211,7 +1171,6 @@ main > section > * {
     color: var(--texto-suave);
 }
 
-/* Recompensas. */
 .lista.recompensas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -1242,7 +1201,6 @@ main > section > * {
    12. SEÇÃO ARQUIVOS
    ========================================================================== */
 
-/* Ficha da Super IA: retrato, status e o terminal de acesso. */
 .card.arquivo.superia {
     display: flex;
     flex-direction: column;
@@ -1286,7 +1244,6 @@ main > section > * {
    13. SEÇÃO SISTEMA
    ========================================================================== */
 
-/* Cartão do operador. */
 .cartao.operador {
     display: flex;
     flex-wrap: wrap;
@@ -1317,7 +1274,6 @@ main > section > * {
     margin-left: auto;
 }
 
-/* Diagnóstico do sistema. */
 .lista.diagnostico {
     display: flex;
     flex-direction: column;
@@ -1328,7 +1284,6 @@ main > section > * {
     color: var(--verde);
 }
 
-/* Formulários. */
 .formulario.dados,
 .formulario.senha {
     display: grid;
@@ -1413,7 +1368,6 @@ input:focus-visible {
     outline-offset: 3px;
 }
 
-/* Respeita quem pediu menos movimento no sistema. */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -1430,14 +1384,28 @@ input:focus-visible {
 
 
 /* ==========================================================================
-   16. RESPONSIVO
+   16. RESPONSIVIDADE E ADAPTAÇÃO MOBILE/TABLET
    ========================================================================== */
 
-/* -------- 16.1 Até 1023px: combate e cabeçalho mais compactos ------------ */
+/* --- TRAVA DE SEGURANÇA GLOBAL ---
+   Impede que qualquer elemento vaze da tela e cause corte de texto nas laterais */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Garante que palavras muito longas não quebrem o container */
+p, h1, h2, h3, h4, span, a {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* -------- 16.1 TABLETS E DESKTOPS PEQUENOS (Até 1023px) ------------------- */
 @media (max-width: 1023px) {
     .painel.combate {
         grid-template-columns: 1fr;
         text-align: left;
+        gap: 1.5rem;
     }
 
     .lado.combate.inimigo {
@@ -1446,31 +1414,47 @@ input:focus-visible {
 
     .contra {
         justify-self: center;
+        margin-block: 0.5rem;
     }
 
     header nav a {
-        font-size: 0.75rem;
-        letter-spacing: 0.06em;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+        padding: 0.5rem 0.6rem;
+    }
+
+    .cartao.operador {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cartao.operador .botao.secundario {
+        margin-left: 0;
+        width: 100%;
     }
 }
 
-/* -------- 16.2 Até 767px: cabeçalho em duas linhas ----------------------- */
+/* -------- 16.2 CELULARES E SMARTPHONES (Até 767px) ------------------------ */
 @media (max-width: 767px) {
     :root {
-        --altura-cabecalho: 108px;
+        --altura-cabecalho: auto;
     }
 
+    /* --- Cabeçalho Touch Seguro --- */
     header {
         flex-wrap: wrap;
-        justify-content: center;
-        padding-block: 0.75rem;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem; /* Força margem lateral segura */
+        width: 100%;
     }
 
-    /* O menu vira uma linha que rola de lado. */
     header nav {
         order: 3;
         width: 100%;
+        max-width: 100%;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
     }
 
@@ -1479,31 +1463,92 @@ input:focus-visible {
     }
 
     header nav ul {
+        display: flex;
         justify-content: flex-start;
+        align-items: center;
+        gap: 0.5rem;
+        white-space: nowrap;
         padding-bottom: 0.25rem;
+    }
+
+    header nav a {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.75rem;
+        display: inline-block;
     }
 
     .status.online {
         display: none;
     }
 
+    /* --- Correção das Seções e Textos --- */
+    main > section {
+        padding: 3rem 1rem; /* Garante que o conteúdo não cole nas bordas no celular */
+        width: 100%;
+    }
+
+    .visao.geral {
+        width: 100%;
+        padding-left: 1rem;
+    }
+
+    .visao.geral p:not(.rotulo) {
+        max-width: 100%; /* Remove a limitação em 'ch' para aproveitar toda a tela e evitar vazamentos */
+    }
+
+    /* --- Ajustes Gerais de Grid para Mobile (Força 1 coluna) --- */
+    .lista.linguagens,
+    .lista.agentes,
+    .lista.territorios,
+    .lista.eventos,
+    .lista.missoes,
+    .formulario.dados,
+    .formulario.senha {
+        grid-template-columns: 1fr; 
+    }
+
     .painel.acessibilidade {
-        width: min(280px, calc(100vw - 2rem));
+        position: fixed;
+        top: auto;
+        bottom: 1rem;
+        right: 1rem;
+        left: 1rem;
+        width: auto;
+        max-width: calc(100vw - 2rem);
     }
 
     .painel.progresso {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
     .sprite.agente {
         grid-column: 1;
         grid-row: auto;
         justify-self: center;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .acoes.inicial,
+    .acoes.formulario {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .botao.primario,
+    .botao.secundario {
+        width: 100%;
     }
 
     .painel.filtros .botao.secundario,
     .cartao.operador .botao.secundario {
         margin-left: 0;
+        width: 100%;
+    }
+
+    .grupo.filtro {
+        width: 100%;
     }
 
     .lista.marcos {
@@ -1514,19 +1559,39 @@ input:focus-visible {
         left: calc(-1.25rem - 7px);
     }
 
-    /* No celular as duplas viram uma por linha: rótulo à esquerda, valor à direita. */
+    /* --- Listas de Informações (Chave/Valor) --- */
     .informacoes.nivel,
     .informacoes.missao {
+        display: grid;
+        grid-template-columns: auto 1fr;
         grid-template-rows: none;
         grid-auto-flow: row;
-        grid-auto-columns: auto;
-        grid-template-columns: auto 1fr;
-        gap: 0.4rem var(--espaco);
+        align-items: center;
+        gap: 0.5rem var(--espaco);
+    }
+
+    .informacoes.nivel dt,
+    .informacoes.missao dt {
+        font-weight: bold;
     }
 
     .informacoes.nivel dd,
     .informacoes.missao dd {
         margin-top: 0;
         text-align: right;
+        word-break: break-word;
     }
 }
+
+/* -------- 16.3 TELAS MUITO PEQUENAS (Até 480px) --------------------------- */
+@media (max-width: 480px) {
+    .conteudo.inicial h1 {
+        font-size: clamp(2.2rem, 10vw, 4rem);
+    }
+
+    .mensagem.superia {
+        padding: var(--espaco);
+    }
+}
+
+
