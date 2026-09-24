@@ -1,22 +1,18 @@
 /* ==========================================================================
    CODEWORLD // style.css
-   Portal de página única - 11 Estudantes de tecnologia
+   Portal Cyberpunk - 11 Estudantes de Tecnologia
 
-   Índice
-   01. Reset e base
-   02. Variáveis do projeto
-   03. Tipografia e utilitários
-   04. Componentes reaproveitados
-   05. Cabeçalho
-   06. Regras gerais das seções
-   07. Seção NEXUS
-   14. Rodapé
-   15. Foco e acessibilidade
-   16. Responsividade e Adaptação Mobile/Tablet
-
-   Obs: as classes do HTML são escritas com espaço ("card agente"), ou seja,
-   viram várias classes. Por isso os seletores daqui são compostos
-   (.card.agente) - escrever só .agente pegaria elementos errados.
+   Índice:
+   01. Reset e Base
+   02. Variáveis do Projeto (Design Tokens)
+   03. Tipografia e Utilitários
+   04. Componentes Reaproveitados
+   05. Cabeçalho e Painel de Acessibilidade
+   06. Regras Gerais das Seções
+   07. Seção Nexus (Hero Section, Console de Entrada)
+   08. Rodapé
+   09. Estilos de Funcionalidades de Acessibilidade
+   10. Responsividade Adaptativa (Mobile / Tablet)
    ========================================================================== */
 
 /* ==========================================================================
@@ -72,11 +68,11 @@ button {
 }
 
 /* ==========================================================================
-   02. VARIÁVEIS DO PROJETO
+   02. VARIÁVEIS DO PROJETO (DESIGN TOKENS)
    ========================================================================== */
 
 :root {
-  /* Cores da marca */
+  /* Cores da Marca */
   --magenta: #e30071;
   --magenta-claro: #ff3d9a;
   --ciano: #00f2fe;
@@ -85,7 +81,7 @@ button {
   --vermelho: #ff3b4e;
   --roxo: #8b3df0;
 
-  /* Fundos e superfícies */
+  /* Fundos e Superfícies */
   --fundo: #08060f;
   --fundo-alt: #0d0a16;
   --superficie: #14111f;
@@ -100,7 +96,7 @@ button {
   --texto-suave: #9a94ad;
   --texto-fraco: #5f5875;
 
-  /* Brilho neon */
+  /* Brilhos Neon */
   --brilho-magenta: 0 0 12px rgba(227, 0, 113, 0.45);
   --brilho-ciano: 0 0 12px rgba(0, 242, 254, 0.4);
 
@@ -108,7 +104,7 @@ button {
   --fonte-titulo: "Chakra Petch", sans-serif;
   --fonte-mono: "Share Tech Mono", monospace;
 
-  /* Medidas */
+  /* Medidas e Espaçamentos */
   --espaco: clamp(1rem, 2vw, 1.5rem);
   --espaco-secao: clamp(3rem, 6vw, 6rem);
   --margem-lateral: clamp(1rem, 4vw, 2.5rem);
@@ -121,7 +117,7 @@ button {
    03. TIPOGRAFIA E UTILITÁRIOS
    ========================================================================== */
 
-/* Rótulo técnico: fonte mono, maiúsculo e espaçado. Usado no site inteiro. */
+/* Rótulo técnico estilo terminal (fonte mono, caixa alta, espaçado) */
 .rotulo.sistema {
   font-family: var(--fonte-mono);
   font-size: 0.72rem;
@@ -130,7 +126,6 @@ button {
   color: var(--texto-suave);
 }
 
-/* Segunda palavra dos títulos, em magenta. */
 .destaque {
   color: var(--magenta);
 }
@@ -139,7 +134,6 @@ button {
   color: var(--texto-suave);
 }
 
-/* Número grande dos painéis de progresso. */
 .contagem {
   font-family: var(--fonte-mono);
   font-size: clamp(1.75rem, 4vw, 2.5rem);
@@ -147,7 +141,7 @@ button {
   color: var(--ciano);
 }
 
-/* Cursor piscando dos terminais. */
+/* Cursor intermitente estilo terminal */
 .cursor {
   display: inline-block;
   color: var(--verde);
@@ -160,7 +154,6 @@ button {
   }
 }
 
-/* Linhas de terminal. */
 .linhas.console {
   font-family: var(--fonte-mono);
   font-size: 0.85rem;
@@ -173,7 +166,7 @@ button {
    04. COMPONENTES REAPROVEITADOS
    ========================================================================== */
 
-/* -------- 4.1 Botões ----------------------------------------------------- */
+/* --- 4.1 Botões Primários e Secundários --- */
 .botao.primario,
 .botao.secundario {
   display: inline-flex;
@@ -218,7 +211,7 @@ button {
   box-shadow: var(--brilho-ciano);
 }
 
-/* -------- 4.2 Selos ------------------------------------------------------ */
+/* --- 4.2 Selos de Status --- */
 .selo.status,
 .selo.ameaca,
 .selo.bloqueado,
@@ -260,7 +253,7 @@ button {
   color: var(--ambar);
 }
 
-/* -------- 4.3 Opções (acessibilidade, filtros e abas) -------------------- */
+/* --- 4.3 Botões de Opção (Painéis) --- */
 .opcao {
   padding: 0.4rem 0.9rem;
   border: 1px solid var(--borda);
@@ -289,7 +282,7 @@ button {
   flex: 1;
 }
 
-/* -------- 4.4 Barra de progresso ---------------------------------------- */
+/* --- 4.4 Barra de Progresso --- */
 .barra.progresso {
   width: 100%;
   height: 6px;
@@ -309,7 +302,7 @@ button {
   );
 }
 
-/* -------- 4.5 Painéis e cartões ------------------------------------------ */
+/* --- 4.5 Painéis e Cartões Base --- */
 .painel.progresso,
 .painel.filtros,
 .painel.controles,
@@ -334,7 +327,7 @@ button {
   background-color: var(--superficie);
 }
 
-/* -------- 4.6 Teclas do mapa e interruptor da acessibilidade ------------- */
+/* --- 4.6 Teclas e Chaves de Alternância (Switches) --- */
 .tecla {
   display: inline-flex;
   align-items: center;
@@ -370,7 +363,7 @@ button {
 }
 
 /* ==========================================================================
-   05. CABEÇALHO
+   05. CABEÇALHO (DESKTOP)
    ========================================================================== */
 
 header {
@@ -378,51 +371,68 @@ header {
   top: 0;
   z-index: 100;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: var(--espaco);
   min-height: var(--altura-cabecalho);
-  padding: 0 var(--margem-lateral);
-  border-bottom: 1px solid var(--borda-magenta);
-  background-color: rgba(8, 6, 15, 0.85);
-  backdrop-filter: blur(8px);
+  padding: 0.8rem var(--margem-lateral);
+  border-bottom: 1px solid rgba(227, 0, 113, 0.2);
+  background-color: #080511;
+  transition: all 0.3s ease;
 }
 
-.logo a,
-.logo.rodape {
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  background-image: linear-gradient(90deg, var(--magenta), var(--ciano));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.area.esquerda {
+  display: flex;
+  align-items: center;
+}
+
+.logo a {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--magenta);
+  white-space: nowrap;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
 }
 
 header nav ul {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: clamp(0.75rem, 2vw, 2rem);
+  gap: clamp(0.6rem, 1.2vw, 1.8rem);
+  margin: 0;
+  padding: 0;
 }
 
 header nav a {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--texto-suave);
   white-space: nowrap;
-  transition: color 180ms ease;
+  padding: 0.4rem 0.6rem;
+  transition: all 180ms ease;
 }
 
-header nav a:hover,
-header nav a:focus-visible {
+header nav a:hover {
+  color: #fff;
+}
+
+header nav a.ativo {
   color: var(--magenta);
+  border: 1px solid var(--magenta);
+  border-radius: 0;
 }
 
 .area.direita {
   display: flex;
   align-items: center;
-  gap: var(--espaco);
+  gap: 1rem;
 }
 
 .status.online {
@@ -430,24 +440,40 @@ header nav a:focus-visible {
   align-items: center;
   gap: 0.4rem;
   font-family: var(--fonte-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.12em;
   color: var(--verde);
+  font-weight: bold;
+  animation: piscar-online 1.2s ease-in-out infinite;
+  white-space: nowrap;
 }
 
 .ponto {
   color: var(--verde);
+  font-size: 0.6rem;
   text-shadow: 0 0 6px var(--verde);
-  animation: pulsar 2s ease-in-out infinite;
 }
 
-@keyframes pulsar {
+@keyframes piscar-online {
+  0%,
+  100% {
+    opacity: 1;
+  }
   50% {
-    opacity: 0.35;
+    opacity: 0.25;
   }
 }
 
-/* -------- 5.1 Painel de acessibilidade ----------------------------------- */
+.perfil.atalho img {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--borda);
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- 5.1 Painel do Menu Desdobrável de Acessibilidade --- */
 details.acessibilidade {
   position: relative;
 }
@@ -506,14 +532,6 @@ details.acessibilidade summary:hover {
   justify-content: space-between;
 }
 
-.perfil.atalho img {
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--borda);
-  border-radius: 50%;
-  object-fit: cover;
-}
-
 /* ==========================================================================
    06. REGRAS GERAIS DAS SEÇÕES
    ========================================================================== */
@@ -526,12 +544,6 @@ main > section {
   gap: calc(var(--espaco-secao) / 2);
   padding: var(--espaco-secao) var(--margem-lateral);
   scroll-margin-top: var(--altura-cabecalho);
-}
-
-#SECAO-UNIVERSO,
-#SECAO-MAPA,
-#SECAO-ARQUIVOS {
-  background-color: var(--fundo-alt);
 }
 
 main > section > * {
@@ -633,8 +645,86 @@ main > section > * {
 }
 
 /* ==========================================================================
-   15. FOCO E ACESSIBILIDADE
+   08. RODAPÉ
    ========================================================================== */
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--espaco-secao) var(--margem-lateral);
+  border-top: 1px solid var(--borda);
+  text-align: center;
+}
+
+/* ==========================================================================
+   09. ESTILOS DE FUNCIONALIDADES DE ACESSIBILIDADE
+   ========================================================================== */
+
+.grupo.acessibilidade .opcao,
+.grupo.acessibilidade .chave {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.grupo.acessibilidade .opcao:hover {
+  border-color: var(--magenta);
+}
+
+.chave.ativa {
+  background-color: var(--magenta) !important;
+  border-color: var(--magenta) !important;
+}
+
+.chave.ativa .botao.chave {
+  margin-left: auto !important;
+  margin-right: 2px !important;
+  background-color: #fff !important;
+}
+
+/* Modo Tema Claro */
+html[data-tema="claro"] {
+  --fundo: #f4f3f8;
+  --fundo-alt: #e9e6f2;
+  --superficie: #ffffff;
+  --superficie-alt: #eae6f5;
+  --texto: #120e21;
+  --texto-suave: #4a4458;
+  --texto-fraco: #857d99;
+  --borda: rgba(139, 61, 240, 0.25);
+  --borda-magenta: rgba(227, 0, 113, 0.4);
+}
+
+html[data-tema="claro"] header {
+  background-color: rgba(244, 243, 248, 0.95) !important;
+}
+
+/* Modo Alto Contraste */
+html.alto-contraste {
+  --fundo: #000000 !important;
+  --fundo-alt: #000000 !important;
+  --superficie: #000000 !important;
+  --superficie-alt: #111111 !important;
+  --texto: #ffffff !important;
+  --texto-suave: #ffff00 !important;
+  --borda: #ffffff !important;
+  --magenta: #ff007f !important;
+  --ciano: #00ffff !important;
+}
+
+html.alto-contraste * {
+  border-color: #ffffff !important;
+}
+
+/* Modo Redução de Movimento */
+html.sem-animacao *,
+html.sem-animacao *::before,
+html.sem-animacao *::after {
+  animation: none !important;
+  transition: none !important;
+}
 
 a:focus-visible,
 summary:focus-visible,
@@ -659,18 +749,15 @@ input:focus-visible {
 }
 
 /* ==========================================================================
-   16. RESPONSIVIDADE E ADAPTAÇÃO MOBILE/TABLET
+   10. RESPONSIVIDADE E ADAPTAÇÃO MOBILE/TABLET
    ========================================================================== */
 
-/* --- TRAVA DE SEGURANÇA GLOBAL ---
-   Impede que qualquer elemento vaze da tela e cause corte de texto nas laterais */
 html,
 body {
   max-width: 100%;
   overflow-x: hidden;
 }
 
-/* Garante que palavras muito longas não quebrem o container */
 p,
 h1,
 h2,
@@ -682,111 +769,69 @@ a {
   word-wrap: break-word;
 }
 
-/* -------- 16.1 TABLETS E DESKTOPS PEQUENOS (Até 1023px) ------------------- */
-@media (max-width: 1023px) {
-  .painel.combate {
-    grid-template-columns: 1fr;
-    text-align: left;
-    gap: 1.5rem;
-  }
-
-  .lado.combate.inimigo {
-    text-align: left;
-  }
-
-  .contra {
-    justify-self: center;
-    margin-block: 0.5rem;
-  }
-
-  header nav a {
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    padding: 0.5rem 0.6rem;
-  }
-
-  .cartao.operador {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .cartao.operador .botao.secundario {
-    margin-left: 0;
-    width: 100%;
-  }
+/* Botão do Menu Hambúrguer */
+.menu-hamburguer {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 101;
 }
 
-/* -------- 16.2 CELULARES E SMARTPHONES (Até 767px) ------------------------ */
-@media (max-width: 767px) {
-  :root {
-    --altura-cabecalho: auto;
-  }
+.menu-hamburguer span {
+  width: 100%;
+  height: 3px;
+  background-color: var(--ciano);
+  border-radius: 2px;
+  transition: all 0.3s linear;
+}
 
-  /* --- Cabeçalho Touch Seguro --- */
+.menu-hamburguer.ativo span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+.menu-hamburguer.ativo span:nth-child(2) {
+  opacity: 0;
+}
+.menu-hamburguer.ativo span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* 1. MODO CELULAR PEQUENO (Abaixo de 560px) */
+@media (max-width: 559px) {
   header {
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem; /* Força margem lateral segura */
-    width: 100%;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.8rem 1rem !important;
+    gap: 0.8rem !important;
   }
 
-  header nav {
-    order: 3;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+  .area.esquerda {
+    justify-content: center !important;
+    width: 100% !important;
   }
 
-  header nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  header nav ul {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0.5rem;
-    white-space: nowrap;
-    padding-bottom: 0.25rem;
-  }
-
-  header nav a {
-    font-size: 0.8rem;
-    padding: 0.5rem 0.75rem;
-    display: inline-block;
+  .area.direita {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
   }
 
   .status.online {
-    display: none;
+    display: none !important;
   }
 
-  /* --- Correção das Seções e Textos --- */
-  main > section {
-    padding: 3rem 1rem; /* Garante que o conteúdo não cole nas bordas no celular */
-    width: 100%;
-  }
-
-  .visao.geral {
-    width: 100%;
-    padding-left: 1rem;
-  }
-
-  .visao.geral p:not(.rotulo) {
-    max-width: 100%; /* Remove a limitação em 'ch' para aproveitar toda a tela e evitar vazamentos */
-  }
-
-  /* --- Ajustes Gerais de Grid para Mobile (Força 1 coluna) --- */
-  .lista.linguagens,
-  .lista.agentes,
-  .lista.territorios,
-  .lista.eventos,
-  .lista.missoes,
-  .formulario.dados,
-  .formulario.senha {
-    grid-template-columns: 1fr;
+  details.acessibilidade summary {
+    padding: 0.3rem 0.6rem !important;
+    font-size: 0.7rem !important;
   }
 
   .painel.acessibilidade {
@@ -799,21 +844,7 @@ a {
     max-width: calc(100vw - 2rem);
   }
 
-  .painel.progresso {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .sprite.agente {
-    grid-column: 1;
-    grid-row: auto;
-    justify-self: center;
-    max-width: 100%;
-    height: auto;
-  }
-
-  .acoes.inicial,
-  .acoes.formulario {
+  .acoes.inicial {
     flex-direction: column;
     width: 100%;
   }
@@ -822,56 +853,94 @@ a {
   .botao.secundario {
     width: 100%;
   }
+}
 
-  .painel.filtros .botao.secundario,
-  .cartao.operador .botao.secundario {
-    margin-left: 0;
-    width: 100%;
+/* 2. REGRAS DO MENU HAMBÚRGUER OVERLAY (Até 1199px) */
+@media (max-width: 1199px) {
+  .menu-hamburguer {
+    display: flex !important;
   }
 
-  .grupo.filtro {
-    width: 100%;
+  .menu-hamburguer.ativo {
+    position: fixed !important;
+    top: 1.2rem !important;
+    right: 1.2rem !important;
   }
 
-  .lista.marcos {
-    padding-left: 1.25rem;
+  header nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: rgba(8, 5, 17, 0.98) !important;
+    backdrop-filter: blur(12px) !important;
+    display: none !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 99 !important;
   }
 
-  .marco::before {
-    left: calc(-1.25rem - 7px);
+  header nav.aberto {
+    display: flex !important;
   }
 
-  /* --- Listas de Informações (Chave/Valor) --- */
-  .informacoes.nivel,
-  .informacoes.missao {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: none;
-    grid-auto-flow: row;
-    align-items: center;
-    gap: 0.5rem var(--espaco);
+  header nav ul {
+    flex-direction: column !important;
+    gap: 2rem !important;
+    text-align: center !important;
   }
 
-  .informacoes.nivel dt,
-  .informacoes.missao dt {
-    font-weight: bold;
-  }
-
-  .informacoes.nivel dd,
-  .informacoes.missao dd {
-    margin-top: 0;
-    text-align: right;
-    word-break: break-word;
+  header nav a {
+    font-size: 1.2rem !important;
   }
 }
 
-/* -------- 16.3 TELAS MUITO PEQUENAS (Até 480px) --------------------------- */
-@media (max-width: 480px) {
-  .conteudo.inicial h1 {
-    font-size: clamp(2.2rem, 10vw, 4rem);
+/* 3. TELAS INTERMEDIÁRIAS (560px a 1199px) */
+@media (min-width: 560px) and (max-width: 1199px) {
+  header {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0.8rem 1rem !important;
+    gap: 0.5rem !important;
   }
 
-  .mensagem.superia {
-    padding: var(--espaco);
+  .area.esquerda,
+  .area.direita {
+    width: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+  }
+
+  .status.online {
+    display: flex !important;
+  }
+
+  .perfil.atalho,
+  .perfil.atalho img {
+    display: block !important;
+  }
+}
+
+/* 4. TELA DESKTOP COMPLETA (A partir de 1200px) */
+@media (min-width: 1200px) {
+  .menu-hamburguer {
+    display: none !important;
+  }
+
+  header nav {
+    display: flex !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+  }
+
+  header nav ul {
+    flex-direction: row !important;
   }
 }
