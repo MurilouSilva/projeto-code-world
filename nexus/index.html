@@ -1,79 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
+    <!-- Configurações fundamentais de codificação e responsividade -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="CodeWorld por 11 estudantes de técnologia"
-    />
-    <title>CodeWorld</title>
-    <!--Fontes do projeto: Chakra Petch nos títulos, Share Tech Mono nos rótulos-->
+    <meta name="description" content="CodeWorld por 11 estudantes de tecnologia" />
+    <title>CodeWorld - Nexus</title>
+
+    <!-- Importação de fontes externas via Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Orbitron:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@400;600&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Orbitron:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-      rel="stylesheet"
-    />
+
+    <!-- Folha de estilos principal do projeto -->
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Biblioteca i18next para suporte a internacionalização -->
+    <script src="https://unpkg.com/i18next@23.11.5/i18next.min.js"></script>
   </head>
   <body>
+    <!-- ===================================================================
+         CABEÇALHO PRINCIPAL DA PÁGINA
+         =================================================================== -->
     <header>
-      <!--Seção de navegação pelo topo-->
-      <div class="logo">
-        <a href="../nexus/index.html#CODEWORLD">CODEWORLD</a>
+      <!-- Área Esquerda: Logo do Projeto -->
+      <div class="area esquerda">
+        <div class="logo">
+          <a href="../nexus/index.html#CODEWORLD">CODEWORLD</a>
+        </div>
       </div>
+
+      <!-- Menu de Navegação Central -->
       <nav aria-label="Navegação principal">
         <ul>
-          <li><a href="../nexus/index.html#CODEWORLD">NEXUS</a></li>
-          <li><a href="../universo/index.html#SECAO-UNIVERSO">UNIVERSO</a></li>
           <li>
-            <a href="../personagens/index.html#SECAO-PERSONAGENS"
-              >PERSONAGENS</a
-            >
+            <a href="../nexus/index.html#CODEWORLD" class="ativo" data-i18n="nav_nexus">NEXUS</a>
           </li>
-          <li><a href="../mapa/index.html#SECAO-MAPA">MAPA</a></li>
-          <li><a href="../missoes/index.html#SECAO-MISSOES">MISSÕES</a></li>
-          <li><a href="../arquivos/index.html#SECAO-ARQUIVOS">ARQUIVOS</a></li>
+          <li>
+            <a href="../universo/index.html#SECAO-UNIVERSO" data-i18n="nav_universo">UNIVERSO</a>
+          </li>
+          <li>
+            <a href="../personagens/index.html#SECAO-PERSONAGENS" data-i18n="nav_personagens">PERSONAGENS</a>
+          </li>
+          <li>
+            <a href="../mapa/index.html#SECAO-MAPA" data-i18n="nav_mapa">MAPA</a>
+          </li>
+          <li>
+            <a href="../missoes/index.html#SECAO-MISSOES" data-i18n="nav_missoes">MISSÕES</a>
+          </li>
+          <li>
+            <a href="../arquivos/index.html#SECAO-ARQUIVOS" data-i18n="nav_arquivos">ARQUIVOS</a>
+          </li>
         </ul>
       </nav>
+
+      <!-- Área Direita: Status Online, Painel de Acessibilidade e Perfil -->
       <div class="area direita">
+        <!-- Indicador do Status do Sistema -->
         <p class="status online">
-          <span class="ponto" aria-hidden="true">●</span>ONLINE
+          <span class="ponto" aria-hidden="true">●</span>
+          <span data-i18n="status_online">ONLINE</span>
         </p>
 
-        <!--Painel de acessibilidade: abre e fecha sem JavaScript.
-            Os controles de dentro são apenas visuais por enquanto.-->
+        <!-- Menu Desdobrável (Details/Summary) de Acessibilidade -->
         <details class="acessibilidade">
-          <summary><span aria-hidden="true">▣</span> ACESSIBILIDADE</summary>
+          <summary>
+            <span aria-hidden="true">▣</span>
+            <span data-i18n="btn_acessibilidade">ACESSIBILIDADE</span>
+          </summary>
+
           <div class="painel acessibilidade">
             <p class="rotulo sistema">[ SISTEMA ]</p>
-            <p class="titulo painel">PAINEL DE ACESSIBILIDADE</p>
+            <p class="titulo painel" data-i18n="titulo_painel">PAINEL DE ACESSIBILIDADE</p>
 
+            <!-- Seleção de Idioma -->
             <div class="grupo acessibilidade">
-              <p class="rotulo sistema">IDIOMA / LANGUAGE</p>
+              <p class="rotulo sistema" data-i18n="lbl_idioma">IDIOMA / LANGUAGE</p>
               <div class="opcoes">
                 <span class="opcao ativa">PT-BR</span>
                 <span class="opcao">EN</span>
               </div>
             </div>
 
+            <!-- Seleção de Tema (Escuro / Claro) -->
             <div class="grupo acessibilidade">
-              <p class="rotulo sistema">TEMA</p>
+              <p class="rotulo sistema" data-i18n="lbl_tema">TEMA</p>
               <div class="opcoes">
-                <span class="opcao ativa">ESCURO</span>
-                <span class="opcao">CLARO</span>
+                <span class="opcao ativa" data-i18n="opt_escuro">ESCURO</span>
+                <span class="opcao" data-i18n="opt_claro">CLARO</span>
               </div>
             </div>
 
+            <!-- Ajuste de Tamanho da Fonte -->
             <div class="grupo acessibilidade">
-              <p class="rotulo sistema">TAMANHO DA FONTE</p>
+              <p class="rotulo sistema" data-i18n="lbl_fonte">TAMANHO DA FONTE</p>
               <div class="opcoes">
                 <span class="opcao">A-</span>
                 <span class="opcao ativa">A</span>
@@ -82,24 +105,30 @@
               </div>
             </div>
 
+            <!-- Toggle de Alto Contraste -->
             <div class="grupo acessibilidade">
-              <p class="rotulo sistema">ALTO CONTRASTE</p>
-              <span class="chave" aria-hidden="true"
-                ><span class="botao chave"></span
-              ></span>
+              <p class="rotulo sistema" data-i18n="lbl_contraste">ALTO CONTRASTE</p>
+              <span class="chave" aria-hidden="true">
+                <span class="botao chave"></span>
+              </span>
             </div>
 
+            <!-- Toggle de Reduzir Movimento -->
             <div class="grupo acessibilidade">
-              <p class="rotulo sistema">REDUZIR MOVIMENTO</p>
-              <span class="chave" aria-hidden="true"
-                ><span class="botao chave"></span
-              ></span>
+              <p class="rotulo sistema" data-i18n="lbl_movimento">REDUZIR MOVIMENTO</p>
+              <span class="chave" aria-hidden="true">
+                <span class="botao chave"></span>
+              </span>
             </div>
 
-            <p class="rotulo sistema">STATUS: CONFIGURAÇÕES SALVAS</p>
+            <p class="rotulo sistema" data-i18n="lbl_status_salvo">STATUS: CONFIGURAÇÕES SALVAS</p>
           </div>
+
+          <!-- Container do widget do Google Translate (oculto via CSS) -->
+          <div id="google_translate_element" style="display: none"></div>
         </details>
 
+        <!-- Atalho de Perfil -->
         <a class="perfil atalho" href="../perfil/index.html#SECAO-PERFIL">
           <img
             src="../img/perfil-avatar.png"
@@ -108,14 +137,27 @@
             height="312"
           />
         </a>
+
+        <!-- Botão Hambúrguer (Mobile) -->
+        <button
+          class="menu-hamburguer"
+          aria-label="Abrir Menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </header>
 
+    <!-- ===================================================================
+         CONTEÚDO PRINCIPAL
+         =================================================================== -->
     <main>
-      <!--==============================================================
-        SEÇÃO 01 // NEXUS - entrada do portal
-        ==============================================================-->
+      <!-- Seção 01: Nexus - Entrada Principal do Portal -->
       <section id="CODEWORLD" class="fundo principal">
+        <!-- Imagem de Fundo Ambiental do Nexus -->
         <img
           class="visual fundo"
           src="../img/nexus-visual.png"
@@ -124,6 +166,7 @@
           height="1440"
         />
 
+        <!-- Console / Terminal do Sistema -->
         <div class="sistema console">
           <p class="rotulo sistema">SISTEMA CONSOLE</p>
           <p class="linhas console">
@@ -131,35 +174,43 @@
             &gt;ACESSANDO CODEWORLD...<br />
             &gt;NEXUS_CONNECTION: STABLE<br />
             &gt;CARREGANDO MAPA DE TERRITÓRIOS...<br />
-            &gt;STATUS: OPERACIONAL<span class="cursor" aria-hidden="true"
-              >█</span
-            >
+            &gt;STATUS: OPERACIONAL<span class="cursor" aria-hidden="true">█</span>
           </p>
         </div>
 
+        <!-- Bloco Principal de Boas-Vindas -->
         <div class="conteudo inicial">
           <p class="selo status">STATUS: ONLINE</p>
           <h1>CODEWORLD</h1>
           <p class="credito">Por 11 Estudantes de tecnologia</p>
+          
+          <!-- Botões de Ação de Início -->
           <ul class="acoes inicial">
             <li>
-              <a
-                class="botao primario"
-                href="../universo/index.html#SECAO-UNIVERSO"
-                >ENTRAR NA EXPERIÊNCIA <span aria-hidden="true">→</span></a
-              >
+              <a class="botao primario" href="../universo/index.html#SECAO-UNIVERSO">
+                ENTRAR NA EXPERIÊNCIA <span aria-hidden="true">→</span>
+              </a>
             </li>
             <li>
-              <a
-                class="botao secundario"
-                href="../arquivos/index.html#SECAO-ARQUIVOS"
-                >EXPLORAR A HISTÓRIA</a
-              >
+              <a class="botao secundario" href="../arquivos/index.html#SECAO-ARQUIVOS">
+                EXPLORAR A HISTÓRIA
+              </a>
             </li>
           </ul>
         </div>
       </section>
     </main>
+
+    <!-- ===================================================================
+         RODAPÉ DA PÁGINA
+         =================================================================== -->
+    <footer>
+      <p class="logo rodape">CODEWORLD</p>
+      <p class="credito">Por 11 Estudantes de tecnologia</p>
+      <p class="rotulo sistema">PROJETO ACADÊMICO // FRONT END 2025</p>
+    </footer>
+
+    <!-- Script de Comportamento Interativo -->
     <script src="script.js" defer></script>
   </body>
 </html>
