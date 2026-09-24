@@ -1,160 +1,946 @@
-/**
- * CODEWORLD // script.js
- * Gerenciador de interações de Menu, Acessibilidade e Armazenamento Local
- */
+/* ==========================================================================
+   CODEWORLD // style.css
+   Portal Cyberpunk - 11 Estudantes de Tecnologia
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Elemento raiz <html> para aplicação de preferências globais
-  const root = document.documentElement;
+   Índice:
+   01. Reset e Base
+   02. Variáveis do Projeto (Design Tokens)
+   03. Tipografia e Utilitários
+   04. Componentes Reaproveitados
+   05. Cabeçalho e Painel de Acessibilidade
+   06. Regras Gerais das Seções
+   07. Seção Nexus (Hero Section, Console de Entrada)
+   08. Rodapé
+   09. Estilos de Funcionalidades de Acessibilidade
+   10. Responsividade Adaptativa (Mobile / Tablet)
+   ========================================================================== */
 
-  /**
-   * Função auxiliar para alternar o estado ativo entre grupos de botões.
-   * @param {NodeListOf<Element>} opcoes - Lista de botões do grupo.
-   * @param {Element} selecionada - O botão clicado a ser ativado.
-   */
-  function setOpcaoAtiva(opcoes, selecionada) {
-    opcoes.forEach((opt) => opt.classList.remove("ativa"));
-    selecionada.classList.add("ativa");
+/* ==========================================================================
+   01. RESET E BASE
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte-titulo);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+input,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* ==========================================================================
+   02. VARIÁVEIS DO PROJETO (DESIGN TOKENS)
+   ========================================================================== */
+
+:root {
+  /* Cores da Marca */
+  --magenta: #e30071;
+  --magenta-claro: #ff3d9a;
+  --ciano: #00f2fe;
+  --verde: #29f58a;
+  --ambar: #ffb020;
+  --vermelho: #ff3b4e;
+  --roxo: #8b3df0;
+
+  /* Fundos e Superfícies */
+  --fundo: #08060f;
+  --fundo-alt: #0d0a16;
+  --superficie: #14111f;
+  --superficie-alt: #1b1729;
+
+  /* Bordas */
+  --borda: rgba(0, 242, 254, 0.18);
+  --borda-magenta: rgba(227, 0, 113, 0.35);
+
+  /* Texto */
+  --texto: #e8e6f0;
+  --texto-suave: #9a94ad;
+  --texto-fraco: #5f5875;
+
+  /* Brilhos Neon */
+  --brilho-magenta: 0 0 12px rgba(227, 0, 113, 0.45);
+  --brilho-ciano: 0 0 12px rgba(0, 242, 254, 0.4);
+
+  /* Tipografia */
+  --fonte-titulo: "Chakra Petch", sans-serif;
+  --fonte-mono: "Share Tech Mono", monospace;
+
+  /* Medidas e Espaçamentos */
+  --espaco: clamp(1rem, 2vw, 1.5rem);
+  --espaco-secao: clamp(3rem, 6vw, 6rem);
+  --margem-lateral: clamp(1rem, 4vw, 2.5rem);
+  --largura-conteudo: 1200px;
+  --raio: 4px;
+  --altura-cabecalho: 64px;
+}
+
+/* ==========================================================================
+   03. TIPOGRAFIA E UTILITÁRIOS
+   ========================================================================== */
+
+/* Rótulo técnico estilo terminal (fonte mono, caixa alta, espaçado) */
+.rotulo.sistema {
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+}
+
+.destaque {
+  color: var(--magenta);
+}
+
+.credito {
+  color: var(--texto-suave);
+}
+
+.contagem {
+  font-family: var(--fonte-mono);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1;
+  color: var(--ciano);
+}
+
+/* Cursor intermitente estilo terminal */
+.cursor {
+  display: inline-block;
+  color: var(--verde);
+  animation: piscar 1s steps(2, start) infinite;
+}
+
+@keyframes piscar {
+  50% {
+    opacity: 0;
   }
+}
 
-  // ==========================================================================
-  // 1. MENU HAMBÚRGUER (MOBILE & TABLET)
-  // ==========================================================================
-  const btnHamburguer = document.querySelector(".menu-hamburguer");
-  const navMenu = document.querySelector("header nav");
-  const navLinks = document.querySelectorAll("header nav a");
+.linhas.console {
+  font-family: var(--fonte-mono);
+  font-size: 0.85rem;
+  line-height: 1.9;
+  color: var(--verde);
+  word-break: break-word;
+}
 
-  if (btnHamburguer && navMenu) {
-    // Alterna abertura/fechamento do menu ao clicar no ícone
-    btnHamburguer.addEventListener("click", (e) => {
-      e.stopPropagation();
-      btnHamburguer.classList.toggle("ativo");
-      navMenu.classList.toggle("aberto");
+/* ==========================================================================
+   04. COMPONENTES REAPROVEITADOS
+   ========================================================================== */
 
-      const aberto = navMenu.classList.contains("aberto");
-      btnHamburguer.setAttribute("aria-expanded", aberto);
-    });
+/* --- 4.1 Botões Primários e Secundários --- */
+.botao.primario,
+.botao.secundario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid transparent;
+  border-radius: var(--raio);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease;
+}
 
-    // Fecha o menu automaticamente quando o usuário clica em qualquer link
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        btnHamburguer.classList.remove("ativo");
-        navMenu.classList.remove("aberto");
-        btnHamburguer.setAttribute("aria-expanded", "false");
-      });
-    });
-  }
+.botao.primario {
+  background-color: var(--magenta);
+  color: #fff;
+}
 
-  // ==========================================================================
-  // 2. PAINEL DE ACESSIBILIDADE
-  // ==========================================================================
+.botao.primario:hover,
+.botao.primario:focus-visible {
+  background-color: var(--magenta-claro);
+  box-shadow: var(--brilho-magenta);
+}
 
-  // --- A. Tema (Claro / Escuro) ---
-  const opcoesTema = document.querySelectorAll(
-    ".grupo.acessibilidade:nth-of-type(2) .opcao",
+.botao.secundario {
+  background-color: transparent;
+  border-color: var(--ciano);
+  color: var(--ciano);
+}
+
+.botao.secundario:hover,
+.botao.secundario:focus-visible {
+  background-color: rgba(0, 242, 254, 0.12);
+  box-shadow: var(--brilho-ciano);
+}
+
+/* --- 4.2 Selos de Status --- */
+.selo.status,
+.selo.ameaca,
+.selo.bloqueado,
+.selo.principal,
+.selo.secundaria,
+.selo.epica {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  align-self: flex-start;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid currentColor;
+  border-radius: 99px;
+  font-family: var(--fonte-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.selo.status {
+  color: var(--verde);
+}
+
+.selo.ameaca,
+.selo.principal {
+  color: var(--vermelho);
+}
+
+.selo.bloqueado {
+  color: var(--texto-fraco);
+}
+
+.selo.secundaria {
+  color: var(--ciano);
+}
+
+.selo.epica {
+  color: var(--ambar);
+}
+
+/* --- 4.3 Botões de Opção (Painéis) --- */
+.opcao {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--superficie-alt);
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  color: var(--texto-suave);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.opcao.ativa {
+  border-color: var(--magenta);
+  background-color: rgba(227, 0, 113, 0.14);
+  color: var(--texto);
+}
+
+.opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.opcoes .opcao {
+  flex: 1;
+}
+
+/* --- 4.4 Barra de Progresso --- */
+.barra.progresso {
+  width: 100%;
+  height: 6px;
+  border-radius: 99px;
+  background-color: var(--superficie-alt);
+  overflow: hidden;
+}
+
+.preenchimento.progresso {
+  height: 100%;
+  width: 0;
+  border-radius: 99px;
+  background-image: linear-gradient(
+    90deg,
+    var(--magenta),
+    var(--magenta-claro)
   );
+}
 
-  opcoesTema.forEach((opt) => {
-    opt.addEventListener("click", () => {
-      setOpcaoAtiva(opcoesTema, opt);
-      const tema = opt.textContent.trim().toLowerCase();
+/* --- 4.5 Painéis e Cartões Base --- */
+.painel.progresso,
+.painel.filtros,
+.painel.controles,
+.painel.detalhes,
+.painel.combate,
+.bloco.terminal,
+.bloco.log,
+.bloco.diagnostico,
+.cartao.operador,
+.card.linguagem,
+.card.agente,
+.card.territorio,
+.card.missao,
+.card.evento,
+.card.recompensa,
+.card.arquivo,
+.formulario.dados,
+.formulario.senha {
+  padding: var(--espaco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--superficie);
+}
 
-      if (tema === "claro") {
-        root.setAttribute("data-tema", "claro");
-        localStorage.setItem("cw_tema", "claro");
-      } else {
-        root.removeAttribute("data-tema");
-        localStorage.setItem("cw_tema", "escuro");
-      }
-    });
-  });
+/* --- 4.6 Teclas e Chaves de Alternância (Switches) --- */
+.tecla {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 0.4rem;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--superficie-alt);
+  font-family: var(--fonte-mono);
+  font-size: 0.8rem;
+  color: var(--ciano);
+}
 
-  // --- B. Tamanho da Fonte (A-, A, A+, A++) ---
-  const opcoesFonte = document.querySelectorAll(
-    ".grupo.acessibilidade:nth-of-type(3) .opcao",
-  );
+.chave {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 38px;
+  height: 20px;
+  border: 1px solid var(--borda);
+  border-radius: 99px;
+  background-color: var(--superficie-alt);
+}
 
-  // Mapeamento de chaves para porcentagens de zoom tipográfico
-  const tamanhos = {
-    "a-": "90%",
-    a: "100%",
-    "a+": "110%",
-    "a++": "120%",
-  };
+.botao.chave {
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin: 2px 0 0 2px;
+  border-radius: 50%;
+  background-color: var(--texto-suave);
+}
 
-  opcoesFonte.forEach((opt) => {
-    opt.addEventListener("click", () => {
-      setOpcaoAtiva(opcoesFonte, opt);
-      const chave = opt.textContent.trim().toLowerCase();
+/* ==========================================================================
+   05. CABEÇALHO (DESKTOP)
+   ========================================================================== */
 
-      if (tamanhos[chave]) {
-        root.style.fontSize = tamanhos[chave];
-        localStorage.setItem("cw_fonte", chave);
-      }
-    });
-  });
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco);
+  min-height: var(--altura-cabecalho);
+  padding: 0.8rem var(--margem-lateral);
+  border-bottom: 1px solid rgba(227, 0, 113, 0.2);
+  background-color: #080511;
+  transition: all 0.3s ease;
+}
 
-  // --- C. Chaves de Alternância (Alto Contraste e Reduzir Movimento) ---
-  const chaves = document.querySelectorAll(".grupo.acessibilidade .chave");
+.area.esquerda {
+  display: flex;
+  align-items: center;
+}
 
-  // Chave 1: Alto Contraste
-  if (chaves[0]) {
-    chaves[0].addEventListener("click", () => {
-      chaves[0].classList.toggle("ativa");
-      const ativo = chaves[0].classList.contains("ativa");
-      root.classList.toggle("alto-contraste", ativo);
-      localStorage.setItem("cw_alto_contraste", ativo);
-    });
+.logo a {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--magenta);
+  white-space: nowrap;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+}
+
+header nav ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(0.6rem, 1.2vw, 1.8rem);
+  margin: 0;
+  padding: 0;
+}
+
+header nav a {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--texto-suave);
+  white-space: nowrap;
+  padding: 0.4rem 0.6rem;
+  transition: all 180ms ease;
+}
+
+header nav a:hover {
+  color: #fff;
+}
+
+header nav a.ativo {
+  color: var(--magenta);
+  border: 1px solid var(--magenta);
+  border-radius: 0;
+}
+
+.area.direita {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.status.online {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--verde);
+  font-weight: bold;
+  animation: piscar-online 1.2s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+.ponto {
+  color: var(--verde);
+  font-size: 0.6rem;
+  text-shadow: 0 0 6px var(--verde);
+}
+
+@keyframes piscar-online {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.perfil.atalho img {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--borda);
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- 5.1 Painel do Menu Desdobrável de Acessibilidade --- */
+details.acessibilidade {
+  position: relative;
+}
+
+details.acessibilidade summary {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--ciano);
+  border-radius: var(--raio);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--ciano);
+  white-space: nowrap;
+  cursor: pointer;
+  list-style: none;
+}
+
+details.acessibilidade summary::-webkit-details-marker {
+  display: none;
+}
+
+details.acessibilidade summary:hover {
+  background-color: rgba(0, 242, 254, 0.12);
+}
+
+.painel.acessibilidade {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 280px;
+  padding: var(--espaco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--superficie);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+.titulo.painel {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--magenta);
+  font-weight: 600;
+}
+
+.grupo.acessibilidade {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.grupo.acessibilidade:has(.chave) {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ==========================================================================
+   06. REGRAS GERAIS DAS SEÇÕES
+   ========================================================================== */
+
+main > section {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--espaco-secao) / 2);
+  padding: var(--espaco-secao) var(--margem-lateral);
+  scroll-margin-top: var(--altura-cabecalho);
+}
+
+main > section > * {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--largura-conteudo);
+  margin-inline: auto;
+}
+
+.visual.fundo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  object-fit: cover;
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+.visao.geral {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--magenta);
+}
+
+.visao.geral h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: 0.02em;
+}
+
+.visao.geral p:not(.rotulo) {
+  max-width: 65ch;
+  color: var(--texto-suave);
+}
+
+.bloco h3,
+.painel h3 {
+  margin-bottom: var(--espaco);
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ciano);
+}
+
+/* ==========================================================================
+   07. SEÇÃO NEXUS
+   ========================================================================== */
+
+#CODEWORLD {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - var(--altura-cabecalho));
+}
+
+.sistema.console {
+  width: 100%;
+  padding: var(--espaco);
+  border: 1px solid var(--borda);
+  border-left: 3px solid var(--verde);
+  border-radius: var(--raio);
+  background-color: rgba(8, 6, 15, 0.75);
+}
+
+.sistema.console .rotulo.sistema {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.conteudo.inicial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco);
+  text-align: center;
+}
+
+.conteudo.inicial h1 {
+  font-size: clamp(3rem, 12vw, 7rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background-image: linear-gradient(90deg, var(--magenta), var(--ciano));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.acoes.inicial {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espaco);
+}
+
+/* ==========================================================================
+   08. RODAPÉ
+   ========================================================================== */
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--espaco-secao) var(--margem-lateral);
+  border-top: 1px solid var(--borda);
+  text-align: center;
+}
+
+/* ==========================================================================
+   09. ESTILOS DE FUNCIONALIDADES DE ACESSIBILIDADE
+   ========================================================================== */
+
+.grupo.acessibilidade .opcao,
+.grupo.acessibilidade .chave {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.grupo.acessibilidade .opcao:hover {
+  border-color: var(--magenta);
+}
+
+.chave.ativa {
+  background-color: var(--magenta) !important;
+  border-color: var(--magenta) !important;
+}
+
+.chave.ativa .botao.chave {
+  margin-left: auto !important;
+  margin-right: 2px !important;
+  background-color: #fff !important;
+}
+
+/* Modo Tema Claro */
+html[data-tema="claro"] {
+  --fundo: #f4f3f8;
+  --fundo-alt: #e9e6f2;
+  --superficie: #ffffff;
+  --superficie-alt: #eae6f5;
+  --texto: #120e21;
+  --texto-suave: #4a4458;
+  --texto-fraco: #857d99;
+  --borda: rgba(139, 61, 240, 0.25);
+  --borda-magenta: rgba(227, 0, 113, 0.4);
+}
+
+html[data-tema="claro"] header {
+  background-color: rgba(244, 243, 248, 0.95) !important;
+}
+
+/* Modo Alto Contraste */
+html.alto-contraste {
+  --fundo: #000000 !important;
+  --fundo-alt: #000000 !important;
+  --superficie: #000000 !important;
+  --superficie-alt: #111111 !important;
+  --texto: #ffffff !important;
+  --texto-suave: #ffff00 !important;
+  --borda: #ffffff !important;
+  --magenta: #ff007f !important;
+  --ciano: #00ffff !important;
+}
+
+html.alto-contraste * {
+  border-color: #ffffff !important;
+}
+
+/* Modo Redução de Movimento */
+html.sem-animacao *,
+html.sem-animacao *::before,
+html.sem-animacao *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+a:focus-visible,
+summary:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--ciano);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 
-  // Chave 2: Reduzir Movimento / Animações
-  if (chaves[1]) {
-    chaves[1].addEventListener("click", () => {
-      chaves[1].classList.toggle("ativa");
-      const ativo = chaves[1].classList.contains("ativa");
-      root.classList.toggle("sem-animacao", ativo);
-      localStorage.setItem("cw_reduzir_movimento", ativo);
-    });
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   10. RESPONSIVIDADE E ADAPTAÇÃO MOBILE/TABLET
+   ========================================================================== */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+span,
+a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Botão do Menu Hambúrguer */
+.menu-hamburguer {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 101;
+}
+
+.menu-hamburguer span {
+  width: 100%;
+  height: 3px;
+  background-color: var(--ciano);
+  border-radius: 2px;
+  transition: all 0.3s linear;
+}
+
+.menu-hamburguer.ativo span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+.menu-hamburguer.ativo span:nth-child(2) {
+  opacity: 0;
+}
+.menu-hamburguer.ativo span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* 1. MODO CELULAR PEQUENO (Abaixo de 560px) */
+@media (max-width: 559px) {
+  header {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.8rem 1rem !important;
+    gap: 0.8rem !important;
   }
 
-  // ==========================================================================
-  // 3. CARREGAMENTO DE PREFERÊNCIAS SALVAS (LOCALSTORAGE)
-  // ==========================================================================
-  function carregarPreferencias() {
-    // Restaurar Tema
-    if (localStorage.getItem("cw_tema") === "claro") {
-      root.setAttribute("data-tema", "claro");
-      opcoesTema.forEach((opt) => {
-        if (opt.textContent.trim().toLowerCase() === "claro") {
-          setOpcaoAtiva(opcoesTema, opt);
-        }
-      });
-    }
-
-    // Restaurar Tamanho da Fonte
-    const fonteSalva = localStorage.getItem("cw_fonte");
-    if (fonteSalva && tamanhos[fonteSalva]) {
-      root.style.fontSize = tamanhos[fonteSalva];
-      opcoesFonte.forEach((opt) => {
-        if (opt.textContent.trim().toLowerCase() === fonteSalva) {
-          setOpcaoAtiva(opcoesFonte, opt);
-        }
-      });
-    }
-
-    // Restaurar Alto Contraste
-    if (localStorage.getItem("cw_alto_contraste") === "true" && chaves[0]) {
-      chaves[0].classList.add("ativa");
-      root.classList.add("alto-contraste");
-    }
-
-    // Restaurar Redução de Movimento
-    if (localStorage.getItem("cw_reduzir_movimento") === "true" && chaves[1]) {
-      chaves[1].classList.add("ativa");
-      root.classList.add("sem-animacao");
-    }
+  .area.esquerda {
+    justify-content: center !important;
+    width: 100% !important;
   }
 
-  // Aplica as preferências armazenadas assim que o DOM estiver pronto
-  carregarPreferencias();
-});
+  .area.direita {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
+
+  .status.online {
+    display: none !important;
+  }
+
+  details.acessibilidade summary {
+    padding: 0.3rem 0.6rem !important;
+    font-size: 0.7rem !important;
+  }
+
+  .painel.acessibilidade {
+    position: fixed;
+    top: auto;
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    width: auto;
+    max-width: calc(100vw - 2rem);
+  }
+
+  .acoes.inicial {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .botao.primario,
+  .botao.secundario {
+    width: 100%;
+  }
+}
+
+/* 2. REGRAS DO MENU HAMBÚRGUER OVERLAY (Até 1199px) */
+@media (max-width: 1199px) {
+  .menu-hamburguer {
+    display: flex !important;
+  }
+
+  .menu-hamburguer.ativo {
+    position: fixed !important;
+    top: 1.2rem !important;
+    right: 1.2rem !important;
+  }
+
+  header nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: rgba(8, 5, 17, 0.98) !important;
+    backdrop-filter: blur(12px) !important;
+    display: none !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 99 !important;
+  }
+
+  header nav.aberto {
+    display: flex !important;
+  }
+
+  header nav ul {
+    flex-direction: column !important;
+    gap: 2rem !important;
+    text-align: center !important;
+  }
+
+  header nav a {
+    font-size: 1.2rem !important;
+  }
+}
+
+/* 3. TELAS INTERMEDIÁRIAS (560px a 1199px) */
+@media (min-width: 560px) and (max-width: 1199px) {
+  header {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0.8rem 1rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .area.esquerda,
+  .area.direita {
+    width: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+  }
+
+  .status.online {
+    display: flex !important;
+  }
+
+  .perfil.atalho,
+  .perfil.atalho img {
+    display: block !important;
+  }
+}
+
+/* 4. TELA DESKTOP COMPLETA (A partir de 1200px) */
+@media (min-width: 1200px) {
+  .menu-hamburguer {
+    display: none !important;
+  }
+
+  header nav {
+    display: flex !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+  }
+
+  header nav ul {
+    flex-direction: row !important;
+  }
+}
