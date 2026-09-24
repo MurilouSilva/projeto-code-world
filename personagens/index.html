@@ -1,179 +1,340 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CodeWorld por 11 estudantes de técnologia">
-    <title>CodeWorld</title>
-    <!--Fontes do projeto: Chakra Petch nos títulos, Share Tech Mono nos rótulos-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<header>
-    <!--Seção de navegação pelo topo-->
-    <div class="logo"><a href="../nexus/index.html#CODEWORLD">CODEWORLD</a></div>
-    <nav aria-label="Navegação principal">
+  <head>
+    <!-- Configurações fundamentais de codificação e responsividade -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CodeWorld por 11 estudantes de tecnologia"
+    />
+    <title>CodeWorld - Personagens</title>
+
+    <!-- Importação de fontes externas via Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@400;600&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Folha de estilos principal do projeto -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Biblioteca i18next para suporte a internacionalização -->
+    <script src="https://unpkg.com/i18next@23.11.5/i18next.min.js"></script>
+  </head>
+  <body>
+    <!-- ===================================================================
+         CABEÇALHO PRINCIPAL DA PÁGINA
+         =================================================================== -->
+    <header>
+      <!-- Área Esquerda: Logo do Projeto -->
+      <div class="area esquerda">
+        <div class="logo">
+          <a href="../nexus/index.html#CODEWORLD">CODEWORLD</a>
+        </div>
+      </div>
+
+      <!-- Menu de Navegação Central -->
+      <nav aria-label="Navegação principal">
         <ul>
-            <li><a href="../nexus/index.html#CODEWORLD">NEXUS</a></li>
-            <li><a href="../universo/index.html#SECAO-UNIVERSO">UNIVERSO</a></li>
-            <li><a href="../personagens/index.html#SECAO-PERSONAGENS">PERSONAGENS</a></li>
-            <li><a href="../mapa/index.html#SECAO-MAPA">MAPA</a></li>
-            <li><a href="../missoes/index.html#SECAO-MISSOES">MISSÕES</a></li>
-            <li><a href="../arquivos/index.html#SECAO-ARQUIVOS">ARQUIVOS</a></li>
+          <li>
+            <a href="../nexus/index.html#CODEWORLD" data-i18n="nav_nexus"
+              >NEXUS</a
+            >
+          </li>
+          <li>
+            <a
+              href="../universo/index.html#SECAO-UNIVERSO"
+              data-i18n="nav_universo"
+              >UNIVERSO</a
+            >
+          </li>
+          <li>
+            <a
+              href="../personagens/index.html#SECAO-PERSONAGENS"
+              class="ativo"
+              data-i18n="nav_personagens"
+              >PERSONAGENS</a
+            >
+          </li>
+          <li>
+            <a href="../mapa/index.html#SECAO-MAPA" data-i18n="nav_mapa"
+              >MAPA</a
+            >
+          </li>
+          <li>
+            <a
+              href="../missoes/index.html#SECAO-MISSOES"
+              data-i18n="nav_missoes"
+              >MISSÕES</a
+            >
+          </li>
+          <li>
+            <a
+              href="../arquivos/index.html#SECAO-ARQUIVOS"
+              data-i18n="nav_arquivos"
+              >ARQUIVOS</a
+            >
+          </li>
         </ul>
-    </nav>
-    <div class="area direita">
-        <p class="status online"><span class="ponto" aria-hidden="true">●</span>ONLINE</p>
+      </nav>
 
-        <!--Painel de acessibilidade: abre e fecha sem JavaScript.
-            Os controles de dentro são apenas visuais por enquanto.-->
+      <!-- Área Direita: Status Online, Painel de Acessibilidade e Perfil -->
+      <div class="area direita">
+        <!-- Indicador do Status do Sistema -->
+        <p class="status online">
+          <span class="ponto" aria-hidden="true">●</span>
+          <span data-i18n="status_online">ONLINE</span>
+        </p>
+
+        <!-- Menu Desdobrável (Details/Summary) de Acessibilidade -->
         <details class="acessibilidade">
-            <summary><span aria-hidden="true">▣</span> ACESSIBILIDADE</summary>
-            <div class="painel acessibilidade">
-                <p class="rotulo sistema">[ SISTEMA ]</p>
-                <p class="titulo painel">PAINEL DE ACESSIBILIDADE</p>
+          <summary>
+            <span aria-hidden="true">▣</span>
+            <span data-i18n="btn_acessibilidade">ACESSIBILIDADE</span>
+          </summary>
 
-                <div class="grupo acessibilidade">
-                    <p class="rotulo sistema">IDIOMA / LANGUAGE</p>
-                    <div class="opcoes">
-                        <span class="opcao ativa">PT-BR</span>
-                        <span class="opcao">EN</span>
-                    </div>
-                </div>
+          <div class="painel acessibilidade">
+            <p class="rotulo sistema">[ SISTEMA ]</p>
+            <p class="titulo painel" data-i18n="titulo_painel">
+              PAINEL DE ACESSIBILIDADE
+            </p>
 
-                <div class="grupo acessibilidade">
-                    <p class="rotulo sistema">TEMA</p>
-                    <div class="opcoes">
-                        <span class="opcao ativa">ESCURO</span>
-                        <span class="opcao">CLARO</span>
-                    </div>
-                </div>
-
-                <div class="grupo acessibilidade">
-                    <p class="rotulo sistema">TAMANHO DA FONTE</p>
-                    <div class="opcoes">
-                        <span class="opcao">A-</span>
-                        <span class="opcao ativa">A</span>
-                        <span class="opcao">A+</span>
-                        <span class="opcao">A++</span>
-                    </div>
-                </div>
-
-                <div class="grupo acessibilidade">
-                    <p class="rotulo sistema">ALTO CONTRASTE</p>
-                    <span class="chave" aria-hidden="true"><span class="botao chave"></span></span>
-                </div>
-
-                <div class="grupo acessibilidade">
-                    <p class="rotulo sistema">REDUZIR MOVIMENTO</p>
-                    <span class="chave" aria-hidden="true"><span class="botao chave"></span></span>
-                </div>
-
-                <p class="rotulo sistema">STATUS: CONFIGURAÇÕES SALVAS</p>
+            <!-- Seleção de Idioma -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_idioma">
+                IDIOMA / LANGUAGE
+              </p>
+              <div class="opcoes">
+                <span class="opcao ativa">PT-BR</span>
+                <span class="opcao">EN</span>
+              </div>
             </div>
+
+            <!-- Seleção de Tema (Escuro / Claro) -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_tema">TEMA</p>
+              <div class="opcoes">
+                <span class="opcao ativa" data-i18n="opt_escuro">ESCURO</span>
+                <span class="opcao" data-i18n="opt_claro">CLARO</span>
+              </div>
+            </div>
+
+            <!-- Ajuste de Tamanho da Fonte -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_fonte">
+                TAMANHO DA FONTE
+              </p>
+              <div class="opcoes">
+                <span class="opcao">A-</span>
+                <span class="opcao ativa">A</span>
+                <span class="opcao">A+</span>
+                <span class="opcao">A++</span>
+              </div>
+            </div>
+
+            <!-- Toggle de Alto Contraste -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_contraste">
+                ALTO CONTRASTE
+              </p>
+              <span class="chave" aria-hidden="true">
+                <span class="botao chave"></span>
+              </span>
+            </div>
+
+            <!-- Toggle de Reduzir Movimento -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_movimento">
+                REDUZIR MOVIMENTO
+              </p>
+              <span class="chave" aria-hidden="true">
+                <span class="botao chave"></span>
+              </span>
+            </div>
+
+            <p class="rotulo sistema" data-i18n="lbl_status_salvo">
+              STATUS: CONFIGURAÇÕES SALVAS
+            </p>
+          </div>
         </details>
 
+        <!-- Atalho de Perfil -->
         <a class="perfil atalho" href="../perfil/index.html#SECAO-PERFIL">
-            <img src="../img/perfil-avatar.png" alt="Perfil do operador CodePlayer_42" width="312" height="312">
+          <img
+            src="../img/perfil-avatar.png"
+            alt="Perfil do operador CodePlayer_42"
+            width="312"
+            height="312"
+          />
         </a>
-    </div>
-</header>
 
-<main>
+        <!-- Botão Hambúrguer (Mobile) -->
+        <button
+          class="menu-hamburguer"
+          aria-label="Abrir Menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
 
-<!--==============================================================
-        SEÇÃO 03 // PERSONAGENS - base de dados dos agentes
-        ==============================================================-->
-    <section id="SECAO-PERSONAGENS" class="fundo personagens">
+    <!-- ===================================================================
+         CONTEÚDO PRINCIPAL
+         =================================================================== -->
+    <main>
+      <!-- Seção 03: Personagens - Base de Dados dos Agentes -->
+      <section id="SECAO-PERSONAGENS" class="fundo personagens">
+        <!-- Cabeçalho / Visão Geral da Seção -->
         <div class="visao geral dos agentes">
-            <p class="rotulo sistema">BASE DE DADOS DE AGENTES</p>
-            <h2>PERSONAGENS</h2>
-            <p>Conheça os agentes que defendem o CodeWorld. Cada um possui habilidades únicas e um papel essencial na missão contra os bugs e corrupções do sistema.</p>
+          <p class="rotulo sistema">BASE DE DADOS DE AGENTES</p>
+          <h2>PERSONAGENS</h2>
+          <p>
+            Conheça os agentes que defendem o CodeWorld. Cada um possui
+            habilidades únicas e um papel essencial na missão contra os bugs e
+            corrupções do sistema.
+          </p>
         </div>
 
+        <!-- Painel de Progresso da Descoberta de Agentes -->
         <div class="painel progresso">
-            <p class="rotulo sistema">AGENTES ATIVOS</p>
-            <p class="contagem">01 / 06</p>
-            <div class="barra progresso">
-                <div class="preenchimento progresso"></div>
-            </div>
-            <p class="rotulo sistema">16.6% DO BANCO DE DADOS DESCOBERTO</p>
-            <img class="sprite agente" src="../img/agente-sprite.png" alt="Sprite do agente HTML" width="160" height="286">
+          <p class="rotulo sistema">AGENTES ATIVOS</p>
+          <p class="contagem">01 / 06</p>
+          <div class="barra progresso">
+            <div class="preenchimento progresso"></div>
+          </div>
+          <p class="rotulo sistema">16.6% DO BANCO DE DADOS DESCOBERTO</p>
+          <img
+            class="sprite agente"
+            src="../img/agente-sprite.png"
+            alt="Sprite do agente HTML"
+            width="160"
+            height="286"
+          />
         </div>
 
+        <!-- Painel de Filtros -->
         <div class="painel filtros">
-            <h3>FILTROS</h3>
-            <div class="grupo filtro">
-                <p class="rotulo sistema">FUNÇÃO</p>
-                <span class="opcao ativa">TODOS</span>
-            </div>
-            <div class="grupo filtro">
-                <p class="rotulo sistema">NÍVEL</p>
-                <span class="opcao ativa">TODOS</span>
-            </div>
-            <div class="grupo filtro">
-                <p class="rotulo sistema">ORDEM</p>
-                <span class="opcao ativa">NÍVEL (MAIOR)</span>
-            </div>
-            <span class="botao secundario">LIMPAR FILTROS</span>
+          <h3>FILTROS</h3>
+          <div class="grupo filtro">
+            <p class="rotulo sistema">FUNÇÃO</p>
+            <span class="opcao ativa">TODOS</span>
+          </div>
+          <div class="grupo filtro">
+            <p class="rotulo sistema">NÍVEL</p>
+            <span class="opcao ativa">TODOS</span>
+          </div>
+          <div class="grupo filtro">
+            <p class="rotulo sistema">ORDEM</p>
+            <span class="opcao ativa">NÍVEL (MAIOR)</span>
+          </div>
+          <button type="button" class="botao secundario">LIMPAR FILTROS</button>
         </div>
 
+        <!-- Grade/Lista de Agentes -->
         <ul class="lista agentes">
-            <li class="card agente ativo">
-                <p class="rotulo sistema">ID-01</p>
-                <img src="../img/agente-html.png" alt="Retrato do agente HTML, o Construtor" width="616" height="837">
-                <h3>HTML</h3>
-                <p class="funcao agente">Construtor</p>
-                <p class="selo status">DESBLOQUEADO</p>
-            </li>
-            <li class="card agente bloqueado">
-                <p class="rotulo sistema">ID-02</p>
-                <img src="../img/agente-css.png" alt="Retrato do agente CSS, o Artista" width="616" height="837">
-                <h3>CSS</h3>
-                <p class="funcao agente">Artista</p>
-                <p class="selo bloqueado">BLOQUEADO</p>
-            </li>
-            <li class="card agente bloqueado">
-                <p class="rotulo sistema">ID-03</p>
-                <img src="../img/agente-javascript.png" alt="Retrato do agente JavaScript, o Analisador" width="616" height="837">
-                <h3>JAVASCRIPT</h3>
-                <p class="funcao agente">Analisador</p>
-                <p class="selo bloqueado">BLOQUEADO</p>
-            </li>
-            <li class="card agente bloqueado">
-                <p class="rotulo sistema">ID-04</p>
-                <img src="../img/agente-python.png" alt="Retrato do agente Python, o Estrategista" width="616" height="837">
-                <h3>PYTHON</h3>
-                <p class="funcao agente">Estrategista</p>
-                <p class="selo bloqueado">BLOQUEADO</p>
-            </li>
-            <li class="card agente bloqueado">
-                <p class="rotulo sistema">ID-05</p>
-                <img src="../img/agente-java.png" alt="Retrato do agente Java, o Guardião" width="616" height="837">
-                <h3>JAVA</h3>
-                <p class="funcao agente">Guardião</p>
-                <p class="selo bloqueado">BLOQUEADO</p>
-            </li>
-            <li class="card agente bloqueado">
-                <p class="rotulo sistema">ID-06</p>
-                <img src="../img/agente-kotlin.png" alt="Retrato do agente Kotlin, o Veloz" width="616" height="837">
-                <h3>KOTLIN</h3>
-                <p class="funcao agente">Veloz</p>
-                <p class="selo bloqueado">BLOQUEADO</p>
-            </li>
+          <!-- Agente 01 (Desbloqueado) -->
+          <li class="card agente ativo">
+            <p class="rotulo sistema">ID-01</p>
+            <img
+              src="../img/agente-html.png"
+              alt="Retrato do agente HTML, o Construtor"
+              width="616"
+              height="837"
+            />
+            <h3>HTML</h3>
+            <p class="funcao agente">Construtor</p>
+            <p class="selo status">DESBLOQUEADO</p>
+          </li>
+
+          <!-- Agente 02 (Bloqueado) -->
+          <li class="card agente bloqueado">
+            <p class="rotulo sistema">ID-02</p>
+            <img
+              src="../img/agente-css.png"
+              alt="Retrato do agente CSS, o Artista"
+              width="616"
+              height="837"
+            />
+            <h3>CSS</h3>
+            <p class="funcao agente">Artista</p>
+            <p class="selo bloqueado">BLOQUEADO</p>
+          </li>
+
+          <!-- Agente 03 (Bloqueado) -->
+          <li class="card agente bloqueado">
+            <p class="rotulo sistema">ID-03</p>
+            <img
+              src="../img/agente-javascript.png"
+              alt="Retrato do agente JavaScript, o Analisador"
+              width="616"
+              height="837"
+            />
+            <h3>JAVASCRIPT</h3>
+            <p class="funcao agente">Analisador</p>
+            <p class="selo bloqueado">BLOQUEADO</p>
+          </li>
+
+          <!-- Agente 04 (Bloqueado) -->
+          <li class="card agente bloqueado">
+            <p class="rotulo sistema">ID-04</p>
+            <img
+              src="../img/agente-python.png"
+              alt="Retrato do agente Python, o Estrategista"
+              width="616"
+              height="837"
+            />
+            <h3>PYTHON</h3>
+            <p class="funcao agente">Estrategista</p>
+            <p class="selo bloqueado">BLOQUEADO</p>
+          </li>
+
+          <!-- Agente 05 (Bloqueado) -->
+          <li class="card agente bloqueado">
+            <p class="rotulo sistema">ID-05</p>
+            <img
+              src="../img/agente-java.png"
+              alt="Retrato do agente Java, o Guardião"
+              width="616"
+              height="837"
+            />
+            <h3>JAVA</h3>
+            <p class="funcao agente">Guardião</p>
+            <p class="selo bloqueado">BLOQUEADO</p>
+          </li>
+
+          <!-- Agente 06 (Bloqueado) -->
+          <li class="card agente bloqueado">
+            <p class="rotulo sistema">ID-06</p>
+            <img
+              src="../img/agente-kotlin.png"
+              alt="Retrato do agente Kotlin, o Veloz"
+              width="616"
+              height="837"
+            />
+            <h3>KOTLIN</h3>
+            <p class="funcao agente">Veloz</p>
+            <p class="selo bloqueado">BLOQUEADO</p>
+          </li>
         </ul>
-    </section>
+      </section>
+    </main>
 
-</main>
+    <!-- ===================================================================
+         RODAPÉ DA PÁGINA
+         =================================================================== -->
+    <footer>
+      <p class="logo rodape">CODEWORLD</p>
+      <p class="credito">Por 11 Estudantes de tecnologia</p>
+      <p class="rotulo sistema">PROJETO ACADÊMICO // FRONT END 2025</p>
+    </footer>
 
-<footer>
-    <p class="logo rodape">CODEWORLD</p>
-    <p class="credito">Por 11 Estudantes de tecnologia</p>
-    <p class="rotulo sistema">PROJETO ACADÊMICO // FRONT END 2025</p>
-</footer>
+    <!-- Script de Comportamento Interativo -->
     <script src="script.js" defer></script>
-</body>
+  </body>
 </html>
