@@ -1,0 +1,5 @@
+Copie aqui as imagens (ou os placeholders de "?") originais do projeto,
+usando os mesmos nomes de arquivo referenciados nas páginas HTML
+(perfil-avatar.png, nexus-visual.png, universo-fundo.png, agente-html.png, etc).
+A pasta img/ não estava entre os arquivos enviados para esta divisão,
+então precisa ser trazida do projeto original.
