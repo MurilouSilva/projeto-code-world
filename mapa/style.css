@@ -1,318 +1,308 @@
 /* ==========================================================================
    CODEWORLD // style.css
-   Portal de página única - 11 Estudantes de tecnologia
+   Portal Cyberpunk - 11 Estudantes de Tecnologia
 
-   Índice
-   01. Reset e base
-   02. Variáveis do projeto
-   03. Tipografia e utilitários
-   04. Componentes reaproveitados
-   05. Cabeçalho
-   06. Regras gerais das seções
-   07. Seção NEXUS
-   08. Seção UNIVERSO
-   09. Seção PERSONAGENS
-   10. Seção MAPA
-   11. Seção MISSÕES
-   12. Seção ARQUIVOS
-   13. Seção SISTEMA
-   14. Rodapé
-   15. Foco e acessibilidade
-   16. Responsividade e Adaptação Mobile/Tablet
-
-   Obs: as classes do HTML são escritas com espaço ("card agente"), ou seja,
-   viram várias classes. Por isso os seletores daqui são compostos
-   (.card.agente) - escrever só .agente pegaria elementos errados.
+   Índice:
+   01. Reset e Base
+   02. Variáveis do Projeto (Design Tokens)
+   03. Tipografia e Utilitários
+   04. Componentes Reaproveitados
+   05. Cabeçalho e Painel de Acessibilidade
+   06. Regras Gerais das Seções
+   07. Seção Mapa (Controles, Territórios, Eventos)
+   08. Rodapé
+   09. Estilos de Funcionalidades de Acessibilidade
+   10. Responsividade Adaptativa (Mobile / Tablet)
    ========================================================================== */
-
 
 /* ==========================================================================
    01. RESET E BASE
    ========================================================================== */
 
-   * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    background-color: var(--fundo);
-    color: var(--texto);
-    font-family: var(--fonte-titulo);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
+  background-color: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte-titulo);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 img {
-    display: block;
-    max-width: 100%;
-    height: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 ul,
 ol {
-    list-style: none;
+  list-style: none;
 }
 
 h1,
 h2,
 h3,
 h4 {
-    line-height: 1.15;
-    text-wrap: balance;
+  line-height: 1.15;
+  text-wrap: balance;
 }
 
 input,
 button {
-    font: inherit;
-    color: inherit;
+  font: inherit;
+  color: inherit;
 }
 
-
 /* ==========================================================================
-   02. VARIÁVEIS DO PROJETO
+   02. VARIÁVEIS DO PROJETO (DESIGN TOKENS)
    ========================================================================== */
 
 :root {
-    /* Cores da marca */
-    --magenta: #e30071;
-    --magenta-claro: #ff3d9a;
-    --ciano: #00f2fe;
-    --verde: #29f58a;
-    --ambar: #ffb020;
-    --vermelho: #ff3b4e;
-    --roxo: #8b3df0;
+  /* Cores da Marca */
+  --magenta: #e30071;
+  --magenta-claro: #ff3d9a;
+  --ciano: #00f2fe;
+  --verde: #29f58a;
+  --ambar: #ffb020;
+  --vermelho: #ff3b4e;
+  --roxo: #8b3df0;
 
-    /* Fundos e superfícies */
-    --fundo: #08060f;
-    --fundo-alt: #0d0a16;
-    --superficie: #14111f;
-    --superficie-alt: #1b1729;
+  /* Fundos e Superfícies */
+  --fundo: #08060f;
+  --fundo-alt: #0d0a16;
+  --superficie: #14111f;
+  --superficie-alt: #1b1729;
 
-    /* Bordas */
-    --borda: rgba(0, 242, 254, 0.18);
-    --borda-magenta: rgba(227, 0, 113, 0.35);
+  /* Bordas */
+  --borda: rgba(0, 242, 254, 0.18);
+  --borda-magenta: rgba(227, 0, 113, 0.35);
 
-    /* Texto */
-    --texto: #e8e6f0;
-    --texto-suave: #9a94ad;
-    --texto-fraco: #5f5875;
+  /* Texto */
+  --texto: #e8e6f0;
+  --texto-suave: #9a94ad;
+  --texto-fraco: #5f5875;
 
-    /* Brilho neon */
-    --brilho-magenta: 0 0 12px rgba(227, 0, 113, 0.45);
-    --brilho-ciano: 0 0 12px rgba(0, 242, 254, 0.40);
+  /* Brilho Neon */
+  --brilho-magenta: 0 0 12px rgba(227, 0, 113, 0.45);
+  --brilho-ciano: 0 0 12px rgba(0, 242, 254, 0.4);
 
-    /* Tipografia */
-    --fonte-titulo: 'Chakra Petch', sans-serif;
-    --fonte-mono: 'Share Tech Mono', monospace;
+  /* Tipografia */
+  --fonte-titulo: "Chakra Petch", sans-serif;
+  --fonte-mono: "Share Tech Mono", monospace;
 
-    /* Medidas */
-    --espaco: clamp(1rem, 2vw, 1.5rem);
-    --espaco-secao: clamp(3rem, 6vw, 6rem);
-    --margem-lateral: clamp(1rem, 4vw, 2.5rem);
-    --largura-conteudo: 1200px;
-    --raio: 4px;
-    --altura-cabecalho: 64px;
+  /* Medidas e Espaçamentos */
+  --espaco: clamp(1rem, 2vw, 1.5rem);
+  --espaco-secao: clamp(3rem, 6vw, 6rem);
+  --margem-lateral: clamp(1rem, 4vw, 2.5rem);
+  --largura-conteudo: 1200px;
+  --raio: 4px;
+  --altura-cabecalho: 64px;
 }
-
 
 /* ==========================================================================
    03. TIPOGRAFIA E UTILITÁRIOS
    ========================================================================== */
 
-/* Rótulo técnico: fonte mono, maiúsculo e espaçado. Usado no site inteiro. */
+/* Rótulo técnico estilo terminal (fonte mono, caixa alta, espaçado) */
 .rotulo.sistema {
-    font-family: var(--fonte-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--texto-suave);
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
 }
 
-/* Segunda palavra dos títulos, em magenta. */
 .destaque {
-    color: var(--magenta);
+  color: var(--magenta);
 }
 
 .credito {
-    color: var(--texto-suave);
+  color: var(--texto-suave);
 }
 
-/* Número grande dos painéis de progresso. */
 .contagem {
-    font-family: var(--fonte-mono);
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    line-height: 1;
-    color: var(--ciano);
+  font-family: var(--fonte-mono);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1;
+  color: var(--ciano);
 }
 
-/* Cursor piscando dos terminais. */
+/* Cursor piscando do terminal */
 .cursor {
-    display: inline-block;
-    color: var(--verde);
-    animation: piscar 1s steps(2, start) infinite;
+  display: inline-block;
+  color: var(--verde);
+  animation: piscar 1s steps(2, start) infinite;
 }
 
 @keyframes piscar {
-    50% {
-        opacity: 0;
-    }
+  50% {
+    opacity: 0;
+  }
 }
 
-/* Linhas de terminal. */
 .linhas.console {
-    font-family: var(--fonte-mono);
-    font-size: 0.85rem;
-    line-height: 1.9;
-    color: var(--verde);
-    word-break: break-word;
+  font-family: var(--fonte-mono);
+  font-size: 0.85rem;
+  line-height: 1.9;
+  color: var(--verde);
+  word-break: break-word;
 }
-
 
 /* ==========================================================================
    04. COMPONENTES REAPROVEITADOS
    ========================================================================== */
 
-/* -------- 4.1 Botões ----------------------------------------------------- */
+/* --- 4.1 Botões Primários e Secundários --- */
 .botao.primario,
 .botao.secundario {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.7rem 1.4rem;
-    border: 1px solid transparent;
-    border-radius: var(--raio);
-    font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid transparent;
+  border-radius: var(--raio);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease;
 }
 
 .botao.primario {
-    background-color: var(--magenta);
-    color: #fff;
+  background-color: var(--magenta);
+  color: #fff;
 }
 
 .botao.primario:hover,
 .botao.primario:focus-visible {
-    background-color: var(--magenta-claro);
-    box-shadow: var(--brilho-magenta);
+  background-color: var(--magenta-claro);
+  box-shadow: var(--brilho-magenta);
 }
 
 .botao.secundario {
-    background-color: transparent;
-    border-color: var(--ciano);
-    color: var(--ciano);
+  background-color: transparent;
+  border-color: var(--ciano);
+  color: var(--ciano);
 }
 
 .botao.secundario:hover,
 .botao.secundario:focus-visible {
-    background-color: rgba(0, 242, 254, 0.12);
-    box-shadow: var(--brilho-ciano);
+  background-color: rgba(0, 242, 254, 0.12);
+  box-shadow: var(--brilho-ciano);
 }
 
-/* -------- 4.2 Selos ------------------------------------------------------ */
+/* --- 4.2 Selos e Distintivos --- */
 .selo.status,
 .selo.ameaca,
 .selo.bloqueado,
 .selo.principal,
 .selo.secundaria,
 .selo.epica {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    align-self: flex-start;
-    padding: 0.2rem 0.7rem;
-    border: 1px solid currentColor;
-    border-radius: 99px;
-    font-family: var(--fonte-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  align-self: flex-start;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid currentColor;
+  border-radius: 99px;
+  font-family: var(--fonte-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .selo.status {
-    color: var(--verde);
+  color: var(--verde);
 }
 
 .selo.ameaca,
 .selo.principal {
-    color: var(--vermelho);
+  color: var(--vermelho);
 }
 
 .selo.bloqueado {
-    color: var(--texto-fraco);
+  color: var(--texto-fraco);
 }
 
 .selo.secundaria {
-    color: var(--ciano);
+  color: var(--ciano);
 }
 
 .selo.epica {
-    color: var(--ambar);
+  color: var(--ambar);
 }
 
-/* -------- 4.3 Opções (acessibilidade, filtros e abas) -------------------- */
+/* --- 4.3 Botões de Opção (Painéis) --- */
 .opcao {
-    padding: 0.4rem 0.9rem;
-    border: 1px solid var(--borda);
-    border-radius: var(--raio);
-    background-color: var(--superficie-alt);
-    font-family: var(--fonte-mono);
-    font-size: 0.75rem;
-    color: var(--texto-suave);
-    text-align: center;
-    white-space: nowrap;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--superficie-alt);
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  color: var(--texto-suave);
+  text-align: center;
+  white-space: nowrap;
 }
 
 .opcao.ativa {
-    border-color: var(--magenta);
-    background-color: rgba(227, 0, 113, 0.14);
-    color: var(--texto);
+  border-color: var(--magenta);
+  background-color: rgba(227, 0, 113, 0.14);
+  color: var(--texto);
 }
 
 .opcoes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
 .opcoes .opcao {
-    flex: 1;
+  flex: 1;
 }
 
-/* -------- 4.4 Barra de progresso ---------------------------------------- */
+/* --- 4.4 Barra de Progresso --- */
 .barra.progresso {
-    width: 100%;
-    height: 6px;
-    border-radius: 99px;
-    background-color: var(--superficie-alt);
-    overflow: hidden;
+  width: 100%;
+  height: 6px;
+  border-radius: 99px;
+  background-color: var(--superficie-alt);
+  overflow: hidden;
 }
 
 .preenchimento.progresso {
-    height: 100%;
-    width: 0;
-    border-radius: 99px;
-    background-image: linear-gradient(90deg, var(--magenta), var(--magenta-claro));
+  height: 100%;
+  width: 0;
+  border-radius: 99px;
+  background-image: linear-gradient(
+    90deg,
+    var(--magenta),
+    var(--magenta-claro)
+  );
 }
 
-/* -------- 4.5 Painéis e cartões ------------------------------------------ */
+/* --- 4.5 Painéis e Cartões Base --- */
 .painel.progresso,
 .painel.filtros,
 .painel.controles,
@@ -331,1267 +321,715 @@ button {
 .card.arquivo,
 .formulario.dados,
 .formulario.senha {
-    padding: var(--espaco);
-    border: 1px solid var(--borda);
-    border-radius: var(--raio);
-    background-color: var(--superficie);
+  padding: var(--espaco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--superficie);
 }
 
-/* -------- 4.6 Teclas do mapa e interruptor da acessibilidade ------------- */
+/* --- 4.6 Teclas e Chaves de Alternância (Switches) --- */
 .tecla {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 30px;
-    height: 30px;
-    padding: 0 0.4rem;
-    border: 1px solid var(--borda);
-    border-radius: var(--raio);
-    background-color: var(--superficie-alt);
-    font-family: var(--fonte-mono);
-    font-size: 0.8rem;
-    color: var(--ciano);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 0.4rem;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--superficie-alt);
+  font-family: var(--fonte-mono);
+  font-size: 0.8rem;
+  color: var(--ciano);
 }
 
 .chave {
-    display: inline-block;
-    flex-shrink: 0;
-    width: 38px;
-    height: 20px;
-    border: 1px solid var(--borda);
-    border-radius: 99px;
-    background-color: var(--superficie-alt);
+  display: inline-block;
+  flex-shrink: 0;
+  width: 38px;
+  height: 20px;
+  border: 1px solid var(--borda);
+  border-radius: 99px;
+  background-color: var(--superficie-alt);
 }
 
 .botao.chave {
-    display: block;
-    width: 14px;
-    height: 14px;
-    margin: 2px 0 0 2px;
-    border-radius: 50%;
-    background-color: var(--texto-suave);
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin: 2px 0 0 2px;
+  border-radius: 50%;
+  background-color: var(--texto-suave);
 }
 
-
 /* ==========================================================================
-   05. CABEÇALHO
+   05. CABEÇALHO (DESKTOP)
    ========================================================================== */
 
 header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--espaco);
-    min-height: var(--altura-cabecalho);
-    padding: 0 var(--margem-lateral);
-    border-bottom: 1px solid var(--borda-magenta);
-    background-color: rgba(8, 6, 15, 0.85);
-    backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco);
+  min-height: var(--altura-cabecalho);
+  padding: 0.8rem var(--margem-lateral);
+  border-bottom: 1px solid rgba(227, 0, 113, 0.2);
+  background-color: #080511;
+  transition: all 0.3s ease;
 }
 
-.logo a,
-.logo.rodape {
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    background-image: linear-gradient(90deg, var(--magenta), var(--ciano));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+.area.esquerda {
+  display: flex;
+  align-items: center;
+}
+
+.logo a {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--magenta);
+  white-space: nowrap;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
 }
 
 header nav ul {
-    display: flex;
-    align-items: center;
-    gap: clamp(0.75rem, 2vw, 2rem);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(0.6rem, 1.2vw, 1.8rem);
+  margin: 0;
+  padding: 0;
 }
 
 header nav a {
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--texto-suave);
-    white-space: nowrap;
-    transition: color 180ms ease;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--texto-suave);
+  white-space: nowrap;
+  padding: 0.4rem 0.6rem;
+  transition: all 180ms ease;
 }
 
-header nav a:hover,
-header nav a:focus-visible {
-    color: var(--magenta);
+header nav a:hover {
+  color: #fff;
+}
+
+header nav a.ativo {
+  color: var(--magenta);
+  border: 1px solid var(--magenta);
+  border-radius: 0;
 }
 
 .area.direita {
-    display: flex;
-    align-items: center;
-    gap: var(--espaco);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .status.online {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: var(--fonte-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--verde);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--verde);
+  font-weight: bold;
+  animation: piscar-online 1.2s ease-in-out infinite;
+  white-space: nowrap;
 }
 
 .ponto {
-    color: var(--verde);
-    text-shadow: 0 0 6px var(--verde);
-    animation: pulsar 2s ease-in-out infinite;
+  color: var(--verde);
+  font-size: 0.6rem;
+  text-shadow: 0 0 6px var(--verde);
 }
 
-@keyframes pulsar {
-    50% {
-        opacity: 0.35;
-    }
-}
-
-/* -------- 5.1 Painel de acessibilidade ----------------------------------- */
-details.acessibilidade {
-    position: relative;
-}
-
-details.acessibilidade summary {
-    padding: 0.45rem 0.9rem;
-    border: 1px solid var(--ciano);
-    border-radius: var(--raio);
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    color: var(--ciano);
-    white-space: nowrap;
-    cursor: pointer;
-    list-style: none;
-}
-
-details.acessibilidade summary::-webkit-details-marker {
-    display: none;
-}
-
-details.acessibilidade summary:hover {
-    background-color: rgba(0, 242, 254, 0.12);
-}
-
-.painel.acessibilidade {
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    right: 0;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 280px;
-    padding: var(--espaco);
-    border: 1px solid var(--borda);
-    border-radius: var(--raio);
-    background-color: var(--superficie);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
-}
-
-.titulo.painel {
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--magenta);
-    font-weight: 600;
-}
-
-.grupo.acessibilidade {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.grupo.acessibilidade:has(.chave) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+@keyframes piscar-online {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
 }
 
 .perfil.atalho img {
-    width: 34px;
-    height: 34px;
-    border: 1px solid var(--borda);
-    border-radius: 50%;
-    object-fit: cover;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--borda);
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 
+/* --- 5.1 Painel do Menu Desdobrável de Acessibilidade --- */
+details.acessibilidade {
+  position: relative;
+}
+
+details.acessibilidade summary {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--ciano);
+  border-radius: var(--raio);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--ciano);
+  white-space: nowrap;
+  cursor: pointer;
+  list-style: none;
+}
+
+details.acessibilidade summary::-webkit-details-marker {
+  display: none;
+}
+
+details.acessibilidade summary:hover {
+  background-color: rgba(0, 242, 254, 0.12);
+}
+
+.painel.acessibilidade {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 280px;
+  padding: var(--espaco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--superficie);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+.titulo.painel {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--magenta);
+  font-weight: 600;
+}
+
+.grupo.acessibilidade {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.grupo.acessibilidade:has(.chave) {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
 
 /* ==========================================================================
    06. REGRAS GERAIS DAS SEÇÕES
    ========================================================================== */
 
 main > section {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--espaco-secao) / 2);
-    padding: var(--espaco-secao) var(--margem-lateral);
-    scroll-margin-top: var(--altura-cabecalho);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--espaco-secao) / 2);
+  padding: var(--espaco-secao) var(--margem-lateral);
+  scroll-margin-top: var(--altura-cabecalho);
 }
 
 #SECAO-UNIVERSO,
 #SECAO-MAPA,
 #SECAO-ARQUIVOS {
-    background-color: var(--fundo-alt);
+  background-color: var(--fundo-alt);
 }
 
 main > section > * {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: var(--largura-conteudo);
-    margin-inline: auto;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--largura-conteudo);
+  margin-inline: auto;
 }
 
 .visual.fundo {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    max-width: none;
-    margin: 0;
-    object-fit: cover;
-    opacity: 0.14;
-    pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  object-fit: cover;
+  opacity: 0.14;
+  pointer-events: none;
 }
 
 .visao.geral {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding-left: 1rem;
-    border-left: 3px solid var(--magenta);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--magenta);
 }
 
 .visao.geral h2 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    letter-spacing: 0.02em;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: 0.02em;
 }
 
 .visao.geral p:not(.rotulo) {
-    max-width: 65ch;
-    color: var(--texto-suave);
+  max-width: 65ch;
+  color: var(--texto-suave);
 }
 
 .bloco h3,
 .painel h3 {
-    margin-bottom: var(--espaco);
-    font-size: 1.1rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ciano);
+  margin-bottom: var(--espaco);
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ciano);
 }
-
 
 /* ==========================================================================
-   07. SEÇÃO NEXUS
-   ========================================================================== */
-
-#CODEWORLD {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: calc(100vh - var(--altura-cabecalho));
-}
-
-.sistema.console {
-    width: 100%;
-    padding: var(--espaco);
-    border: 1px solid var(--borda);
-    border-left: 3px solid var(--verde);
-    border-radius: var(--raio);
-    background-color: rgba(8, 6, 15, 0.75);
-}
-
-.sistema.console .rotulo.sistema {
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-.conteudo.inicial {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--espaco);
-    text-align: center;
-}
-
-.conteudo.inicial h1 {
-    font-size: clamp(3rem, 12vw, 7rem);
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    background-image: linear-gradient(90deg, var(--magenta), var(--ciano));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-.acoes.inicial {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--espaco);
-}
-
-
-/* ==========================================================================
-   08. SEÇÃO UNIVERSO
-   ========================================================================== */
-
-.visao.geral.do.universo p:not(.rotulo) {
-    max-width: 80ch;
-    margin-top: 0.75rem;
-}
-
-.trailer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--espaco);
-}
-
-.trailer img {
-    width: 100%;
-    aspect-ratio: 2820 / 1472;
-    border: 1px solid var(--borda);
-    border-radius: var(--raio);
-    object-fit: cover;
-}
-
-.lista.linguagens {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: var(--espaco);
-}
-
-.card.linguagem {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    text-align: center;
-    transition: border-color 180ms ease, transform 180ms ease;
-}
-
-.card.linguagem:hover {
-    border-color: var(--ciano);
-    transform: translateY(-4px);
-}
-
-.card.linguagem img {
-    width: 60px;
-    height: 60px;
-    border-radius: var(--raio);
-}
-
-.card.linguagem h4 {
-    font-size: 1rem;
-    letter-spacing: 0.08em;
-}
-
-.card.linguagem .botao.secundario {
-    margin-top: auto;
-}
-
-.card.linguagem.inimiga {
-    grid-column: 1 / -1;
-    border-color: var(--borda-magenta);
-    box-shadow: var(--brilho-magenta);
-}
-
-.card.linguagem.inimiga p {
-    color: var(--texto-suave);
-}
-
-.card.linguagem.inimiga .selo.ameaca {
-    align-self: center;
-}
-
-.mensagem.superia {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    padding: var(--espaco) calc(var(--espaco) * 1.5);
-    border-left: 3px solid var(--magenta);
-    background-color: var(--superficie);
-    border-radius: var(--raio);
-}
-
-.mensagem.superia p:not(.rotulo) {
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    font-style: italic;
-    line-height: 1.5;
-}
-
-.mensagem.superia footer {
-    font-family: var(--fonte-mono);
-    font-size: 0.8rem;
-    color: var(--magenta);
-}
-
-.lista.marcos {
-    display: flex;
-    flex-direction: column;
-    gap: var(--espaco);
-    padding-left: 2rem;
-    border-left: 2px solid var(--borda);
-}
-
-.marco {
-    position: relative;
-}
-
-.marco::before {
-    content: '';
-    position: absolute;
-    top: 0.4rem;
-    left: calc(-2rem - 7px);
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: var(--ciano);
-}
-
-.marco h4 {
-    margin-bottom: 0.3rem;
-    font-size: 1.05rem;
-    color: var(--ciano);
-}
-
-.marco p {
-    max-width: 70ch;
-    color: var(--texto-suave);
-}
-
-.marco.atual::before {
-    background-color: var(--magenta);
-    box-shadow: var(--brilho-magenta);
-}
-
-.marco.atual h4 {
-    color: var(--magenta);
-}
-
-
-/* ==========================================================================
-   09. SEÇÃO PERSONAGENS
-   ========================================================================== */
-
-.painel.progresso {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 0.5rem var(--espaco);
-}
-
-.painel.progresso .barra.progresso,
-.painel.progresso .rotulo.sistema,
-.painel.progresso .contagem {
-    grid-column: 1;
-}
-
-.sprite.agente {
-    grid-column: 2;
-    grid-row: 1 / -1;
-    width: 80px;
-    align-self: center;
-}
-
-#SECAO-PERSONAGENS .painel.progresso .preenchimento.progresso {
-    width: 16.6%;
-}
-
-.painel.filtros {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    gap: var(--espaco);
-}
-
-.painel.filtros h3 {
-    width: 100%;
-    margin-bottom: 0;
-}
-
-.grupo.filtro {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-}
-
-.painel.filtros .botao.secundario {
-    margin-left: auto;
-}
-
-.lista.agentes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: var(--espaco);
-}
-
-.card.agente {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    transition: border-color 180ms ease, transform 180ms ease;
-}
-
-.card.agente:hover {
-    transform: translateY(-4px);
-}
-
-.card.agente img {
-    width: 100%;
-    aspect-ratio: 616 / 837;
-    border-radius: var(--raio);
-    object-fit: cover;
-}
-
-.card.agente h3 {
-    font-size: 1.3rem;
-    letter-spacing: 0.06em;
-}
-
-.funcao.agente {
-    color: var(--texto-suave);
-}
-
-.card.agente.ativo {
-    border-color: var(--borda-magenta);
-    box-shadow: var(--brilho-magenta);
-}
-
-.card.agente.bloqueado img {
-    filter: grayscale(1);
-    opacity: 0.45;
-}
-
-.card.agente.bloqueado h3 {
-    color: var(--texto-fraco);
-}
-
-
-/* ==========================================================================
-   10. SEÇÃO MAPA
+   07. SEÇÃO MAPA
    ========================================================================== */
 
 #SECAO-MAPA .painel.progresso .preenchimento.progresso {
-    width: 85%;
+  width: 85%;
 }
 
 .mapa.codeworld {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--espaco);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco);
 }
 
 .mapa.codeworld img {
-    width: 100%;
-    max-width: 700px;
-    border-radius: var(--raio);
+  width: 100%;
+  max-width: 700px;
+  border-radius: var(--raio);
 }
 
 .painel.controles {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--espaco) calc(var(--espaco) * 2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco) calc(var(--espaco) * 2);
 }
 
 .painel.controles h3 {
-    width: 100%;
-    margin-bottom: 0;
+  width: 100%;
+  margin-bottom: 0;
 }
 
 .grupo.controle {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .grupo.controle .rotulo.sistema {
-    margin-left: 0.3rem;
+  margin-left: 0.3rem;
 }
 
 .lista.territorios {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--espaco);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--espaco);
 }
 
 .card.territorio {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    border-left: 3px solid var(--borda);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  border-left: 3px solid var(--borda);
 }
 
 .card.territorio h3 {
-    font-size: 1.15rem;
+  font-size: 1.15rem;
 }
 
 .linguagens.territorio {
-    font-family: var(--fonte-mono);
-    font-size: 0.85rem;
-    color: var(--texto-suave);
+  font-family: var(--fonte-mono);
+  font-size: 0.85rem;
+  color: var(--texto-suave);
 }
 
 .card.territorio.ativo {
-    border-left-color: var(--verde);
+  border-left-color: var(--verde);
 }
 
 .card.territorio.inimigo {
-    border-left-color: var(--magenta);
-    box-shadow: var(--brilho-magenta);
+  border-left-color: var(--magenta);
+  box-shadow: var(--brilho-magenta);
 }
 
 .painel.detalhes {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
 }
 
 .painel.detalhes h3 {
-    margin-bottom: 0;
-    color: var(--texto);
-    text-transform: none;
+  margin-bottom: 0;
+  color: var(--texto);
+  text-transform: none;
 }
 
 .painel.detalhes p {
-    max-width: 70ch;
-    color: var(--texto-suave);
+  max-width: 70ch;
+  color: var(--texto-suave);
 }
 
 .informacoes.nivel,
 .informacoes.missao {
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(140px, 1fr);
-    gap: 0 var(--espaco);
-    width: 100%;
-    margin-top: 0.5rem;
-    padding-top: var(--espaco);
-    border-top: 1px solid var(--borda);
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(140px, 1fr);
+  gap: 0 var(--espaco);
+  width: 100%;
+  margin-top: 0.5rem;
+  padding-top: var(--espaco);
+  border-top: 1px solid var(--borda);
 }
 
 .informacoes.nivel dd,
 .informacoes.missao dd {
-    margin-top: 0.2rem;
-    font-weight: 600;
-    color: var(--ciano);
+  margin-top: 0.2rem;
+  font-weight: 600;
+  color: var(--ciano);
 }
 
 .lista.eventos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: var(--espaco);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--espaco);
 }
 
 .card.evento {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    border-left: 3px solid var(--ambar);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-left: 3px solid var(--ambar);
 }
 
 .card.evento p:not(.rotulo):not(.tempo) {
-    color: var(--texto-suave);
+  color: var(--texto-suave);
 }
 
 .card.evento.alerta {
-    border-left-color: var(--vermelho);
+  border-left-color: var(--vermelho);
 }
 
 .tempo.evento {
-    font-family: var(--fonte-mono);
-    font-size: 1.1rem;
-    color: var(--ambar);
+  font-family: var(--fonte-mono);
+  font-size: 1.1rem;
+  color: var(--ambar);
 }
 
 .card.evento.alerta .tempo.evento {
-    color: var(--vermelho);
+  color: var(--vermelho);
 }
-
 
 /* ==========================================================================
-   11. SEÇÃO MISSÕES
-   ========================================================================== */
-
-.abas.missoes,
-.abas.perfil {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.card.missao.ativa {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    align-items: flex-start;
-    border-color: var(--borda-magenta);
-    box-shadow: var(--brilho-magenta);
-}
-
-.card.missao.ativa h3 {
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    color: var(--vermelho);
-}
-
-.card.missao.ativa > p:not(.rotulo):not(.selo) {
-    color: var(--texto-suave);
-}
-
-.lista.missoes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--espaco);
-}
-
-.lista.missoes .card.missao {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    align-items: flex-start;
-}
-
-.lista.missoes .card.missao h4 {
-    font-size: 1rem;
-    letter-spacing: 0.05em;
-}
-
-.lista.missoes .card.missao p:not(.selo):not(.nivel):not(.experiencia) {
-    color: var(--texto-suave);
-    font-size: 0.9rem;
-}
-
-.nivel.missao,
-.experiencia.missao {
-    font-family: var(--fonte-mono);
-    font-size: 0.8rem;
-    color: var(--ciano);
-}
-
-.card.missao.epica {
-    border-color: rgba(255, 176, 32, 0.4);
-}
-
-.painel.combate {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: var(--espaco);
-}
-
-.painel.combate > .rotulo.sistema {
-    grid-column: 1 / -1;
-}
-
-.lado.combate {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-}
-
-.lado.combate h4 {
-    font-size: 1.4rem;
-    color: var(--ciano);
-}
-
-.lado.combate.inimigo {
-    text-align: right;
-}
-
-.lado.combate.inimigo h4 {
-    color: var(--vermelho);
-}
-
-.vida.agente {
-    font-family: var(--fonte-mono);
-    font-size: 0.9rem;
-    color: var(--texto-suave);
-}
-
-.painel.combate .lado.combate .preenchimento.progresso {
-    width: 82%;
-    background-image: linear-gradient(90deg, var(--verde), var(--ciano));
-}
-
-.painel.combate .lado.combate.inimigo .preenchimento.progresso {
-    width: 100%;
-    background-image: linear-gradient(90deg, var(--vermelho), var(--magenta));
-}
-
-.contra {
-    font-family: var(--fonte-mono);
-    font-size: 1.5rem;
-    color: var(--magenta);
-}
-
-.bloco.terminal {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: flex-start;
-}
-
-.codigo.terminal {
-    width: 100%;
-    padding: var(--espaco);
-    border: 1px solid var(--borda);
-    border-left: 3px solid var(--ciano);
-    border-radius: var(--raio);
-    background-color: var(--fundo);
-    font-family: var(--fonte-mono);
-    font-size: 0.85rem;
-    line-height: 1.8;
-    color: var(--verde);
-    overflow-x: auto;
-}
-
-.dica {
-    font-size: 0.9rem;
-    color: var(--ambar);
-}
-
-.lista.log {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    margin-top: 0.5rem;
-    font-family: var(--fonte-mono);
-    font-size: 0.85rem;
-    color: var(--texto-suave);
-}
-
-.lista.recompensas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: var(--espaco);
-    margin-bottom: var(--espaco);
-}
-
-.card.recompensa {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    text-align: center;
-    align-items: center;
-}
-
-.valor.recompensa {
-    font-family: var(--fonte-mono);
-    font-size: 1.2rem;
-    color: var(--ambar);
-}
-
-.bloco.recompensas .botao.secundario {
-    margin-top: var(--espaco);
-}
-
-
-/* ==========================================================================
-   12. SEÇÃO ARQUIVOS
-   ========================================================================== */
-
-.card.arquivo.superia {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    align-items: flex-start;
-    border-color: var(--borda-magenta);
-    box-shadow: var(--brilho-magenta);
-}
-
-.card.arquivo.superia img {
-    width: 100%;
-    aspect-ratio: 1586 / 992;
-    border-radius: var(--raio);
-    object-fit: cover;
-}
-
-.card.arquivo.superia h3 {
-    font-size: clamp(1.6rem, 4vw, 2.4rem);
-    color: var(--magenta);
-}
-
-.dossie.superia {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.dossie.superia h3 {
-    margin-bottom: 0.5rem;
-    font-size: clamp(1.3rem, 3vw, 1.8rem);
-    letter-spacing: 0.04em;
-}
-
-.dossie.superia p:not(.rotulo) {
-    max-width: 80ch;
-    color: var(--texto-suave);
-}
-
-
-/* ==========================================================================
-   13. SEÇÃO SISTEMA
-   ========================================================================== */
-
-.cartao.operador {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--espaco);
-}
-
-.cartao.operador img {
-    width: 96px;
-    height: 96px;
-    border: 2px solid var(--magenta);
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.cartao.operador h3 {
-    font-size: 1.5rem;
-}
-
-.patente.operador {
-    font-family: var(--fonte-mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    color: var(--ciano);
-}
-
-.cartao.operador .botao.secundario {
-    margin-left: auto;
-}
-
-.lista.diagnostico {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    margin-top: 0.5rem;
-    font-family: var(--fonte-mono);
-    font-size: 0.85rem;
-    color: var(--verde);
-}
-
-.formulario.dados,
-.formulario.senha {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--espaco);
-}
-
-.formulario.dados > .rotulo.sistema,
-.formulario.senha > .rotulo.sistema,
-.formulario.dados > h3,
-.formulario.senha > h3 {
-    grid-column: 1 / -1;
-}
-
-.formulario.dados > h3,
-.formulario.senha > h3 {
-    margin-bottom: 0;
-    font-size: 1.1rem;
-    letter-spacing: 0.08em;
-    color: var(--ciano);
-}
-
-.campo.formulario {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-}
-
-.campo.formulario label {
-    font-family: var(--fonte-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
-    color: var(--texto-suave);
-}
-
-.campo.formulario input {
-    padding: 0.6rem 0.8rem;
-    border: 1px solid var(--borda);
-    border-radius: var(--raio);
-    background-color: var(--superficie-alt);
-    transition: border-color 180ms ease;
-}
-
-.campo.formulario input:focus {
-    outline: none;
-    border-color: var(--ciano);
-    box-shadow: var(--brilho-ciano);
-}
-
-.acoes.formulario {
-    grid-column: 1 / -1;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--espaco);
-}
-
-
-/* ==========================================================================
-   14. RODAPÉ
+   08. RODAPÉ
    ========================================================================== */
 
 footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding: var(--espaco-secao) var(--margem-lateral);
-    border-top: 1px solid var(--borda);
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--espaco-secao) var(--margem-lateral);
+  border-top: 1px solid var(--borda);
+  text-align: center;
 }
 
-
 /* ==========================================================================
-   15. FOCO E ACESSIBILIDADE
+   09. ESTILOS DE FUNCIONALIDADES DE ACESSIBILIDADE
    ========================================================================== */
+
+.grupo.acessibilidade .opcao,
+.grupo.acessibilidade .chave {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.grupo.acessibilidade .opcao:hover {
+  border-color: var(--magenta);
+}
+
+.chave.ativa {
+  background-color: var(--magenta) !important;
+  border-color: var(--magenta) !important;
+}
+
+.chave.ativa .botao.chave {
+  margin-left: auto !important;
+  margin-right: 2px !important;
+  background-color: #fff !important;
+}
+
+/* Modo Tema Claro */
+html[data-tema="claro"] {
+  --fundo: #f4f3f8;
+  --fundo-alt: #e9e6f2;
+  --superficie: #ffffff;
+  --superficie-alt: #eae6f5;
+  --texto: #120e21;
+  --texto-suave: #4a4458;
+  --texto-fraco: #857d99;
+  --borda: rgba(139, 61, 240, 0.25);
+  --borda-magenta: rgba(227, 0, 113, 0.4);
+}
+
+html[data-tema="claro"] header {
+  background-color: rgba(244, 243, 248, 0.95) !important;
+}
+
+/* Modo Alto Contraste */
+html.alto-contraste {
+  --fundo: #000000 !important;
+  --fundo-alt: #000000 !important;
+  --superficie: #000000 !important;
+  --superficie-alt: #111111 !important;
+  --texto: #ffffff !important;
+  --texto-suave: #ffff00 !important;
+  --borda: #ffffff !important;
+  --magenta: #ff007f !important;
+  --ciano: #00ffff !important;
+}
+
+html.alto-contraste * {
+  border-color: #ffffff !important;
+}
+
+/* Modo Redução de Movimento */
+html.sem-animacao *,
+html.sem-animacao *::before,
+html.sem-animacao *::after {
+  animation: none !important;
+  transition: none !important;
+}
 
 a:focus-visible,
 summary:focus-visible,
 button:focus-visible,
 input:focus-visible {
-    outline: 2px solid var(--ciano);
-    outline-offset: 3px;
+  outline: 2px solid var(--ciano);
+  outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
+  html {
+    scroll-behavior: auto;
+  }
 
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
-
 
 /* ==========================================================================
-   16. RESPONSIVIDADE E ADAPTAÇÃO MOBILE/TABLET
+   10. RESPONSIVIDADE E ADAPTAÇÃO MOBILE/TABLET
    ========================================================================== */
 
-/* --- TRAVA DE SEGURANÇA GLOBAL ---
-   Impede que qualquer elemento vaze da tela e cause corte de texto nas laterais */
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
-/* Garante que palavras muito longas não quebrem o container */
-p, h1, h2, h3, h4, span, a {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
+p,
+h1,
+h2,
+h3,
+h4,
+span,
+a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
-/* -------- 16.1 TABLETS E DESKTOPS PEQUENOS (Até 1023px) ------------------- */
-@media (max-width: 1023px) {
-    .painel.combate {
-        grid-template-columns: 1fr;
-        text-align: left;
-        gap: 1.5rem;
-    }
-
-    .lado.combate.inimigo {
-        text-align: left;
-    }
-
-    .contra {
-        justify-self: center;
-        margin-block: 0.5rem;
-    }
-
-    header nav a {
-        font-size: 0.85rem;
-        letter-spacing: 0.05em;
-        padding: 0.5rem 0.6rem;
-    }
-
-    .cartao.operador {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .cartao.operador .botao.secundario {
-        margin-left: 0;
-        width: 100%;
-    }
+/* Botão do Menu Hambúrguer */
+.menu-hamburguer {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 101;
 }
 
-/* -------- 16.2 CELULARES E SMARTPHONES (Até 767px) ------------------------ */
-@media (max-width: 767px) {
-    :root {
-        --altura-cabecalho: auto;
-    }
-
-    /* --- Cabeçalho Touch Seguro --- */
-    header {
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem; /* Força margem lateral segura */
-        width: 100%;
-    }
-
-    header nav {
-        order: 3;
-        width: 100%;
-        max-width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-    }
-
-    header nav::-webkit-scrollbar {
-        display: none;
-    }
-
-    header nav ul {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 0.5rem;
-        white-space: nowrap;
-        padding-bottom: 0.25rem;
-    }
-
-    header nav a {
-        font-size: 0.8rem;
-        padding: 0.5rem 0.75rem;
-        display: inline-block;
-    }
-
-    .status.online {
-        display: none;
-    }
-
-    /* --- Correção das Seções e Textos --- */
-    main > section {
-        padding: 3rem 1rem; /* Garante que o conteúdo não cole nas bordas no celular */
-        width: 100%;
-    }
-
-    .visao.geral {
-        width: 100%;
-        padding-left: 1rem;
-    }
-
-    .visao.geral p:not(.rotulo) {
-        max-width: 100%; /* Remove a limitação em 'ch' para aproveitar toda a tela e evitar vazamentos */
-    }
-
-    /* --- Ajustes Gerais de Grid para Mobile (Força 1 coluna) --- */
-    .lista.linguagens,
-    .lista.agentes,
-    .lista.territorios,
-    .lista.eventos,
-    .lista.missoes,
-    .formulario.dados,
-    .formulario.senha {
-        grid-template-columns: 1fr; 
-    }
-
-    .painel.acessibilidade {
-        position: fixed;
-        top: auto;
-        bottom: 1rem;
-        right: 1rem;
-        left: 1rem;
-        width: auto;
-        max-width: calc(100vw - 2rem);
-    }
-
-    .painel.progresso {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .sprite.agente {
-        grid-column: 1;
-        grid-row: auto;
-        justify-self: center;
-        max-width: 100%;
-        height: auto;
-    }
-
-    .acoes.inicial,
-    .acoes.formulario {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .botao.primario,
-    .botao.secundario {
-        width: 100%;
-    }
-
-    .painel.filtros .botao.secundario,
-    .cartao.operador .botao.secundario {
-        margin-left: 0;
-        width: 100%;
-    }
-
-    .grupo.filtro {
-        width: 100%;
-    }
-
-    .lista.marcos {
-        padding-left: 1.25rem;
-    }
-
-    .marco::before {
-        left: calc(-1.25rem - 7px);
-    }
-
-    /* --- Listas de Informações (Chave/Valor) --- */
-    .informacoes.nivel,
-    .informacoes.missao {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-template-rows: none;
-        grid-auto-flow: row;
-        align-items: center;
-        gap: 0.5rem var(--espaco);
-    }
-
-    .informacoes.nivel dt,
-    .informacoes.missao dt {
-        font-weight: bold;
-    }
-
-    .informacoes.nivel dd,
-    .informacoes.missao dd {
-        margin-top: 0;
-        text-align: right;
-        word-break: break-word;
-    }
+.menu-hamburguer span {
+  width: 100%;
+  height: 3px;
+  background-color: var(--ciano);
+  border-radius: 2px;
+  transition: all 0.3s linear;
 }
 
-/* -------- 16.3 TELAS MUITO PEQUENAS (Até 480px) --------------------------- */
-@media (max-width: 480px) {
-    .conteudo.inicial h1 {
-        font-size: clamp(2.2rem, 10vw, 4rem);
-    }
-
-    .mensagem.superia {
-        padding: var(--espaco);
-    }
+.menu-hamburguer.ativo span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+.menu-hamburguer.ativo span:nth-child(2) {
+  opacity: 0;
+}
+.menu-hamburguer.ativo span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -6px);
 }
 
+/* 1. MODO CELULAR PEQUENO (Abaixo de 560px) */
+@media (max-width: 559px) {
+  header {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.8rem 1rem !important;
+    gap: 0.8rem !important;
+  }
 
+  .area.esquerda {
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .area.direita {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
+
+  .status.online {
+    display: none !important;
+  }
+
+  details.acessibilidade summary {
+    padding: 0.3rem 0.6rem !important;
+    font-size: 0.7rem !important;
+  }
+
+  .painel.acessibilidade {
+    position: fixed;
+    top: auto;
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    width: auto;
+    max-width: calc(100vw - 2rem);
+  }
+}
+
+/* 2. REGRAS DO MENU HAMBÚRGUER OVERLAY (Até 1199px) */
+@media (max-width: 1199px) {
+  .menu-hamburguer {
+    display: flex !important;
+  }
+
+  .menu-hamburguer.ativo {
+    position: fixed !important;
+    top: 1.2rem !important;
+    right: 1.2rem !important;
+  }
+
+  header nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: rgba(8, 5, 17, 0.98) !important;
+    backdrop-filter: blur(12px) !important;
+    display: none !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 99 !important;
+  }
+
+  header nav.aberto {
+    display: flex !important;
+  }
+
+  header nav ul {
+    flex-direction: column !important;
+    gap: 2rem !important;
+    text-align: center !important;
+  }
+
+  header nav a {
+    font-size: 1.2rem !important;
+  }
+}
+
+/* 3. TELAS INTERMEDIÁRIAS (560px a 1199px) */
+@media (min-width: 560px) and (max-width: 1199px) {
+  header {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0.8rem 1rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .area.esquerda,
+  .area.direita {
+    width: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+  }
+
+  .status.online {
+    display: flex !important;
+  }
+
+  .perfil.atalho,
+  .perfil.atalho img {
+    display: block !important;
+  }
+}
+
+/* 4. TELA DESKTOP COMPLETA (A partir de 1200px) */
+@media (min-width: 1200px) {
+  .menu-hamburguer {
+    display: none !important;
+  }
+
+  header nav {
+    display: flex !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+  }
+
+  header nav ul {
+    flex-direction: row !important;
+  }
+}
