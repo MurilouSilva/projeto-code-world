@@ -11,17 +11,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@400;600&family=Share+Tech+Mono&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@400;600;700;800&family=Orbitron:wght@400;600;700;800&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
     />
 
     <!-- Folha de estilos principal do projeto -->
     <link rel="stylesheet" href="style.css" />
-
-    <!-- Biblioteca i18next para suporte a internacionalização -->
-    <script src="https://unpkg.com/i18next@23.11.5/i18next.min.js"></script>
   </head>
   <body>
+    <!-- Estrutura do Cursor Duplo (Tympanus Sketch 012) -->
+    <div class="cursor-inner"></div>
+    <div class="cursor-outer"></div>
+
     <!-- ===================================================================
          CABEÇALHO PRINCIPAL DA PÁGINA
          =================================================================== -->
@@ -156,15 +157,12 @@
          =================================================================== -->
     <main>
       <!-- Seção 01: Nexus - Entrada Principal do Portal -->
-      <section id="CODEWORLD" class="fundo principal">
-        <!-- Imagem de Fundo Ambiental do Nexus -->
-        <img
-          class="visual fundo"
-          src="../img/nexus-visual.png"
-          alt=""
-          width="2560"
-          height="1440"
-        />
+      <section id="CODEWORLD" class="fundo nexus">
+        <!-- Vídeo de fundo em tela cheia -->
+        <video class="visual fundo" autoplay loop muted playsinline>
+          <source src="../img/universo-fundo.mp4" type="video/mp4" />
+          Seu navegador não suporta vídeos em HTML5.
+        </video>
 
         <!-- Console / Terminal do Sistema -->
         <div class="sistema console">
@@ -176,12 +174,15 @@
             &gt;CARREGANDO MAPA DE TERRITÓRIOS...<br />
             &gt;STATUS: OPERACIONAL<span class="cursor" aria-hidden="true">█</span>
           </p>
+          <p class="selo status">STATUS: ONLINE</p>
         </div>
 
         <!-- Bloco Principal de Boas-Vindas -->
         <div class="conteudo inicial">
-          <p class="selo status">STATUS: ONLINE</p>
-          <h1>CODEWORLD</h1>
+          <div class="melting-text-container">
+            <h1 class="melting-text" data-text="CODEWORLD">CODEWORLD</h1>
+          </div>
+          
           <p class="credito">Por 11 Estudantes de tecnologia</p>
           
           <!-- Botões de Ação de Início -->
@@ -200,15 +201,6 @@
         </div>
       </section>
     </main>
-
-    <!-- ===================================================================
-         RODAPÉ DA PÁGINA
-         =================================================================== -->
-    <footer>
-      <p class="logo rodape">CODEWORLD</p>
-      <p class="credito">Por 11 Estudantes de tecnologia</p>
-      <p class="rotulo sistema">PROJETO ACADÊMICO // FRONT END 2025</p>
-    </footer>
 
     <!-- Script de Comportamento Interativo -->
     <script src="script.js" defer></script>
