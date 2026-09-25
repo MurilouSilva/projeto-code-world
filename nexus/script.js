@@ -1,16 +1,14 @@
 /**
  * CODEWORLD // script.js
- * Gerenciador de interações do Menu Hambúrguer, Painel de Acessibilidade e Preferências do Usuário
+ * Gerenciador de interações do Menu Hambúrguer, Painel de Acessibilidade,
+ * Preferências do Usuário e Cursor Customizado Duplo
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Elemento raiz <html> para aplicação das configurações globais
   const root = document.documentElement;
 
   /**
-   * Função auxiliar para alternar a classe ativa em grupos de botões
-   * @param {NodeListOf<Element>} opcoes
-   * @param {Element} selecionada
+   * Alterna a classe ativa em grupos de botões selecionáveis
    */
   function setOpcaoAtiva(opcoes, selecionada) {
     opcoes.forEach((opt) => opt.classList.remove("ativa"));
@@ -25,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll("header nav a");
 
   if (btnHamburguer && navMenu) {
-    // Alterna a exibição do menu ao clicar no botão
     btnHamburguer.addEventListener("click", (e) => {
       e.stopPropagation();
       btnHamburguer.classList.toggle("ativo");
@@ -35,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
       btnHamburguer.setAttribute("aria-expanded", aberto);
     });
 
-    // Fecha o menu ao clicar em qualquer item da navegação
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         btnHamburguer.classList.remove("ativo");
@@ -51,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- A. Tema (Claro / Escuro) ---
   const opcoesTema = document.querySelectorAll(
-    ".grupo.acessibilidade:nth-of-type(2) .opcao",
+    ".grupo.acessibilidade:nth-of-type(2) .opcao"
   );
 
   opcoesTema.forEach((opt) => {
@@ -71,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- B. Tamanho da Fonte (A-, A, A+, A++) ---
   const opcoesFonte = document.querySelectorAll(
-    ".grupo.acessibilidade:nth-of-type(3) .opcao",
+    ".grupo.acessibilidade:nth-of-type(3) .opcao"
   );
 
   const tamanhos = {
@@ -120,7 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // 3. CARREGAMENTO DE PREFERÊNCIAS SALVAS (LOCALSTORAGE)
   // ==========================================================================
   function carregarPreferencias() {
-    // Restaurar Tema
     if (localStorage.getItem("cw_tema") === "claro") {
       root.setAttribute("data-tema", "claro");
       opcoesTema.forEach((opt) => {
@@ -130,7 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // Restaurar Fonte
     const fonteSalva = localStorage.getItem("cw_fonte");
     if (fonteSalva && tamanhos[fonteSalva]) {
       root.style.fontSize = tamanhos[fonteSalva];
@@ -141,19 +135,51 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // Restaurar Alto Contraste
     if (localStorage.getItem("cw_alto_contraste") === "true" && chaves[0]) {
       chaves[0].classList.add("ativa");
       root.classList.add("alto-contraste");
     }
 
-    // Restaurar Redução de Movimento
     if (localStorage.getItem("cw_reduzir_movimento") === "true" && chaves[1]) {
       chaves[1].classList.add("ativa");
       root.classList.add("sem-animacao");
     }
   }
 
-  // Executa o carregamento das preferências do usuário ao iniciar
   carregarPreferencias();
+
+  // ==========================================================================
+  // 4. CURSOR DUPLO COM LERP E HOVER (TYMPANUS SKETCH 012)
+  // ==========================================================================
+  const cursorInner = document.querySelector(".cursor-inner");
+  const cursorOuter = document.querySelector(".cursor-outer");
+
+  if (cursorInner && cursorOuter && window.matchMedia("(hover: hover)").matches) {
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let outerX = mouseX;
+    let outerY = mouseY;
+
+    window.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursorInner.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+    });
+
+    function render() {
+      outerX += (mouseX - outerX) * 0.15;
+      outerY += (mouseY - outerY) * 0.15;
+
+      cursorOuter.style.transform = `translate3d(${outerX}px, ${outerY}px, 0) translate(-50%, -50%)`;
+      requestAnimationFrame(render);
+    }
+    render();
+
+    const interativos = document.querySelectorAll("a, button, summary, input, .opcao, .chave");
+
+    interativos.forEach((el) => {
+      el.addEventListener("mouseenter", () => document.body.classList.add("hovered"));
+      el.addEventListener("mouseleave", () => document.body.classList.remove("hovered"));
+    });
+  }
 });
