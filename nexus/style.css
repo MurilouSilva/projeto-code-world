@@ -13,6 +13,7 @@
    08. Rodapé
    09. Estilos de Funcionalidades de Acessibilidade
    10. Responsividade Adaptativa (Mobile / Tablet)
+   11. Cursor Customizado (Duplo Círculo)
    ========================================================================== */
 
 /* ==========================================================================
@@ -101,7 +102,8 @@ button {
   --brilho-ciano: 0 0 12px rgba(0, 242, 254, 0.4);
 
   /* Tipografia */
-  --fonte-titulo: "Chakra Petch", sans-serif;
+  --fonte-titulo: "Inter", sans-serif;
+  --fonte-subtitulo: "Orbitron", sans-serif;
   --fonte-mono: "Share Tech Mono", monospace;
 
   /* Medidas e Espaçamentos */
@@ -117,7 +119,6 @@ button {
    03. TIPOGRAFIA E UTILITÁRIOS
    ========================================================================== */
 
-/* Rótulo técnico estilo terminal (fonte mono, caixa alta, espaçado) */
 .rotulo.sistema {
   font-family: var(--fonte-mono);
   font-size: 0.72rem;
@@ -131,7 +132,12 @@ button {
 }
 
 .credito {
+  font-family: var(--fonte-subtitulo);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
   color: var(--texto-suave);
+  margin-top: 1.5rem;
 }
 
 .contagem {
@@ -141,7 +147,6 @@ button {
   color: var(--ciano);
 }
 
-/* Cursor intermitente estilo terminal */
 .cursor {
   display: inline-block;
   color: var(--verde);
@@ -536,34 +541,27 @@ details.acessibilidade summary:hover {
    06. REGRAS GERAIS DAS SEÇÕES
    ========================================================================== */
 
-main > section {
+main > section.fundo {
   position: relative;
+  width: 100vw;
+  min-height: calc(100vh - var(--altura-cabecalho));
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: calc(var(--espaco-secao) / 2);
-  padding: var(--espaco-secao) var(--margem-lateral);
-  scroll-margin-top: var(--altura-cabecalho);
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 1rem;
 }
 
-main > section > * {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: var(--largura-conteudo);
-  margin-inline: auto;
-}
-
-.visual.fundo {
+video.visual.fundo {
   position: absolute;
-  inset: 0;
-  z-index: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  max-width: none;
-  margin: 0;
   object-fit: cover;
-  opacity: 0.14;
+  z-index: 0;
+  opacity: 0.25;
   pointer-events: none;
 }
 
@@ -595,20 +593,23 @@ main > section > * {
 }
 
 /* ==========================================================================
-   07. SEÇÃO NEXUS
+   07. SEÇÃO NEXUS (EFEITO MELTING TEXT NO H1)
    ========================================================================== */
 
 #CODEWORLD {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 1rem;
+  gap: var(--espaco);
   min-height: calc(100vh - var(--altura-cabecalho));
 }
 
 .sistema.console {
   width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
   padding: var(--espaco);
-  border: 1px solid var(--borda);
   border-left: 3px solid var(--verde);
   border-radius: var(--raio);
   background-color: rgba(8, 6, 15, 0.75);
@@ -620,6 +621,8 @@ main > section > * {
 }
 
 .conteudo.inicial {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -627,14 +630,75 @@ main > section > * {
   text-align: center;
 }
 
-.conteudo.inicial h1 {
-  font-size: clamp(3rem, 12vw, 7rem);
-  font-weight: 700;
+/* --- Efeito Melting Text --- */
+
+.melting-text-container {
+  position: relative;
+  overflow: visible;
+  padding: 0;
+  margin-top: -1rem;
+}
+
+.melting-text {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(3rem, 10vw, 6.5rem);
+  font-weight: 800;
   letter-spacing: 0.04em;
-  background-image: linear-gradient(90deg, var(--magenta), var(--ciano));
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  animation: melt 3s infinite ease-in-out;
+  background: linear-gradient(90deg, var(--magenta), var(--ciano), var(--magenta));
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.melting-text::before,
+.melting-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--magenta), var(--ciano), var(--magenta));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  z-index: -1;
+  transform-origin: top;
+  transform: scaleY(1);
+  opacity: 0.5;
+  animation: drip 3s infinite ease-in-out;
+}
+
+.melting-text::after {
+  filter: blur(12px);
+  opacity: 0.35;
+}
+
+@keyframes melt {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(12px);
+  }
+}
+
+@keyframes drip {
+  0%, 100% {
+    transform: scaleY(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleY(1.4);
+    opacity: 0.8;
+  }
 }
 
 .acoes.inicial {
@@ -642,6 +706,7 @@ main > section > * {
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--espaco);
+  margin-top: 3rem;
 }
 
 /* ==========================================================================
@@ -769,7 +834,6 @@ a {
   word-wrap: break-word;
 }
 
-/* Botão do Menu Hambúrguer */
 .menu-hamburguer {
   display: none;
   flex-direction: column;
@@ -801,7 +865,6 @@ a {
   transform: rotate(-45deg) translate(5px, -6px);
 }
 
-/* 1. MODO CELULAR PEQUENO (Abaixo de 560px) */
 @media (max-width: 559px) {
   header {
     flex-direction: column !important;
@@ -855,7 +918,6 @@ a {
   }
 }
 
-/* 2. REGRAS DO MENU HAMBÚRGUER OVERLAY (Até 1199px) */
 @media (max-width: 1199px) {
   .menu-hamburguer {
     display: flex !important;
@@ -897,7 +959,6 @@ a {
   }
 }
 
-/* 3. TELAS INTERMEDIÁRIAS (560px a 1199px) */
 @media (min-width: 560px) and (max-width: 1199px) {
   header {
     flex-direction: row !important;
@@ -925,7 +986,6 @@ a {
   }
 }
 
-/* 4. TELA DESKTOP COMPLETA (A partir de 1200px) */
 @media (min-width: 1200px) {
   .menu-hamburguer {
     display: none !important;
@@ -943,4 +1003,56 @@ a {
   header nav ul {
     flex-direction: row !important;
   }
+}
+
+/* ==========================================================================
+   11. CURSOR CUSTOMIZADO (TYMPANUS SKETCH 012)
+   ========================================================================== */
+
+/* Oculta o cursor nativo em telas com suporte a ponteiro de alta precisão */
+@media (hover: hover) and (pointer: fine) {
+  body, a, button, summary, input, .opcao, .chave {
+    cursor: none !important;
+  }
+}
+
+.cursor-inner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: var(--ciano);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.cursor-outer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--magenta);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease-out, height 0.3s ease-out, border-color 0.3s, background-color 0.3s;
+}
+
+body.hovered .cursor-inner {
+  width: 12px;
+  height: 12px;
+  background-color: var(--verde);
+}
+
+body.hovered .cursor-outer {
+  width: 60px;
+  height: 60px;
+  border-color: var(--verde);
+  background-color: rgba(41, 245, 138, 0.08);
 }
