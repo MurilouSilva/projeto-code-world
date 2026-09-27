@@ -1,0 +1,65 @@
+/* ==========================================================================
+   01. TRADUÇÃO PELO GOOGLE TRADUTOR
+   Quem troca o idioma são os botões PT-BR / EN do painel; toda a interface
+   própria do Google fica escondida.
+   ========================================================================== */
+
+/* Caixa "Selecionar idioma" que o Google monta */
+#google_translate_element {
+  display: none !important;
+}
+
+/* Barra "Traduzido para: Inglês" que o Google insere no topo da página */
+body > .skiptranslate,
+iframe.skiptranslate {
+  display: none !important;
+}
+
+/* O Google empurra a página 40px para baixo para abrir espaço para essa barra */
+body {
+  top: 0 !important;
+}
+
+/* Balão com o texto original ao passar o mouse sobre um trecho traduzido */
+#goog-gt-tt {
+  display: none !important;
+}
+
+/* Destaque que o Google aplica no trecho que está sob o mouse */
+.goog-text-highlight,
+.VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* ==========================================================================
+   02. BOTÕES DE IDIOMA
+   ========================================================================== */
+
+/* Os botões PT-BR / EN passam a receber foco pelo Tab (ver o .js);
+   o contorno segue o padrão dos outros elementos focáveis do site. */
+.opcao[data-idioma]:focus-visible {
+  outline: 2px solid var(--ciano);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   03. REDUZIR MOVIMENTO
+   O style.css já desliga animações e transições CSS com html.sem-animacao.
+   Aqui entra o que aquela regra não alcança (o vídeo é pausado pelo .js).
+   ========================================================================== */
+
+/* A rolagem suave até as âncoras vira salto direto */
+html.sem-animacao {
+  scroll-behavior: auto;
+}
+
+/* Anel do cursor customizado (NEXUS): ele persegue o ponteiro com atraso,
+   um movimento feito por JavaScript que a regra de animações não alcança.
+   O ponto central continua e acompanha o mouse sem atraso. */
+html.sem-animacao .cursor-outer {
+  display: none;
+}
+.grupo.acessibilidade .botao.chave {
+  pointer-events: none;
+}

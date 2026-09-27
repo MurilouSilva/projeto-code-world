@@ -21,6 +21,9 @@
     <!-- Folha de estilos principal do projeto -->
     <link rel="stylesheet" href="style.css" />
 
+    <!-- Complemento do painel de acessibilidade: tradução e reduzir movimento -->
+    <link rel="stylesheet" href="../comum/idioma-e-movimento.css" />
+
     <!-- Biblioteca i18next para suporte a internacionalização -->
     <script src="https://unpkg.com/i18next@23.11.5/i18next.min.js"></script>
   </head>
@@ -346,5 +349,7 @@
 
     <!-- Script de Comportamento Interativo -->
     <script src="script.js" defer></script>
+    <!-- Complemento do painel de acessibilidade (precisa vir depois do script.js) -->
+    <script src="../comum/idioma-e-movimento.js" defer></script>
   </body>
 </html>
