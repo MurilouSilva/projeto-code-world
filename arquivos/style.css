@@ -67,12 +67,68 @@
   background: linear-gradient(90deg, transparent, var(--magenta), transparent);
 }
 
-/* Imagem com linhas de interferência passando por cima */
-.card.arquivo.superia img {
+/* Vídeo com linhas de interferência passando por cima */
+.card.arquivo.superia .video.superia {
+  display: block;
   width: 100%;
-  aspect-ratio: 1586 / 992;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--borda-magenta);
   border-radius: var(--raio);
+  background-color: #000;
   object-fit: cover;
+  box-shadow: 0 0 24px rgba(227, 0, 113, 0.25);
+}
+
+/* Moldura do vídeo, para posicionar o botão de som por cima */
+.tela.video {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+/* Botão "ATIVAR SOM / SILENCIAR" no canto superior do vídeo */
+.botao.som {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 38px;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--magenta);
+  border-radius: 99px;
+  background-color: rgba(8, 6, 15, 0.82);
+  color: #fff;
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition:
+    background-color var(--rapido) ease,
+    box-shadow var(--rapido) ease;
+}
+
+.botao.som:hover {
+  background-color: var(--magenta);
+  box-shadow: var(--brilho-magenta);
+}
+
+/* Enquanto estiver sem som, o botão pulsa para chamar atenção */
+.botao.som.chamando {
+  animation: chamar-som 1.8s ease-in-out infinite;
+}
+
+@keyframes chamar-som {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(227, 0, 113, 0.6);
+  }
+  60% {
+    box-shadow: 0 0 0 10px rgba(227, 0, 113, 0);
+  }
 }
 
 .card.arquivo.superia::before {
