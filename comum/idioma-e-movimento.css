@@ -45,7 +45,7 @@ body {
 
 /* ==========================================================================
    03. REDUZIR MOVIMENTO
-   O style.css já desliga animações e transições CSS com html.sem-animacao.
+   O base.css já desliga animações e transições CSS com html.sem-animacao.
    Aqui entra o que aquela regra não alcança (o vídeo é pausado pelo .js).
    ========================================================================== */
 
@@ -59,7 +59,4 @@ html.sem-animacao {
    O ponto central continua e acompanha o mouse sem atraso. */
 html.sem-animacao .cursor-outer {
   display: none;
-}
-.grupo.acessibilidade .botao.chave {
-  pointer-events: none;
 }

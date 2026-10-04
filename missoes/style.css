@@ -1,603 +1,19 @@
 /* ==========================================================================
-   CODEWORLD // style.css
-   Portal Cyberpunk - 11 Estudantes de Tecnologia
+   CODEWORLD // missoes/style.css
+   Estilo exclusivo da Seção 05: MISSÕES.
+   O que é comum a todas as telas fica em ../comum/base.css.
 
    Índice:
-   01. Reset e Base
-   02. Variáveis do Projeto (Design Tokens)
-   03. Tipografia e Utilitários
-   04. Componentes Reaproveitados
-   05. Cabeçalho e Painel de Acessibilidade
-   06. Regras Gerais das Seções
-   07. Seção Missões (Abas, Combate, Terminal, Recompensas)
-   08. Rodapé
-   09. Estilos de Funcionalidades de Acessibilidade
-   10. Responsividade Adaptativa (Mobile / Tablet)
+   01. Abas e missão ativa
+   02. Lista de missões
+   03. Painel de combate
+   04. Terminal de código e log
+   05. Recompensas
+   06. Responsividade
    ========================================================================== */
 
 /* ==========================================================================
-   01. RESET E BASE
-   ========================================================================== */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background-color: var(--fundo);
-  color: var(--texto);
-  font-family: var(--fonte-titulo);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-ul,
-ol {
-  list-style: none;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  line-height: 1.15;
-  text-wrap: balance;
-}
-
-input,
-button {
-  font: inherit;
-  color: inherit;
-}
-
-/* ==========================================================================
-   02. VARIÁVEIS DO PROJETO (DESIGN TOKENS)
-   ========================================================================== */
-
-:root {
-  /* Cores da Marca */
-  --magenta: #e30071;
-  --magenta-claro: #ff3d9a;
-  --ciano: #00f2fe;
-  --verde: #29f58a;
-  --ambar: #ffb020;
-  --vermelho: #ff3b4e;
-  --roxo: #8b3df0;
-
-  /* Camadas de Fundo e Superfícies */
-  --fundo: #08060f;
-  --fundo-alt: #0d0a16;
-  --superficie: #14111f;
-  --superficie-alt: #1b1729;
-
-  /* Bordas */
-  --borda: rgba(0, 242, 254, 0.18);
-  --borda-magenta: rgba(227, 0, 113, 0.35);
-
-  /* Níveis de Texto */
-  --texto: #e8e6f0;
-  --texto-suave: #9a94ad;
-  --texto-fraco: #5f5875;
-
-  /* Brilhos Neon */
-  --brilho-magenta: 0 0 12px rgba(227, 0, 113, 0.45);
-  --brilho-ciano: 0 0 12px rgba(0, 242, 254, 0.4);
-
-  /* Famílias Tipográficas */
-  --fonte-titulo: "Chakra Petch", sans-serif;
-  --fonte-mono: "Share Tech Mono", monospace;
-
-  /* Espaçamentos e Medidas */
-  --espaco: clamp(1rem, 2vw, 1.5rem);
-  --espaco-secao: clamp(3rem, 6vw, 6rem);
-  --margem-lateral: clamp(1rem, 4vw, 2.5rem);
-  --largura-conteudo: 1200px;
-  --raio: 4px;
-  --altura-cabecalho: 64px;
-}
-
-/* ==========================================================================
-   03. TIPOGRAFIA E UTILITÁRIOS
-   ========================================================================== */
-
-/* Rótulo técnico estilo terminal (fonte mono, caixa alta, espaçado) */
-.rotulo.sistema {
-  font-family: var(--fonte-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--texto-suave);
-}
-
-.destaque {
-  color: var(--magenta);
-}
-
-.credito {
-  color: var(--texto-suave);
-}
-
-.contagem {
-  font-family: var(--fonte-mono);
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  line-height: 1;
-  color: var(--ciano);
-}
-
-/* Cursor intermitente estilo terminal */
-.cursor {
-  display: inline-block;
-  color: var(--verde);
-  animation: piscar 1s steps(2, start) infinite;
-}
-
-@keyframes piscar {
-  50% {
-    opacity: 0;
-  }
-}
-
-.linhas.console {
-  font-family: var(--fonte-mono);
-  font-size: 0.85rem;
-  line-height: 1.9;
-  color: var(--verde);
-  word-break: break-word;
-}
-
-/* ==========================================================================
-   04. COMPONENTES REAPROVEITADOS
-   ========================================================================== */
-
-/* --- 4.1 Botões Primários e Secundários --- */
-.botao.primario,
-.botao.secundario {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.7rem 1.4rem;
-  border: 1px solid transparent;
-  border-radius: var(--raio);
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-align: center;
-  cursor: pointer;
-  transition:
-    background-color 180ms ease,
-    box-shadow 180ms ease,
-    color 180ms ease;
-}
-
-.botao.primario {
-  background-color: var(--magenta);
-  color: #fff;
-}
-
-.botao.primario:hover,
-.botao.primario:focus-visible {
-  background-color: var(--magenta-claro);
-  box-shadow: var(--brilho-magenta);
-}
-
-.botao.secundario {
-  background-color: transparent;
-  border-color: var(--ciano);
-  color: var(--ciano);
-}
-
-.botao.secundario:hover,
-.botao.secundario:focus-visible {
-  background-color: rgba(0, 242, 254, 0.12);
-  box-shadow: var(--brilho-ciano);
-}
-
-/* --- 4.2 Selos de Status e Alertas --- */
-.selo.status,
-.selo.ameaca,
-.selo.bloqueado,
-.selo.principal,
-.selo.secundaria,
-.selo.epica {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  align-self: flex-start;
-  padding: 0.2rem 0.7rem;
-  border: 1px solid currentColor;
-  border-radius: 99px;
-  font-family: var(--fonte-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.selo.status {
-  color: var(--verde);
-}
-
-.selo.ameaca,
-.selo.principal {
-  color: var(--vermelho);
-}
-
-.selo.bloqueado {
-  color: var(--texto-fraco);
-}
-
-.selo.secundaria {
-  color: var(--ciano);
-}
-
-.selo.epica {
-  color: var(--ambar);
-}
-
-/* --- 4.3 Botões de Opções do Painel --- */
-.opcao {
-  padding: 0.4rem 0.9rem;
-  border: 1px solid var(--borda);
-  border-radius: var(--raio);
-  background-color: var(--superficie-alt);
-  font-family: var(--fonte-mono);
-  font-size: 0.75rem;
-  color: var(--texto-suave);
-  text-align: center;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.opcao.ativa {
-  border-color: var(--magenta);
-  background-color: rgba(227, 0, 113, 0.14);
-  color: var(--texto);
-}
-
-.opcoes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.opcoes .opcao {
-  flex: 1;
-}
-
-/* --- 4.4 Barra de Progresso --- */
-.barra.progresso {
-  width: 100%;
-  height: 6px;
-  border-radius: 99px;
-  background-color: var(--superficie-alt);
-  overflow: hidden;
-}
-
-.preenchimento.progresso {
-  height: 100%;
-  width: 70%;
-  border-radius: 99px;
-  background-image: linear-gradient(
-    90deg,
-    var(--magenta),
-    var(--magenta-claro)
-  );
-}
-
-/* --- 4.5 Painéis e Cartões Base --- */
-.painel.progresso,
-.painel.filtros,
-.painel.controles,
-.painel.detalhes,
-.painel.combate,
-.bloco.terminal,
-.bloco.log,
-.bloco.diagnostico,
-.bloco.recompensas,
-.cartao.operador,
-.card.linguagem,
-.card.agente,
-.card.territorio,
-.card.missao,
-.card.evento,
-.card.recompensa,
-.card.arquivo,
-.formulario.dados,
-.formulario.senha {
-  padding: var(--espaco);
-  border: 1px solid var(--borda);
-  border-radius: var(--raio);
-  background-color: var(--superficie);
-}
-
-/* --- 4.6 Teclas e Chaves de Alternância (Switches) --- */
-.tecla {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 30px;
-  height: 30px;
-  padding: 0 0.4rem;
-  border: 1px solid var(--borda);
-  border-radius: var(--raio);
-  background-color: var(--superficie-alt);
-  font-family: var(--fonte-mono);
-  font-size: 0.8rem;
-  color: var(--ciano);
-}
-
-.chave {
-  display: inline-block;
-  flex-shrink: 0;
-  width: 38px;
-  height: 20px;
-  border: 1px solid var(--borda);
-  border-radius: 99px;
-  background-color: var(--superficie-alt);
-}
-
-.botao.chave {
-  display: block;
-  width: 14px;
-  height: 14px;
-  margin: 2px 0 0 2px;
-  border-radius: 50%;
-  background-color: var(--texto-suave);
-}
-
-/* ==========================================================================
-   05. CABEÇALHO (DESKTOP)
-   ========================================================================== */
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--espaco);
-  min-height: var(--altura-cabecalho);
-  padding: 0.8rem var(--margem-lateral);
-  border-bottom: 1px solid rgba(227, 0, 113, 0.2);
-  background-color: #080511;
-  transition: all 0.3s ease;
-}
-
-.area.esquerda {
-  display: flex;
-  align-items: center;
-}
-
-.logo a {
-  font-size: 1.35rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: var(--magenta);
-  white-space: nowrap;
-}
-
-header nav {
-  display: flex;
-  align-items: center;
-}
-
-header nav ul {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: clamp(0.6rem, 1.2vw, 1.8rem);
-  margin: 0;
-  padding: 0;
-}
-
-header nav a {
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--texto-suave);
-  white-space: nowrap;
-  padding: 0.4rem 0.6rem;
-  transition: all 180ms ease;
-}
-
-header nav a:hover {
-  color: #fff;
-}
-
-header nav a.ativo {
-  color: var(--magenta);
-  border: 1px solid var(--magenta);
-  border-radius: 0;
-}
-
-.area.direita {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.status.online {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-family: var(--fonte-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  color: var(--verde);
-  font-weight: bold;
-  animation: piscar-online 1.2s ease-in-out infinite;
-  white-space: nowrap;
-}
-
-.ponto {
-  color: var(--verde);
-  font-size: 0.6rem;
-  text-shadow: 0 0 6px var(--verde);
-}
-
-@keyframes piscar-online {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.25;
-  }
-}
-
-.perfil.atalho img {
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--borda);
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
-}
-
-/* --- 5.1 Painel do Menu Desdobrável de Acessibilidade --- */
-details.acessibilidade {
-  position: relative;
-}
-
-details.acessibilidade summary {
-  padding: 0.45rem 0.9rem;
-  border: 1px solid var(--ciano);
-  border-radius: var(--raio);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  color: var(--ciano);
-  white-space: nowrap;
-  cursor: pointer;
-  list-style: none;
-}
-
-details.acessibilidade summary::-webkit-details-marker {
-  display: none;
-}
-
-details.acessibilidade summary:hover {
-  background-color: rgba(0, 242, 254, 0.12);
-}
-
-.painel.acessibilidade {
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  right: 0;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 280px;
-  padding: var(--espaco);
-  border: 1px solid var(--borda);
-  border-radius: var(--raio);
-  background-color: var(--superficie);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
-}
-
-.titulo.painel {
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--magenta);
-  font-weight: 600;
-}
-
-.grupo.acessibilidade {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.grupo.acessibilidade:has(.chave) {
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* ==========================================================================
-   06. REGRAS GERAIS DAS SEÇÕES
-   ========================================================================== */
-
-main > section {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--espaco-secao) / 2);
-  padding: var(--espaco-secao) var(--margem-lateral);
-  scroll-margin-top: var(--altura-cabecalho);
-}
-
-main > section > * {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: var(--largura-conteudo);
-  margin-inline: auto;
-}
-
-.visual.fundo {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  margin: 0;
-  object-fit: cover;
-  opacity: 0.14;
-  pointer-events: none;
-}
-
-.visao.geral {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding-left: 1rem;
-  border-left: 3px solid var(--magenta);
-}
-
-.visao.geral h2 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  letter-spacing: 0.02em;
-}
-
-.visao.geral p:not(.rotulo) {
-  max-width: 65ch;
-  color: var(--texto-suave);
-}
-
-.bloco h3,
-.painel h3 {
-  margin-bottom: var(--espaco);
-  font-size: 1.1rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ciano);
-}
-
-/* ==========================================================================
-   07. SEÇÃO MISSÕES
+   01. ABAS E MISSÃO ATIVA
    ========================================================================== */
 
 .abas.missoes {
@@ -609,50 +25,63 @@ main > section > * {
 .card.missao.ativa {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.7rem;
   align-items: flex-start;
   border-color: var(--borda-magenta);
   box-shadow: var(--brilho-magenta);
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 59, 78, 0.1),
+    transparent 55%
+  );
+}
+
+.card.missao.ativa::after {
+  background: linear-gradient(90deg, transparent, var(--vermelho), transparent);
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 .card.missao.ativa h3 {
-  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-family: var(--fonte-display);
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
   color: var(--vermelho);
+}
+
+.card.missao.ativa h3 span {
+  display: inline-block;
+  animation: piscar 1.2s steps(2, start) infinite;
 }
 
 .card.missao.ativa > p:not(.rotulo):not(.selo) {
   color: var(--texto-suave);
 }
 
-.informacoes.missao {
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(140px, 1fr);
-  gap: 0 var(--espaco);
-  width: 100%;
-  margin-top: 0.5rem;
-  padding-top: var(--espaco);
-  border-top: 1px solid var(--borda);
-}
-
-.informacoes.missao dd {
-  margin-top: 0.2rem;
-  font-weight: 600;
-  color: var(--ciano);
-}
+/* ==========================================================================
+   02. LISTA DE MISSÕES
+   ========================================================================== */
 
 .lista.missoes {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: var(--espaco);
 }
 
 .lista.missoes .card.missao {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-content: start;
+  gap: 0.45rem 0.75rem;
+}
+
+.lista.missoes .card.missao h4,
+.lista.missoes .card.missao p:not(.selo):not(.nivel):not(.experiencia),
+.lista.missoes .card.missao .experiencia {
+  grid-column: 1 / -1;
+}
+
+.lista.missoes .card.missao .selo {
+  align-self: center;
 }
 
 .lista.missoes .card.missao h4 {
@@ -672,9 +101,54 @@ main > section > * {
   color: var(--ciano);
 }
 
+.nivel.missao {
+  justify-self: end;
+  align-self: center;
+}
+
+/* O percentual de experiência vira uma barrinha (largura em --valor) */
+.experiencia.missao {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.3rem;
+}
+
+.experiencia.missao::before {
+  content: "";
+  order: -1;
+  height: 4px;
+  border-radius: 99px;
+  background:
+    linear-gradient(90deg, var(--ciano), var(--ciano)) left / var(--valor, 0%)
+      100% no-repeat,
+    var(--superficie-alt);
+}
+
 .card.missao.epica {
   border-color: rgba(255, 176, 32, 0.4);
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 176, 32, 0.1),
+    transparent 60%
+  );
 }
+
+.card.missao.epica .experiencia.missao {
+  color: var(--ambar);
+}
+
+.card.missao.epica .experiencia.missao::before {
+  background:
+    linear-gradient(90deg, var(--ambar), var(--ambar)) left / var(--valor, 0%)
+      100% no-repeat,
+    var(--superficie-alt);
+}
+
+/* ==========================================================================
+   03. PAINEL DE COMBATE
+   ========================================================================== */
 
 .painel.combate {
   display: grid;
@@ -694,7 +168,8 @@ main > section > * {
 }
 
 .lado.combate h4 {
-  font-size: 1.4rem;
+  font-family: var(--fonte-display);
+  font-size: 1.3rem;
   color: var(--ciano);
 }
 
@@ -706,6 +181,18 @@ main > section > * {
   color: var(--vermelho);
 }
 
+/* Barra de vida do inimigo em vermelho, enchendo da direita */
+.lado.combate.inimigo .preenchimento.progresso {
+  margin-left: auto;
+  transform-origin: right;
+  background-image: linear-gradient(90deg, var(--vermelho), var(--ambar));
+  box-shadow: 0 0 10px rgba(255, 59, 78, 0.5);
+}
+
+.lado.combate .barra.progresso {
+  height: 10px;
+}
+
 .vida.agente {
   font-family: var(--fonte-mono);
   font-size: 0.9rem;
@@ -713,10 +200,33 @@ main > section > * {
 }
 
 .contra {
-  font-family: var(--fonte-mono);
-  font-size: 1.5rem;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--magenta);
+  border-radius: 50%;
+  font-family: var(--fonte-display);
+  font-size: 1.1rem;
+  font-weight: 800;
   color: var(--magenta);
+  box-shadow: var(--brilho-magenta);
+  animation: pulso-vs 1.8s ease-in-out infinite;
 }
+
+@keyframes pulso-vs {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* ==========================================================================
+   04. TERMINAL DE CÓDIGO E LOG
+   ========================================================================== */
 
 .bloco.terminal {
   display: flex;
@@ -726,8 +236,9 @@ main > section > * {
 }
 
 .codigo.terminal {
+  position: relative;
   width: 100%;
-  padding: var(--espaco);
+  padding: 2.4rem var(--espaco) var(--espaco);
   border: 1px solid var(--borda);
   border-left: 3px solid var(--ciano);
   border-radius: var(--raio);
@@ -737,6 +248,21 @@ main > section > * {
   line-height: 1.8;
   color: var(--verde);
   overflow-x: auto;
+}
+
+/* Três "luzes" de janela no topo do terminal */
+.codigo.terminal::before {
+  content: "";
+  position: absolute;
+  top: 0.9rem;
+  left: 1rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--vermelho);
+  box-shadow:
+    16px 0 0 var(--ambar),
+    32px 0 0 var(--verde);
 }
 
 .dica {
@@ -753,6 +279,18 @@ main > section > * {
   font-size: 0.85rem;
   color: var(--texto-suave);
 }
+
+.lista.log li:first-child {
+  color: var(--vermelho);
+}
+
+.lista.log li:last-child {
+  color: var(--verde);
+}
+
+/* ==========================================================================
+   05. RECOMPENSAS
+   ========================================================================== */
 
 .lista.recompensas {
   display: grid;
@@ -771,326 +309,50 @@ main > section > * {
 
 .valor.recompensa {
   font-family: var(--fonte-mono);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: var(--ambar);
+  text-shadow: 0 0 10px rgba(255, 176, 32, 0.35);
+}
+
+.bloco.recompensas > .rotulo.sistema {
+  margin-bottom: var(--espaco);
 }
 
 /* ==========================================================================
-   08. RODAPÉ
+   06. RESPONSIVIDADE
    ========================================================================== */
 
-footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: var(--espaco-secao) var(--margem-lateral);
-  border-top: 1px solid var(--borda);
-  text-align: center;
-}
-
-/* ==========================================================================
-   09. ESTILOS DE FUNCIONALIDADES DE ACESSIBILIDADE
-   ========================================================================== */
-
-.grupo.acessibilidade .opcao,
-.grupo.acessibilidade .chave {
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.2s ease;
-}
-
-.grupo.acessibilidade .opcao:hover {
-  border-color: var(--magenta);
-}
-
-.chave.ativa {
-  background-color: var(--magenta) !important;
-  border-color: var(--magenta) !important;
-}
-
-.chave.ativa .botao.chave {
-  margin-left: auto !important;
-  margin-right: 2px !important;
-  background-color: #fff !important;
-}
-
-/* Modo Tema Claro */
-html[data-tema="claro"] {
-  --fundo: #f4f3f8;
-  --fundo-alt: #e9e6f2;
-  --superficie: #ffffff;
-  --superficie-alt: #eae6f5;
-  --texto: #120e21;
-  --texto-suave: #4a4458;
-  --texto-fraco: #857d99;
-  --borda: rgba(139, 61, 240, 0.25);
-  --borda-magenta: rgba(227, 0, 113, 0.4);
-}
-
-html[data-tema="claro"] header {
-  background-color: rgba(244, 243, 248, 0.95) !important;
-}
-
-/* Modo Alto Contraste */
-html.alto-contraste {
-  --fundo: #000000 !important;
-  --fundo-alt: #000000 !important;
-  --superficie: #000000 !important;
-  --superficie-alt: #111111 !important;
-  --texto: #ffffff !important;
-  --texto-suave: #ffff00 !important;
-  --borda: #ffffff !important;
-  --magenta: #ff007f !important;
-  --ciano: #00ffff !important;
-}
-
-html.alto-contraste * {
-  border-color: #ffffff !important;
-}
-
-/* Modo Redução de Movimento */
-html.sem-animacao *,
-html.sem-animacao *::before,
-html.sem-animacao *::after {
-  animation: none !important;
-  transition: none !important;
-}
-
-a:focus-visible,
-summary:focus-visible,
-button:focus-visible,
-input:focus-visible {
-  outline: 2px solid var(--ciano);
-  outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* ==========================================================================
-   10. RESPONSIVIDADE E ADAPTAÇÃO MOBILE/TABLET
-   ========================================================================== */
-
-html,
-body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-p,
-h1,
-h2,
-h3,
-h4,
-span,
-a {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-}
-
-/* Botão do Menu Hambúrguer */
-.menu-hamburguer {
-  display: none;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 24px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 101;
-}
-
-.menu-hamburguer span {
-  width: 100%;
-  height: 3px;
-  background-color: var(--ciano);
-  border-radius: 2px;
-  transition: all 0.3s linear;
-}
-
-.menu-hamburguer.ativo span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 6px);
-}
-.menu-hamburguer.ativo span:nth-child(2) {
-  opacity: 0;
-}
-.menu-hamburguer.ativo span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -6px);
-}
-
-/* 1. MODO CELULAR PEQUENO (Abaixo de 560px) */
-@media (max-width: 559px) {
-  header {
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0.8rem 1rem !important;
-    gap: 0.8rem !important;
-  }
-
-  .area.esquerda {
-    justify-content: center !important;
-    width: 100% !important;
-  }
-
-  .area.direita {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 1.5rem !important;
-    width: 100% !important;
-  }
-
-  .status.online {
-    display: none !important;
-  }
-
-  details.acessibilidade summary {
-    padding: 0.3rem 0.6rem !important;
-    font-size: 0.7rem !important;
-  }
-
-  .painel.acessibilidade {
-    position: fixed;
-    top: auto;
-    bottom: 1rem;
-    right: 1rem;
-    left: 1rem;
-    width: auto;
-    max-width: calc(100vw - 2rem);
-  }
-
+@media (max-width: 767px) {
   .painel.combate {
     grid-template-columns: 1fr;
-    text-align: left;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   .lado.combate.inimigo {
     text-align: left;
   }
 
+  .lado.combate.inimigo .preenchimento.progresso {
+    margin-left: 0;
+    transform-origin: left;
+  }
+
   .contra {
     justify-self: center;
-    margin-block: 0.5rem;
-  }
-
-  .informacoes.missao {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: none;
-    grid-auto-flow: row;
-    align-items: center;
-    gap: 0.5rem var(--espaco);
-  }
-
-  .informacoes.missao dd {
-    margin-top: 0;
-    text-align: right;
   }
 }
 
-/* 2. REGRAS DO MENU HAMBÚRGUER OVERLAY (Até 1199px) */
-@media (max-width: 1199px) {
-  .menu-hamburguer {
-    display: flex !important;
+@media (max-width: 559px) {
+  .lista.recompensas {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
   }
 
-  .menu-hamburguer.ativo {
-    position: fixed !important;
-    top: 1.2rem !important;
-    right: 1.2rem !important;
+  .abas.missoes .opcao {
+    flex: 1;
   }
 
-  header nav {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    background-color: rgba(8, 5, 17, 0.98) !important;
-    backdrop-filter: blur(12px) !important;
-    display: none !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    z-index: 99 !important;
-  }
-
-  header nav.aberto {
-    display: flex !important;
-  }
-
-  header nav ul {
-    flex-direction: column !important;
-    gap: 2rem !important;
-    text-align: center !important;
-  }
-
-  header nav a {
-    font-size: 1.2rem !important;
-  }
-}
-
-/* 3. TELAS INTERMEDIÁRIAS (560px a 1199px) */
-@media (min-width: 560px) and (max-width: 1199px) {
-  header {
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    padding: 0.8rem 1rem !important;
-    gap: 0.5rem !important;
-  }
-
-  .area.esquerda,
-  .area.direita {
-    width: auto !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.5rem !important;
-  }
-
-  .status.online {
-    display: flex !important;
-  }
-
-  .perfil.atalho,
-  .perfil.atalho img {
-    display: block !important;
-  }
-}
-
-/* 4. TELA DESKTOP COMPLETA (A partir de 1200px) */
-@media (min-width: 1200px) {
-  .menu-hamburguer {
-    display: none !important;
-  }
-
-  header nav {
-    display: flex !important;
-    position: static !important;
-    width: auto !important;
-    height: auto !important;
-    background: transparent !important;
-    backdrop-filter: none !important;
-  }
-
-  header nav ul {
-    flex-direction: row !important;
+  .codigo.terminal {
+    font-size: 0.78rem;
   }
 }

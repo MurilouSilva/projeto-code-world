@@ -1,0 +1,1676 @@
+/* ==========================================================================
+   CODEWORLD // comum/base.css
+   Estilo compartilhado por TODAS as telas do portal.
+   Cada pasta de seção carrega este arquivo primeiro e depois o seu próprio
+   style.css, que guarda apenas o que é exclusivo daquela tela.
+
+   Índice:
+   01. Reset e Base
+   02. Variáveis do Projeto (Design Tokens)
+   03. Fundo Animado do Site
+   04. Tipografia e Utilitários
+   05. Componentes Reaproveitados
+   06. Cabeçalho, Menu e Painel de Acessibilidade
+   07. Regras Gerais das Seções
+   08. Rodapé
+   09. Animações (entrada da página, revelar ao rolar, glitch)
+   10. Elementos Extras (barra de rolagem, voltar ao topo, cursor)
+   11. Estilos de Funcionalidades de Acessibilidade
+   12. Responsividade (Tablet / Mobile)
+   ========================================================================== */
+
+/* ==========================================================================
+   01. RESET E BASE
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte-texto);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+li,
+dd {
+  overflow-wrap: break-word;
+}
+
+input,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+::selection {
+  background-color: var(--magenta);
+  color: #fff;
+}
+
+/* ==========================================================================
+   02. VARIÁVEIS DO PROJETO (DESIGN TOKENS)
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* Cores da Marca */
+  --magenta: #e30071;
+  --magenta-claro: #ff3d9a;
+  --ciano: #00f2fe;
+  --verde: #29f58a;
+  --ambar: #ffb020;
+  --vermelho: #ff3b4e;
+  --roxo: #8b3df0;
+
+  /* Fundos e Superfícies */
+  --fundo: #08060f;
+  --fundo-alt: #0d0a16;
+  --superficie: rgba(20, 17, 31, 0.9);
+  --superficie-solida: #14111f;
+  --superficie-alt: #1b1729;
+  --cabecalho: rgba(8, 5, 17, 0.72);
+  --grade: rgba(0, 242, 254, 0.045);
+
+  /* Bordas */
+  --borda: rgba(0, 242, 254, 0.18);
+  --borda-forte: rgba(0, 242, 254, 0.45);
+  --borda-magenta: rgba(227, 0, 113, 0.45);
+
+  /* Texto */
+  --texto: #e8e6f0;
+  --texto-suave: #a39db6;
+  --texto-fraco: #6a6380;
+
+  /* Brilhos Neon e Sombras */
+  --brilho-magenta: 0 0 18px rgba(227, 0, 113, 0.45);
+  --brilho-ciano: 0 0 18px rgba(0, 242, 254, 0.35);
+  --sombra: 0 18px 40px rgba(0, 0, 0, 0.45);
+
+  /* Tipografia */
+  --fonte-display: "Orbitron", sans-serif;
+  --fonte-texto: "Chakra Petch", sans-serif;
+  --fonte-mono: "Share Tech Mono", monospace;
+
+  /* Medidas e Espaçamentos */
+  --espaco: clamp(1rem, 2vw, 1.5rem);
+  --espaco-secao: clamp(3rem, 6vw, 6rem);
+  --margem-lateral: clamp(1rem, 4vw, 2.5rem);
+  --largura-conteudo: 1200px;
+  --raio: 6px;
+  --altura-cabecalho: 68px;
+
+  /* Movimento */
+  --suave: cubic-bezier(0.22, 1, 0.36, 1);
+  --rapido: 180ms;
+}
+
+/* ==========================================================================
+   03. FUNDO ANIMADO DO SITE
+   Brilhos de neon + uma grade digital ao fundo.
+   ========================================================================== */
+
+body {
+  background-image:
+    radial-gradient(
+      ellipse 70% 45% at 15% -5%,
+      rgba(227, 0, 113, 0.14),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 100% 100%,
+      rgba(0, 242, 254, 0.08),
+      transparent 60%
+    );
+  background-attachment: fixed;
+}
+
+/* Grade digital (fixa: animar uma camada de tela cheia pesa no celular) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--grade) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grade) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+  pointer-events: none;
+}
+
+/* Linhas de varredura (efeito de monitor antigo) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.025) 0 1px,
+    transparent 1px 3px
+  );
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   04. TIPOGRAFIA E UTILITÁRIOS
+   ========================================================================== */
+
+.rotulo.sistema {
+  font-family: var(--fonte-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+}
+
+.destaque {
+  color: var(--magenta);
+  text-shadow: var(--brilho-magenta);
+}
+
+.credito {
+  font-family: var(--fonte-display);
+  font-size: clamp(0.95rem, 2.2vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--texto-suave);
+}
+
+.contagem {
+  font-family: var(--fonte-mono);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1;
+  color: var(--ciano);
+  text-shadow: var(--brilho-ciano);
+}
+
+/* Cursor intermitente estilo terminal */
+.cursor {
+  display: inline-block;
+  color: var(--verde);
+  animation: piscar 1s steps(2, start) infinite;
+}
+
+@keyframes piscar {
+  50% {
+    opacity: 0;
+  }
+}
+
+.linhas.console {
+  font-family: var(--fonte-mono);
+  font-size: 0.85rem;
+  line-height: 1.9;
+  color: var(--verde);
+  text-shadow: 0 0 8px rgba(41, 245, 138, 0.35);
+  word-break: break-word;
+}
+
+.linhas.console .linha {
+  display: block;
+  min-height: 1.9em;
+}
+
+/* Texto visível só para leitores de tela */
+.somente-leitor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   05. COMPONENTES REAPROVEITADOS
+   ========================================================================== */
+
+/* --- 5.1 Botões Primários e Secundários --- */
+.botao.primario,
+.botao.secundario {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid transparent;
+  border-radius: var(--raio);
+  font-family: var(--fonte-texto);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color var(--rapido) ease,
+    box-shadow var(--rapido) ease,
+    color var(--rapido) ease,
+    transform var(--rapido) ease;
+}
+
+/* Reflexo de luz que atravessa o botão no hover */
+.botao.primario::after,
+.botao.secundario::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 600ms var(--suave);
+}
+
+.botao.primario:hover::after,
+.botao.secundario:hover::after,
+.botao.primario:focus-visible::after,
+.botao.secundario:focus-visible::after {
+  transform: translateX(120%);
+}
+
+.botao.primario:hover,
+.botao.secundario:hover {
+  transform: translateY(-2px);
+}
+
+.botao.primario:active,
+.botao.secundario:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.botao.primario {
+  background-color: var(--magenta);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(227, 0, 113, 0.3);
+}
+
+.botao.primario:hover,
+.botao.primario:focus-visible {
+  background-color: var(--magenta-claro);
+  box-shadow:
+    var(--brilho-magenta),
+    0 10px 28px rgba(227, 0, 113, 0.4);
+}
+
+.botao.secundario {
+  background-color: rgba(0, 242, 254, 0.04);
+  border-color: var(--ciano);
+  color: var(--ciano);
+}
+
+.botao.secundario:hover,
+.botao.secundario:focus-visible {
+  background-color: rgba(0, 242, 254, 0.12);
+  box-shadow: var(--brilho-ciano);
+}
+
+.botao span[aria-hidden="true"] {
+  transition: transform var(--rapido) ease;
+}
+
+.botao:hover span[aria-hidden="true"] {
+  transform: translateX(4px);
+}
+
+/* --- 5.2 Selos de Status --- */
+.selo.status,
+.selo.ameaca,
+.selo.bloqueado,
+.selo.principal,
+.selo.secundaria,
+.selo.epica {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  align-self: flex-start;
+  justify-self: start;
+  padding: 0.2rem 0.75rem;
+  border: 1px solid currentColor;
+  border-radius: 99px;
+  background-color: color-mix(in srgb, currentColor 8%, transparent);
+  font-family: var(--fonte-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.selo.status {
+  color: var(--verde);
+}
+
+/* Bolinha pulsante no selo de status */
+.selo.status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  box-shadow: 0 0 6px currentColor;
+  animation: pulso 1.6s ease-in-out infinite;
+}
+
+.selo.ameaca,
+.selo.principal {
+  color: var(--vermelho);
+}
+
+.selo.ameaca {
+  animation: alerta 1.8s ease-in-out infinite;
+}
+
+.selo.bloqueado {
+  color: var(--texto-fraco);
+}
+
+.selo.secundaria {
+  color: var(--ciano);
+}
+
+.selo.epica {
+  color: var(--ambar);
+}
+
+@keyframes pulso {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.7);
+  }
+}
+
+@keyframes alerta {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(255, 59, 78, 0);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(255, 59, 78, 0.45);
+  }
+}
+
+/* --- 5.3 Botões de Opção (Painéis e Abas) --- */
+.opcao {
+  min-height: 34px;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--superficie-alt);
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  color: var(--texto-suave);
+  text-align: center;
+  white-space: nowrap;
+  transition:
+    border-color var(--rapido) ease,
+    background-color var(--rapido) ease,
+    color var(--rapido) ease;
+}
+
+.opcao:hover {
+  border-color: var(--borda-forte);
+  color: var(--texto);
+}
+
+.opcao.ativa {
+  border-color: var(--magenta);
+  background-color: rgba(227, 0, 113, 0.14);
+  color: var(--texto);
+  box-shadow: inset 0 0 12px rgba(227, 0, 113, 0.18);
+}
+
+.opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.opcoes .opcao {
+  flex: 1;
+}
+
+/* --- 5.4 Barra de Progresso --- */
+/* A largura vem da variável --valor, escrita no HTML (ex.: style="--valor: 85%") */
+.barra.progresso {
+  width: 100%;
+  height: 6px;
+  border-radius: 99px;
+  background-color: var(--superficie-alt);
+  overflow: hidden;
+}
+
+.preenchimento.progresso {
+  height: 100%;
+  width: var(--valor, 0%);
+  border-radius: 99px;
+  background-image: linear-gradient(
+    90deg,
+    var(--magenta),
+    var(--magenta-claro),
+    var(--ciano)
+  );
+  background-size: 200% 100%;
+  box-shadow: 0 0 10px rgba(227, 0, 113, 0.5);
+  transform-origin: left;
+  animation: brilho-barra 3s linear infinite;
+}
+
+/* Quando o JS está ativo a barra começa vazia e enche ao aparecer na tela */
+.js .preenchimento.progresso {
+  transform: scaleX(0);
+  transition: transform 1.4s var(--suave) 200ms;
+}
+
+.js .visivel .preenchimento.progresso,
+.js .preenchimento.progresso.visivel {
+  transform: scaleX(1);
+}
+
+@keyframes brilho-barra {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* --- 5.5 Painéis e Cartões Base --- */
+.painel.progresso,
+.painel.filtros,
+.painel.controles,
+.painel.detalhes,
+.painel.combate,
+.bloco.terminal,
+.bloco.log,
+.bloco.diagnostico,
+.cartao.operador,
+.card.linguagem,
+.card.agente,
+.card.territorio,
+.card.missao,
+.card.evento,
+.card.recompensa,
+.card.arquivo,
+.formulario.dados,
+.formulario.senha {
+  position: relative;
+  padding: var(--espaco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--superficie);
+}
+
+/* Cartões ganham uma linha de luz no topo e brilho no hover */
+[class*="card "] {
+  transition:
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    transform 300ms var(--suave);
+}
+
+[class*="card "]::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--ciano), transparent);
+  opacity: 0;
+  transform: scaleX(0.3);
+  transition:
+    opacity 300ms ease,
+    transform 400ms var(--suave);
+  pointer-events: none;
+}
+
+[class*="card "]:hover {
+  border-color: var(--borda-forte);
+  box-shadow: var(--sombra);
+}
+
+[class*="card "]:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Título dos blocos e painéis */
+.bloco h3,
+.painel h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: var(--espaco);
+  font-family: var(--fonte-display);
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ciano);
+}
+
+.bloco h3::before,
+.painel h3::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+/* Lista de informações (Mapa e Missões) */
+.informacoes.nivel,
+.informacoes.missao {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(140px, 1fr);
+  gap: 0 var(--espaco);
+  width: 100%;
+  margin-top: 0.5rem;
+  padding-top: var(--espaco);
+  border-top: 1px solid var(--borda);
+}
+
+.informacoes.nivel dd,
+.informacoes.missao dd {
+  margin-top: 0.2rem;
+  font-weight: 700;
+  color: var(--ciano);
+}
+
+/* --- 5.6 Teclas e Chaves de Alternância (Switches) --- */
+.tecla {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 0.4rem;
+  border: 1px solid var(--borda);
+  border-bottom-width: 3px;
+  border-radius: var(--raio);
+  background-color: var(--superficie-alt);
+  font-family: var(--fonte-mono);
+  font-size: 0.8rem;
+  color: var(--ciano);
+}
+
+.chave {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 42px;
+  height: 22px;
+  border: 1px solid var(--borda);
+  border-radius: 99px;
+  background-color: var(--superficie-alt);
+  cursor: pointer;
+  transition:
+    background-color 250ms ease,
+    border-color 250ms ease;
+}
+
+.chave-bolinha {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--texto-suave);
+  transition:
+    transform 300ms var(--suave),
+    background-color 250ms ease;
+}
+
+.chave.ativa {
+  background-color: var(--magenta);
+  border-color: var(--magenta);
+  box-shadow: var(--brilho-magenta);
+}
+
+.chave.ativa .chave-bolinha {
+  transform: translateX(20px);
+  background-color: #fff;
+}
+
+/* ==========================================================================
+   06. CABEÇALHO, MENU E PAINEL DE ACESSIBILIDADE
+   ========================================================================== */
+
+/* Link "pular para o conteúdo" (aparece só ao navegar pelo teclado) */
+.pular-conteudo {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 10001;
+  padding: 0.6rem 1rem;
+  border-radius: var(--raio);
+  background-color: var(--magenta);
+  color: #fff;
+  font-weight: 700;
+  transform: translateY(-150%);
+  transition: transform var(--rapido) ease;
+}
+
+.pular-conteudo:focus {
+  transform: translateY(0);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco);
+  min-height: var(--altura-cabecalho);
+  padding: 0.6rem var(--margem-lateral);
+  border-bottom: 1px solid rgba(227, 0, 113, 0.22);
+  transition:
+    min-height 300ms var(--suave),
+    box-shadow 300ms ease;
+}
+
+/* O desfoque fica num pseudo-elemento: se ficasse no próprio header, o menu
+   em tela cheia (position: fixed) ficaria preso dentro dele */
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--cabecalho);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+/* Cabeçalho mais compacto depois de rolar a página (classe posta pelo JS) */
+header.rolado {
+  --altura-cabecalho: 56px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.area.esquerda,
+.area.direita {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+
+.area.direita {
+  gap: 0.9rem;
+}
+
+/* Nada do lado direito pode ser "espremido" quando falta espaço */
+.area.direita > * {
+  flex-shrink: 0;
+}
+
+/* --- 6.1 Logo com efeito glitch --- */
+.logo a {
+  position: relative;
+  display: inline-block;
+  font-family: var(--fonte-display);
+  font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--magenta);
+  text-shadow: var(--brilho-magenta);
+  white-space: nowrap;
+}
+
+.logo a::before,
+.logo a::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.logo a::before {
+  color: var(--ciano);
+}
+
+.logo a::after {
+  color: var(--verde);
+}
+
+.logo a:hover::before,
+.logo a:focus-visible::before {
+  opacity: 0.8;
+  animation: glitch-a 500ms steps(2, end) infinite;
+}
+
+.logo a:hover::after,
+.logo a:focus-visible::after {
+  opacity: 0.6;
+  animation: glitch-b 400ms steps(2, end) infinite;
+}
+
+/* --- 6.2 Navegação principal --- */
+header nav ul {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.2rem, 0.8vw, 1rem);
+}
+
+header nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--texto-suave);
+  white-space: nowrap;
+  transition: color var(--rapido) ease;
+}
+
+/* Número da seção ("01", "02"...) */
+header nav .indice {
+  font-family: var(--fonte-mono);
+  font-size: 0.65rem;
+  color: var(--magenta);
+  opacity: 0.7;
+}
+
+/* Sublinhado neon que cresce no hover */
+header nav a::after {
+  content: "";
+  position: absolute;
+  left: 0.7rem;
+  right: 0.7rem;
+  bottom: 0.2rem;
+  height: 2px;
+  background-color: var(--magenta);
+  box-shadow: var(--brilho-magenta);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 300ms var(--suave);
+}
+
+header nav a:hover {
+  color: var(--texto);
+}
+
+header nav a:hover::after,
+header nav a.ativo::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+header nav a.ativo {
+  color: var(--magenta);
+}
+
+/* --- 6.3 Status online e atalho do perfil --- */
+.status.online {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  color: var(--verde);
+  white-space: nowrap;
+}
+
+.ponto {
+  font-size: 0.6rem;
+  text-shadow: 0 0 6px var(--verde);
+  animation: pulso 1.4s ease-in-out infinite;
+}
+
+.perfil.atalho {
+  display: block;
+  border-radius: 50%;
+  transition:
+    box-shadow var(--rapido) ease,
+    transform var(--rapido) ease;
+}
+
+.perfil.atalho:hover {
+  box-shadow: var(--brilho-ciano);
+  transform: scale(1.06);
+}
+
+.perfil.atalho img {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--borda-forte);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* --- 6.4 Botão Hambúrguer --- */
+.menu-hamburguer {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+}
+
+.menu-hamburguer span {
+  position: absolute;
+  left: 11px;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--ciano);
+  transition:
+    transform 350ms var(--suave),
+    opacity 200ms ease,
+    top 350ms var(--suave);
+}
+
+.menu-hamburguer span:nth-child(1) {
+  top: 14px;
+}
+.menu-hamburguer span:nth-child(2) {
+  top: 20px;
+}
+.menu-hamburguer span:nth-child(3) {
+  top: 26px;
+}
+
+.menu-hamburguer.ativo span:nth-child(1) {
+  top: 20px;
+  transform: rotate(45deg);
+}
+.menu-hamburguer.ativo span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.menu-hamburguer.ativo span:nth-child(3) {
+  top: 20px;
+  transform: rotate(-45deg);
+}
+
+/* --- 6.5 Painel de Acessibilidade --- */
+details.acessibilidade {
+  position: relative;
+}
+
+details.acessibilidade summary {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 40px;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--ciano);
+  border-radius: var(--raio);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--ciano);
+  white-space: nowrap;
+  cursor: pointer;
+  list-style: none;
+  transition:
+    background-color var(--rapido) ease,
+    box-shadow var(--rapido) ease;
+}
+
+details.acessibilidade summary::-webkit-details-marker {
+  display: none;
+}
+
+details.acessibilidade summary:hover,
+details.acessibilidade[open] summary {
+  background-color: rgba(0, 242, 254, 0.12);
+  box-shadow: var(--brilho-ciano);
+}
+
+.painel.acessibilidade {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 290px;
+  padding: var(--espaco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--superficie-solida);
+  box-shadow: var(--sombra);
+  transform-origin: top right;
+}
+
+details[open] .painel.acessibilidade {
+  animation: painel-abre 300ms var(--suave);
+}
+
+@keyframes painel-abre {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+}
+
+.titulo.painel {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--magenta);
+  font-weight: 700;
+}
+
+.grupo.acessibilidade {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.grupo.acessibilidade:has(.chave) {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ==========================================================================
+   07. REGRAS GERAIS DAS SEÇÕES
+   ========================================================================== */
+
+main > section {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--espaco-secao) / 2);
+  padding: var(--espaco-secao) var(--margem-lateral);
+  scroll-margin-top: var(--altura-cabecalho);
+}
+
+main > section > * {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--largura-conteudo);
+  margin-inline: auto;
+}
+
+.visual.fundo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  object-fit: cover;
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+/* Título de abertura de cada seção */
+.visao.geral {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--magenta);
+  box-shadow: -8px 0 20px -12px var(--magenta);
+}
+
+.visao.geral h2 {
+  font-family: var(--fonte-display);
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.visao.geral p:not(.rotulo) {
+  max-width: 65ch;
+  color: var(--texto-suave);
+  font-size: 1.02rem;
+}
+
+/* ==========================================================================
+   08. RODAPÉ
+   ========================================================================== */
+
+body > footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--espaco-secao) var(--margem-lateral);
+  border-top: 1px solid var(--borda);
+  background-color: var(--fundo-alt);
+  text-align: center;
+}
+
+/* Linha de luz animada no topo do rodapé */
+body > footer::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--magenta),
+    var(--ciano),
+    transparent
+  );
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+  animation: varredura 6s linear infinite;
+}
+
+.logo.rodape {
+  font-family: var(--fonte-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--magenta);
+  text-shadow: var(--brilho-magenta);
+}
+
+@keyframes varredura {
+  from {
+    background-position: -100% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+/* ==========================================================================
+   09. ANIMAÇÕES
+   ========================================================================== */
+
+/* --- 9.1 Entrada e saída da página --- */
+body {
+  animation: pagina-entra 600ms var(--suave) both;
+}
+
+body.saindo {
+  animation: pagina-sai 250ms ease-in both;
+}
+
+@keyframes pagina-entra {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes pagina-sai {
+  to {
+    opacity: 0;
+  }
+}
+
+/* --- 9.2 Revelar ao rolar ---
+   O JS marca os blocos com .revelar e acrescenta .visivel quando eles
+   entram na tela. Usa "translate" (e não "transform") para não brigar com
+   os efeitos de hover dos cartões. */
+.js .revelar:not(.visivel) {
+  opacity: 0;
+}
+
+.js .revelar.visivel {
+  animation: revelar 800ms var(--suave) both;
+  animation-delay: calc(var(--ordem, 0) * 90ms);
+}
+
+@keyframes revelar {
+  from {
+    opacity: 0;
+    translate: 0 28px;
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    filter: blur(0);
+  }
+}
+
+/* --- 9.3 Glitch (logo e título do Nexus) --- */
+@keyframes glitch-a {
+  0% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(-3px, -1px);
+  }
+  50% {
+    clip-path: inset(55% 0 20% 0);
+    transform: translate(3px, 1px);
+  }
+  100% {
+    clip-path: inset(30% 0 45% 0);
+    transform: translate(-2px, 0);
+  }
+}
+
+@keyframes glitch-b {
+  0% {
+    clip-path: inset(65% 0 10% 0);
+    transform: translate(3px, 1px);
+  }
+  50% {
+    clip-path: inset(20% 0 60% 0);
+    transform: translate(-3px, -1px);
+  }
+  100% {
+    clip-path: inset(40% 0 35% 0);
+    transform: translate(2px, 0);
+  }
+}
+
+/* ==========================================================================
+   10. ELEMENTOS EXTRAS
+   ========================================================================== */
+
+/* --- 10.1 Barra de progresso da rolagem (topo da tela) --- */
+.barra-rolagem {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--magenta), var(--ciano));
+  box-shadow: 0 0 8px var(--magenta);
+  transform: scaleX(var(--rolagem, 0));
+  transform-origin: left;
+  pointer-events: none;
+}
+
+/* --- 10.2 Botão voltar ao topo (criado pelo JS) --- */
+.voltar-topo {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--ciano);
+  border-radius: 50%;
+  background-color: var(--superficie-solida);
+  color: var(--ciano);
+  font-size: 1.1rem;
+  box-shadow: var(--brilho-ciano);
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  pointer-events: none;
+  transition:
+    opacity 300ms ease,
+    transform 300ms var(--suave),
+    background-color var(--rapido) ease;
+}
+
+.voltar-topo.visivel {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.voltar-topo:hover {
+  background-color: rgba(0, 242, 254, 0.15);
+}
+
+/* --- 10.3 Cursor customizado (apenas mouse/touchpad) --- */
+.cursor-inner,
+.cursor-outer {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html.cursor-ativo,
+  html.cursor-ativo body,
+  html.cursor-ativo a,
+  html.cursor-ativo button,
+  html.cursor-ativo summary,
+  html.cursor-ativo .opcao,
+  html.cursor-ativo .chave {
+    cursor: none;
+  }
+
+  html.cursor-ativo .cursor-inner,
+  html.cursor-ativo .cursor-outer {
+    display: block;
+  }
+
+  .cursor-inner,
+  .cursor-outer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .cursor-inner {
+    z-index: 10000;
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    background-color: var(--ciano);
+    box-shadow: 0 0 8px var(--ciano);
+    transition:
+      width 0.2s,
+      height 0.2s,
+      margin 0.2s,
+      background-color 0.2s;
+  }
+
+  .cursor-outer {
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 1px solid var(--magenta);
+    transition:
+      width 0.3s ease-out,
+      height 0.3s ease-out,
+      margin 0.3s ease-out,
+      border-color 0.3s,
+      background-color 0.3s;
+  }
+
+  html.cursor-ativo body.hovered .cursor-inner {
+    width: 12px;
+    height: 12px;
+    margin: -6px 0 0 -6px;
+    background-color: var(--verde);
+  }
+
+  html.cursor-ativo body.hovered .cursor-outer {
+    width: 60px;
+    height: 60px;
+    margin: -30px 0 0 -30px;
+    border-color: var(--verde);
+    background-color: rgba(41, 245, 138, 0.08);
+  }
+
+  /* O ponteiro some quando sai da janela */
+  html.cursor-ativo body.cursor-fora .cursor-inner,
+  html.cursor-ativo body.cursor-fora .cursor-outer {
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   11. ESTILOS DE FUNCIONALIDADES DE ACESSIBILIDADE
+   ========================================================================== */
+
+.grupo.acessibilidade .opcao,
+.grupo.acessibilidade .chave {
+  cursor: pointer;
+  user-select: none;
+}
+
+a:focus-visible,
+summary:focus-visible,
+button:focus-visible,
+input:focus-visible,
+.opcao:focus-visible {
+  outline: 2px solid var(--ciano);
+  outline-offset: 3px;
+}
+
+/* --- 11.1 Tema Claro --- */
+html[data-tema="claro"] {
+  color-scheme: light;
+  --magenta: #c8005f;
+  --magenta-claro: #e3197b;
+  --ciano: #00798f;
+  --verde: #0a8a4a;
+  --ambar: #a35f00;
+  --vermelho: #d41f33;
+
+  --fundo: #f4f3f8;
+  --fundo-alt: #ebe8f3;
+  --superficie: rgba(255, 255, 255, 0.85);
+  --superficie-solida: #ffffff;
+  --superficie-alt: #ece8f6;
+  --cabecalho: rgba(244, 243, 248, 0.8);
+  --grade: rgba(139, 61, 240, 0.06);
+
+  --texto: #120e21;
+  --texto-suave: #4a4458;
+  --texto-fraco: #857d99;
+  --borda: rgba(139, 61, 240, 0.22);
+  --borda-forte: rgba(0, 121, 143, 0.55);
+  --borda-magenta: rgba(200, 0, 95, 0.4);
+
+  --brilho-magenta: 0 0 14px rgba(200, 0, 95, 0.2);
+  --brilho-ciano: 0 0 14px rgba(0, 121, 143, 0.2);
+  --sombra: 0 14px 30px rgba(40, 20, 80, 0.12);
+}
+
+html[data-tema="claro"] body::after {
+  display: none;
+}
+
+html[data-tema="claro"] .linhas.console {
+  text-shadow: none;
+}
+
+/* --- 11.2 Alto Contraste --- */
+html.alto-contraste {
+  --fundo: #000000 !important;
+  --fundo-alt: #000000 !important;
+  --superficie: #000000 !important;
+  --superficie-solida: #000000 !important;
+  --superficie-alt: #111111 !important;
+  --cabecalho: #000000 !important;
+  --texto: #ffffff !important;
+  --texto-suave: #ffff00 !important;
+  --texto-fraco: #cccccc !important;
+  --borda: #ffffff !important;
+  --borda-forte: #ffffff !important;
+  --magenta: #ff007f !important;
+  --ciano: #00ffff !important;
+}
+
+html.alto-contraste body {
+  background-image: none;
+}
+
+html.alto-contraste body::before,
+html.alto-contraste body::after {
+  display: none;
+}
+
+html.alto-contraste * {
+  border-color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+/* --- 11.3 Reduzir Movimento ---
+   Vale tanto para a chave do painel (html.sem-animacao) quanto para a
+   preferência do sistema operacional. */
+html.sem-animacao *,
+html.sem-animacao *::before,
+html.sem-animacao *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+html.sem-animacao .revelar,
+html.sem-animacao .preenchimento.progresso {
+  opacity: 1 !important;
+  transform: none !important;
+  translate: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   12. RESPONSIVIDADE
+   ========================================================================== */
+
+/* --- 12.0 Desktop estreito: menu completo, mas mais enxuto --- */
+@media (min-width: 1200px) and (max-width: 1439px) {
+  header nav .indice,
+  .status.online {
+    display: none;
+  }
+
+  header nav a {
+    padding-inline: 0.55rem;
+  }
+
+  header nav a::after {
+    left: 0.55rem;
+    right: 0.55rem;
+  }
+}
+
+/* --- 12.1 Menu em tela cheia (até 1199px) --- */
+@media (max-width: 1199px) {
+  .menu-hamburguer {
+    display: block;
+  }
+
+  header nav {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--altura-cabecalho) + 1rem) 1.5rem 2rem;
+    background-color: var(--fundo);
+    background-image:
+      radial-gradient(
+        circle at 50% 30%,
+        rgba(227, 0, 113, 0.18),
+        transparent 60%
+      ),
+      linear-gradient(var(--grade) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grade) 1px, transparent 1px);
+    background-size:
+      auto,
+      40px 40px,
+      40px 40px;
+    clip-path: circle(0 at calc(100% - 2.5rem) 2rem);
+    visibility: hidden;
+    transition:
+      clip-path 600ms var(--suave),
+      visibility 0s linear 600ms;
+  }
+
+  header nav.aberto {
+    clip-path: circle(150% at calc(100% - 2.5rem) 2rem);
+    visibility: visible;
+    transition:
+      clip-path 700ms var(--suave),
+      visibility 0s;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.4rem;
+    width: min(100%, 360px);
+  }
+
+  header nav li {
+    opacity: 0;
+    transform: translateX(-24px);
+    transition:
+      opacity 400ms ease,
+      transform 500ms var(--suave);
+  }
+
+  header nav.aberto li {
+    opacity: 1;
+    transform: none;
+    transition-delay: calc(150ms + var(--ordem, 0) * 60ms);
+  }
+
+  header nav a {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    background-color: var(--superficie);
+    font-family: var(--fonte-display);
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+  }
+
+  header nav a::after {
+    left: 1rem;
+    right: auto;
+    width: 40px;
+    bottom: 0.45rem;
+  }
+
+  header nav a.ativo {
+    border-color: var(--magenta);
+    box-shadow: var(--brilho-magenta);
+  }
+
+  html.menu-aberto {
+    overflow: hidden;
+  }
+}
+
+/* --- 12.2 Tablet / celular grande --- */
+@media (max-width: 767px) {
+  :root {
+    --altura-cabecalho: 60px;
+  }
+
+  .status.online {
+    display: none;
+  }
+
+  .area.direita {
+    gap: 0.6rem;
+  }
+
+  /* No celular o painel vira uma "gaveta" que sobe da parte de baixo */
+  .painel.acessibilidade {
+    position: fixed;
+    top: auto;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    width: auto;
+    max-height: calc(100dvh - var(--altura-cabecalho) - 1.5rem);
+    overflow-y: auto;
+    transform-origin: bottom center;
+  }
+
+  details[open] .painel.acessibilidade {
+    animation: gaveta-sobe 400ms var(--suave);
+  }
+
+  @keyframes gaveta-sobe {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+  }
+
+  .informacoes.nivel,
+  .informacoes.missao {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
+    align-items: center;
+    gap: 0.5rem var(--espaco);
+  }
+
+  .informacoes.nivel dd,
+  .informacoes.missao dd {
+    margin-top: 0;
+    text-align: right;
+  }
+}
+
+/* --- 12.3 Celular pequeno --- */
+@media (max-width: 559px) {
+  /* O botão de acessibilidade mostra só o ícone */
+  details.acessibilidade summary {
+    padding: 0.45rem 0.7rem;
+  }
+
+  details.acessibilidade summary [data-i18n="btn_acessibilidade"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .botao.primario,
+  .botao.secundario {
+    width: 100%;
+  }
+}

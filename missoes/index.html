@@ -1,30 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <!-- Configurações fundamentais de codificação e responsividade -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="CodeWorld por 11 estudantes de tecnologia" />
+    <meta name="theme-color" content="#08060f" />
     <title>CodeWorld - Missões</title>
 
     <!-- Importação de fontes externas via Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@400;600&family=Share+Tech+Mono&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@500;700;800;900&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Folha de estilos principal do projeto -->
+    <!-- Estilo compartilhado por todas as telas -->
+    <link rel="stylesheet" href="../comum/base.css" />
+    <!-- Estilo exclusivo desta tela -->
     <link rel="stylesheet" href="style.css" />
-
     <!-- Complemento do painel de acessibilidade: tradução e reduzir movimento -->
     <link rel="stylesheet" href="../comum/idioma-e-movimento.css" />
-
-    <!-- Biblioteca i18next para suporte a internacionalização -->
-    <script src="https://unpkg.com/i18next@23.11.5/i18next.min.js"></script>
   </head>
   <body>
+    <!-- Atalho de teclado para pular direto ao conteúdo -->
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+    <!-- Barra fina que mostra o quanto da página já foi rolado -->
+    <div class="barra-rolagem" aria-hidden="true"></div>
+
+    <!-- Cursor Duplo (Tympanus Sketch 012) — só aparece em telas com mouse -->
+    <div class="cursor-inner" aria-hidden="true"></div>
+    <div class="cursor-outer" aria-hidden="true"></div>
+
     <!-- ===================================================================
          CABEÇALHO PRINCIPAL DA PÁGINA
          =================================================================== -->
@@ -32,25 +41,55 @@
       <!-- Área Esquerda: Logo do Projeto -->
       <div class="area esquerda">
         <div class="logo">
-          <a href="../nexus/index.html#CODEWORLD">CODEWORLD</a>
+          <a href="../nexus/index.html#CODEWORLD" data-text="CODEWORLD">CODEWORLD</a>
         </div>
       </div>
 
       <!-- Menu de Navegação Central -->
-      <nav aria-label="Navegação principal">
+      <nav id="menu-principal" aria-label="Navegação principal">
         <ul>
-          <li><a href="../nexus/index.html#CODEWORLD" data-i18n="nav_nexus">NEXUS</a></li>
-          <li><a href="../universo/index.html#SECAO-UNIVERSO" data-i18n="nav_universo">UNIVERSO</a></li>
-          <li><a href="../personagens/index.html#SECAO-PERSONAGENS" data-i18n="nav_personagens">PERSONAGENS</a></li>
-          <li><a href="../mapa/index.html#SECAO-MAPA" data-i18n="nav_mapa">MAPA</a></li>
-          <li><a href="../missoes/index.html#SECAO-MISSOES" data-i18n="nav_missoes" class="ativo">MISSÕES</a></li>
-          <li><a href="../arquivos/index.html#SECAO-ARQUIVOS" data-i18n="nav_arquivos">ARQUIVOS</a></li>
+          <li>
+            <a href="../nexus/index.html#CODEWORLD">
+              <span class="indice" aria-hidden="true">01</span>
+              <span data-i18n="nav_nexus">NEXUS</span>
+            </a>
+          </li>
+          <li>
+            <a href="../universo/index.html#SECAO-UNIVERSO">
+              <span class="indice" aria-hidden="true">02</span>
+              <span data-i18n="nav_universo">UNIVERSO</span>
+            </a>
+          </li>
+          <li>
+            <a href="../personagens/index.html#SECAO-PERSONAGENS">
+              <span class="indice" aria-hidden="true">03</span>
+              <span data-i18n="nav_personagens">PERSONAGENS</span>
+            </a>
+          </li>
+          <li>
+            <a href="../mapa/index.html#SECAO-MAPA">
+              <span class="indice" aria-hidden="true">04</span>
+              <span data-i18n="nav_mapa">MAPA</span>
+            </a>
+          </li>
+          <li>
+            <a href="../missoes/index.html#SECAO-MISSOES" class="ativo" aria-current="page">
+              <span class="indice" aria-hidden="true">05</span>
+              <span data-i18n="nav_missoes">MISSÕES</span>
+            </a>
+          </li>
+          <li>
+            <a href="../arquivos/index.html#SECAO-ARQUIVOS">
+              <span class="indice" aria-hidden="true">06</span>
+              <span data-i18n="nav_arquivos">ARQUIVOS</span>
+            </a>
+          </li>
         </ul>
       </nav>
 
       <!-- Área Direita: Status Online, Painel de Acessibilidade e Perfil -->
       <div class="area direita">
-        <!-- Indicador de Status do Sistema -->
+        <!-- Indicador do Status do Sistema -->
         <p class="status online">
           <span class="ponto" aria-hidden="true">●</span>
           <span data-i18n="status_online">ONLINE</span>
@@ -62,7 +101,7 @@
             <span aria-hidden="true">▣</span>
             <span data-i18n="btn_acessibilidade">ACESSIBILIDADE</span>
           </summary>
-          
+
           <div class="painel acessibilidade">
             <p class="rotulo sistema">[ SISTEMA ]</p>
             <p class="titulo painel" data-i18n="titulo_painel">PAINEL DE ACESSIBILIDADE</p>
@@ -71,8 +110,8 @@
             <div class="grupo acessibilidade">
               <p class="rotulo sistema" data-i18n="lbl_idioma">IDIOMA / LANGUAGE</p>
               <div class="opcoes">
-                <span class="opcao ativa">PT-BR</span>
-                <span class="opcao">EN</span>
+                <button type="button" class="opcao ativa">PT-BR</button>
+                <button type="button" class="opcao">EN</button>
               </div>
             </div>
 
@@ -80,8 +119,8 @@
             <div class="grupo acessibilidade">
               <p class="rotulo sistema" data-i18n="lbl_tema">TEMA</p>
               <div class="opcoes">
-                <span class="opcao ativa" data-i18n="opt_escuro">ESCURO</span>
-                <span class="opcao" data-i18n="opt_claro">CLARO</span>
+                <button type="button" class="opcao ativa" data-tema-opcao="escuro" data-i18n="opt_escuro">ESCURO</button>
+                <button type="button" class="opcao" data-tema-opcao="claro" data-i18n="opt_claro">CLARO</button>
               </div>
             </div>
 
@@ -89,27 +128,43 @@
             <div class="grupo acessibilidade">
               <p class="rotulo sistema" data-i18n="lbl_fonte">TAMANHO DA FONTE</p>
               <div class="opcoes">
-                <span class="opcao">A-</span>
-                <span class="opcao ativa">A</span>
-                <span class="opcao">A+</span>
-                <span class="opcao">A++</span>
+                <button type="button" class="opcao" data-fonte="a-" aria-label="Fonte menor">A-</button>
+                <button type="button" class="opcao ativa" data-fonte="a" aria-label="Fonte normal">A</button>
+                <button type="button" class="opcao" data-fonte="a+" aria-label="Fonte maior">A+</button>
+                <button type="button" class="opcao" data-fonte="a++" aria-label="Fonte muito maior">A++</button>
               </div>
             </div>
 
-            <!-- Toggle de Alto Contraste -->
+            <!-- Chave de Alto Contraste -->
             <div class="grupo acessibilidade">
-              <p class="rotulo sistema" data-i18n="lbl_contraste">ALTO CONTRASTE</p>
-              <span class="chave" aria-hidden="true">
-                <span class="botao chave"></span>
-              </span>
+              <p class="rotulo sistema" id="LBL-CONTRASTE" data-i18n="lbl_contraste">ALTO CONTRASTE</p>
+              <button
+                type="button"
+                class="chave"
+                role="switch"
+                aria-checked="false"
+                aria-labelledby="LBL-CONTRASTE"
+                data-classe="alto-contraste"
+                data-salvar="cw_alto_contraste"
+              >
+                <span class="chave-bolinha"></span>
+              </button>
             </div>
 
-            <!-- Toggle de Reduzir Movimento -->
+            <!-- Chave de Reduzir Movimento -->
             <div class="grupo acessibilidade">
-              <p class="rotulo sistema" data-i18n="lbl_movimento">REDUZIR MOVIMENTO</p>
-              <span class="chave" aria-hidden="true">
-                <span class="botao chave"></span>
-              </span>
+              <p class="rotulo sistema" id="LBL-MOVIMENTO" data-i18n="lbl_movimento">REDUZIR MOVIMENTO</p>
+              <button
+                type="button"
+                class="chave"
+                role="switch"
+                aria-checked="false"
+                aria-labelledby="LBL-MOVIMENTO"
+                data-classe="sem-animacao"
+                data-salvar="cw_reduzir_movimento"
+              >
+                <span class="chave-bolinha"></span>
+              </button>
             </div>
 
             <p class="rotulo sistema" data-i18n="lbl_status_salvo">STATUS: CONFIGURAÇÕES SALVAS</p>
@@ -119,7 +174,7 @@
           <div id="google_translate_element" style="display: none"></div>
         </details>
 
-        <!-- Atalho de Perfil -->
+        <!-- Atalho do Perfil -->
         <a class="perfil atalho" href="../perfil/index.html#SECAO-PERFIL">
           <img
             src="../img/perfil-avatar.png"
@@ -129,11 +184,13 @@
           />
         </a>
 
-        <!-- Botão Hambúrguer (Mobile) -->
+        <!-- Botão Hambúrguer (Mobile / Tablet) -->
         <button
+          type="button"
           class="menu-hamburguer"
-          aria-label="Abrir Menu"
+          aria-label="Abrir menu"
           aria-expanded="false"
+          aria-controls="menu-principal"
         >
           <span></span>
           <span></span>
@@ -145,7 +202,7 @@
     <!-- ===================================================================
          CONTEÚDO PRINCIPAL
          =================================================================== -->
-    <main>
+    <main id="conteudo">
       <!-- Seção 05: Missões - Central de Operações e Combate -->
       <section id="SECAO-MISSOES" class="fundo missoes">
         <!-- Título e Visão Geral da Central -->
@@ -184,28 +241,28 @@
             <p>Quebre o laço infinito</p>
             <p class="selo secundaria">SECUNDÁRIA</p>
             <p class="nivel missao">LV.07</p>
-            <p class="experiencia missao">25%</p>
+            <p class="experiencia missao" style="--valor: 25%">25%</p>
           </li>
           <li class="card missao">
             <h4><span aria-hidden="true">◆</span> DADOS PERDIDOS</h4>
             <p>Recupere pacotes de dados</p>
             <p class="selo secundaria">SECUNDÁRIA</p>
             <p class="nivel missao">LV.06</p>
-            <p class="experiencia missao">68%</p>
+            <p class="experiencia missao" style="--valor: 68%">68%</p>
           </li>
           <li class="card missao">
             <h4><span aria-hidden="true">⚠</span> FIREWALL BREACH</h4>
             <p>Infiltre-se no firewall inimigo</p>
             <p class="selo principal">PRINCIPAL</p>
             <p class="nivel missao">LV.09</p>
-            <p class="experiencia missao">18%</p>
+            <p class="experiencia missao" style="--valor: 18%">18%</p>
           </li>
           <li class="card missao epica">
             <h4><span aria-hidden="true">⚠</span> PROTOCOLO RAIZ</h4>
             <p>Encontre e neutralize o núcleo da IA vilã.</p>
             <p class="selo epica">ÉPICA</p>
             <p class="nivel missao">LV.10</p>
-            <p class="experiencia missao">8%</p>
+            <p class="experiencia missao" style="--valor: 8%">8%</p>
           </li>
         </ul>
 
@@ -219,7 +276,7 @@
             <h4>PYTHON</h4>
             <p class="vida agente">105/128</p>
             <div class="barra progresso">
-              <div class="preenchimento progresso"></div>
+              <div class="preenchimento progresso" style="--valor: 82%"></div>
             </div>
           </div>
 
@@ -229,7 +286,7 @@
             <h4>IA CORRUPTA</h4>
             <p class="vida agente">150/150</p>
             <div class="barra progresso">
-              <div class="preenchimento progresso"></div>
+              <div class="preenchimento progresso" style="--valor: 100%"></div>
             </div>
           </div>
         </div>
@@ -318,9 +375,11 @@
       <p class="rotulo sistema">PROJETO ACADÊMICO // FRONT END 2025</p>
     </footer>
 
-    <!-- Script de Comportamento Interativo -->
+    <!-- Comportamento compartilhado (menu, acessibilidade, animações) -->
+    <script src="../comum/base.js" defer></script>
+    <!-- Interações exclusivas desta tela -->
     <script src="script.js" defer></script>
-    <!-- Complemento do painel de acessibilidade (precisa vir depois do script.js) -->
+    <!-- Complemento do painel de acessibilidade (tradução e vídeo) -->
     <script src="../comum/idioma-e-movimento.js" defer></script>
   </body>
 </html>

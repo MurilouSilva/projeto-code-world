@@ -4,127 +4,177 @@
     <!-- Configurações fundamentais de codificação e responsividade -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="CodeWorld por 11 estudantes de tecnologia"
-    />
+    <meta name="description" content="CodeWorld por 11 estudantes de tecnologia" />
+    <meta name="theme-color" content="#08060f" />
     <title>CodeWorld - Arquivos</title>
 
     <!-- Importação de fontes externas via Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@400;600&family=Share+Tech+Mono&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@500;700;800;900&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Folha de estilos principal do projeto -->
+    <!-- Estilo compartilhado por todas as telas -->
+    <link rel="stylesheet" href="../comum/base.css" />
+    <!-- Estilo exclusivo desta tela -->
     <link rel="stylesheet" href="style.css" />
-
     <!-- Complemento do painel de acessibilidade: tradução e reduzir movimento -->
     <link rel="stylesheet" href="../comum/idioma-e-movimento.css" />
   </head>
   <body>
+    <!-- Atalho de teclado para pular direto ao conteúdo -->
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+    <!-- Barra fina que mostra o quanto da página já foi rolado -->
+    <div class="barra-rolagem" aria-hidden="true"></div>
+
+    <!-- Cursor Duplo (Tympanus Sketch 012) — só aparece em telas com mouse -->
+    <div class="cursor-inner" aria-hidden="true"></div>
+    <div class="cursor-outer" aria-hidden="true"></div>
+
     <!-- ===================================================================
          CABEÇALHO PRINCIPAL DA PÁGINA
          =================================================================== -->
     <header>
-      <!-- Área Esquerda: Marca e Logo do Projeto -->
+      <!-- Área Esquerda: Logo do Projeto -->
       <div class="area esquerda">
         <div class="logo">
-          <a href="../nexus/index.html#CODEWORLD">CODEWORLD</a>
+          <a href="../nexus/index.html#CODEWORLD" data-text="CODEWORLD">CODEWORLD</a>
         </div>
       </div>
 
       <!-- Menu de Navegação Central -->
-      <nav aria-label="Navegação principal">
+      <nav id="menu-principal" aria-label="Navegação principal">
         <ul>
-          <li><a href="../nexus/index.html#CODEWORLD">NEXUS</a></li>
-          <li><a href="../universo/index.html#SECAO-UNIVERSO">UNIVERSO</a></li>
           <li>
-            <a href="../personagens/index.html#SECAO-PERSONAGENS"
-              >PERSONAGENS</a
-            >
+            <a href="../nexus/index.html#CODEWORLD">
+              <span class="indice" aria-hidden="true">01</span>
+              <span data-i18n="nav_nexus">NEXUS</span>
+            </a>
           </li>
-          <li><a href="../mapa/index.html#SECAO-MAPA">MAPA</a></li>
-          <li><a href="../missoes/index.html#SECAO-MISSOES">MISSÕES</a></li>
           <li>
-            <a href="../arquivos/index.html#SECAO-ARQUIVOS" class="ativo"
-              >ARQUIVOS</a
-            >
+            <a href="../universo/index.html#SECAO-UNIVERSO">
+              <span class="indice" aria-hidden="true">02</span>
+              <span data-i18n="nav_universo">UNIVERSO</span>
+            </a>
+          </li>
+          <li>
+            <a href="../personagens/index.html#SECAO-PERSONAGENS">
+              <span class="indice" aria-hidden="true">03</span>
+              <span data-i18n="nav_personagens">PERSONAGENS</span>
+            </a>
+          </li>
+          <li>
+            <a href="../mapa/index.html#SECAO-MAPA">
+              <span class="indice" aria-hidden="true">04</span>
+              <span data-i18n="nav_mapa">MAPA</span>
+            </a>
+          </li>
+          <li>
+            <a href="../missoes/index.html#SECAO-MISSOES">
+              <span class="indice" aria-hidden="true">05</span>
+              <span data-i18n="nav_missoes">MISSÕES</span>
+            </a>
+          </li>
+          <li>
+            <a href="../arquivos/index.html#SECAO-ARQUIVOS" class="ativo" aria-current="page">
+              <span class="indice" aria-hidden="true">06</span>
+              <span data-i18n="nav_arquivos">ARQUIVOS</span>
+            </a>
           </li>
         </ul>
       </nav>
 
-      <!-- Área Direita: Indicadores de Status, Painel de Acessibilidade e Perfil -->
+      <!-- Área Direita: Status Online, Painel de Acessibilidade e Perfil -->
       <div class="area direita">
-        <!-- Indicador de Status Online do Sistema -->
+        <!-- Indicador do Status do Sistema -->
         <p class="status online">
           <span class="ponto" aria-hidden="true">●</span>
-          <span>ONLINE</span>
+          <span data-i18n="status_online">ONLINE</span>
         </p>
 
-        <!-- Menu Desdobrável (Details/Summary) do Painel de Acessibilidade -->
+        <!-- Menu Desdobrável (Details/Summary) de Acessibilidade -->
         <details class="acessibilidade">
           <summary>
             <span aria-hidden="true">▣</span>
-            <span>ACESSIBILIDADE</span>
+            <span data-i18n="btn_acessibilidade">ACESSIBILIDADE</span>
           </summary>
 
           <div class="painel acessibilidade">
             <p class="rotulo sistema">[ SISTEMA ]</p>
-            <p class="titulo painel">PAINEL DE ACESSIBILIDADE</p>
+            <p class="titulo painel" data-i18n="titulo_painel">PAINEL DE ACESSIBILIDADE</p>
 
-            <!-- Controle de Seleção de Idioma -->
+            <!-- Seleção de Idioma -->
             <div class="grupo acessibilidade">
-              <p class="rotulo sistema">IDIOMA / LANGUAGE</p>
+              <p class="rotulo sistema" data-i18n="lbl_idioma">IDIOMA / LANGUAGE</p>
               <div class="opcoes">
-                <span class="opcao ativa">PT-BR</span>
-                <span class="opcao">EN</span>
+                <button type="button" class="opcao ativa">PT-BR</button>
+                <button type="button" class="opcao">EN</button>
               </div>
             </div>
 
-            <!-- Controle de Seleção de Tema Escuro/Claro -->
+            <!-- Seleção de Tema (Escuro / Claro) -->
             <div class="grupo acessibilidade">
-              <p class="rotulo sistema">TEMA</p>
+              <p class="rotulo sistema" data-i18n="lbl_tema">TEMA</p>
               <div class="opcoes">
-                <span class="opcao ativa">ESCURO</span>
-                <span class="opcao">CLARO</span>
+                <button type="button" class="opcao ativa" data-tema-opcao="escuro" data-i18n="opt_escuro">ESCURO</button>
+                <button type="button" class="opcao" data-tema-opcao="claro" data-i18n="opt_claro">CLARO</button>
               </div>
             </div>
 
-            <!-- Controle de Ajuste de Tamanho da Fonte -->
+            <!-- Ajuste de Tamanho da Fonte -->
             <div class="grupo acessibilidade">
-              <p class="rotulo sistema">TAMANHO DA FONTE</p>
+              <p class="rotulo sistema" data-i18n="lbl_fonte">TAMANHO DA FONTE</p>
               <div class="opcoes">
-                <span class="opcao">A-</span>
-                <span class="opcao ativa">A</span>
-                <span class="opcao">A+</span>
-                <span class="opcao">A++</span>
+                <button type="button" class="opcao" data-fonte="a-" aria-label="Fonte menor">A-</button>
+                <button type="button" class="opcao ativa" data-fonte="a" aria-label="Fonte normal">A</button>
+                <button type="button" class="opcao" data-fonte="a+" aria-label="Fonte maior">A+</button>
+                <button type="button" class="opcao" data-fonte="a++" aria-label="Fonte muito maior">A++</button>
               </div>
             </div>
 
-            <!-- Botão de Alternância (Toggle) para Alto Contraste -->
+            <!-- Chave de Alto Contraste -->
             <div class="grupo acessibilidade">
-              <p class="rotulo sistema">ALTO CONTRASTE</p>
-              <span class="chave" aria-hidden="true">
-                <span class="botao chave"></span>
-              </span>
+              <p class="rotulo sistema" id="LBL-CONTRASTE" data-i18n="lbl_contraste">ALTO CONTRASTE</p>
+              <button
+                type="button"
+                class="chave"
+                role="switch"
+                aria-checked="false"
+                aria-labelledby="LBL-CONTRASTE"
+                data-classe="alto-contraste"
+                data-salvar="cw_alto_contraste"
+              >
+                <span class="chave-bolinha"></span>
+              </button>
             </div>
 
-            <!-- Botão de Alternância (Toggle) para Reduzir Movimento -->
+            <!-- Chave de Reduzir Movimento -->
             <div class="grupo acessibilidade">
-              <p class="rotulo sistema">REDUZIR MOVIMENTO</p>
-              <span class="chave" aria-hidden="true">
-                <span class="botao chave"></span>
-              </span>
+              <p class="rotulo sistema" id="LBL-MOVIMENTO" data-i18n="lbl_movimento">REDUZIR MOVIMENTO</p>
+              <button
+                type="button"
+                class="chave"
+                role="switch"
+                aria-checked="false"
+                aria-labelledby="LBL-MOVIMENTO"
+                data-classe="sem-animacao"
+                data-salvar="cw_reduzir_movimento"
+              >
+                <span class="chave-bolinha"></span>
+              </button>
             </div>
 
-            <p class="rotulo sistema">STATUS: CONFIGURAÇÕES SALVAS</p>
+            <p class="rotulo sistema" data-i18n="lbl_status_salvo">STATUS: CONFIGURAÇÕES SALVAS</p>
           </div>
+
+          <!-- Container do widget do Google Translate (oculto via CSS) -->
+          <div id="google_translate_element" style="display: none"></div>
         </details>
 
-        <!-- Atalho para Perfil do Operador -->
+        <!-- Atalho do Perfil -->
         <a class="perfil atalho" href="../perfil/index.html#SECAO-PERFIL">
           <img
             src="../img/perfil-avatar.png"
@@ -134,11 +184,13 @@
           />
         </a>
 
-        <!-- Botão Hambúrguer (Mobile) -->
+        <!-- Botão Hambúrguer (Mobile / Tablet) -->
         <button
+          type="button"
           class="menu-hamburguer"
-          aria-label="Abrir Menu"
+          aria-label="Abrir menu"
           aria-expanded="false"
+          aria-controls="menu-principal"
         >
           <span></span>
           <span></span>
@@ -150,7 +202,7 @@
     <!-- ===================================================================
          CONTEÚDO PRINCIPAL
          =================================================================== -->
-    <main>
+    <main id="conteudo">
       <!-- Seção 06: Arquivos - Dossiê Confidencial da Super IA -->
       <section id="SECAO-ARQUIVOS" class="fundo arquivos">
         <div class="visao geral dos arquivos">
@@ -175,10 +227,10 @@
 
           <!-- Linhas do Console/Terminal Cyberpunk -->
           <p class="linhas console">
-            &gt; acessando_arquivos_superia.exe...<br />
-            &gt; conexão_estabelecida.<br />
-            &gt; carregando_historico...<br />
-            &gt; <span class="cursor" aria-hidden="true">|</span>
+            <span class="linha">&gt; acessando_arquivos_superia.exe...</span>
+            <span class="linha">&gt; conexão_estabelecida.</span>
+            <span class="linha">&gt; carregando_historico...</span>
+            <span class="linha">&gt; </span>
           </p>
         </article>
 
@@ -237,9 +289,11 @@
       <p class="rotulo sistema">PROJETO ACADÊMICO // FRONT END 2025</p>
     </footer>
 
-    <!-- Script de Comportamento Interativo -->
+    <!-- Comportamento compartilhado (menu, acessibilidade, animações) -->
+    <script src="../comum/base.js" defer></script>
+    <!-- Interações exclusivas desta tela -->
     <script src="script.js" defer></script>
-    <!-- Complemento do painel de acessibilidade (precisa vir depois do script.js) -->
+    <!-- Complemento do painel de acessibilidade (tradução e vídeo) -->
     <script src="../comum/idioma-e-movimento.js" defer></script>
   </body>
 </html>

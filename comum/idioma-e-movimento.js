@@ -16,8 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ].filter((opt) => ["PT-BR", "EN"].includes(opt.textContent.trim()));
 
   // --- A. O que o Google NÃO deve traduzir ---
-  // - Opções de tema e fonte: o script.js reconhece o botão clicado pelo
-  //   texto ("claro", "a+"); traduzido, o botão pararia de funcionar
+  // - Opções de tema e fonte: siglas curtas do próprio painel
   // - Grupo de idioma: "IDIOMA / LANGUAGE" e "PT-BR / EN" já são bilíngues
   // - Marca CODEWORLD, título com data-text (o efeito copia o texto) e código
   const naoTraduzir = [
@@ -210,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================================================
   // 2. REDUZIR MOVIMENTO
   // ==========================================================================
-  // O script.js liga/desliga a classe "sem-animacao" no <html>, e o style.css
+  // O base.js liga/desliga a classe "sem-animacao" no <html>, e o base.css
   // já para as animações CSS com ela. Vídeo não obedece CSS: pausamos aqui.
   // (O anel do cursor customizado é escondido pelo idioma-e-movimento.css.)
 
@@ -233,46 +232,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ==========================================================================
-  // 3. CHAVE "REDUZIR MOVIMENTO"
-  // ==========================================================================
-  const chaveMovimento = document.querySelectorAll(
-    ".grupo.acessibilidade > .chave",
-  )[1];
-
-  chaveMovimento?.addEventListener(
-    "click",
-    () => {
-      const antes = root.classList.contains("sem-animacao");
-      // Se o script.js for corrigido, ele mesmo troca o estado neste clique:
-      // só trocamos aqui se, no fim do clique, ninguém trocou
-      setTimeout(() => {
-        if (root.classList.contains("sem-animacao") !== antes) return;
-        root.classList.toggle("sem-animacao", !antes);
-        localStorage.setItem("cw_reduzir_movimento", !antes);
-      });
-    },
-    { capture: true },
-  );
-
-  // Mostra o estado na chave certa (ao restaurar a preferência salva, o
-  // script.js marca a bolinha do contraste no lugar dela)
-  function marcarChaveMovimento() {
-    document
-      .querySelectorAll(".grupo.acessibilidade .botao.chave.ativa")
-      .forEach((bolinha) => bolinha.classList.remove("ativa"));
-    chaveMovimento?.classList.toggle(
-      "ativa",
-      root.classList.contains("sem-animacao"),
-    );
-  }
-
   // Observa a classe do <html>: reage tanto ao clique na chave quanto à
-  // preferência salva que o script.js restaura ao abrir a página
-  const aoMudarMovimento = () => {
-    aplicarReducaoDeMovimento();
-    marcarChaveMovimento();
-  };
+  // preferência salva que o base.js restaura ao abrir a página
+  const aoMudarMovimento = () => aplicarReducaoDeMovimento();
   new MutationObserver(aoMudarMovimento).observe(root, {
     attributes: true,
     attributeFilter: ["class"],
