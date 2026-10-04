@@ -213,9 +213,9 @@
         <!-- Cartão Visual da Super IA com Status de Ameaça e Terminal -->
         <article class="card arquivo superia">
           <p class="rotulo sistema">ARQUIVO // SUPER IA</p>
-          <!-- Vídeo da Super IA, com som. Os navegadores não deixam um vídeo
-               começar sozinho com som: se for bloqueado, ele toca mudo e o
-               botão "ATIVAR SOM" aparece (ver script.js) -->
+          <!-- Vídeo da Super IA, com som automático e sem controles de player.
+               Se o navegador bloquear o som, ele entra sozinho na primeira
+               interação com a página (ver script.js) -->
           <div class="tela video">
             <video
               class="video superia"
@@ -224,7 +224,6 @@
               loop
               muted
               playsinline
-              controls
               width="1280"
               height="720"
               aria-label="Vídeo da Super IA"
@@ -232,9 +231,10 @@
               <source src="../img/super-ia.mp4" type="video/mp4" />
               Seu navegador não suporta vídeos em HTML5.
             </video>
-            <button type="button" class="botao som" id="BOTAO-SOM" hidden>
+            <!-- Botãozinho para silenciar (quem não quiser ouvir precisa ter
+                 como desligar o som) -->
+            <button type="button" class="botao som" id="BOTAO-SOM" aria-label="Silenciar vídeo">
               <span class="icone som" aria-hidden="true">🔊</span>
-              <span class="texto som">ATIVAR SOM</span>
             </button>
           </div>
           <h3>SUPER IA</h3>

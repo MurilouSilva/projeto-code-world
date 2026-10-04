@@ -87,48 +87,33 @@
   width: 100%;
 }
 
-/* Botão "ATIVAR SOM / SILENCIAR" no canto superior do vídeo */
+/* Botãozinho de silenciar no canto superior do vídeo */
 .botao.som {
   position: absolute;
   top: 0.6rem;
   right: 0.6rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  min-height: 38px;
-  padding: 0.4rem 0.85rem;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
   border: 1px solid var(--magenta);
-  border-radius: 99px;
-  background-color: rgba(8, 6, 15, 0.82);
-  color: #fff;
-  font-family: var(--fonte-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
+  border-radius: 50%;
+  background-color: rgba(8, 6, 15, 0.75);
+  font-size: 1rem;
+  opacity: 0.75;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   transition:
+    opacity var(--rapido) ease,
     background-color var(--rapido) ease,
     box-shadow var(--rapido) ease;
 }
 
-.botao.som:hover {
+.botao.som:hover,
+.botao.som:focus-visible {
+  opacity: 1;
   background-color: var(--magenta);
   box-shadow: var(--brilho-magenta);
-}
-
-/* Enquanto estiver sem som, o botão pulsa para chamar atenção */
-.botao.som.chamando {
-  animation: chamar-som 1.8s ease-in-out infinite;
-}
-
-@keyframes chamar-som {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(227, 0, 113, 0.6);
-  }
-  60% {
-    box-shadow: 0 0 0 10px rgba(227, 0, 113, 0);
-  }
 }
 
 .card.arquivo.superia::before {
