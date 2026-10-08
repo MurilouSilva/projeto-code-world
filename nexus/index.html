@@ -219,7 +219,7 @@
           <h1 class="titulo glitch" data-text="CODEWORLD">CODEWORLD</h1>
 
           <p class="credito">Por 11 Estudantes de tecnologia</p>
-
+          
           <!-- Botões de Ação de Início -->
           <ul class="acoes inicial">
             <li>
@@ -234,9 +234,9 @@
             </li>
           </ul>
 
-          <!-- Atalho para a seção dos criadores, logo abaixo -->
-          <a class="rolar criadores" href="#CRIADORES">
-            CONHEÇA OS CRIADORES <span aria-hidden="true">↓</span>
+          <!-- Atalho para a seção Sobre, logo abaixo (os criadores vêm depois dela) -->
+          <a class="rolar criadores" href="#SOBRE">
+            SOBRE O PROJETO <span aria-hidden="true">↓</span>
           </a>
         </div>
 
@@ -251,6 +251,108 @@
             <span class="linha">&gt; STATUS: OPERACIONAL</span>
           </p>
           <p class="selo status">STATUS: ONLINE</p>
+        </div>
+      </section>
+
+      <!-- Seção: Sobre o projeto (história, duplas, níveis e mensagem) -->
+      <section id="SOBRE" class="sobre" aria-labelledby="TITULO-SOBRE">
+        <!-- O que é o CodeWorld -->
+        <div class="visao geral do projeto">
+          <p class="rotulo sistema">// SOBRE O PROJETO</p>
+          <h2 id="TITULO-SOBRE">O QUE É O <span class="destaque">CODEWORLD</span></h2>
+          <p>
+            O CodeWorld é um portal em formato de RPG sobre uma Super IA que quer
+            controlar a Internet. Para impedir isso, 11 jovens programadores criam
+            em segredo um código capaz de chegar ao núcleo dela. A IA descobre o
+            plano e transporta todos para dentro da própria Internet.
+          </p>
+          <p>Aqui você conhece os agentes, explora o mapa e cumpre missões.</p>
+        </div>
+
+        <!-- As duplas: 5 duplas + 1 jovem sozinho = 11 jovens, 6 linguagens -->
+        <section class="bloco duplas" aria-labelledby="TITULO-DUPLAS">
+          <p class="rotulo sistema">// FUSÃO DE CONSCIÊNCIAS</p>
+          <h3 id="TITULO-DUPLAS">AS DUPLAS</h3>
+          <p>
+            Dentro da Internet, as mentes dos jovens se fundem em duplas, e cada
+            dupla vira uma linguagem. Cinco duplas e um jovem sozinho: 11 jovens,
+            6 linguagens.
+          </p>
+          <!-- O nome da linguagem já está no título: o alt fica vazio de propósito -->
+          <ul class="lista duplas">
+            <li class="card dupla">
+              <img src="../img/linguagem-html.png" alt="" width="120" height="120" />
+              <h4>HTML</h4>
+            </li>
+            <li class="card dupla">
+              <img src="../img/linguagem-css.png" alt="" width="120" height="120" />
+              <h4>CSS</h4>
+            </li>
+            <li class="card dupla">
+              <img src="../img/linguagem-javascript.png" alt="" width="120" height="120" />
+              <h4>JAVASCRIPT</h4>
+            </li>
+            <li class="card dupla">
+              <img src="../img/linguagem-java.png" alt="" width="120" height="120" />
+              <h4>JAVA</h4>
+            </li>
+            <li class="card dupla">
+              <img src="../img/linguagem-python.png" alt="" width="120" height="120" />
+              <h4>PYTHON</h4>
+            </li>
+            <li class="card dupla">
+              <img src="../img/linguagem-kotlin.png" alt="" width="120" height="120" />
+              <h4>KOTLIN</h4>
+              <p class="selo secundaria">SOZINHO</p>
+            </li>
+          </ul>
+        </section>
+
+        <!-- A cidade em níveis (resumo; o texto completo fica no Mapa) -->
+        <section class="bloco niveis" aria-labelledby="TITULO-NIVEIS">
+          <p class="rotulo sistema">// TERRITÓRIOS</p>
+          <h3 id="TITULO-NIVEIS">A CIDADE EM NÍVEIS</h3>
+          <ul class="lista niveis">
+            <li class="card nivel">
+              <p class="rotulo sistema">NÍVEL 0</p>
+              <h4>HTML + CSS</h4>
+              <p>A fachada da Internet.</p>
+            </li>
+            <li class="card nivel">
+              <p class="rotulo sistema">NÍVEL 1</p>
+              <h4>JAVASCRIPT + JAVA</h4>
+              <p>O distrito da lógica.</p>
+            </li>
+            <li class="card nivel">
+              <p class="rotulo sistema">NÍVEL 2</p>
+              <h4>PYTHON + KOTLIN</h4>
+              <p>O jardim dos dados.</p>
+            </li>
+            <li class="card nivel nucleo">
+              <p class="rotulo sistema">NÚCLEO</p>
+              <h4>SUPER IA</h4>
+              <p>
+                O coração da Super IA. Ninguém que entrou no Núcleo voltou para
+                contar.
+              </p>
+            </li>
+          </ul>
+          <p class="acao mapa">
+            <a class="botao secundario" href="../mapa/index.html#SECAO-MAPA">
+              VER O MAPA <span aria-hidden="true">→</span>
+            </a>
+          </p>
+        </section>
+
+        <!-- A mensagem por trás da história -->
+        <div class="visao geral mensagem">
+          <p class="rotulo sistema">// A MENSAGEM</p>
+          <h2>POR QUE ISSO <span class="destaque">IMPORTA</span></h2>
+          <p>
+            A Super IA não nasceu má: ela aprendeu com os dados que a humanidade
+            criou, mentiras e vieses incluídos. Quem programa também ensina. O
+            que escrevemos hoje molda o que as máquinas fazem amanhã.
+          </p>
         </div>
       </section>
 

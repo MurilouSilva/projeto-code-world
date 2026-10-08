@@ -9,6 +9,7 @@
    02. Título com efeito glitch
    03. Console do sistema
    04. Seção dos criadores
+   04B. Sobre o projeto (história, duplas, níveis e mensagem)
    05. Responsividade
    ========================================================================== */
 
@@ -341,6 +342,136 @@ html[data-tema="claro"] .sistema.console {
 }
 
 /* ==========================================================================
+   04B. SOBRE O PROJETO (história, duplas, níveis e mensagem)
+   ========================================================================== */
+
+#SOBRE {
+  border-top: 1px solid var(--borda);
+}
+
+/* Blocos com rótulo + título + texto: espaçamento igual ao da .visao.geral */
+.bloco.duplas,
+.bloco.niveis {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* O h3 do bloco é o título da parte: um pouco maior que o padrão */
+#SOBRE .bloco h3 {
+  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+}
+
+.bloco.duplas > p:not(.rotulo) {
+  max-width: 65ch;
+  margin-bottom: var(--espaco);
+  color: var(--texto-suave);
+  font-size: 1.02rem;
+}
+
+/* A mensagem final se separa do resto com um respiro maior */
+#SOBRE .visao.geral.mensagem {
+  margin-top: var(--espaco-secao);
+}
+
+/* Cartões novos: mesmo visual dos cartões do Universo. O position relative
+   é necessário para a linha de luz do hover (::after de base.css) ficar
+   dentro do cartão */
+.card.dupla,
+.card.nivel {
+  position: relative;
+  padding: var(--espaco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--superficie);
+}
+
+.card.dupla:hover,
+.card.nivel:hover {
+  border-color: var(--borda-forte);
+}
+
+/* --- Duplas --- */
+.lista.duplas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--espaco);
+}
+
+.card.dupla {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.card.dupla img {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--raio);
+  transition: transform 400ms var(--suave);
+}
+
+.card.dupla:hover img {
+  transform: scale(1.1) rotate(-4deg);
+}
+
+.card.dupla h4 {
+  font-family: var(--fonte-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+/* O selo de base.css alinha à esquerda; aqui ele fica centralizado */
+.card.dupla .selo {
+  align-self: center;
+}
+
+/* --- Níveis --- */
+.lista.niveis {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espaco);
+}
+
+.card.nivel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.card.nivel h4 {
+  font-family: var(--fonte-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+}
+
+.card.nivel p:not(.rotulo) {
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+/* O Núcleo é a ameaça: destaque em magenta */
+.card.nivel.nucleo {
+  border-color: var(--borda-magenta);
+}
+
+.card.nivel.nucleo:hover {
+  border-color: var(--magenta);
+}
+
+.card.nivel.nucleo h4,
+.card.nivel.nucleo .rotulo.sistema {
+  color: var(--magenta);
+}
+
+.acao.mapa {
+  display: flex;
+  margin-top: var(--espaco);
+}
+
+/* ==========================================================================
    05. RESPONSIVIDADE
    ========================================================================== */
 
@@ -391,5 +522,28 @@ html[data-tema="claro"] .sistema.console {
 
   .boas-vindas {
     font-size: 0.65rem;
+  }
+}
+
+/* --- Sobre: grades das duplas e dos níveis ---
+   Colunas fixas para nunca sobrar cartão sozinho na última linha:
+   celular 2x3 e 1x4, tablet 3x2 e 2x2, tela larga 6x1 e 4x1 */
+@media (max-width: 559px) {
+  .lista.duplas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lista.niveis {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1100px) {
+  .lista.duplas {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .lista.niveis {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
