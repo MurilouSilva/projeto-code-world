@@ -6,7 +6,7 @@ Feito somente com HTML, CSS e JavaScript (sem bibliotecas nem build).
 
 ## Estrutura
 
-- `nexus/` — Seção 01: NEXUS (entrada do portal)
+- `nexus/` — Seção 01: SOBRE (entrada do portal)
 - `universo/` — Seção 02: UNIVERSO
 - `personagens/` — Seção 03: PERSONAGENS
 - `mapa/` — Seção 04: MAPA
