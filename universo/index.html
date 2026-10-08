@@ -50,37 +50,37 @@
         <ul>
           <li>
             <a href="../nexus/index.html#CODEWORLD">
-              <span class="indice" aria-hidden="true">01</span>
-              <span data-i18n="nav_nexus">NEXUS</span>
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_nexus">SOBRE</span>
             </a>
           </li>
           <li>
             <a href="../universo/index.html#SECAO-UNIVERSO" class="ativo" aria-current="page">
-              <span class="indice" aria-hidden="true">02</span>
+              <span class="indice" aria-hidden="true"></span>
               <span data-i18n="nav_universo">UNIVERSO</span>
             </a>
           </li>
           <li>
             <a href="../personagens/index.html#SECAO-PERSONAGENS">
-              <span class="indice" aria-hidden="true">03</span>
+              <span class="indice" aria-hidden="true"></span>
               <span data-i18n="nav_personagens">PERSONAGENS</span>
             </a>
           </li>
           <li>
             <a href="../mapa/index.html#SECAO-MAPA">
-              <span class="indice" aria-hidden="true">04</span>
+              <span class="indice" aria-hidden="true"></span>
               <span data-i18n="nav_mapa">MAPA</span>
             </a>
           </li>
           <li>
             <a href="../missoes/index.html#SECAO-MISSOES">
-              <span class="indice" aria-hidden="true">05</span>
+              <span class="indice" aria-hidden="true"></span>
               <span data-i18n="nav_missoes">MISSÕES</span>
             </a>
           </li>
           <li>
             <a href="../arquivos/index.html#SECAO-ARQUIVOS">
-              <span class="indice" aria-hidden="true">06</span>
+              <span class="indice" aria-hidden="true"></span>
               <span data-i18n="nav_arquivos">ARQUIVOS</span>
             </a>
           </li>
@@ -205,14 +205,6 @@
     <main id="conteudo">
       <!-- Seção 02: Universo - Contexto Lore, Linguagens e Linha do Tempo -->
       <section id="SECAO-UNIVERSO" class="fundo universo">
-        <!-- Imagem Temática de Fundo -->
-        <img
-          class="visual fundo"
-          src="../img/universo-fundo.png"
-          alt=""
-          width="1586"
-          height="992"
-        />
 
         <!-- Visão Geral / Contexto da Lore -->
         <div class="visao geral do universo">
@@ -242,21 +234,37 @@
 
         <!-- Mídia / Trailer Oficial -->
         <figure class="trailer">
-          <img
-            src="../img/universo-trailer.png"
-            alt="Prévia do trailer do CodeWorld"
-            width="2820"
-            height="1472"
-          />
+           <video
+            id="videoTrailer"
+           src="../img/universo-trailer.mp4"
+           width="2820"
+           height="1472"
+          poster="../img/universo-capa-fundo.png"
+          ></video>
+
           <figcaption>
-            <a
-              class="botao primario"
-              href="../universo/index.html#SECAO-UNIVERSO"
-            >
-              <span class="icone play" aria-hidden="true">▶</span> ASSISTA O TRAILER
-            </a>
-          </figcaption>
-        </figure>
+           <button class="botao primario" id="playBtn">
+          <span class="icone play" aria-hidden="true">▶</span> ASSISTA O TRAILER
+      </button>
+  </figcaption>
+</figure>
+
+    <script>
+      const video = document.getElementById("videoTrailer");
+      const playBtn = document.getElementById("playBtn");
+
+      playBtn.addEventListener("click", () => {
+       if (video.paused) {
+        video.play();
+        playBtn.style.display = "none"; 
+    }
+  });
+
+    video.addEventListener("ended", () => {
+      playBtn.style.display = "block";
+  });
+    </script>
+
 
         <!-- Bloco de Linguagens e Ameça Principal -->
         <div class="bloco linguagens">
@@ -460,7 +468,7 @@
     <footer>
       <p class="logo rodape">CODEWORLD</p>
       <p class="credito">Por 11 Estudantes de tecnologia</p>
-      <p class="rotulo sistema">PROJETO ACADÊMICO // FRONT END 2025</p>
+      <p class="rotulo sistema">@Codeworld 2026 - Projeto Acadêmico</p>
     </footer>
 
     <!-- Comportamento compartilhado (menu, acessibilidade, animações) -->
