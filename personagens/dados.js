@@ -30,7 +30,7 @@ const AGENTES = [
     arquivo: "index.html",
     linguagem: "html",
     serial: "CW-01-DOM",
-    imagem: "", // caminho da imagem (ainda vai ser escolhida)
+    imagem: "../img/agente-html.png",
     descricao:
       "Constrói as estruturas da Internet: cada página nasce das tags que ele organiza, dando significado e hierarquia a todo o conteúdo.",
     cor: "#ff5a1f", // cor de destaque (brilho da moldura da imagem)
@@ -46,7 +46,7 @@ const AGENTES = [
     <title>CodeWorld</title>
   </head>
   <body>
-    <h1>Olá, Nexus!</h1>
+    <h1>Olá, Codeworld!</h1>
   </body>
 </html>`,
         conceitos: [
@@ -176,7 +176,7 @@ const AGENTES = [
     arquivo: "style.css",
     linguagem: "css",
     serial: "CW-02-STY",
-    imagem: "", // caminho da imagem (ainda vai ser escolhida)
+    imagem: "../img/agente-css.png",
     descricao:
       "Pinta o mundo digital: cores, espaços, layouts e movimentos nascem das regras que ele aplica sobre as estruturas do HTML.",
     cor: "#6d28d9", // cor de destaque (brilho da moldura da imagem)
@@ -327,7 +327,7 @@ h1 {
     arquivo: "script.js",
     linguagem: "js",
     serial: "CW-03-LGC",
-    imagem: "", // caminho da imagem (ainda vai ser escolhida)
+    imagem: "../img/agente-javascript.png",
     descricao:
       "Dá comportamento ao mundo digital: analisa dados, toma decisões e reage a cada clique que acontece no CodeWorld.",
     cor: "#eab308", // cor de destaque (brilho da moldura da imagem)
@@ -460,7 +460,7 @@ botao.addEventListener("click", () => {
     arquivo: "main.py",
     linguagem: "python",
     serial: "CW-04-DAT",
-    imagem: "", // caminho da imagem (ainda vai ser escolhida)
+    imagem: "../img/agente-python.png",
     descricao:
       "Planeja cada movimento com dados: sua sintaxe limpa transforma problemas complexos em estratégias simples e legíveis.",
     cor: "#be185d", // cor de destaque (brilho da moldura da imagem)
@@ -591,7 +591,7 @@ for chave, valor in agente.items():
     arquivo: "Main.java",
     linguagem: "java",
     serial: "CW-05-SEC",
-    imagem: "", // caminho da imagem (ainda vai ser escolhida)
+    imagem: "../img/agente-java.png",
     descricao:
       "Protege os sistemas com regras rígidas: cada valor tem um tipo definido e cada estrutura é verificada antes de executar.",
     cor: "#0891b2", // cor de destaque (brilho da moldura da imagem)
@@ -730,7 +730,7 @@ Agente java = new Agente("Java", 5);`,
     arquivo: "Main.kt",
     linguagem: "kotlin",
     serial: "CW-06-MOB",
-    imagem: "", // caminho da imagem (ainda vai ser escolhida)
+    imagem: "../img/agente-kotlin.png",
     descricao:
       "O mais rápido do esquadrão: escreve menos código, evita erros de valores nulos e domina o território dos aplicativos Android.",
     cor: "#10b981", // cor de destaque (brilho da moldura da imagem)
