@@ -112,14 +112,35 @@
 }
 
 .card.linguagem img {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
   border-radius: var(--raio);
   transition: transform 400ms var(--suave);
 }
+.card.linguagem img[src*="html"],
+.card.linguagem img[src*="html"] {
+  transform: scale(1.5);
+}
+
+.card.linguagem img[src*="css"] {
+  transform: scale(1.5);
+
+}
+
+.card.linguagem img[src*="kotlin"]
+.card.linguagem img[src*="javascript"],
+.card.linguagem img[src*="java"] {
+  transform: scale(1.3);
+}
 
 .card.linguagem:hover img {
-  transform: scale(1.1) rotate(-4deg);
+  transform: scale(1.7) rotate(-4deg);
+}
+
+.card.linguagem:hover img[src*="html"],
+.card.linguagem:hover img[src*="css"] {
+  transform: scale(1.7) rotate(-4deg);
 }
 
 .card.linguagem h4 {

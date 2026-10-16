@@ -402,14 +402,17 @@ html[data-tema="claro"] .sistema.console {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: center;
+  gap: 1rem;
   text-align: center;
+  min-height: 280px;
+  padding: 1.5rem;
 }
 
 .card.dupla img {
-  width: 64px;
-  height: 64px;
-  border-radius: var(--raio);
+  width: 300px;
+  height: 220px;
+  object-fit: contain;
   transition: transform 400ms var(--suave);
 }
 
@@ -431,14 +434,16 @@ html[data-tema="claro"] .sistema.console {
 /* --- Níveis --- */
 .lista.niveis {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(550px, 1fr));
   gap: var(--espaco);
 }
 
-.card.nivel {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
+
+.card.nivel img {
+  width: 300px;
+  height: 220px;
+  object-fit: contain;
+  align-self: center;
 }
 
 .card.nivel h4 {
@@ -530,7 +535,7 @@ html[data-tema="claro"] .sistema.console {
    celular 2x3 e 1x4, tablet 3x2 e 2x2, tela larga 6x1 e 4x1 */
 @media (max-width: 559px) {
   .lista.duplas {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .lista.niveis {
@@ -540,7 +545,7 @@ html[data-tema="claro"] .sistema.console {
 
 @media (min-width: 1100px) {
   .lista.duplas {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .lista.niveis {
