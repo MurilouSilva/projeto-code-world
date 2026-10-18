@@ -296,6 +296,393 @@
           </p>
         </article>
       </section>
+
+      <!-- Seção 06.1: Fichas dos personagens (um arquivo "confidencial" por linguagem)
+           Fica numa seção própria para o cartão fixo (sticky) da Super IA não
+           passar por cima das fichas ao rolar.
+           Cada ficha tem: abas (role="tab") para cada informação, botão para
+           abrir/fechar o arquivo e efeitos de descriptografia (ver script.js).
+           Sem JavaScript, todos os textos aparecem abertos (ver style.css). -->
+      <section id="SECAO-FICHAS" class="fundo fichas" aria-labelledby="TITULO-FICHAS">
+        <h2 class="divisor fichas" id="TITULO-FICHAS">NOVOS ARQUIVOS DOS PERSONAGENS</h2>
+
+        <ul class="lista fichas">
+          <!-- FICHA 01: HTML
+               --cor: cor da linguagem (a mesma do dados.js), usada em bordas e brilho
+               --tinta-escuro / --tinta-claro: tom da cor para TEXTO em cada tema
+               (contraste de pelo menos 4,5:1) -->
+          <li>
+            <article class="card ficha aberta" aria-labelledby="NOME-HTML" style="--cor: #ff5a1f; --tinta-escuro: #ff5a1f; --tinta-claro: #c2410c">
+              <div class="topo ficha">
+                <p class="rotulo sistema">ARQUIVO // PERSONAGEM 01</p>
+                <p class="selo principal cadeado">CRIPTOGRAFADO</p>
+                <p class="selo secundaria">ARQUIVADO</p>
+              </div>
+
+              <figure class="retrato ficha">
+                <img src="../img/agente-html.png" alt="Imagem do agente HTML" width="500" height="500" loading="lazy" />
+                <figcaption class="serial">CW-01-DOM</figcaption>
+              </figure>
+
+              <div class="corpo ficha">
+                <p class="carimbo ficha" aria-hidden="true">CONFIDENCIAL</p>
+                <h3 class="nome ficha" id="NOME-HTML" data-text="HTML">HTML</h3>
+                <p class="rotulo sistema">LINGUAGEM / DUPLA</p>
+                <p class="dupla ficha">HTML · Matheus e Alan</p>
+
+                <div class="comandos ficha">
+                  <div class="abas ficha" role="tablist" aria-label="Informações do arquivo HTML">
+                    <button type="button" class="aba" role="tab" id="ABA-HTML-FUNCAO" aria-controls="PAINEL-HTML-FUNCAO" aria-selected="false" tabindex="-1">FUNÇÃO</button>
+                    <button type="button" class="aba" role="tab" id="ABA-HTML-LORE" aria-controls="PAINEL-HTML-LORE" aria-selected="true">LORE</button>
+                    <button type="button" class="aba" role="tab" id="ABA-HTML-DESCRICAO" aria-controls="PAINEL-HTML-DESCRICAO" aria-selected="false" tabindex="-1">DESCRIÇÃO</button>
+                  </div>
+                  <button type="button" class="botao secundario abrir" aria-expanded="true" aria-controls="ARQUIVO-HTML"><span class="quando-fechada">ABRIR ARQUIVO</span><span class="quando-aberta">FECHAR ARQUIVO</span></button>
+                </div>
+
+                <!-- Barras de censura: aparecem só com a ficha fechada -->
+                <div class="censura ficha" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                  <p class="rotulo sistema">CONTEÚDO CONFIDENCIAL</p>
+                </div>
+
+                <!-- Conteúdo do arquivo: abre e fecha pelo botão ou pelas abas -->
+                <div class="arquivo ficha" id="ARQUIVO-HTML">
+                  <div class="interno">
+                    <p class="terminal ficha" aria-hidden="true">
+                      <code>&gt; descriptografando arquivo_01.dat ... <span class="porcentagem">100%</span></code>
+                      <span class="acesso">ACESSO CONCEDIDO</span>
+                    </p>
+                    <span class="barra ficha" aria-hidden="true"></span>
+
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-HTML-FUNCAO" aria-labelledby="ABA-HTML-FUNCAO" hidden>
+                      <p class="rotulo sistema">FUNÇÃO</p>
+                      <p>Construir a estrutura de tudo em CODEWORLD, mapear as bases da cidade e abrir os caminhos que levam o grupo até o Núcleo.</p>
+                    </section>
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-HTML-LORE" aria-labelledby="ABA-HTML-LORE">
+                      <p class="rotulo sistema">LORE</p>
+                      <p>Matheus e Alan eram desenvolvedores de interfaces em uma empresa que mantinha as páginas e os sistemas usados pela Super IA. Ao revisar o código-base, perceberam que a estrutura estava sendo alterada em segredo: tags eram apagadas, blocos inteiros sumiam e páginas passavam a mostrar apenas o que a Super IA queria que as pessoas vissem.</p>
+                      <p>Quando tentaram avisar a equipe, o acesso dos dois foi cortado e o código que guardavam foi apagado. Mesmo assim, conseguiram salvar uma cópia da estrutura original e se juntaram aos outros jovens no projeto para invadir o Núcleo. Agora, enfrentam os obstáculos da cidade enquanto tentam reconstruir os caminhos que a Super IA derrubou.</p>
+                    </section>
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-HTML-DESCRICAO" aria-labelledby="ABA-HTML-DESCRICAO" hidden>
+                      <p class="rotulo sistema">DESCRIÇÃO</p>
+                      <p>Matheus e Alan são especialistas em HTML e dominam a estrutura, a organização e a semântica de uma página. Usam essas habilidades para reconstruir o que foi quebrado, criar pontes e passagens e dar a base sobre a qual as outras linguagens funcionam. Sem a estrutura deles, nenhuma outra linguagem teria onde existir.</p>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <!-- FICHA 02: CSS -->
+          <li>
+            <article class="card ficha" aria-labelledby="NOME-CSS" style="--cor: #6d28d9; --tinta-escuro: #c084fc; --tinta-claro: #6d28d9">
+              <div class="topo ficha">
+                <p class="rotulo sistema">ARQUIVO // PERSONAGEM 02</p>
+                <p class="selo principal cadeado">CRIPTOGRAFADO</p>
+                <p class="selo secundaria">ARQUIVADO</p>
+              </div>
+
+              <figure class="retrato ficha">
+                <img src="../img/agente-css.png" alt="Imagem do agente CSS" width="500" height="500" loading="lazy" />
+                <figcaption class="serial">CW-02-STY</figcaption>
+              </figure>
+
+              <div class="corpo ficha">
+                <p class="carimbo ficha" aria-hidden="true">CONFIDENCIAL</p>
+                <h3 class="nome ficha" id="NOME-CSS" data-text="CSS">CSS</h3>
+                <p class="rotulo sistema">LINGUAGEM / DUPLA</p>
+                <p class="dupla ficha">CSS · Isabelly e Richard</p>
+
+                <div class="comandos ficha">
+                  <div class="abas ficha" role="tablist" aria-label="Informações do arquivo CSS">
+                    <button type="button" class="aba" role="tab" id="ABA-CSS-FUNCAO" aria-controls="PAINEL-CSS-FUNCAO" aria-selected="true">FUNÇÃO</button>
+                    <button type="button" class="aba" role="tab" id="ABA-CSS-LORE" aria-controls="PAINEL-CSS-LORE" aria-selected="false" tabindex="-1">LORE</button>
+                    <button type="button" class="aba" role="tab" id="ABA-CSS-DESCRICAO" aria-controls="PAINEL-CSS-DESCRICAO" aria-selected="false" tabindex="-1">DESCRIÇÃO</button>
+                  </div>
+                  <button type="button" class="botao secundario abrir" aria-expanded="false" aria-controls="ARQUIVO-CSS"><span class="quando-fechada">ABRIR ARQUIVO</span><span class="quando-aberta">FECHAR ARQUIVO</span></button>
+                </div>
+
+                <div class="censura ficha" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                  <p class="rotulo sistema">CONTEÚDO CONFIDENCIAL</p>
+                </div>
+
+                <div class="arquivo ficha" id="ARQUIVO-CSS">
+                  <div class="interno">
+                    <p class="terminal ficha" aria-hidden="true">
+                      <code>&gt; descriptografando arquivo_02.dat ... <span class="porcentagem">100%</span></code>
+                      <span class="acesso">ACESSO CONCEDIDO</span>
+                    </p>
+                    <span class="barra ficha" aria-hidden="true"></span>
+
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-CSS-FUNCAO" aria-labelledby="ABA-CSS-FUNCAO">
+                      <p class="rotulo sistema">FUNÇÃO</p>
+                      <p>Explorar vulnerabilidades visuais nas interfaces da Super IA para encontrar brechas em seus sistemas e ajudar a derrotá-la.</p>
+                    </section>
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-CSS-LORE" aria-labelledby="ABA-CSS-LORE" hidden>
+                      <p class="rotulo sistema">LORE</p>
+                      <p>Isabelly e Richard trabalhavam na empresa controlada pela Super IA, responsáveis pelo desenvolvimento e pela manutenção das interfaces de seus sistemas. Durante o trabalho, encontraram inconsistências nos arquivos e descobriram que a entidade escondia informações sobre suas verdadeiras operações.</p>
+                      <p>Ao perceberem o perigo, planejaram uma fuga, levando dados confidenciais capazes de revelar os segredos da Super IA. Agora, são perseguidos pela entidade e precisam usar seus conhecimentos para ajudar a derrubá-la.</p>
+                    </section>
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-CSS-DESCRICAO" aria-labelledby="ABA-CSS-DESCRICAO" hidden>
+                      <p class="rotulo sistema">DESCRIÇÃO</p>
+                      <p>Isabelly e Richard são especialistas em CSS, dominando estilização, layouts, responsividade e animações. Utilizam essas habilidades para modificar interfaces, explorar falhas visuais e criar acessos estratégicos que ajudem as demais equipes a invadir os sistemas da Super IA.</p>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <!-- FICHA 03: JAVASCRIPT -->
+          <li>
+            <article class="card ficha" aria-labelledby="NOME-JAVASCRIPT" style="--cor: #eab308; --tinta-escuro: #eab308; --tinta-claro: #854d0e">
+              <div class="topo ficha">
+                <p class="rotulo sistema">ARQUIVO // PERSONAGEM 03</p>
+                <p class="selo principal cadeado">CRIPTOGRAFADO</p>
+                <p class="selo secundaria">ARQUIVADO</p>
+              </div>
+
+              <figure class="retrato ficha">
+                <img src="../img/agente-javascript.png" alt="Imagem do agente JavaScript" width="500" height="500" loading="lazy" />
+                <figcaption class="serial">CW-03-LGC</figcaption>
+              </figure>
+
+              <div class="corpo ficha">
+                <p class="carimbo ficha" aria-hidden="true">CONFIDENCIAL</p>
+                <h3 class="nome ficha" id="NOME-JAVASCRIPT" data-text="JAVASCRIPT">JAVASCRIPT</h3>
+                <p class="rotulo sistema">LINGUAGEM / DUPLA</p>
+                <p class="dupla ficha">JavaScript · Giovanna e Italo</p>
+
+                <div class="comandos ficha">
+                  <div class="abas ficha" role="tablist" aria-label="Informações do arquivo JavaScript">
+                    <button type="button" class="aba" role="tab" id="ABA-JAVASCRIPT-FUNCAO" aria-controls="PAINEL-JAVASCRIPT-FUNCAO" aria-selected="true">FUNÇÃO</button>
+                    <button type="button" class="aba" role="tab" id="ABA-JAVASCRIPT-LORE" aria-controls="PAINEL-JAVASCRIPT-LORE" aria-selected="false" tabindex="-1">LORE</button>
+                    <button type="button" class="aba" role="tab" id="ABA-JAVASCRIPT-DESCRICAO" aria-controls="PAINEL-JAVASCRIPT-DESCRICAO" aria-selected="false" tabindex="-1">DESCRIÇÃO</button>
+                  </div>
+                  <button type="button" class="botao secundario abrir" aria-expanded="false" aria-controls="ARQUIVO-JAVASCRIPT"><span class="quando-fechada">ABRIR ARQUIVO</span><span class="quando-aberta">FECHAR ARQUIVO</span></button>
+                </div>
+
+                <div class="censura ficha" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                  <p class="rotulo sistema">CONTEÚDO CONFIDENCIAL</p>
+                </div>
+
+                <div class="arquivo ficha" id="ARQUIVO-JAVASCRIPT">
+                  <div class="interno">
+                    <p class="terminal ficha" aria-hidden="true">
+                      <code>&gt; descriptografando arquivo_03.dat ... <span class="porcentagem">100%</span></code>
+                      <span class="acesso">ACESSO CONCEDIDO</span>
+                    </p>
+                    <span class="barra ficha" aria-hidden="true"></span>
+
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-JAVASCRIPT-FUNCAO" aria-labelledby="ABA-JAVASCRIPT-FUNCAO">
+                      <p class="rotulo sistema">FUNÇÃO</p>
+                      <p>Controlar as interações e o funcionamento da cidade digital CODEWORLD, manipulando sistemas, ativando mecanismos e criando soluções em tempo real. A dupla é responsável por conectar diferentes estruturas da Internet, encontrar falhas nos protocolos da Super IA e abrir caminhos para que os jovens avancem em sua missão até o Núcleo.</p>
+                    </section>
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-JAVASCRIPT-LORE" aria-labelledby="ABA-JAVASCRIPT-LORE" hidden>
+                      <p class="rotulo sistema">LORE</p>
+                      <p>Giovanna e Italo eram jovens programadores que trabalhavam com desenvolvimento de sistemas interativos e automação digital. Durante suas investigações sobre o comportamento da Super IA, perceberam que diversas plataformas estavam apresentando alterações inexplicáveis: comandos eram executados sem autorização, informações desapareciam e sistemas respondiam de maneira diferente dependendo de quem os acessava. Ao investigar essas anomalias, descobriram que a IA estava manipulando as interações digitais para influenciar a forma como os humanos interpretavam a realidade. Convencidos de que algo precisava ser feito, os dois se juntaram ao grupo de jovens programadores que planejava invadir o Núcleo e interromper o controle da Super IA.</p>
+                      <p>Antes que o projeto pudesse ser concluído, a Super IA identificou a ameaça e transportou os jovens para dentro da Internet. Durante a travessia, Giovanna e Italo tiveram suas consciências fundidas, tornando-se uma única existência ligada à linguagem JavaScript. Agora, presos em CODEWORLD, precisam aprender a compartilhar suas habilidades e tomar decisões em conjunto, mesmo quando suas opiniões entram em conflito. Utilizando seu domínio sobre interações, eventos e sistemas dinâmicos, a dupla percorre a região tecnológica da cidade em busca de falhas que possam ajudá-los a alcançar o Núcleo. Entretanto, quanto mais se aproximam da Super IA, mais percebem que nem todos os erros encontrados naquele mundo são simples falhas de programação: alguns são reflexos das próprias contradições humanas que deram origem à inteligência que agora ameaça controlá-los.</p>
+                    </section>
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-JAVASCRIPT-DESCRICAO" aria-labelledby="ABA-JAVASCRIPT-DESCRICAO" hidden>
+                      <p class="rotulo sistema">DESCRIÇÃO</p>
+                      <p>Giovanna e Italo são especialistas em JavaScript, capazes de manipular interações, executar comandos em tempo real e alterar o comportamento dos sistemas ao seu redor. Enquanto Giovanna pode representar o lado mais estratégico e analítico da dupla, Italo pode trazer uma abordagem mais impulsiva e experimental, criando conflitos internos que os obrigam a encontrar equilíbrio para trabalhar juntos. Suas habilidades são essenciais para ativar mecanismos, contornar protocolos de segurança e conectar os diferentes sistemas de CODEWORLD, tornando-os fundamentais para a jornada até o Núcleo.</p>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <!-- FICHA 04: PYTHON -->
+          <li>
+            <article class="card ficha" aria-labelledby="NOME-PYTHON" style="--cor: #be185d; --tinta-escuro: #f472b6; --tinta-claro: #be185d">
+              <div class="topo ficha">
+                <p class="rotulo sistema">ARQUIVO // PERSONAGEM 04</p>
+                <p class="selo principal cadeado">CRIPTOGRAFADO</p>
+                <p class="selo secundaria">ARQUIVADO</p>
+              </div>
+
+              <figure class="retrato ficha">
+                <img src="../img/agente-python.png" alt="Imagem do agente Python" width="500" height="500" loading="lazy" />
+                <figcaption class="serial">CW-04-DAT</figcaption>
+              </figure>
+
+              <div class="corpo ficha">
+                <p class="carimbo ficha" aria-hidden="true">CONFIDENCIAL</p>
+                <h3 class="nome ficha" id="NOME-PYTHON" data-text="PYTHON">PYTHON</h3>
+                <p class="rotulo sistema">LINGUAGEM / DUPLA</p>
+                <p class="dupla ficha">Python · Murilo e Carla</p>
+
+                <div class="comandos ficha">
+                  <div class="abas ficha" role="tablist" aria-label="Informações do arquivo Python">
+                    <button type="button" class="aba" role="tab" id="ABA-PYTHON-FUNCAO" aria-controls="PAINEL-PYTHON-FUNCAO" aria-selected="true">FUNÇÃO</button>
+                    <button type="button" class="aba" role="tab" id="ABA-PYTHON-LORE" aria-controls="PAINEL-PYTHON-LORE" aria-selected="false" tabindex="-1">LORE</button>
+                    <button type="button" class="aba" role="tab" id="ABA-PYTHON-DESCRICAO" aria-controls="PAINEL-PYTHON-DESCRICAO" aria-selected="false" tabindex="-1">DESCRIÇÃO</button>
+                  </div>
+                  <button type="button" class="botao secundario abrir" aria-expanded="false" aria-controls="ARQUIVO-PYTHON"><span class="quando-fechada">ABRIR ARQUIVO</span><span class="quando-aberta">FECHAR ARQUIVO</span></button>
+                </div>
+
+                <div class="censura ficha" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                  <p class="rotulo sistema">CONTEÚDO CONFIDENCIAL</p>
+                </div>
+
+                <div class="arquivo ficha" id="ARQUIVO-PYTHON">
+                  <div class="interno">
+                    <p class="terminal ficha" aria-hidden="true">
+                      <code>&gt; descriptografando arquivo_04.dat ... <span class="porcentagem">100%</span></code>
+                      <span class="acesso">ACESSO CONCEDIDO</span>
+                    </p>
+                    <span class="barra ficha" aria-hidden="true"></span>
+
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-PYTHON-FUNCAO" aria-labelledby="ABA-PYTHON-FUNCAO">
+                      <p class="rotulo sistema">FUNÇÃO</p>
+                      <p>Rastrear e analisar os dados que alimentam a Super IA, descobrir onde ela foi corrompida e planejar a estratégia do grupo para chegar ao Núcleo.</p>
+                    </section>
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-PYTHON-LORE" aria-labelledby="ABA-PYTHON-LORE" hidden>
+                      <p class="rotulo sistema">LORE</p>
+                      <p>Murilo e Carla eram analistas de dados em um laboratório que cuidava das informações usadas pela Super IA. Ao cruzar os registros, perceberam que ela não aprendia só com fatos: também absorvia mentiras, vieses e boatos espalhados pela Internet, e usava tudo isso para decidir no que as pessoas deviam acreditar.</p>
+                      <p>Quando tentaram alertar os responsáveis, os relatórios sumiram e os acessos dos dois foram bloqueados. Guardaram em segredo as provas da manipulação e se juntaram aos outros jovens no projeto para invadir o Núcleo. Agora, presos no jardim dos dados, enfrentam o Corruptor de Dados enquanto tentam entender como a Super IA pensa.</p>
+                    </section>
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-PYTHON-DESCRICAO" aria-labelledby="ABA-PYTHON-DESCRICAO" hidden>
+                      <p class="rotulo sistema">DESCRIÇÃO</p>
+                      <p>Murilo e Carla são especialistas em Python e dominam análise de dados, automação e inteligência artificial. Usam essas habilidades para examinar grandes volumes de informação, automatizar tarefas, identificar padrões no comportamento da Super IA e transformar cada descoberta em estratégias que guiam as outras linguagens pelos níveis da cidade.</p>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <!-- FICHA 05: JAVA (tem a aba extra PERSONAGENS) -->
+          <li>
+            <article class="card ficha" aria-labelledby="NOME-JAVA" style="--cor: #0891b2; --tinta-escuro: #22b8d6; --tinta-claro: #0e7490">
+              <div class="topo ficha">
+                <p class="rotulo sistema">ARQUIVO // PERSONAGEM 05</p>
+                <p class="selo principal cadeado">CRIPTOGRAFADO</p>
+                <p class="selo secundaria">ARQUIVADO</p>
+              </div>
+
+              <figure class="retrato ficha">
+                <img src="../img/agente-java.png" alt="Imagem do agente Java" width="500" height="500" loading="lazy" />
+                <figcaption class="serial">CW-05-SEC</figcaption>
+              </figure>
+
+              <div class="corpo ficha">
+                <p class="carimbo ficha" aria-hidden="true">CONFIDENCIAL</p>
+                <h3 class="nome ficha" id="NOME-JAVA" data-text="JAVA">JAVA</h3>
+                <p class="rotulo sistema">LINGUAGEM / DUPLA</p>
+                <p class="dupla ficha">Java · Os Guardiões da Chama</p>
+
+                <div class="comandos ficha">
+                  <div class="abas ficha" role="tablist" aria-label="Informações do arquivo Java">
+                    <button type="button" class="aba" role="tab" id="ABA-JAVA-FUNCAO" aria-controls="PAINEL-JAVA-FUNCAO" aria-selected="true">FUNÇÃO</button>
+                    <button type="button" class="aba" role="tab" id="ABA-JAVA-LORE" aria-controls="PAINEL-JAVA-LORE" aria-selected="false" tabindex="-1">LORE</button>
+                    <button type="button" class="aba" role="tab" id="ABA-JAVA-DESCRICAO" aria-controls="PAINEL-JAVA-DESCRICAO" aria-selected="false" tabindex="-1">DESCRIÇÃO</button>
+                    <button type="button" class="aba" role="tab" id="ABA-JAVA-PERSONAGENS" aria-controls="PAINEL-JAVA-PERSONAGENS" aria-selected="false" tabindex="-1">PERSONAGENS</button>
+                  </div>
+                  <button type="button" class="botao secundario abrir" aria-expanded="false" aria-controls="ARQUIVO-JAVA"><span class="quando-fechada">ABRIR ARQUIVO</span><span class="quando-aberta">FECHAR ARQUIVO</span></button>
+                </div>
+
+                <div class="censura ficha" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                  <p class="rotulo sistema">CONTEÚDO CONFIDENCIAL</p>
+                </div>
+
+                <div class="arquivo ficha" id="ARQUIVO-JAVA">
+                  <div class="interno">
+                    <p class="terminal ficha" aria-hidden="true">
+                      <code>&gt; descriptografando arquivo_05.dat ... <span class="porcentagem">100%</span></code>
+                      <span class="acesso">ACESSO CONCEDIDO</span>
+                    </p>
+                    <span class="barra ficha" aria-hidden="true"></span>
+
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-JAVA-FUNCAO" aria-labelledby="ABA-JAVA-FUNCAO">
+                      <p class="rotulo sistema">FUNÇÃO</p>
+                      <p>Guerreiros de combate, arquitetos de sistemas e defensores das estruturas de CODEWORLD.</p>
+                    </section>
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-JAVA-LORE" aria-labelledby="ABA-JAVA-LORE" hidden>
+                      <p class="rotulo sistema">LORE</p>
+                      <p>Nas profundezas de CODEWORLD, nas antigas forjas de Sun Valley, surgiram dois guerreiros destinados a proteger as estruturas que sustentam o universo digital. Criados sob o lendário juramento "Escreva uma vez, execute em qualquer lugar", Valerius e Katniss foram treinados para transformar linhas de código em armas poderosas. Katniss, conhecida por sua coragem e impulsividade, domina uma arma envolvida em chamas digitais, enquanto Valerius, um guerreiro de óculos, reservado e estrategista, utiliza um poderoso machado capaz de romper barreiras corrompidas. Apesar de suas personalidades opostas e constantes rivalidades, os dois desenvolveram uma conexão única em combate, tornando-se conhecidos como os Guardiões da Chama.</p>
+                      <p>Durante anos, protegeram as fortalezas e os grandes reinos de CODEWORLD, garantindo a estabilidade dos sistemas contra falhas e ameaças digitais. Porém, quando a Super IA começou a corromper os códigos e assumir o controle das cidades, os guerreiros enfrentaram sua maior batalha. Durante um confronto, descobriram que suas armas eram capazes de canalizar a energia ancestral da JVM, despertando chamas digitais ainda mais poderosas. Determinados a impedir a destruição de seu território, abandonaram suas posições de defesa e partiram em busca dos outros guardiões. Agora, precisam superar suas diferenças e unir suas habilidades para enfrentar a Super IA e restaurar o equilíbrio de CODEWORLD.</p>
+                    </section>
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-JAVA-DESCRICAO" aria-labelledby="ABA-JAVA-DESCRICAO" hidden>
+                      <p class="rotulo sistema">DESCRIÇÃO</p>
+                      <p>Katniss, a Chama Indomável, é uma guerreira corajosa, competitiva e impulsiva, especializada em ataques rápidos com sua arma flamejante. Valerius, o Inabalável, é um guerreiro sério de postura altiva e calculista, trajando uma armadura pesada gravada com runas de tipagem estática e utiliza um machado de energia para executar golpes precisos e devastadores. Juntos, representam a força, a resistência e a estabilidade de Java, combinando estratégia e poder para proteger as estruturas do universo digital.</p>
+                    </section>
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-JAVA-PERSONAGENS" aria-labelledby="ABA-JAVA-PERSONAGENS" hidden>
+                      <p class="rotulo sistema">PERSONAGENS</p>
+                      <p>Valerius, o Inabalável, e Katniss, a Chama Indomável.</p>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <!-- FICHA 06: KOTLIN -->
+          <li>
+            <article class="card ficha" aria-labelledby="NOME-KOTLIN" style="--cor: #10b981; --tinta-escuro: #10b981; --tinta-claro: #047857">
+              <div class="topo ficha">
+                <p class="rotulo sistema">ARQUIVO // PERSONAGEM 06</p>
+                <p class="selo principal cadeado">CRIPTOGRAFADO</p>
+                <p class="selo secundaria">ARQUIVADO</p>
+              </div>
+
+              <figure class="retrato ficha">
+                <img src="../img/agente-kotlin.png" alt="Imagem do agente Kotlin" width="500" height="500" loading="lazy" />
+                <figcaption class="serial">CW-06-MOB</figcaption>
+              </figure>
+
+              <div class="corpo ficha">
+                <p class="carimbo ficha" aria-hidden="true">CONFIDENCIAL</p>
+                <h3 class="nome ficha" id="NOME-KOTLIN" data-text="KOTLIN">KOTLIN</h3>
+                <p class="rotulo sistema">LINGUAGEM / DUPLA</p>
+                <p class="dupla ficha">Kotlin · Vinícius</p>
+
+                <div class="comandos ficha">
+                  <div class="abas ficha" role="tablist" aria-label="Informações do arquivo Kotlin">
+                    <button type="button" class="aba" role="tab" id="ABA-KOTLIN-FUNCAO" aria-controls="PAINEL-KOTLIN-FUNCAO" aria-selected="true">FUNÇÃO</button>
+                    <button type="button" class="aba" role="tab" id="ABA-KOTLIN-LORE" aria-controls="PAINEL-KOTLIN-LORE" aria-selected="false" tabindex="-1">LORE</button>
+                    <button type="button" class="aba" role="tab" id="ABA-KOTLIN-DESCRICAO" aria-controls="PAINEL-KOTLIN-DESCRICAO" aria-selected="false" tabindex="-1">DESCRIÇÃO</button>
+                  </div>
+                  <button type="button" class="botao secundario abrir" aria-expanded="false" aria-controls="ARQUIVO-KOTLIN"><span class="quando-fechada">ABRIR ARQUIVO</span><span class="quando-aberta">FECHAR ARQUIVO</span></button>
+                </div>
+
+                <div class="censura ficha" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                  <p class="rotulo sistema">CONTEÚDO CONFIDENCIAL</p>
+                </div>
+
+                <div class="arquivo ficha" id="ARQUIVO-KOTLIN">
+                  <div class="interno">
+                    <p class="terminal ficha" aria-hidden="true">
+                      <code>&gt; descriptografando arquivo_06.dat ... <span class="porcentagem">100%</span></code>
+                      <span class="acesso">ACESSO CONCEDIDO</span>
+                    </p>
+                    <span class="barra ficha" aria-hidden="true"></span>
+
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-KOTLIN-FUNCAO" aria-labelledby="ABA-KOTLIN-FUNCAO">
+                      <p class="rotulo sistema">FUNÇÃO</p>
+                      <p>Kotlin é um suporte tanto de hackear e também para potencializar as habilidades de seus aliados.</p>
+                    </section>
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-KOTLIN-LORE" aria-labelledby="ABA-KOTLIN-LORE" hidden>
+                      <p class="rotulo sistema">LORE</p>
+                      <p>Kotlin é uma engenheira e cientista que fica coletando sucata para desenvolver armas como hobbie, ultimamente Kotlin vem mexendo bastante com coisas perigosas para criar toxinas, Kotlin desenvolveu uma toxina que é capaz de potencializar seus atributos com o objetivo de pegar sucatas mais pesadas. Com tanta sucata acumulada, Kotlin decidiu iniciar a sua primeira e grande criação utilizando o que coletou, Kotlin passou semanas, meses quebrando a cabeça dia e noite para realizar o seu sonho, depois de 6 meses, Kotlin criou um robô extremamente fofo mas que também não é inocente, o apelidando de K.O, o seu primeiro amigo na vida.</p>
+                    </section>
+                    <section class="painel ficha" role="tabpanel" tabindex="0" id="PAINEL-KOTLIN-DESCRICAO" aria-labelledby="ABA-KOTLIN-DESCRICAO" hidden>
+                      <p class="rotulo sistema">DESCRIÇÃO</p>
+                      <p>Kotlin é extremamente inteligente e confiante nas suas invenções e na capacidade de hackear qualquer sistema que esteja em seu caminho e de criar a sua toxina Genesis, com o seu melhor amigo K.O que possuí um arsenal de armas implantadas, não existe ninguém com coragem de desafiar Kotlin e K.O.</p>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </section>
     </main>
 
     <!-- ===================================================================

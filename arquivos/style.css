@@ -8,6 +8,7 @@
    02. Cartão da Super IA
    03. Dossiê confidencial
    04. Responsividade
+   05. Fichas dos personagens
    ========================================================================== */
 
 #SECAO-ARQUIVOS {
@@ -239,5 +240,605 @@ html[data-tema="claro"] .card.arquivo.superia .linhas.console {
 
   .card.arquivo.superia .selo {
     white-space: normal;
+  }
+}
+
+/* ==========================================================================
+   05. FICHAS DOS PERSONAGENS
+   Uma ficha "confidencial" por linguagem. Cada ficha recebe no HTML:
+     --cor           cor da linguagem (bordas, brilho e detalhes)
+     --tinta-escuro  tom da cor para TEXTO no tema escuro
+     --tinta-claro   tom da cor para TEXTO no tema claro
+   Classes de estado (colocadas pelo script.js):
+     .aberta      arquivo aberto
+     .decifrando  efeito de descriptografia rodando
+   ========================================================================== */
+
+#SECAO-FICHAS {
+  /* Mesmo fundo da seção da Super IA, para as duas parecerem uma só */
+  padding-top: 0;
+  background-color: var(--fundo-alt);
+}
+
+/* --- 5.1 Divisor "NOVOS ARQUIVOS DOS PERSONAGENS" --- */
+.divisor.fichas {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--fonte-mono);
+  font-size: clamp(0.72rem, 1.6vw, 0.85rem);
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-align: center;
+  color: var(--magenta);
+  text-shadow: var(--brilho-magenta);
+}
+
+.divisor.fichas::before,
+.divisor.fichas::after {
+  content: "";
+  flex: 1;
+  min-width: 1.5rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--borda-magenta));
+}
+
+.divisor.fichas::after {
+  background: linear-gradient(90deg, var(--borda-magenta), transparent);
+}
+
+/* --- 5.2 Lista e cartão da ficha --- */
+.lista.fichas {
+  display: grid;
+  gap: var(--espaco);
+}
+
+/* Tom do texto conforme o tema. Fica aqui (e não no style="" do HTML)
+   para os temas conseguirem trocar a cor. */
+.card.ficha {
+  --tinta: var(--tinta-escuro);
+}
+
+html[data-tema="claro"] .card.ficha {
+  --tinta: var(--tinta-claro);
+}
+
+html.alto-contraste .card.ficha {
+  --tinta: var(--texto);
+}
+
+.card.ficha {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  padding: var(--espaco);
+  border: 1px solid color-mix(in srgb, var(--cor) 35%, transparent);
+  border-radius: var(--raio);
+  background-color: var(--superficie);
+}
+
+.card.ficha:hover,
+.card.ficha.aberta {
+  border-color: color-mix(in srgb, var(--cor) 65%, transparent);
+  box-shadow:
+    var(--sombra),
+    0 0 22px color-mix(in srgb, var(--cor) 18%, transparent);
+}
+
+/* Linha de luz do topo (vem do base.css) na cor da linguagem */
+.card.ficha::after {
+  background: linear-gradient(90deg, transparent, var(--cor), transparent);
+}
+
+/* Tudo fica por cima do fundo de código (5.3) */
+.card.ficha > :not(.codigo) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Telas médias e grandes: retrato à esquerda, textos à direita */
+@media (min-width: 760px) {
+  .card.ficha {
+    grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
+    column-gap: clamp(1.25rem, 3vw, 2rem);
+    align-items: start;
+  }
+
+  .topo.ficha {
+    grid-column: 1 / -1;
+  }
+}
+
+/* --- 5.3 Fundo de código (hexadecimal e binário) rolando devagar ---
+   O script.js cria este bloco com o nome da linguagem "codificado".
+   O texto vem repetido duas vezes: subir 50% fecha o ciclo sem pulo. */
+.codigo.ficha {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  padding: 0.75rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  line-height: 1.7;
+  letter-spacing: 0.12em;
+  word-break: break-all;
+  color: var(--cor);
+  opacity: 0.07;
+  pointer-events: none;
+  user-select: none;
+}
+
+.codigo.ficha span {
+  display: block;
+  animation: codigo-rola 60s linear infinite;
+}
+
+@keyframes codigo-rola {
+  to {
+    translate: 0 -50%;
+  }
+}
+
+/* No fundo claro o código aparece mais: fica mais fraco */
+html[data-tema="claro"] .codigo.ficha {
+  opacity: 0.045;
+}
+
+html.alto-contraste .codigo.ficha {
+  display: none;
+}
+
+/* --- 5.4 Barra do topo: número do arquivo e selos --- */
+.topo.ficha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.topo.ficha .rotulo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: auto;
+  color: var(--tinta);
+}
+
+/* Quadradinho aceso antes do "ARQUIVO // PERSONAGEM 0X" */
+.topo.ficha .rotulo::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background-color: var(--cor);
+  box-shadow: 0 0 8px var(--cor);
+}
+
+/* "CRIPTOGRAFADO" só aparece com o arquivo fechado */
+.card.ficha.aberta .selo.cadeado {
+  display: none;
+}
+
+/* --- 5.5 Retrato com cantoneiras e brilho na cor da linguagem --- */
+.retrato.ficha {
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 220px;
+  margin-inline: auto;
+}
+
+/* As cantoneiras são 4 gradientes de 2px nos cantos do fundo da imagem */
+.retrato.ficha img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  padding: 8%;
+  border: 1px solid color-mix(in srgb, var(--cor) 45%, transparent);
+  border-radius: var(--raio);
+  background:
+    linear-gradient(var(--cor), var(--cor)) top left / 14px 2px no-repeat,
+    linear-gradient(var(--cor), var(--cor)) top left / 2px 14px no-repeat,
+    linear-gradient(var(--cor), var(--cor)) bottom right / 14px 2px no-repeat,
+    linear-gradient(var(--cor), var(--cor)) bottom right / 2px 14px no-repeat,
+    radial-gradient(
+      circle at 50% 60%,
+      color-mix(in srgb, var(--cor) 24%, transparent),
+      transparent 70%
+    ),
+    var(--superficie-solida);
+  object-fit: contain;
+  /* Pixel art nítida, sem borrar ao aumentar */
+  image-rendering: pixelated;
+}
+
+.retrato.ficha .serial {
+  padding: 0.15rem 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--cor) 50%, transparent);
+  border-radius: 4px;
+  background-color: color-mix(in srgb, var(--cor) 10%, transparent);
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--tinta);
+}
+
+/* --- 5.6 Nome, dupla e carimbo --- */
+.corpo.ficha {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.corpo.ficha > .rotulo {
+  color: var(--tinta);
+}
+
+.dupla.ficha {
+  font-weight: 700;
+  color: var(--texto);
+}
+
+/* Nome da linguagem: o glitch abaixo roda UMA vez ao passar o mouse.
+   (Ao abrir a ficha, quem faz o glitch é o script.js, na sombra do texto.) */
+.nome.ficha {
+  position: relative;
+  font-family: var(--fonte-display);
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--tinta);
+  text-shadow: 0 0 14px color-mix(in srgb, var(--cor) 45%, transparent);
+}
+
+.nome.ficha::before,
+.nome.ficha::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nome.ficha::before {
+  color: var(--ciano);
+}
+
+.nome.ficha::after {
+  color: var(--magenta);
+}
+
+.card.ficha:hover .nome.ficha::before {
+  animation: glitch-ficha-a 420ms steps(1, end) 1;
+}
+
+.card.ficha:hover .nome.ficha::after {
+  animation: glitch-ficha-b 420ms steps(1, end) 1;
+}
+
+/* Fatias deslocadas que somem no fim (opacity 0) */
+@keyframes glitch-ficha-a {
+  0% {
+    opacity: 0.8;
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(-3px, -1px);
+  }
+  35% {
+    clip-path: inset(55% 0 20% 0);
+    transform: translate(3px, 1px);
+  }
+  70% {
+    clip-path: inset(30% 0 45% 0);
+    transform: translate(-2px, 0);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes glitch-ficha-b {
+  0% {
+    opacity: 0.6;
+    clip-path: inset(65% 0 10% 0);
+    transform: translate(3px, 1px);
+  }
+  35% {
+    clip-path: inset(20% 0 60% 0);
+    transform: translate(-3px, -1px);
+  }
+  70% {
+    clip-path: inset(40% 0 35% 0);
+    transform: translate(2px, 0);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Carimbo "CONFIDENCIAL": só com o arquivo aberto. Em telas menores fica
+   numa linha própria; nas grandes, no canto direito sem cobrir o nome. */
+.carimbo.ficha {
+  align-self: flex-start;
+  margin-bottom: 0.3rem;
+  padding: 0.2rem 0.65rem;
+  border: 2px solid var(--vermelho);
+  border-radius: var(--raio);
+  font-family: var(--fonte-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--vermelho);
+  transform: rotate(-3deg);
+  opacity: 0.8;
+}
+
+.card.ficha:not(.aberta) .carimbo.ficha {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .carimbo.ficha {
+    position: absolute;
+    top: 0.2rem;
+    right: 0;
+    margin: 0;
+    transform: rotate(6deg);
+  }
+}
+
+/* --- 5.7 Abas (uma por informação) e botão de abrir --- */
+.comandos.ficha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 0.9rem;
+}
+
+.abas.ficha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.abas.ficha .aba {
+  min-height: 40px;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  color: var(--texto-suave);
+  transition:
+    border-color var(--rapido) ease,
+    color var(--rapido) ease,
+    background-color var(--rapido) ease,
+    box-shadow var(--rapido) ease;
+}
+
+.abas.ficha .aba:hover {
+  border-color: var(--tinta);
+  color: var(--texto);
+}
+
+/* Aba ativa: só fica marcada com o arquivo aberto */
+.card.ficha.aberta .aba[aria-selected="true"] {
+  border-color: var(--cor);
+  background-color: color-mix(in srgb, var(--cor) 16%, transparent);
+  color: var(--tinta);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--cor) 30%, transparent);
+}
+
+/* Botão ABRIR / FECHAR ARQUIVO na cor da linguagem */
+.card.ficha .botao.abrir {
+  border-color: var(--tinta);
+  background-color: color-mix(in srgb, var(--cor) 8%, transparent);
+  color: var(--tinta);
+}
+
+.card.ficha .botao.abrir:hover,
+.card.ficha .botao.abrir:focus-visible {
+  background-color: color-mix(in srgb, var(--cor) 18%, transparent);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--cor) 35%, transparent);
+}
+
+/* Os dois textos ficam no HTML (o tradutor traduz os dois); o CSS mostra
+   ABRIR com a ficha fechada e FECHAR com ela aberta */
+.card.ficha:not(.aberta) .botao.abrir .quando-aberta,
+.card.ficha.aberta .botao.abrir .quando-fechada {
+  display: none;
+}
+
+/* --- 5.8 Barras de censura (só com o arquivo fechado) --- */
+.censura.ficha {
+  display: grid;
+  gap: 0.45rem;
+  width: 100%;
+  margin-top: 0.9rem;
+}
+
+.censura.ficha span {
+  display: block;
+  height: 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--vermelho) 40%, transparent);
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--vermelho) 45%, transparent) 0 6px,
+        transparent 6px 11px
+      )
+      left / 28% 100% no-repeat,
+    #07050c;
+}
+
+.censura.ficha span:nth-child(2) {
+  width: 82%;
+}
+
+.censura.ficha span:nth-child(3) {
+  width: 61%;
+}
+
+.censura.ficha .rotulo {
+  font-size: 0.68rem;
+  color: var(--vermelho);
+}
+
+.card.ficha.aberta .censura.ficha {
+  display: none;
+}
+
+/* --- 5.9 Abrir e fechar o arquivo (altura animada com grid 0fr → 1fr) --- */
+.arquivo.ficha {
+  display: grid;
+  grid-template-rows: 1fr;
+  width: 100%;
+  transition:
+    grid-template-rows 450ms var(--suave),
+    visibility 0s;
+}
+
+.arquivo.ficha > .interno {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Fechado: altura zero e invisível (some também para leitores de tela e
+   para o Tab). O "visibility" espera a animação de fechar terminar. */
+.js .card.ficha:not(.aberta) .arquivo.ficha {
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows 450ms var(--suave),
+    visibility 0s 450ms;
+}
+
+/* --- 5.10 Terminal "descriptografando" e barra de progresso --- */
+.terminal.ficha {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  margin-top: 1rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--borda);
+  border-bottom: none;
+  border-radius: var(--raio) var(--raio) 0 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  font-family: var(--fonte-mono);
+  font-size: 0.78rem;
+  color: var(--texto-suave);
+}
+
+html[data-tema="claro"] .terminal.ficha {
+  background-color: var(--superficie-alt);
+}
+
+.terminal.ficha code {
+  font-family: inherit;
+  overflow-wrap: anywhere;
+}
+
+.terminal.ficha .acesso {
+  letter-spacing: 0.08em;
+  color: var(--verde);
+}
+
+/* Cursor de terminal piscando (keyframes "piscar" do base.css) */
+.terminal.ficha .acesso::after {
+  content: "▌";
+  margin-left: 0.25rem;
+  animation: piscar 1s steps(2, start) infinite;
+}
+
+/* A barra enche pelo script.js (transform: scaleX de 0 a 1) */
+.barra.ficha {
+  display: block;
+  height: 2px;
+  background-color: var(--verde);
+  box-shadow: 0 0 8px var(--verde);
+  transform-origin: left;
+}
+
+/* Enquanto decifra, o "ACESSO CONCEDIDO" espera o fim */
+.card.ficha.decifrando .acesso {
+  visibility: hidden;
+}
+
+/* --- 5.11 Painéis de texto (um por aba) ---
+   Sem "display" aqui: quem mostra e esconde é o atributo hidden. */
+.painel.ficha {
+  margin-top: 1rem;
+}
+
+.painel.ficha .rotulo {
+  margin-bottom: 0.5rem;
+  color: var(--tinta);
+}
+
+.painel.ficha p:not(.rotulo) {
+  max-width: 72ch;
+  color: var(--texto-suave);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.painel.ficha p:not(.rotulo) + p {
+  margin-top: 0.8rem;
+}
+
+/* Descriptografia: o texto real fica no lugar, transparente (leitores de
+   tela e o tradutor continuam lendo ele); por cima vai uma cópia
+   embaralhada que o script.js revela letra por letra. */
+.painel.ficha p.cifrado {
+  position: relative;
+  color: transparent;
+}
+
+.painel.ficha .cifra {
+  position: absolute;
+  inset: 0;
+  /* Os símbolos são mais largos que as letras: corta o que passar */
+  overflow: hidden;
+  color: var(--texto-suave);
+  pointer-events: none;
+}
+
+/* --- 5.12 Sem JavaScript: tudo aberto, sem abas nem efeitos --- */
+html:not(.js) .comandos.ficha,
+html:not(.js) .censura.ficha,
+html:not(.js) .terminal.ficha,
+html:not(.js) .barra.ficha,
+html:not(.js) .selo.cadeado {
+  display: none;
+}
+
+html:not(.js) .painel.ficha[hidden] {
+  display: block;
+}
+
+/* --- 5.13 Celular --- */
+@media (max-width: 559px) {
+  .card.ficha {
+    padding: 1rem;
+  }
+
+  .comandos.ficha {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .abas.ficha .aba {
+    flex: 1 1 auto;
   }
 }
