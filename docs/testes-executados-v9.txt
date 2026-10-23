@@ -1,0 +1,53 @@
+Python 3.12.14; ambiente Linux; codificação padrão cp1252 simulada via io.text_encoding.
+
+test_server_and_lessons_with_cp1252_default (test_startup.StartupEncodingTests.test_server_and_lessons_with_cp1252_default) ... ok
+test_all_24_skills_animate_and_execute (test_system.RulesTests.test_all_24_skills_animate_and_execute) ... ok
+test_all_maps_reachable (test_system.RulesTests.test_all_maps_reachable) ... ok
+test_core_shield (test_system.RulesTests.test_core_shield) ... ok
+test_defeat (test_system.RulesTests.test_defeat) ... ok
+test_duo_requires_java (test_system.RulesTests.test_duo_requires_java) ... ok
+test_fortify_weakness_boost_and_guard (test_system.RulesTests.test_fortify_weakness_boost_and_guard) ... ok
+test_heal_ally_and_consumables (test_system.RulesTests.test_heal_ally_and_consumables) ... ok
+test_invalid_actions_are_not_partially_applied (test_system.RulesTests.test_invalid_actions_are_not_partially_applied) ... ok
+test_official_stats_and_skills (test_system.RulesTests.test_official_stats_and_skills) ... ok
+test_poison_bleed_different_and_duration (test_system.RulesTests.test_poison_bleed_different_and_duration) ... ok
+test_preservation_main_assets_css_and_scripts (test_system.RulesTests.test_preservation_main_assets_css_and_scripts) ... ok
+test_story_order_and_final_languages (test_system.RulesTests.test_story_order_and_final_languages) ... ok
+test_stun_consumes_exactly_one_action (test_system.RulesTests.test_stun_consumes_exactly_one_action) ... ok
+test_answer_reward_idempotency_and_race (test_system.SystemTests.test_answer_reward_idempotency_and_race) ... ok
+test_attacks_execute_without_quiz (test_system.SystemTests.test_attacks_execute_without_quiz) ... ok
+test_authentication_2fa_cookie_and_replay (test_system.SystemTests.test_authentication_2fa_cookie_and_replay) ... ok
+test_battle_authority_replay_and_resume (test_system.SystemTests.test_battle_authority_replay_and_resume) ... ok
+test_boot_and_static_routes (test_system.SystemTests.test_boot_and_static_routes) ... ok
+test_cookie_security_flags (test_system.SystemTests.test_cookie_security_flags) ... ok
+test_first_stage_completion_once (test_system.SystemTests.test_first_stage_completion_once) ... ok
+test_full_31_stage_campaign_through_http (test_system.SystemTests.test_full_31_stage_campaign_through_http) ... ok
+test_invalid_password_and_otp (test_system.SystemTests.test_invalid_password_and_otp) ... ok
+test_json_origin_and_host_validation (test_system.SystemTests.test_json_origin_and_host_validation) ... ok
+test_lesson_progress_rewards_and_repeat (test_system.SystemTests.test_lesson_progress_rewards_and_repeat) ... ok
+test_map_collision_stage_lock_and_travel (test_system.SystemTests.test_map_collision_stage_lock_and_travel) ... ok
+test_nexus_questions_code_reward (test_system.SystemTests.test_nexus_questions_code_reward) ... ok
+test_private_files_get_and_head (test_system.SystemTests.test_private_files_get_and_head) ... ok
+test_questions_strip_answers (test_system.SystemTests.test_questions_strip_answers) ... ok
+test_separate_accounts (test_system.SystemTests.test_separate_accounts) ... ok
+test_shop_atomic_and_no_duplicate_charge (test_system.SystemTests.test_shop_atomic_and_no_duplicate_charge) ... ok
+test_sql_isolated_and_services_honest (test_system.SystemTests.test_sql_isolated_and_services_honest) ... ok
+test_team_validation_and_inventory (test_system.SystemTests.test_team_validation_and_inventory) ... ok
+test_all_54_lessons_and_levels (test_v9.LearningMissionTests.test_all_54_lessons_and_levels) ... ok
+test_all_permanent_terminals (test_v9.LearningMissionTests.test_all_permanent_terminals) ... ok
+test_claims_are_account_bound (test_v9.LearningMissionTests.test_claims_are_account_bound) ... ok
+test_main_lesson_certifies_and_reset_keeps_level (test_v9.LearningMissionTests.test_main_lesson_certifies_and_reset_keeps_level) ... ok
+test_midnight_refresh_and_old_claim_rejected (test_v9.LearningMissionTests.test_midnight_refresh_and_old_claim_rejected) ... ok
+test_nexus_all_four_validated_terminals (test_v9.LearningMissionTests.test_nexus_all_four_validated_terminals) ... ok
+test_public_content_has_no_answer_keys (test_v9.LearningMissionTests.test_public_content_has_no_answer_keys) ... ok
+test_run_claim_and_concurrent_replay (test_v9.LearningMissionTests.test_run_claim_and_concurrent_replay) ... ok
+test_wrong_answers_skip_and_read_marker_rejected (test_v9.LearningMissionTests.test_wrong_answers_skip_and_read_marker_rejected) ... ok
+test_battery_and_shield_consumption (test_v9.RevisionRulesTests.test_battery_and_shield_consumption) ... ok
+test_daily_challenges_solvable_and_deterministic (test_v9.RevisionRulesTests.test_daily_challenges_solvable_and_deterministic) ... ok
+test_safe_code_and_fake_keywords (test_v9.RevisionRulesTests.test_safe_code_and_fake_keywords) ... ok
+test_v8_migration_preserves_progress (test_v9.RevisionRulesTests.test_v8_migration_preserves_progress) ... ok
+
+----------------------------------------------------------------------
+Ran 46 tests in 10.345s
+
+OK

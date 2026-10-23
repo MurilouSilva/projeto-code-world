@@ -1,0 +1,898 @@
+[
+  {
+    "id": "q01",
+    "world": 0,
+    "lang": "HTML",
+    "q": "Qual elemento representa o título principal da página?",
+    "o": [
+      "<h1>",
+      "<p>",
+      "<main>",
+      "<title>"
+    ],
+    "a": 0,
+    "reward": 120
+  },
+  {
+    "id": "q02",
+    "world": 0,
+    "lang": "HTML",
+    "q": "Qual atributo descreve uma imagem para leitores de tela?",
+    "o": [
+      "src",
+      "alt",
+      "href",
+      "id"
+    ],
+    "a": 1,
+    "reward": 120
+  },
+  {
+    "id": "q03",
+    "world": 0,
+    "lang": "CSS",
+    "q": "Qual propriedade muda a cor do texto?",
+    "o": [
+      "background",
+      "font",
+      "color",
+      "paint"
+    ],
+    "a": 2,
+    "reward": 120
+  },
+  {
+    "id": "q04",
+    "world": 0,
+    "lang": "CSS",
+    "q": "Qual declaração cria uma grade CSS?",
+    "o": [
+      "display: grid",
+      "position: grid",
+      "layout: grid",
+      "grid: true"
+    ],
+    "a": 0,
+    "reward": 130
+  },
+  {
+    "id": "q05",
+    "world": 0,
+    "lang": "HTML",
+    "q": "Qual elemento liga uma página a outra?",
+    "o": [
+      "<img>",
+      "<a>",
+      "<span>",
+      "<br>"
+    ],
+    "a": 1,
+    "reward": 140
+  },
+  {
+    "id": "q06",
+    "world": 1,
+    "lang": "JavaScript",
+    "q": "Qual declaração permite reatribuir uma variável?",
+    "o": [
+      "const",
+      "class",
+      "let",
+      "static"
+    ],
+    "a": 2,
+    "reward": 140
+  },
+  {
+    "id": "q07",
+    "world": 1,
+    "lang": "JavaScript",
+    "q": "Qual método escreve uma mensagem no console?",
+    "o": [
+      "console.log",
+      "print",
+      "echo",
+      "System.out"
+    ],
+    "a": 0,
+    "reward": 150
+  },
+  {
+    "id": "q08",
+    "world": 1,
+    "lang": "JavaScript",
+    "q": "Qual operador compara valor e tipo?",
+    "o": [
+      "=",
+      "==",
+      "===",
+      "=>"
+    ],
+    "a": 2,
+    "reward": 150
+  },
+  {
+    "id": "q09",
+    "world": 1,
+    "lang": "Java",
+    "q": "Qual método inicia um aplicativo Java comum?",
+    "o": [
+      "start()",
+      "main()",
+      "run()",
+      "init()"
+    ],
+    "a": 1,
+    "reward": 160
+  },
+  {
+    "id": "q10",
+    "world": 1,
+    "lang": "Java",
+    "q": "Qual palavra cria uma classe em Java?",
+    "o": [
+      "def",
+      "class",
+      "struct",
+      "function"
+    ],
+    "a": 1,
+    "reward": 160
+  },
+  {
+    "id": "q11",
+    "world": 2,
+    "lang": "Python",
+    "q": "Qual palavra define uma função em Python?",
+    "o": [
+      "function",
+      "func",
+      "def",
+      "lambda"
+    ],
+    "a": 2,
+    "reward": 170
+  },
+  {
+    "id": "q12",
+    "world": 2,
+    "lang": "Python",
+    "q": "Qual tipo é uma lista mutável em Python?",
+    "o": [
+      "tuple",
+      "list",
+      "str",
+      "int"
+    ],
+    "a": 1,
+    "reward": 170
+  },
+  {
+    "id": "q13",
+    "world": 2,
+    "lang": "Python",
+    "q": "Qual função mostra texto na saída?",
+    "o": [
+      "echo",
+      "log",
+      "print",
+      "show"
+    ],
+    "a": 2,
+    "reward": 180
+  },
+  {
+    "id": "q14",
+    "world": 2,
+    "lang": "Kotlin",
+    "q": "Qual palavra declara uma referência que não será reatribuída?",
+    "o": [
+      "var",
+      "val",
+      "let",
+      "const"
+    ],
+    "a": 1,
+    "reward": 180
+  },
+  {
+    "id": "q15",
+    "world": 2,
+    "lang": "Kotlin",
+    "q": "Qual função é ponto de entrada comum?",
+    "o": [
+      "fun main()",
+      "start()",
+      "def main()",
+      "run()"
+    ],
+    "a": 0,
+    "reward": 190
+  },
+  {
+    "id": "q16",
+    "world": 3,
+    "lang": "SQL",
+    "q": "Qual comando consulta registros?",
+    "o": [
+      "SELECT",
+      "UPDATE",
+      "INSERT",
+      "DELETE"
+    ],
+    "a": 0,
+    "reward": 200
+  },
+  {
+    "id": "q17",
+    "world": 3,
+    "lang": "SQL",
+    "q": "Qual cláusula filtra linhas?",
+    "o": [
+      "ORDER BY",
+      "WHERE",
+      "JOIN",
+      "GROUP BY"
+    ],
+    "a": 1,
+    "reward": 210
+  },
+  {
+    "id": "q18",
+    "world": 3,
+    "lang": "C#",
+    "q": "Qual palavra declara uma classe em C#?",
+    "o": [
+      "class",
+      "module",
+      "type",
+      "def"
+    ],
+    "a": 0,
+    "reward": 210
+  },
+  {
+    "id": "q19",
+    "world": 3,
+    "lang": "Algoritmos",
+    "q": "Qual estrutura repete um bloco enquanto a condição for verdadeira?",
+    "o": [
+      "if",
+      "while",
+      "return",
+      "break"
+    ],
+    "a": 1,
+    "reward": 220
+  },
+  {
+    "id": "q20",
+    "world": 3,
+    "lang": "Segurança",
+    "q": "Onde uma chave secreta de API deve ficar?",
+    "o": [
+      "No JavaScript público",
+      "Em variável de ambiente no servidor",
+      "No HTML",
+      "Na URL"
+    ],
+    "a": 1,
+    "reward": 220
+  },
+  {
+    "id": "q21",
+    "world": null,
+    "lang": "HTML",
+    "q": "Qual elemento agrupa a navegação principal?",
+    "o": [
+      "<aside>",
+      "<nav>",
+      "<footer>",
+      "<section>"
+    ],
+    "a": 1,
+    "reward": 140
+  },
+  {
+    "id": "q22",
+    "world": null,
+    "lang": "CSS",
+    "q": "Qual unidade é relativa à fonte raiz?",
+    "o": [
+      "px",
+      "vh",
+      "rem",
+      "%"
+    ],
+    "a": 2,
+    "reward": 140
+  },
+  {
+    "id": "q23",
+    "world": null,
+    "lang": "JavaScript",
+    "q": "Qual método transforma JSON em objeto?",
+    "o": [
+      "JSON.parse",
+      "JSON.stringify",
+      "JSON.open",
+      "JSON.object"
+    ],
+    "a": 0,
+    "reward": 150
+  },
+  {
+    "id": "q24",
+    "world": null,
+    "lang": "JavaScript",
+    "q": "Qual método adiciona item ao fim de um array?",
+    "o": [
+      "pop",
+      "push",
+      "shift",
+      "slice"
+    ],
+    "a": 1,
+    "reward": 150
+  },
+  {
+    "id": "q25",
+    "world": null,
+    "lang": "Python",
+    "q": "Qual operador testa igualdade?",
+    "o": [
+      "=",
+      "==",
+      "===",
+      "=>"
+    ],
+    "a": 1,
+    "reward": 160
+  },
+  {
+    "id": "q26",
+    "world": null,
+    "lang": "Python",
+    "q": "Qual função retorna o comprimento de uma lista?",
+    "o": [
+      "size",
+      "length",
+      "count",
+      "len"
+    ],
+    "a": 3,
+    "reward": 160
+  },
+  {
+    "id": "q27",
+    "world": null,
+    "lang": "SQL",
+    "q": "Qual cláusula ordena os resultados?",
+    "o": [
+      "ORDER BY",
+      "GROUP BY",
+      "HAVING",
+      "LIMIT"
+    ],
+    "a": 0,
+    "reward": 170
+  },
+  {
+    "id": "q28",
+    "world": null,
+    "lang": "CSS",
+    "q": "Qual propriedade controla o espaço interno?",
+    "o": [
+      "margin",
+      "padding",
+      "gap",
+      "border"
+    ],
+    "a": 1,
+    "reward": 170
+  },
+  {
+    "id": "q29",
+    "world": null,
+    "lang": "Git",
+    "q": "Qual comando registra alterações preparadas?",
+    "o": [
+      "git push",
+      "git commit",
+      "git pull",
+      "git status"
+    ],
+    "a": 1,
+    "reward": 180
+  },
+  {
+    "id": "q30",
+    "world": null,
+    "lang": "Web",
+    "q": "Qual código HTTP indica que o recurso não foi encontrado?",
+    "o": [
+      "200",
+      "301",
+      "404",
+      "500"
+    ],
+    "a": 2,
+    "reward": 180
+  },
+  {
+    "id": "q31",
+    "world": null,
+    "lang": "HTML",
+    "q": "Qual elemento cria um campo de formulário?",
+    "o": [
+      "<input>",
+      "<label>",
+      "<form>",
+      "<meta>"
+    ],
+    "a": 0,
+    "reward": 130
+  },
+  {
+    "id": "q32",
+    "world": null,
+    "lang": "CSS",
+    "q": "Qual seletor escolhe uma classe chamada card?",
+    "o": [
+      "#card",
+      ".card",
+      "card",
+      "*card"
+    ],
+    "a": 1,
+    "reward": 130
+  },
+  {
+    "id": "outjs1",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de console.log(2 + 2 * 2)?",
+    "o": [
+      "8",
+      "6",
+      "4",
+      "12"
+    ],
+    "a": 1,
+    "reward": 180
+  },
+  {
+    "id": "outjs2",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de console.log(\"Code\" + \"World\")?",
+    "o": [
+      "Code World",
+      "NaN",
+      "CodeWorld",
+      "Code+World"
+    ],
+    "a": 2,
+    "reward": 184
+  },
+  {
+    "id": "outjs3",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de console.log([2,4,6].length)?",
+    "o": [
+      "2",
+      "6",
+      "12",
+      "3"
+    ],
+    "a": 3,
+    "reward": 188
+  },
+  {
+    "id": "outjs4",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de let x=5; x+=3; console.log(x)?",
+    "o": [
+      "8",
+      "5",
+      "3",
+      "15"
+    ],
+    "a": 0,
+    "reward": 192
+  },
+  {
+    "id": "outjs5",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de console.log([1,2,3].map(n=>n*2).join(','))?",
+    "o": [
+      "1,2,3",
+      "2,4,6",
+      "[2,4,6]",
+      "6"
+    ],
+    "a": 1,
+    "reward": 196
+  },
+  {
+    "id": "outjs6",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de console.log(3 === \"3\")?",
+    "o": [
+      "true",
+      "3",
+      "false",
+      "undefined"
+    ],
+    "a": 2,
+    "reward": 200
+  },
+  {
+    "id": "outjs7",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de console.log(true && false)?",
+    "o": [
+      "true",
+      "0",
+      "undefined",
+      "false"
+    ],
+    "a": 3,
+    "reward": 204
+  },
+  {
+    "id": "outjs8",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de console.log(\"abc\".toUpperCase())?",
+    "o": [
+      "ABC",
+      "abc",
+      "Abc",
+      "ERROR"
+    ],
+    "a": 0,
+    "reward": 208
+  },
+  {
+    "id": "outjs9",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de console.log([1,2,3].filter(n=>n>1).length)?",
+    "o": [
+      "1",
+      "2",
+      "3",
+      "6"
+    ],
+    "a": 1,
+    "reward": 212
+  },
+  {
+    "id": "outjs10",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de console.log(Math.max(4,9,2))?",
+    "o": [
+      "4",
+      "2",
+      "9",
+      "15"
+    ],
+    "a": 2,
+    "reward": 216
+  },
+  {
+    "id": "outjs11",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de let x=0; for(let i=0;i<3;i++) x+=i; console.log(x)?",
+    "o": [
+      "0",
+      "6",
+      "2",
+      "3"
+    ],
+    "a": 3,
+    "reward": 220
+  },
+  {
+    "id": "outjs12",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de console.log(\"hello\".slice(1,4))?",
+    "o": [
+      "ell",
+      "hell",
+      "ello",
+      "llo"
+    ],
+    "a": 0,
+    "reward": 224
+  },
+  {
+    "id": "outjs13",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de console.log((5%2) + (8/4))?",
+    "o": [
+      "1",
+      "3",
+      "4",
+      "5"
+    ],
+    "a": 1,
+    "reward": 228
+  },
+  {
+    "id": "outjs14",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de console.log([2,4,6].reduce((a,b)=>a+b,0))?",
+    "o": [
+      "6",
+      "24",
+      "12",
+      "0"
+    ],
+    "a": 2,
+    "reward": 232
+  },
+  {
+    "id": "outjs15",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de const obj={xp:7}; console.log(obj.xp ?? 0)?",
+    "o": [
+      "0",
+      "null",
+      "undefined",
+      "7"
+    ],
+    "a": 3,
+    "reward": 236
+  },
+  {
+    "id": "outjs16",
+    "world": null,
+    "lang": "JavaScript · Saída",
+    "q": "Qual será a saída de console.log([1,2,3].some(n=>n>2))?",
+    "o": [
+      "true",
+      "false",
+      "3",
+      "1"
+    ],
+    "a": 0,
+    "reward": 240
+  },
+  {
+    "id": "outpy1",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print(6 // 2)?",
+    "o": [
+      "3.0",
+      "3",
+      "2",
+      "12"
+    ],
+    "a": 1,
+    "reward": 190
+  },
+  {
+    "id": "outpy2",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print(\"Co\" + \"dex\")?",
+    "o": [
+      "Co dex",
+      "Co+dex",
+      "Codex",
+      "erro"
+    ],
+    "a": 2,
+    "reward": 194
+  },
+  {
+    "id": "outpy3",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print(len([1,2,3,4]))?",
+    "o": [
+      "3",
+      "10",
+      "5",
+      "4"
+    ],
+    "a": 3,
+    "reward": 198
+  },
+  {
+    "id": "outpy4",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print([1,2,3][0])?",
+    "o": [
+      "1",
+      "0",
+      "2",
+      "3"
+    ],
+    "a": 0,
+    "reward": 202
+  },
+  {
+    "id": "outpy5",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print(sum([2,3,4]))?",
+    "o": [
+      "3",
+      "9",
+      "24",
+      "234"
+    ],
+    "a": 1,
+    "reward": 206
+  },
+  {
+    "id": "outpy6",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print(2 ** 3)?",
+    "o": [
+      "6",
+      "9",
+      "8",
+      "5"
+    ],
+    "a": 2,
+    "reward": 210
+  },
+  {
+    "id": "outpy7",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print(7 % 3)?",
+    "o": [
+      "2",
+      "3",
+      "0",
+      "1"
+    ],
+    "a": 3,
+    "reward": 214
+  },
+  {
+    "id": "outpy8",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print(list(range(3)))?",
+    "o": [
+      "[0, 1, 2]",
+      "[1, 2, 3]",
+      "[0, 1, 2, 3]",
+      "[3]"
+    ],
+    "a": 0,
+    "reward": 218
+  },
+  {
+    "id": "outpy9",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print(\"python\".upper())?",
+    "o": [
+      "Python",
+      "PYTHON",
+      "python",
+      "P"
+    ],
+    "a": 1,
+    "reward": 222
+  },
+  {
+    "id": "outpy10",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print([x*2 for x in [1,3,5]])?",
+    "o": [
+      "[1, 3, 5]",
+      "[2, 4, 6]",
+      "[2, 6, 10]",
+      "[1, 9, 25]"
+    ],
+    "a": 2,
+    "reward": 226
+  },
+  {
+    "id": "outpy11",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print({'xp': 5}.get('xp', 0))?",
+    "o": [
+      "0",
+      "None",
+      "KeyError",
+      "5"
+    ],
+    "a": 3,
+    "reward": 230
+  },
+  {
+    "id": "outpy12",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print(bool([]))?",
+    "o": [
+      "False",
+      "True",
+      "[]",
+      "None"
+    ],
+    "a": 0,
+    "reward": 234
+  },
+  {
+    "id": "outpy13",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print(\"codex\"[1:4])?",
+    "o": [
+      "cod",
+      "ode",
+      "dex",
+      "ode x"
+    ],
+    "a": 1,
+    "reward": 238
+  },
+  {
+    "id": "outpy14",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print(max([3,7,2]))?",
+    "o": [
+      "3",
+      "2",
+      "7",
+      "12"
+    ],
+    "a": 2,
+    "reward": 242
+  },
+  {
+    "id": "outpy15",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print(sorted([3,1,2]))?",
+    "o": [
+      "[3, 1, 2]",
+      "[3, 2, 1]",
+      "[1, 3, 2]",
+      "[1, 2, 3]"
+    ],
+    "a": 3,
+    "reward": 246
+  },
+  {
+    "id": "outpy16",
+    "world": null,
+    "lang": "Python · Saída",
+    "q": "Qual será a saída de print(10 in [5,10,15])?",
+    "o": [
+      "True",
+      "False",
+      "10",
+      "None"
+    ],
+    "a": 0,
+    "reward": 250
+  }
+]

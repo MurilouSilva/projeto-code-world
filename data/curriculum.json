@@ -1,0 +1,2231 @@
+[
+  {
+    "id": "html",
+    "name": "HTML",
+    "modules": [
+      {
+        "id": "html-0",
+        "title": "Estrutura do Documento",
+        "intro": "Todo arquivo HTML segue o mesmo esqueleto: a declaração do tipo, um cabeçalho invisível e o corpo visível.",
+        "sections": [
+          {
+            "title": "<!DOCTYPE html>",
+            "text": "Primeira linha do arquivo. Avisa o navegador que o documento segue o padrão HTML5 moderno.",
+            "code": ""
+          },
+          {
+            "title": "<head>",
+            "text": "Guarda informações sobre a página: título da aba, codificação e links para CSS. Nada dele aparece no conteúdo.",
+            "code": ""
+          },
+          {
+            "title": "<body>",
+            "text": "Tudo o que o usuário vê fica dentro do body: textos, imagens, botões e links.",
+            "code": ""
+          }
+        ],
+        "example": "<!DOCTYPE html>\n<html lang=\"pt-BR\">\n  <head>\n    <meta charset=\"UTF-8\">\n    <title>CodeWorld</title>\n  </head>\n  <body>\n    <h1>Olá, Codeworld!</h1>\n  </body>\n</html>",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual declaração deve ser a primeira linha de um documento HTML5?",
+            "options": [
+              "<html5>",
+              "<!DOCTYPE html>",
+              "<head>",
+              "<meta html>"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Em qual tag fica o conteúdo visível da página?",
+            "options": [
+              "<head>",
+              "<title>",
+              "<body>",
+              "<meta>"
+            ],
+            "answer": 2
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "html-1",
+        "title": "Texto e Semântica",
+        "intro": "Tags semânticas dizem o PAPEL de cada parte da página, ajudando leitores de tela e buscadores a entender o conteúdo.",
+        "sections": [
+          {
+            "title": "Títulos <h1> a <h6>",
+            "text": "Organizam o texto como um sumário. Use um único <h1> por página e não pule níveis.",
+            "code": ""
+          },
+          {
+            "title": "<p> e <strong>",
+            "text": "<p> cria parágrafos. <strong> marca algo importante e <em> dá ênfase à leitura.",
+            "code": ""
+          },
+          {
+            "title": "<header>, <main>, <footer>",
+            "text": "Descrevem o papel de cada região. O <main> guarda o conteúdo principal e aparece uma só vez.",
+            "code": ""
+          }
+        ],
+        "example": "<header>\n  <h1>CodeWorld</h1>\n</header>\n<main>\n  <article>\n    <h2>Missão 01</h2>\n    <p>Proteja o <strong>Nexus</strong> dos bugs.</p>\n  </article>\n</main>\n<footer>\n  <p>© 2085 CodeWorld</p>\n</footer>",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual tag semântica envolve o conteúdo principal e exclusivo da página, sem se repetir?",
+            "options": [
+              "<section>",
+              "<main>",
+              "<article>",
+              "<div>"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Qual tag indica que um trecho de texto tem forte importância?",
+            "options": [
+              "<b>",
+              "<i>",
+              "<strong>",
+              "<span>"
+            ],
+            "answer": 2
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "html-2",
+        "title": "Links e Imagens",
+        "intro": "Links conectam páginas entre si e imagens trazem o visual — sempre com uma descrição para quem não pode vê-las.",
+        "sections": [
+          {
+            "title": "<a href>",
+            "text": "O atributo href define para onde o link leva: outro arquivo, um site ou uma âncora (#id).",
+            "code": ""
+          },
+          {
+            "title": "target=\"_blank\"",
+            "text": "Abre o link em outra aba. Use com moderação, para não confundir o usuário.",
+            "code": ""
+          },
+          {
+            "title": "<img alt>",
+            "text": "src indica o arquivo. alt descreve a imagem para leitores de tela e aparece se ela não carregar.",
+            "code": ""
+          }
+        ],
+        "example": "<nav>\n  <a href=\"mapa.html\">Ver o mapa</a>\n  <a href=\"https://developer.mozilla.org\" target=\"_blank\">\n    Documentação\n  </a>\n</nav>\n\n<img src=\"agente-html.png\"\n     alt=\"Agente HTML com armadura laranja\">",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual atributo define o endereço de destino de um link?",
+            "options": [
+              "src",
+              "link",
+              "href",
+              "url"
+            ],
+            "answer": 2
+          },
+          {
+            "prompt": "Para que serve o atributo alt de uma imagem?",
+            "options": [
+              "Definir a largura",
+              "Descrever a imagem para leitores de tela e quando ela não carrega",
+              "Criar uma borda",
+              "Mudar o formato do arquivo"
+            ],
+            "answer": 1
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "html-3",
+        "title": "Listas e Tabelas",
+        "intro": "Listas agrupam itens relacionados e tabelas organizam dados em linhas e colunas.",
+        "sections": [
+          {
+            "title": "<ul> e <ol>",
+            "text": "<ul> cria uma lista com marcadores; <ol> cria uma lista numerada. Cada item é um <li>.",
+            "code": ""
+          },
+          {
+            "title": "<tr>",
+            "text": "Cada <tr> (table row) é uma linha da tabela.",
+            "code": ""
+          },
+          {
+            "title": "<th> e <td>",
+            "text": "<th> é uma célula de cabeçalho (título da coluna) e <td> é uma célula comum de dados.",
+            "code": ""
+          }
+        ],
+        "example": "<ol>\n  <li>Entrar no Nexus</li>\n  <li>Escolher um agente</li>\n</ol>\n\n<table>\n  <tr>\n    <th>Agente</th>\n    <th>Nível</th>\n  </tr>\n  <tr>\n    <td>HTML</td>\n    <td>5</td>\n  </tr>\n</table>",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual tag cria uma lista numerada?",
+            "options": [
+              "<ul>",
+              "<ol>",
+              "<li>",
+              "<dl>"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Dentro de uma tabela, qual tag representa uma linha?",
+            "options": [
+              "<td>",
+              "<th>",
+              "<tr>",
+              "<row>"
+            ],
+            "answer": 2
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "html-4",
+        "title": "Formulários",
+        "intro": "Formulários coletam dados do usuário. Cada campo precisa de um rótulo ligado a ele.",
+        "sections": [
+          {
+            "title": "<form>",
+            "text": "Agrupa os campos. action diz para onde enviar e method como (get ou post).",
+            "code": ""
+          },
+          {
+            "title": "<label for>",
+            "text": "O for do label deve ser igual ao id do input. Assim, clicar no texto foca o campo.",
+            "code": ""
+          },
+          {
+            "title": "<input type>",
+            "text": "type define o campo: text, email, password, checkbox... required torna o preenchimento obrigatório.",
+            "code": ""
+          }
+        ],
+        "example": "<form action=\"/login\" method=\"post\">\n  <label for=\"nome\">Codinome</label>\n  <input type=\"text\" id=\"nome\" name=\"nome\" required>\n\n  <label for=\"senha\">Senha</label>\n  <input type=\"password\" id=\"senha\" name=\"senha\">\n\n  <button type=\"submit\">Acessar</button>\n</form>",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Como ligar um <label> a um <input>?",
+            "options": [
+              "Colocando o label depois do input",
+              "Usando o atributo for do label igual ao id do input",
+              "Usando a mesma class nos dois",
+              "Com o atributo name no label"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Qual valor de type esconde os caracteres digitados?",
+            "options": [
+              "hidden",
+              "secret",
+              "password",
+              "text"
+            ],
+            "answer": 2
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "html-5",
+        "title": "HTML — Estrutura do portal",
+        "intro": "Comece pela marcação semântica antes de mudar as cores.",
+        "sections": [
+          {
+            "title": "1. Documento",
+            "text": "HTML descreve estrutura e significado. Títulos e parágrafos não são apenas aparência.",
+            "code": "<main>\n  <h1>CodeWorld</h1>\n  <p>Bem-vindo!</p>\n</main>"
+          },
+          {
+            "title": "2. Acessibilidade",
+            "text": "Uma imagem informativa precisa de um alt que descreva seu conteúdo.",
+            "code": "<img src=\"mapa.png\" alt=\"Mapa de quatro mundos\">"
+          },
+          {
+            "title": "3. Navegação",
+            "text": "Links apontam para destinos; botões executam ações na página.",
+            "code": "<nav><a href=\"/rpg/\">Jogar RPG</a></nav>"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "code",
+        "language": "html",
+        "objective": "Crie um título h1 com o texto CodeWorld dentro do conteúdo principal.",
+        "starter": "<main>\n  <h1></h1>\n</main>",
+        "rule": {
+          "nodes": [
+            {
+              "tag": "main"
+            },
+            {
+              "tag": "h1",
+              "parent": "main",
+              "text": "CodeWorld"
+            }
+          ]
+        }
+      },
+      {
+        "id": "html-6",
+        "title": "Acessibilidade — Controles que funcionam",
+        "intro": "Recursos de acessibilidade fazem parte da experiência, não são decoração.",
+        "sections": [
+          {
+            "title": "1. Teclado",
+            "text": "Um botão HTML é acionável por teclado sem lógica extra para foco.",
+            "code": "<button type=\"button\">Abrir mapa</button>"
+          },
+          {
+            "title": "2. Rótulos",
+            "text": "Associe um label ao id de seu input.",
+            "code": "<label for=\"nome\">Nome</label>\n<input id=\"nome\">"
+          },
+          {
+            "title": "3. Movimento",
+            "text": "Respeite a preferência por movimento reduzido.",
+            "code": "@media (prefers-reduced-motion: reduce) { * { animation: none; } }"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual elemento é apropriado para acionar uma ação na página?",
+            "options": [
+              "<span>",
+              "<button>",
+              "<em>",
+              "<br>"
+            ],
+            "answer": 1
+          }
+        ]
+      },
+      {
+        "id": "html-7",
+        "title": "Formulários com rótulos",
+        "intro": "O atributo for do label aponta para o id do campo.",
+        "sections": [
+          {
+            "title": "Conceito",
+            "text": "O atributo for do label aponta para o id do campo.",
+            "code": "<label for=\"nome\">Nome</label>\n<input id=\"nome\">"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual atributo conecta o label ao campo?",
+            "options": [
+              "href",
+              "for",
+              "src",
+              "alt"
+            ],
+            "answer": 1
+          }
+        ]
+      },
+      {
+        "id": "html-8",
+        "title": "Semântica no portal",
+        "intro": "Use main para o conteúdo principal e nav para grupos de links.",
+        "sections": [
+          {
+            "title": "Conceito",
+            "text": "Use main para o conteúdo principal e nav para grupos de links.",
+            "code": "<nav><a href=\"/rpg/\">Jogar</a></nav>"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual elemento representa um grupo de navegação?",
+            "options": [
+              "div",
+              "nav",
+              "img",
+              "input"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "css",
+    "name": "CSS",
+    "modules": [
+      {
+        "id": "css-0",
+        "title": "Seletores e Regras",
+        "intro": "Uma regra CSS escolhe elementos com um seletor e aplica propriedades a eles.",
+        "sections": [
+          {
+            "title": "Regra CSS",
+            "text": "Seletor + chaves com pares propriedade: valor; separados por ponto e vírgula.",
+            "code": ""
+          },
+          {
+            "title": "tag, .classe, #id",
+            "text": "h1 pega todas as tags h1, .card pega a classe card e #nexus pega o elemento com id nexus.",
+            "code": ""
+          },
+          {
+            "title": "Especificidade",
+            "text": "Quando regras brigam, vence a mais específica: id > classe > tag. Em empate, vale a que vem depois.",
+            "code": ""
+          }
+        ],
+        "example": "/* seletor { propriedade: valor; } */\nh1 {\n  color: magenta;\n}\n\n.card {\n  border: 1px solid cyan;\n}\n\n#nexus {\n  padding: 20px;\n}",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual seletor escolhe os elementos com class=\"card\"?",
+            "options": [
+              "#card",
+              "card",
+              ".card",
+              "*card"
+            ],
+            "answer": 2
+          },
+          {
+            "prompt": "Qual seletor tem a MAIOR especificidade?",
+            "options": [
+              "p",
+              ".texto",
+              "#principal",
+              "*"
+            ],
+            "answer": 2
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "css-1",
+        "title": "Cores e Tipografia",
+        "intro": "Cores e fontes definem a identidade visual. Unidades relativas deixam o texto acessível.",
+        "sections": [
+          {
+            "title": "nome, hex, rgb",
+            "text": "A mesma cor pode ser escrita como magenta, #ff00ff ou rgb(255, 0, 255).",
+            "code": ""
+          },
+          {
+            "title": "px x rem",
+            "text": "px é fixo. rem é relativo à fonte do <html>: se o usuário aumentar a fonte, tudo acompanha.",
+            "code": ""
+          },
+          {
+            "title": "font-family",
+            "text": "Liste fontes de reserva: se a primeira não carregar, o navegador usa a seguinte (sans-serif).",
+            "code": ""
+          }
+        ],
+        "example": "body {\n  background-color: #08060f;\n  color: rgb(232, 230, 240);\n  font-family: \"Orbitron\", sans-serif;\n  font-size: 1rem;\n}\n\nh1 {\n  font-size: 2.5rem;\n  font-weight: 800;\n  text-transform: uppercase;\n}",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual propriedade muda a cor do TEXTO?",
+            "options": [
+              "background-color",
+              "font-color",
+              "color",
+              "text-color"
+            ],
+            "answer": 2
+          },
+          {
+            "prompt": "A unidade rem é relativa a quê?",
+            "options": [
+              "Ao tamanho da tela",
+              "Ao tamanho da fonte do elemento raiz (html)",
+              "Ao elemento pai em pixels",
+              "Ao tamanho da imagem"
+            ],
+            "answer": 1
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "css-2",
+        "title": "Box Model",
+        "intro": "Todo elemento é uma caixa: conteúdo, padding, borda e margem, de dentro para fora.",
+        "sections": [
+          {
+            "title": "As 4 camadas",
+            "text": "De dentro para fora: content → padding → border → margin.",
+            "code": ""
+          },
+          {
+            "title": "padding x margin",
+            "text": "padding afasta o conteúdo da borda (dentro). margin afasta a caixa dos vizinhos (fora).",
+            "code": ""
+          },
+          {
+            "title": "box-sizing",
+            "text": "Com border-box, padding e borda ficam DENTRO do width. Fica muito mais fácil prever tamanhos.",
+            "code": ""
+          }
+        ],
+        "example": "* {\n  box-sizing: border-box;\n}\n\n.painel {\n  width: 300px;\n  padding: 16px;        /* espaço interno */\n  border: 2px solid cyan;\n  margin: 24px auto;    /* espaço externo */\n}",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual propriedade cria espaço INTERNO entre o conteúdo e a borda?",
+            "options": [
+              "margin",
+              "padding",
+              "gap",
+              "border"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Com box-sizing: border-box, width: 300px, padding: 16px e borda de 2px, qual a largura final da caixa?",
+            "options": [
+              "300px",
+              "332px",
+              "336px",
+              "316px"
+            ],
+            "answer": 0
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "css-3",
+        "title": "Flexbox",
+        "intro": "O Flexbox alinha e distribui itens em uma linha ou coluna com poucas propriedades.",
+        "sections": [
+          {
+            "title": "display: flex",
+            "text": "Transforma o elemento em container flex: os filhos diretos viram itens alinháveis.",
+            "code": ""
+          },
+          {
+            "title": "justify-content",
+            "text": "Distribui os itens na direção do flex (horizontal, por padrão): start, center, space-between...",
+            "code": ""
+          },
+          {
+            "title": "align-items",
+            "text": "Alinha os itens no outro eixo (vertical, por padrão). gap define o espaço entre eles.",
+            "code": ""
+          }
+        ],
+        "example": ".menu {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  gap: 16px;\n}\n\n.menu.vertical {\n  flex-direction: column;\n}",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Em um container flex com direção padrão (row), qual propriedade distribui os itens na horizontal?",
+            "options": [
+              "align-items",
+              "justify-content",
+              "text-align",
+              "float"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Qual propriedade empilha os itens flex em coluna?",
+            "options": [
+              "flex-wrap: column",
+              "display: column",
+              "flex-direction: column",
+              "align-items: column"
+            ],
+            "answer": 2
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "css-4",
+        "title": "Responsividade e Animação",
+        "intro": "Media queries adaptam o layout a cada tela e transições dão vida às mudanças de estado.",
+        "sections": [
+          {
+            "title": "@media",
+            "text": "Aplica regras só quando a condição é verdadeira, como em telas de até 600px.",
+            "code": ""
+          },
+          {
+            "title": "transition",
+            "text": "Faz a mudança entre dois estados (ex.: normal → :hover) acontecer aos poucos.",
+            "code": ""
+          },
+          {
+            "title": "@keyframes",
+            "text": "Descreve as etapas de uma animação, que é aplicada com a propriedade animation.",
+            "code": ""
+          }
+        ],
+        "example": ".botao {\n  transition: transform 0.3s ease;\n}\n\n.botao:hover {\n  transform: scale(1.1);\n}\n\n@keyframes piscar {\n  from { opacity: 1; }\n  to { opacity: 0; }\n}\n\n@media (max-width: 600px) {\n  .menu { flex-direction: column; }\n}",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "O que faz @media (max-width: 600px) { ... }?",
+            "options": [
+              "Aplica as regras só em telas de até 600px de largura",
+              "Aplica só acima de 600px",
+              "Limita as imagens a 600px",
+              "Cria uma animação de 600ms"
+            ],
+            "answer": 0
+          },
+          {
+            "prompt": "Para mudar a cor suavemente no :hover, usa-se:",
+            "options": [
+              "transition",
+              "@media",
+              "z-index",
+              "display"
+            ],
+            "answer": 0
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "css-5",
+        "title": "CSS — O mundo das ilusões",
+        "intro": "CSS controla apresentação, layout, transições e animações. Aqui a interface vira uma arma da personagem CSS.",
+        "sections": [
+          {
+            "title": "1. Seletores",
+            "text": "Um seletor escolhe quais elementos recebem regras.",
+            "code": ".card {\n  border: 1px solid #00e5ff;\n  padding: 20px;\n}"
+          },
+          {
+            "title": "2. Flexbox",
+            "text": "display:flex organiza elementos em linha ou coluna.",
+            "code": ".team {\n  display: flex;\n  gap: 16px;\n  justify-content: center;\n}"
+          },
+          {
+            "title": "3. Transformações",
+            "text": "transform permite mover, girar e escalar elementos.",
+            "code": ".runner:hover {\n  transform: translateY(-8px) scale(1.03);\n}"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "code",
+        "language": "css",
+        "objective": "Faça o quadrado ficar vermelho e 120px de largura. Edite apenas o CSS.",
+        "starter": ".quadrado {\n  width: 80px;\n  height: 80px;\n  background: cyan;\n}",
+        "rule": {
+          "props": {
+            "width": "120px",
+            "background": "red|#ff0000|#f00"
+          }
+        }
+      },
+      {
+        "id": "css-6",
+        "title": "CSS — Grids e responsividade",
+        "intro": "Organize as fases em colunas e preserve a leitura em telas pequenas.",
+        "sections": [
+          {
+            "title": "1. Grade",
+            "text": "display: grid transforma um container em grade.",
+            "code": ".fases { display: grid; grid-template-columns: repeat(2, 1fr); }"
+          },
+          {
+            "title": "2. Distância",
+            "text": "gap controla o espaço entre as células.",
+            "code": ".fases { gap: 16px; }"
+          },
+          {
+            "title": "3. Tela pequena",
+            "text": "Media queries permitem uma coluna no celular.",
+            "code": "@media (max-width: 700px) { .fases { grid-template-columns: 1fr; } }"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "code",
+        "language": "css",
+        "objective": "Faça uma grade de duas colunas para o quadro de prévia.",
+        "starter": ".quadrado {\n  display: block;\n  background: cyan;\n}",
+        "rule": {
+          "props": {
+            "display": "grid",
+            "grid-template-columns": "repeat\\(\\s*2\\s*,\\s*1fr\\s*\\)|1fr\\s+1fr"
+          }
+        }
+      },
+      {
+        "id": "css-7",
+        "title": "Acessibilidade — Controles que funcionam",
+        "intro": "Recursos de acessibilidade fazem parte da experiência, não são decoração.",
+        "sections": [
+          {
+            "title": "1. Teclado",
+            "text": "Um botão HTML é acionável por teclado sem lógica extra para foco.",
+            "code": "<button type=\"button\">Abrir mapa</button>"
+          },
+          {
+            "title": "2. Rótulos",
+            "text": "Associe um label ao id de seu input.",
+            "code": "<label for=\"nome\">Nome</label>\n<input id=\"nome\">"
+          },
+          {
+            "title": "3. Movimento",
+            "text": "Respeite a preferência por movimento reduzido.",
+            "code": "@media (prefers-reduced-motion: reduce) { * { animation: none; } }"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual elemento é apropriado para acionar uma ação na página?",
+            "options": [
+              "<span>",
+              "<button>",
+              "<em>",
+              "<br>"
+            ],
+            "answer": 1
+          }
+        ]
+      },
+      {
+        "id": "css-8",
+        "title": "Contraste e legibilidade",
+        "intro": "Texto e fundo devem ter contraste. Não dependa apenas de cor para indicar um erro.",
+        "sections": [
+          {
+            "title": "Conceito",
+            "text": "Texto e fundo devem ter contraste. Não dependa apenas de cor para indicar um erro.",
+            "code": ".erro { color: #ffb8c5; background: #26141b; }"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Como tornar o erro compreensível para mais pessoas?",
+            "options": [
+              "Somente vermelho",
+              "Ocultar o rótulo",
+              "Texto explicativo junto da cor",
+              "Piscar rapidamente"
+            ],
+            "answer": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript",
+    "modules": [
+      {
+        "id": "javascript-0",
+        "title": "Variáveis e Tipos",
+        "intro": "Variáveis guardam informações. Em JavaScript elas podem ser texto, número, booleano e muito mais.",
+        "sections": [
+          {
+            "title": "const",
+            "text": "Cria uma variável que não pode receber outro valor depois. Use por padrão.",
+            "code": ""
+          },
+          {
+            "title": "let",
+            "text": "Cria uma variável que pode mudar, como a energia de um agente durante o combate.",
+            "code": ""
+          },
+          {
+            "title": "string, number, boolean",
+            "text": "Texto entre aspas, números e verdadeiro/falso. typeof mostra o tipo de um valor.",
+            "code": ""
+          }
+        ],
+        "example": "const nome = \"Agente JS\";   // string\nlet energia = 100;          // number\nlet online = true;          // boolean\n\nenergia = energia - 15;\nconsole.log(nome, energia, online);\nconsole.log(typeof energia); // \"number\"",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual declaração NÃO permite reatribuir o valor depois?",
+            "options": [
+              "let",
+              "var",
+              "const",
+              "static"
+            ],
+            "answer": 2
+          },
+          {
+            "prompt": "Qual o resultado de typeof \"42\"?",
+            "options": [
+              "\"number\"",
+              "\"string\"",
+              "\"boolean\"",
+              "\"text\""
+            ],
+            "answer": 1
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "javascript-1",
+        "title": "Condicionais",
+        "intro": "Com if e else o programa escolhe caminhos diferentes de acordo com uma condição.",
+        "sections": [
+          {
+            "title": "if / else if / else",
+            "text": "Testa as condições em ordem e executa só o primeiro bloco verdadeiro.",
+            "code": ""
+          },
+          {
+            "title": "===",
+            "text": "Compara valor E tipo. Prefira === ao ==, que converte tipos e causa surpresas.",
+            "code": ""
+          },
+          {
+            "title": "&&, || e !",
+            "text": "&& exige tudo verdadeiro, || basta um verdadeiro e ! inverte o resultado.",
+            "code": ""
+          }
+        ],
+        "example": "const vida = 35;\n\nif (vida <= 0) {\n  console.log(\"Agente derrotado\");\n} else if (vida < 50) {\n  console.log(\"Alerta: energia baixa\");\n} else {\n  console.log(\"Sistema estável\");\n}\n\nconsole.log(5 === \"5\"); // false",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Com vida = 35, o que o código exibe?",
+            "options": [
+              "Agente derrotado",
+              "Alerta: energia baixa",
+              "Sistema estável",
+              "Nada"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Qual o resultado de 5 === \"5\"?",
+            "options": [
+              "true",
+              "false",
+              "undefined",
+              "Erro"
+            ],
+            "answer": 1
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "javascript-2",
+        "title": "Arrays e Laços",
+        "intro": "Arrays guardam listas de valores e laços repetem ações para cada item.",
+        "sections": [
+          {
+            "title": "Array [ ]",
+            "text": "Guarda vários valores em ordem. O primeiro item fica no índice 0.",
+            "code": ""
+          },
+          {
+            "title": "push e length",
+            "text": "push() adiciona no final e length informa quantos itens existem.",
+            "code": ""
+          },
+          {
+            "title": "for...of",
+            "text": "Percorre o array item por item, sem precisar controlar índices.",
+            "code": ""
+          }
+        ],
+        "example": "const agentes = [\"HTML\", \"CSS\"];\nagentes.push(\"JS\");\n\nconsole.log(agentes.length); // 3\nconsole.log(agentes[0]);     // \"HTML\"\n\nfor (const agente of agentes) {\n  console.log(\"Conectando \" + agente);\n}",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual o índice do PRIMEIRO item de um array?",
+            "options": [
+              "1",
+              "0",
+              "-1",
+              "first"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Qual método adiciona um item no FINAL do array?",
+            "options": [
+              "pop()",
+              "shift()",
+              "push()",
+              "add()"
+            ],
+            "answer": 2
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "javascript-3",
+        "title": "Funções",
+        "intro": "Funções guardam um bloco de código reutilizável que recebe dados e devolve um resultado.",
+        "sections": [
+          {
+            "title": "function",
+            "text": "Dá um nome ao bloco de código e define os parâmetros que ele recebe.",
+            "code": ""
+          },
+          {
+            "title": "return",
+            "text": "Devolve um valor para quem chamou a função e encerra a execução dela.",
+            "code": ""
+          },
+          {
+            "title": "Arrow function =>",
+            "text": "Forma curta de escrever funções. Com uma só expressão, o return é automático.",
+            "code": ""
+          }
+        ],
+        "example": "function calcularDano(ataque, defesa) {\n  return ataque - defesa;\n}\n\nconst curar = (vida) => vida + 20;\n\nconsole.log(calcularDano(50, 15)); // 35\nconsole.log(curar(80));            // 100",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual o resultado de calcularDano(50, 15)?",
+            "options": [
+              "65",
+              "35",
+              "50",
+              "15"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "O que a palavra return faz?",
+            "options": [
+              "Repete a função",
+              "Devolve um valor e encerra a função",
+              "Imprime no console",
+              "Cria uma variável"
+            ],
+            "answer": 1
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "javascript-4",
+        "title": "DOM e Eventos",
+        "intro": "Com o DOM o JavaScript encontra elementos da página e reage às ações do usuário.",
+        "sections": [
+          {
+            "title": "querySelector",
+            "text": "Encontra o primeiro elemento que combina com um seletor CSS (#id, .classe, tag).",
+            "code": ""
+          },
+          {
+            "title": "addEventListener",
+            "text": "Executa uma função quando algo acontece: click, input, keydown, scroll...",
+            "code": ""
+          },
+          {
+            "title": "textContent e classList",
+            "text": "Mudam o texto e as classes do elemento, o que atualiza a página na hora.",
+            "code": ""
+          }
+        ],
+        "example": "const botao = document.querySelector(\"#atacar\");\nconst log = document.querySelector(\".log\");\n\nbotao.addEventListener(\"click\", () => {\n  log.textContent = \"Ataque enviado!\";\n  botao.classList.add(\"ativo\");\n});",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual método busca o primeiro elemento que combina com um seletor CSS?",
+            "options": [
+              "document.getAll()",
+              "document.querySelector()",
+              "document.find()",
+              "document.select()"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Como executar uma função quando o usuário clica em um botão?",
+            "options": [
+              "botao.onClickListener()",
+              "botao.addEventListener(\"click\", funcao)",
+              "botao.listen(\"click\")",
+              "botao.click = true"
+            ],
+            "answer": 1
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "javascript-5",
+        "title": "JavaScript — Eventos e lógica",
+        "intro": "JavaScript permite criar comportamento em páginas e aplicações. Nesta aula você vai praticar variáveis, condições, funções e eventos.",
+        "sections": [
+          {
+            "title": "1. Variáveis",
+            "text": "Use let quando o valor pode mudar e const quando a referência não deve ser reatribuída.",
+            "code": "let hp = 100;\nconst nome = \"Runner\";\nhp = hp - 20;\nconsole.log(nome, hp);"
+          },
+          {
+            "title": "2. Condições",
+            "text": "if executa um bloco quando uma expressão é verdadeira. else trata o caminho alternativo.",
+            "code": "const energia = 40;\nif (energia >= 30) {\n  console.log(\"Skill liberada\");\n} else {\n  console.log(\"Sem energia\");\n}"
+          },
+          {
+            "title": "3. Funções",
+            "text": "Funções agrupam uma ação reutilizável.",
+            "code": "function dano(atk, defesa) {\n  return Math.max(1, atk - defesa);\n}\nconsole.log(dano(100, 35));"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "code",
+        "language": "javascript",
+        "objective": "Faça o console mostrar 120, que é 150 - 30.",
+        "starter": "const ataque = 150;\nconst defesa = 30;\n// complete aqui",
+        "rule": {
+          "output": 120
+        }
+      },
+      {
+        "id": "javascript-6",
+        "title": "JavaScript — Prever a saída",
+        "intro": "Calcule a expressão antes de apertar Executar.",
+        "sections": [
+          {
+            "title": "1. Precedência",
+            "text": "Multiplicação é avaliada antes da soma.",
+            "code": "console.log(2 + 3 * 4); // 14"
+          },
+          {
+            "title": "2. Texto",
+            "text": "O sinal + une strings.",
+            "code": "console.log(\"Code\" + \"World\"); // CodeWorld"
+          },
+          {
+            "title": "3. Teste",
+            "text": "Use o laboratório da aula anterior para conferir hipóteses.",
+            "code": "console.log(10 > 3); // true"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual será a saída de console.log(4 + 2 * 3)?",
+            "options": [
+              "18",
+              "10",
+              "12",
+              "9"
+            ],
+            "answer": 1
+          }
+        ]
+      },
+      {
+        "id": "javascript-7",
+        "title": "Acessibilidade — Controles que funcionam",
+        "intro": "Recursos de acessibilidade fazem parte da experiência, não são decoração.",
+        "sections": [
+          {
+            "title": "1. Teclado",
+            "text": "Um botão HTML é acionável por teclado sem lógica extra para foco.",
+            "code": "<button type=\"button\">Abrir mapa</button>"
+          },
+          {
+            "title": "2. Rótulos",
+            "text": "Associe um label ao id de seu input.",
+            "code": "<label for=\"nome\">Nome</label>\n<input id=\"nome\">"
+          },
+          {
+            "title": "3. Movimento",
+            "text": "Respeite a preferência por movimento reduzido.",
+            "code": "@media (prefers-reduced-motion: reduce) { * { animation: none; } }"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual elemento é apropriado para acionar uma ação na página?",
+            "options": [
+              "<span>",
+              "<button>",
+              "<em>",
+              "<br>"
+            ],
+            "answer": 1
+          }
+        ]
+      },
+      {
+        "id": "javascript-8",
+        "title": "Listas de itens",
+        "intro": "Arrays guardam coleções. O primeiro índice é zero.",
+        "sections": [
+          {
+            "title": "Conceito",
+            "text": "Arrays guardam coleções. O primeiro índice é zero.",
+            "code": "const itens = [\"patch\", \"bateria\"];\nconsole.log(itens[0]);"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual é a saída?",
+            "options": [
+              "bateria",
+              "patch",
+              "0",
+              "undefined"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "modules": [
+      {
+        "id": "python-0",
+        "title": "Variáveis e Print",
+        "intro": "Em Python não é preciso declarar o tipo: basta dar um nome e um valor.",
+        "sections": [
+          {
+            "title": "Tipo automático",
+            "text": "O Python descobre o tipo pelo valor: str (texto), int (inteiro), float (decimal) e bool.",
+            "code": ""
+          },
+          {
+            "title": "True e False",
+            "text": "Os valores lógicos começam com letra maiúscula em Python.",
+            "code": ""
+          },
+          {
+            "title": "f-strings",
+            "text": "Com f antes das aspas, o que estiver entre { } é calculado e colocado no texto.",
+            "code": ""
+          }
+        ],
+        "example": "nome = \"Agente Python\"\nnivel = 4\nprecisao = 98.5\nativo = True\n\nprint(nome)\nprint(f\"Nível {nivel} - precisão {precisao}%\")\nprint(type(nivel))  # <class 'int'>",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Como se escreve o valor booleano verdadeiro em Python?",
+            "options": [
+              "true",
+              "True",
+              "TRUE",
+              "1true"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Qual a saída de print(f\"Nível {2 + 3}\")?",
+            "options": [
+              "Nível {2 + 3}",
+              "Nível 5",
+              "Nível 23",
+              "Erro"
+            ],
+            "answer": 1
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "python-1",
+        "title": "Condicionais e Indentação",
+        "intro": "Em Python os blocos são definidos pelos espaços no início da linha, não por chaves.",
+        "sections": [
+          {
+            "title": "Indentação",
+            "text": "Tudo que está recuado (normalmente 4 espaços) depois do if pertence a ele.",
+            "code": ""
+          },
+          {
+            "title": "Dois-pontos",
+            "text": "if, elif, else, for e def sempre terminam com : antes do bloco.",
+            "code": ""
+          },
+          {
+            "title": "elif",
+            "text": "Abreviação de \"else if\": testa outra condição se a anterior foi falsa.",
+            "code": ""
+          }
+        ],
+        "example": "energia = 40\n\nif energia > 70:\n    print(\"Pronto para o combate\")\nelif energia > 30:\n    print(\"Recarregando...\")\nelse:\n    print(\"Recuar!\")",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Em Python, o que define quais linhas pertencem a um bloco if?",
+            "options": [
+              "Chaves { }",
+              "A indentação (espaços no início da linha)",
+              "Ponto e vírgula",
+              "A palavra end"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Com energia = 40, o que o código imprime?",
+            "options": [
+              "Pronto para o combate",
+              "Recarregando...",
+              "Recuar!",
+              "Nada"
+            ],
+            "answer": 1
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "python-2",
+        "title": "Listas e Laços",
+        "intro": "Listas guardam sequências de valores e o for percorre cada um deles.",
+        "sections": [
+          {
+            "title": "[ ] e append",
+            "text": "Listas são criadas com colchetes. append() adiciona um item no final.",
+            "code": ""
+          },
+          {
+            "title": "for ... in",
+            "text": "Pega um item da lista por vez e executa o bloco para cada um.",
+            "code": ""
+          },
+          {
+            "title": "range(n)",
+            "text": "Gera os números de 0 até n - 1. Ótimo para repetir algo n vezes.",
+            "code": ""
+          }
+        ],
+        "example": "territorios = [\"Nível 0\", \"Nível 1\", \"Nível 2\"]\nterritorios.append(\"Núcleo\")\n\nfor t in territorios:\n    print(\"Explorando\", t)\n\nfor i in range(3):\n    print(i)  # 0, 1, 2",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Quais números range(3) gera?",
+            "options": [
+              "1, 2, 3",
+              "0, 1, 2",
+              "0, 1, 2, 3",
+              "3, 2, 1"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Qual método adiciona um item ao final de uma lista?",
+            "options": [
+              "push()",
+              "add()",
+              "append()",
+              "insert_end()"
+            ],
+            "answer": 2
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "python-3",
+        "title": "Funções",
+        "intro": "Funções são criadas com def e podem ter parâmetros com valores padrão.",
+        "sections": [
+          {
+            "title": "def",
+            "text": "Cria uma função com nome e parâmetros. O corpo vem indentado.",
+            "code": ""
+          },
+          {
+            "title": "bonus=0",
+            "text": "Parâmetro com valor padrão: se não for informado, usa 0.",
+            "code": ""
+          },
+          {
+            "title": "return",
+            "text": "Devolve o valor calculado para quem chamou a função.",
+            "code": ""
+          }
+        ],
+        "example": "def calcular_xp(base, bonus=0):\n    return base * 2 + bonus\n\nprint(calcular_xp(10))      # 20\nprint(calcular_xp(10, 5))   # 25",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual palavra-chave define uma função em Python?",
+            "options": [
+              "function",
+              "func",
+              "def",
+              "fn"
+            ],
+            "answer": 2
+          },
+          {
+            "prompt": "Qual o resultado de calcular_xp(10, 5)?",
+            "options": [
+              "15",
+              "20",
+              "25",
+              "30"
+            ],
+            "answer": 2
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "python-4",
+        "title": "Dicionários",
+        "intro": "Dicionários guardam pares de chave e valor, como uma ficha de agente.",
+        "sections": [
+          {
+            "title": "{ chave: valor }",
+            "text": "Cada informação tem um nome (chave) e um conteúdo (valor).",
+            "code": ""
+          },
+          {
+            "title": "agente[\"nome\"]",
+            "text": "Usa a chave entre colchetes para ler ou alterar um valor.",
+            "code": ""
+          },
+          {
+            "title": ".items()",
+            "text": "Entrega chave e valor juntos para usar em um for.",
+            "code": ""
+          }
+        ],
+        "example": "agente = {\n    \"nome\": \"Python\",\n    \"funcao\": \"Estrategista\",\n    \"nivel\": 5,\n}\n\nprint(agente[\"nome\"])\nagente[\"nivel\"] = 6\n\nfor chave, valor in agente.items():\n    print(chave, \"->\", valor)",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Como acessar o valor da chave \"nome\" do dicionário agente?",
+            "options": [
+              "agente.nome()",
+              "agente[\"nome\"]",
+              "agente(nome)",
+              "agente->nome"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Qual método percorre chaves e valores ao mesmo tempo?",
+            "options": [
+              ".keys()",
+              ".values()",
+              ".items()",
+              ".pairs()"
+            ],
+            "answer": 2
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "python-5",
+        "title": "Python — Pensamento analítico",
+        "intro": "Python é usado em automação, dados, scripts e IA. Você vai praticar variáveis, listas, loops e funções.",
+        "sections": [
+          {
+            "title": "1. Variáveis e listas",
+            "text": "A sintaxe é enxuta e permite representar coleções com listas.",
+            "code": "nome = \"Python\"\nlinguagens = [\"Python\", \"JS\", \"CSS\"]\nprint(linguagens[0])"
+          },
+          {
+            "title": "2. Repetição",
+            "text": "for percorre itens de uma sequência.",
+            "code": "for linguagem in [\"Python\", \"JS\", \"CSS\"]:\n    print(linguagem)"
+          },
+          {
+            "title": "3. Funções",
+            "text": "def cria uma função.",
+            "code": "def dano(ataque, defesa):\n    return max(1, ataque - defesa)\n\nprint(dano(100, 35))"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "code",
+        "language": "python",
+        "objective": "Complete para imprimir 15 + 5. O navegador executará a atividade em um interpretador Python leve quando disponível.",
+        "starter": "resultado = 15 + 5\n# use print(...) aqui",
+        "rule": {
+          "output": 20
+        }
+      },
+      {
+        "id": "python-6",
+        "title": "Python — Listas e saídas",
+        "intro": "Percorra listas e confira os resultados de cada operação.",
+        "sections": [
+          {
+            "title": "1. Índices",
+            "text": "A primeira posição de uma lista é zero.",
+            "code": "dados = [8, 13, 21]\nprint(dados[0]) # 8"
+          },
+          {
+            "title": "2. Comprimento",
+            "text": "len informa o número de itens.",
+            "code": "print(len([1, 2, 3])) # 3"
+          },
+          {
+            "title": "3. Soma",
+            "text": "sum calcula o total de números.",
+            "code": "print(sum([2, 3, 4])) # 9"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual é a saída de print(sum([3, 4, 5]))?",
+            "options": [
+              "3",
+              "9",
+              "12",
+              "345"
+            ],
+            "answer": 2
+          }
+        ]
+      },
+      {
+        "id": "python-7",
+        "title": "Dicionários de inventário",
+        "intro": "Dicionários associam chaves a valores.",
+        "sections": [
+          {
+            "title": "Conceito",
+            "text": "Dicionários associam chaves a valores.",
+            "code": "mochila = {\"patch\": 3}\nprint(mochila[\"patch\"])"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual valor é impresso?",
+            "options": [
+              "patch",
+              "0",
+              "3",
+              "1"
+            ],
+            "answer": 2
+          }
+        ]
+      },
+      {
+        "id": "python-8",
+        "title": "Tratando erros",
+        "intro": "try/except permite tratar um erro específico e explicar como continuar.",
+        "sections": [
+          {
+            "title": "Conceito",
+            "text": "try/except permite tratar um erro específico e explicar como continuar.",
+            "code": "try:\n    numero = int(\"texto\")\nexcept ValueError:\n    print(\"Use um número\")"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual exceção é tratada neste código?",
+            "options": [
+              "ValueError",
+              "KeyError",
+              "SyntaxError",
+              "IndexError"
+            ],
+            "answer": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "java",
+    "name": "Java",
+    "modules": [
+      {
+        "id": "java-0",
+        "title": "Estrutura de um Programa",
+        "intro": "Em Java todo código vive dentro de uma classe, e a execução começa pelo método main.",
+        "sections": [
+          {
+            "title": "public class Main",
+            "text": "Todo código Java fica em uma classe. O arquivo deve ter o mesmo nome dela: Main.java.",
+            "code": ""
+          },
+          {
+            "title": "main",
+            "text": "O método main é o ponto de partida: é ele que o Java executa primeiro.",
+            "code": ""
+          },
+          {
+            "title": "System.out.println",
+            "text": "Mostra um texto no console e pula linha. Toda instrução termina com ;",
+            "code": ""
+          }
+        ],
+        "example": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Guardião online\");\n    }\n}",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual método é o ponto de entrada de um programa Java?",
+            "options": [
+              "start()",
+              "run()",
+              "main()",
+              "init()"
+            ],
+            "answer": 2
+          },
+          {
+            "prompt": "Se a classe pública se chama Main, o arquivo deve se chamar:",
+            "options": [
+              "main.txt",
+              "Main.java",
+              "Main.class.java",
+              "programa.java"
+            ],
+            "answer": 1
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "java-1",
+        "title": "Tipos e Variáveis",
+        "intro": "Java é fortemente tipado: o tipo de cada variável é declarado e verificado na compilação.",
+        "sections": [
+          {
+            "title": "Tipo antes do nome",
+            "text": "Toda variável declara seu tipo. Um int nunca vai guardar um texto.",
+            "code": ""
+          },
+          {
+            "title": "int, double, boolean, char",
+            "text": "Inteiros, decimais, verdadeiro/falso e um único caractere entre aspas simples.",
+            "code": ""
+          },
+          {
+            "title": "String",
+            "text": "Textos usam aspas duplas e podem ser unidos com +.",
+            "code": ""
+          }
+        ],
+        "example": "int escudo = 150;\ndouble precisao = 97.5;\nboolean ativo = true;\nchar rank = 'A';\nString nome = \"Java\";\n\nescudo = escudo + 25;\nSystem.out.println(nome + \": \" + escudo);",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual tipo armazena números com casas decimais?",
+            "options": [
+              "int",
+              "double",
+              "boolean",
+              "char"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "O que acontece com a linha int escudo = \"forte\";?",
+            "options": [
+              "Converte automaticamente",
+              "Erro de compilação: tipos incompatíveis",
+              "escudo vira 0",
+              "Funciona normalmente"
+            ],
+            "answer": 1
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "java-2",
+        "title": "Condicionais e Laços",
+        "intro": "Com if e for o Guardião decide quando agir e repete as defesas quantas vezes for preciso.",
+        "sections": [
+          {
+            "title": "for (início; condição; passo)",
+            "text": "Começa em i = 1, repete enquanto i <= ondas e soma 1 a cada volta.",
+            "code": ""
+          },
+          {
+            "title": "i++",
+            "text": "Atalho para i = i + 1.",
+            "code": ""
+          },
+          {
+            "title": "&& e ||",
+            "text": "&& (E) exige as duas condições verdadeiras; || (OU) exige pelo menos uma.",
+            "code": ""
+          }
+        ],
+        "example": "int ondas = 3;\n\nfor (int i = 1; i <= ondas; i++) {\n    System.out.println(\"Bloqueando onda \" + i);\n}\n\nint vida = 20;\nif (vida < 30 && vida > 0) {\n    System.out.println(\"Escudo crítico!\");\n}",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Quantas vezes o laço for (int i = 1; i <= 3; i++) executa?",
+            "options": [
+              "2",
+              "3",
+              "4",
+              "Infinitas"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Qual operador significa 'E' lógico em Java?",
+            "options": [
+              "and",
+              "&",
+              "&&",
+              "||"
+            ],
+            "answer": 2
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "java-3",
+        "title": "Métodos",
+        "intro": "Métodos são as funções do Java: declaram o tipo do valor que devolvem e o tipo de cada parâmetro.",
+        "sections": [
+          {
+            "title": "int reforcar(int, int)",
+            "text": "O primeiro int é o tipo do retorno; dentro dos parênteses vêm os parâmetros tipados.",
+            "code": ""
+          },
+          {
+            "title": "void",
+            "text": "Indica que o método executa uma ação mas não devolve nenhum valor.",
+            "code": ""
+          },
+          {
+            "title": "static",
+            "text": "Permite chamar o método direto pela classe, sem criar um objeto.",
+            "code": ""
+          }
+        ],
+        "example": "public class Main {\n    static int reforcar(int escudo, int bonus) {\n        return escudo + bonus;\n    }\n\n    public static void main(String[] args) {\n        int total = reforcar(100, 50);\n        System.out.println(total); // 150\n    }\n}",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual palavra indica que um método NÃO retorna valor?",
+            "options": [
+              "null",
+              "empty",
+              "void",
+              "none"
+            ],
+            "answer": 2
+          },
+          {
+            "prompt": "O que reforcar(100, 50) retorna?",
+            "options": [
+              "100",
+              "50",
+              "150",
+              "10050"
+            ],
+            "answer": 2
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "java-4",
+        "title": "Classes e Objetos",
+        "intro": "Classes são moldes; objetos são as peças criadas a partir deles, cada uma com seus próprios dados.",
+        "sections": [
+          {
+            "title": "new",
+            "text": "Cria um objeto novo na memória a partir da classe.",
+            "code": ""
+          },
+          {
+            "title": "Agente(...)",
+            "text": "Método com o nome da classe que prepara o objeto. this indica o próprio objeto.",
+            "code": ""
+          },
+          {
+            "title": "private + getter",
+            "text": "Os dados ficam protegidos e só são lidos por métodos públicos como getNome().",
+            "code": ""
+          }
+        ],
+        "example": "public class Agente {\n    private String nome;\n    private int nivel;\n\n    public Agente(String nome, int nivel) {\n        this.nome = nome;\n        this.nivel = nivel;\n    }\n\n    public String getNome() {\n        return nome;\n    }\n}\n\nAgente java = new Agente(\"Java\", 5);",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual palavra-chave cria um novo objeto a partir de uma classe?",
+            "options": [
+              "create",
+              "new",
+              "object",
+              "make"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Por que usar private nos atributos?",
+            "options": [
+              "Para deixar o código mais rápido",
+              "Para proteger os dados, permitindo acesso só pelos métodos da classe",
+              "Para apagar o atributo",
+              "Para torná-lo global"
+            ],
+            "answer": 1
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "java-5",
+        "title": "Java — Tipos e ponto de entrada",
+        "intro": "Entenda como uma classe simples executa e imprime uma mensagem.",
+        "sections": [
+          {
+            "title": "1. Classe",
+            "text": "O programa reúne métodos dentro de uma classe.",
+            "code": "class Main { }"
+          },
+          {
+            "title": "2. Método principal",
+            "text": "main costuma ser o ponto de entrada.",
+            "code": "public static void main(String[] args) { }"
+          },
+          {
+            "title": "3. Saída",
+            "text": "println escreve uma linha.",
+            "code": "System.out.println(5 + 2); // 7"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual linha escreve 7 na saída do programa Java?",
+            "options": [
+              "console.log(7);",
+              "System.out.println(7);",
+              "print(7)",
+              "echo 7"
+            ],
+            "answer": 1
+          }
+        ]
+      },
+      {
+        "id": "java-6",
+        "title": "Tipos em Java",
+        "intro": "int representa números inteiros; String representa texto.",
+        "sections": [
+          {
+            "title": "Conceito",
+            "text": "int representa números inteiros; String representa texto.",
+            "code": "int energia = 45;"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual declaração representa uma energia inteira?",
+            "options": [
+              "String energia = 45;",
+              "int energia = 45;",
+              "let energia = 45;",
+              "energia := 45;"
+            ],
+            "answer": 1
+          }
+        ]
+      },
+      {
+        "id": "java-7",
+        "title": "Exceções em Java",
+        "intro": "Um bloco catch pode tratar uma exceção lançada dentro de try.",
+        "sections": [
+          {
+            "title": "Conceito",
+            "text": "Um bloco catch pode tratar uma exceção lançada dentro de try.",
+            "code": "try { Integer.parseInt(\"x\"); }\ncatch (NumberFormatException e) { System.out.println(\"Número inválido\"); }"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual bloco trata a exceção?",
+            "options": [
+              "class",
+              "while",
+              "catch",
+              "return"
+            ],
+            "answer": 2
+          }
+        ]
+      },
+      {
+        "id": "java-8",
+        "title": "Métodos com retorno",
+        "intro": "Um método pode receber parâmetros e retornar o resultado.",
+        "sections": [
+          {
+            "title": "Conceito",
+            "text": "Um método pode receber parâmetros e retornar o resultado.",
+            "code": "static int dobro(int n) { return n * 2; }"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual o resultado de dobro(6)?",
+            "options": [
+              "6",
+              "8",
+              "12",
+              "36"
+            ],
+            "answer": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kotlin",
+    "name": "Kotlin",
+    "modules": [
+      {
+        "id": "kotlin-0",
+        "title": "Primeiros Passos",
+        "intro": "Kotlin é direto ao ponto: sem ponto e vírgula, com tipos descobertos automaticamente.",
+        "sections": [
+          {
+            "title": "fun main()",
+            "text": "A função main é onde o programa começa. fun declara qualquer função.",
+            "code": ""
+          },
+          {
+            "title": "val x var",
+            "text": "val não pode ser reatribuída (como const); var pode mudar.",
+            "code": ""
+          },
+          {
+            "title": "String templates",
+            "text": "$nome dentro das aspas insere o valor da variável no texto.",
+            "code": ""
+          }
+        ],
+        "example": "fun main() {\n    val nome = \"Kotlin\"   // imutável\n    var velocidade = 120  // mutável\n\n    velocidade += 30\n    println(\"$nome a $velocidade km/h\")\n}",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual palavra declara uma variável que NÃO pode ser reatribuída?",
+            "options": [
+              "var",
+              "val",
+              "let",
+              "const"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "Com nome = \"Kotlin\", o que println(\"Olá, $nome\") mostra?",
+            "options": [
+              "Olá, $nome",
+              "Olá, Kotlin",
+              "Um erro",
+              "Olá, nome"
+            ],
+            "answer": 1
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "kotlin-1",
+        "title": "Null Safety",
+        "intro": "Kotlin impede o famoso erro de valor nulo: só aceita null quando você permite.",
+        "sections": [
+          {
+            "title": "String?",
+            "text": "Por padrão nenhum tipo aceita null. O ? libera essa possibilidade.",
+            "code": ""
+          },
+          {
+            "title": "?.",
+            "text": "Só acessa a propriedade se o valor não for null; caso contrário, devolve null.",
+            "code": ""
+          },
+          {
+            "title": "?:",
+            "text": "Define um valor padrão para quando o resultado da esquerda for null.",
+            "code": ""
+          }
+        ],
+        "example": "var codinome: String? = null\n\nprintln(codinome?.length)        // null\nval tamanho = codinome?.length ?: 0\nprintln(tamanho)                 // 0\n\ncodinome = \"Veloz\"\nprintln(codinome?.length)        // 5",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Como declarar uma String que pode receber null?",
+            "options": [
+              "String!",
+              "String?",
+              "Nullable<String>",
+              "String*"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "O que codinome?.length ?: 0 retorna quando codinome é null?",
+            "options": [
+              "null",
+              "Um erro",
+              "0",
+              "-1"
+            ],
+            "answer": 2
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "kotlin-2",
+        "title": "When e Expressões",
+        "intro": "No Kotlin, if e when devolvem valores, deixando decisões curtas e legíveis.",
+        "sections": [
+          {
+            "title": "when",
+            "text": "Compara um valor com vários casos, como um switch muito mais poderoso.",
+            "code": ""
+          },
+          {
+            "title": "4..5",
+            "text": "Cria um intervalo de números. in verifica se o valor está dentro dele.",
+            "code": ""
+          },
+          {
+            "title": "if que devolve valor",
+            "text": "O resultado do if pode ir direto para uma variável.",
+            "code": ""
+          }
+        ],
+        "example": "val nivel = 3\n\nval rank = when (nivel) {\n    1 -> \"Recruta\"\n    2, 3 -> \"Operador\"\n    in 4..5 -> \"Elite\"\n    else -> \"Desconhecido\"\n}\n\nval status = if (nivel >= 3) \"Liberado\" else \"Bloqueado\"",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Com nivel = 3, qual o valor de rank?",
+            "options": [
+              "Recruta",
+              "Operador",
+              "Elite",
+              "Desconhecido"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "O que é 4..5 em Kotlin?",
+            "options": [
+              "Uma divisão",
+              "Um intervalo (range) de 4 até 5",
+              "Um número decimal",
+              "Um comentário"
+            ],
+            "answer": 1
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "kotlin-3",
+        "title": "Funções e Lambdas",
+        "intro": "Funções podem ter valores padrão, caber em uma linha e ser passadas como lambdas.",
+        "sections": [
+          {
+            "title": "nome: Tipo",
+            "text": "Parâmetros e retorno indicam o tipo depois dos dois-pontos.",
+            "code": ""
+          },
+          {
+            "title": "= expressão",
+            "text": "Funções de uma linha dispensam chaves e return.",
+            "code": ""
+          },
+          {
+            "title": "{ it < 30 }",
+            "text": "Bloco de código passado como valor. it é o nome automático do único parâmetro.",
+            "code": ""
+          }
+        ],
+        "example": "fun turbo(velocidade: Int, multiplicador: Int = 2): Int {\n    return velocidade * multiplicador\n}\n\nfun dobro(x: Int) = x * 2\n\nval tempos = listOf(10, 25, 40)\nval rapidos = tempos.filter { it < 30 }\nprintln(rapidos) // [10, 25]",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual o resultado de turbo(50)?",
+            "options": [
+              "50",
+              "52",
+              "100",
+              "Erro: falta parâmetro"
+            ],
+            "answer": 2
+          },
+          {
+            "prompt": "Em { it < 30 }, o que é it?",
+            "options": [
+              "Uma palavra reservada para loops",
+              "O nome implícito do único parâmetro da lambda",
+              "Um tipo de dado",
+              "A lista inteira"
+            ],
+            "answer": 1
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "kotlin-4",
+        "title": "Classes e Data Class",
+        "intro": "Kotlin cria classes em uma linha e a data class já vem com métodos úteis prontos.",
+        "sections": [
+          {
+            "title": "Construtor primário",
+            "text": "As propriedades são declaradas direto entre os parênteses da classe.",
+            "code": ""
+          },
+          {
+            "title": "toString, equals, copy",
+            "text": "data class gera esses métodos automaticamente a partir das propriedades.",
+            "code": ""
+          },
+          {
+            "title": "Sem new",
+            "text": "Objetos são criados chamando a classe como uma função: Agente(...).",
+            "code": ""
+          }
+        ],
+        "example": "data class Agente(val nome: String, val nivel: Int)\n\nfun main() {\n    val kotlin = Agente(\"Kotlin\", 5)\n    val copia = kotlin.copy(nivel = 6)\n\n    println(kotlin)          // Agente(nome=Kotlin, nivel=5)\n    println(kotlin == copia) // false\n}",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Em Kotlin, como criar um objeto da classe Agente?",
+            "options": [
+              "new Agente(\"K\", 1)",
+              "Agente(\"K\", 1)",
+              "Agente.new(\"K\", 1)",
+              "create Agente(\"K\", 1)"
+            ],
+            "answer": 1
+          },
+          {
+            "prompt": "O que copy() de uma data class faz?",
+            "options": [
+              "Apaga o objeto",
+              "Cria um novo objeto igual, podendo alterar alguns valores",
+              "Copia para a área de transferência",
+              "Converte em String"
+            ],
+            "answer": 1
+          }
+        ],
+        "reward": 25,
+        "source": "MAIN"
+      },
+      {
+        "id": "kotlin-5",
+        "title": "Kotlin — Variáveis e funções",
+        "intro": "Conheça as palavras básicas para ler código Kotlin.",
+        "sections": [
+          {
+            "title": "1. val e var",
+            "text": "val não permite reatribuição; var permite.",
+            "code": "val nome = \"CodeWorld\"\nvar energia = 10"
+          },
+          {
+            "title": "2. Funções",
+            "text": "fun define uma função.",
+            "code": "fun dobro(n: Int): Int = n * 2"
+          },
+          {
+            "title": "3. Saída",
+            "text": "println imprime o resultado.",
+            "code": "println(dobro(4)) // 8"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual palavra declara uma variável Kotlin que pode ser reatribuída?",
+            "options": [
+              "val",
+              "var",
+              "let",
+              "const"
+            ],
+            "answer": 1
+          }
+        ]
+      },
+      {
+        "id": "kotlin-6",
+        "title": "Valores nulos",
+        "intro": "O tipo String? admite null. O operador ?: fornece um valor alternativo.",
+        "sections": [
+          {
+            "title": "Conceito",
+            "text": "O tipo String? admite null. O operador ?: fornece um valor alternativo.",
+            "code": "val nome: String? = null\nprintln(nome ?: \"Agente\")"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual é a saída?",
+            "options": [
+              "null",
+              "Agente",
+              "nome",
+              "Erro"
+            ],
+            "answer": 1
+          }
+        ]
+      },
+      {
+        "id": "kotlin-7",
+        "title": "Coleções Kotlin",
+        "intro": "listOf cria uma lista somente de leitura. O primeiro índice é zero.",
+        "sections": [
+          {
+            "title": "Conceito",
+            "text": "listOf cria uma lista somente de leitura. O primeiro índice é zero.",
+            "code": "val itens = listOf(\"Patch\", \"Escudo\")\nprintln(itens[1])"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual item é impresso?",
+            "options": [
+              "Patch",
+              "Escudo",
+              "1",
+              "null"
+            ],
+            "answer": 1
+          }
+        ]
+      },
+      {
+        "id": "kotlin-8",
+        "title": "Funções Kotlin",
+        "intro": "fun declara uma função. O corpo pode ser uma expressão.",
+        "sections": [
+          {
+            "title": "Conceito",
+            "text": "fun declara uma função. O corpo pode ser uma expressão.",
+            "code": "fun dano(a: Int, d: Int) = a - d"
+          }
+        ],
+        "reward": 50,
+        "source": "Academia",
+        "kind": "quiz",
+        "questions": [
+          {
+            "prompt": "Qual o resultado de dano(30, 8)?",
+            "options": [
+              "38",
+              "22",
+              "30",
+              "8"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    ]
+  }
+]

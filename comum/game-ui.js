@@ -1,0 +1,6 @@
+import {esc} from './integracao.js';
+const paths={attack:'m5 19 14-14m-1 0h-5m5 0v5M3 15l6 6m-5-1 3-3',shield:'M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6l-8-3Z',battery:'m13 2-8 12h6l-1 8 9-12h-7l1-8Z',patch:'M9 3h6v6h6v6h-6v6H9v-6H3V9h6V3Z',antidote:'M9 3h6m-5 0v6l-5 8a3 3 0 0 0 3 4h8a3 3 0 0 0 3-4l-5-8V3M8 14h8',code:'m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18',star:'m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1 3-6Z',map:'m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Zm6-3v15m6-12v15',check:'m5 12 4 4L19 6',book:'M12 5C9 3 5 3 2 4v15c3-1 7-1 10 1m0-15c3-2 7-2 10-1v15c-3-1-7-1-10 1V5Z'};
+export const icon=(name='star')=>`<svg class="cw-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${paths[name]||paths.star}"/></svg>`;
+export const itemNames={patch:'Patch',antidote:'Antídoto',battery:'Bateria',shield:'Escudo'};
+export const rewardText=rewards=>Object.entries(rewards||{}).map(([id,n])=>`${n} × ${itemNames[id]||id}`).join(' · ');
+export const rewardHTML=rewards=>`<span class="reward-pills">${Object.entries(rewards||{}).map(([id,n])=>`<span class="item-pill ${esc(id)}">${icon(id)}${n} ${itemNames[id]||esc(id)}</span>`).join('')}</span>`;

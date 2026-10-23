@@ -1,0 +1,369 @@
+[
+  {
+    "id": "html",
+    "name": "HTML",
+    "role": "Vanguarda",
+    "cost": 0,
+    "color": "#ff7845",
+    "stats": [
+      7,
+      2,
+      4,
+      2
+    ],
+    "growth": [
+      0,
+      3,
+      2,
+      0,
+      1
+    ],
+    "spritePage": 1,
+    "lore": "A estrutura da equipe. Seu escudo sustenta a resistência e protege os aliados.",
+    "skills": [
+      {
+        "name": "Inquebrável",
+        "desc": "Fortifica o próprio escudo por 2 ações inimigas.",
+        "fx": "shield",
+        "cost": 15,
+        "power": 0,
+        "target": "self",
+        "effect": "fortify",
+        "duration": 2
+      },
+      {
+        "name": "Avanço Sísmico",
+        "desc": "Investida com escudo; atordoa por 1 ação.",
+        "fx": "charge",
+        "cost": 25,
+        "power": 1.0,
+        "target": "enemy",
+        "effect": "stun"
+      },
+      {
+        "name": "Morte",
+        "desc": "Um soco potente contra um alvo.",
+        "fx": "punch",
+        "cost": 35,
+        "power": 2.1,
+        "target": "enemy"
+      },
+      {
+        "name": "Absolutamente inquebrável",
+        "desc": "Campo de força protege todos os aliados por 2 ações inimigas.",
+        "fx": "barrier",
+        "cost": 60,
+        "power": 0,
+        "target": "team",
+        "effect": "fortify",
+        "duration": 2
+      }
+    ]
+  },
+  {
+    "id": "css",
+    "name": "CSS",
+    "role": "Vanguarda",
+    "cost": 550,
+    "color": "#53dce2",
+    "stats": [
+      6,
+      3,
+      4,
+      2
+    ],
+    "growth": [
+      0,
+      1,
+      2,
+      3,
+      0
+    ],
+    "spritePage": 3,
+    "lore": "Pilota uma moto armada e rompe a linha de frente com investidas e explosões.",
+    "skills": [
+      {
+        "name": "Bora Acelerar!",
+        "desc": "Investe com a moto contra um inimigo.",
+        "fx": "bike",
+        "cost": 0,
+        "power": 1.05,
+        "target": "enemy",
+        "energy": 10
+      },
+      {
+        "name": "Pista Esburacada",
+        "desc": "Disparos da moto atingem o alvo.",
+        "fx": "bullet",
+        "cost": 22,
+        "power": 1.5,
+        "target": "enemy",
+        "hits": 3
+      },
+      {
+        "name": "Que se dane",
+        "desc": "Lança a moto; explosão em todos os inimigos.",
+        "fx": "explosion",
+        "cost": 40,
+        "power": 1.05,
+        "target": "all"
+      },
+      {
+        "name": "Click Click Boom!",
+        "desc": "Mísseis atingem todos os inimigos.",
+        "fx": "missile",
+        "cost": 65,
+        "power": 1.7,
+        "target": "all",
+        "hits": 4
+      }
+    ]
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript",
+    "role": "Combatente",
+    "cost": 0,
+    "color": "#f4d458",
+    "stats": [
+      5,
+      2,
+      6,
+      2
+    ],
+    "growth": [
+      2,
+      0,
+      1,
+      3,
+      0
+    ],
+    "spritePage": 2,
+    "lore": "Lâmina cibernética e implante ocular. Java é seu irmão; juntos executam o ataque em dupla.",
+    "skills": [
+      {
+        "name": "Corte JV",
+        "desc": "Corte que causa sangramento por 2 ações.",
+        "fx": "slash",
+        "cost": 0,
+        "power": 0.85,
+        "target": "enemy",
+        "effect": "bleed",
+        "energy": 10
+      },
+      {
+        "name": "Nem 1 minutinho",
+        "desc": "Rajada cortante; sangramento por 2 ações.",
+        "fx": "wave",
+        "cost": 25,
+        "power": 1.4,
+        "target": "enemy",
+        "effect": "bleed"
+      },
+      {
+        "name": "Medo",
+        "desc": "O implante aplica fraqueza e fortalece JavaScript por 2 ações.",
+        "fx": "fear",
+        "cost": 30,
+        "power": 0,
+        "target": "enemy",
+        "effect": "weakness",
+        "selfEffect": "boost"
+      },
+      {
+        "name": "7.7.7 em Dupla",
+        "desc": "Cortes e disparos de Java contra todos. Requer Java na equipe e consciente.",
+        "fx": "duo",
+        "cost": 65,
+        "power": 1.9,
+        "target": "all",
+        "requires": "java",
+        "hits": 4
+      }
+    ]
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "role": "Suporte",
+    "cost": 650,
+    "color": "#75aafa",
+    "stats": [
+      4,
+      3,
+      4,
+      4
+    ],
+    "growth": [
+      1,
+      3,
+      0,
+      1,
+      2
+    ],
+    "spritePage": 6,
+    "lore": "Duas serpentes, duas toxinas. Alterna recuperação, controle e veneno.",
+    "skills": [
+      {
+        "name": "Toxina azul",
+        "desc": "Cura 32% da Vida máxima de um aliado, inclusive a própria.",
+        "fx": "heal",
+        "cost": 22,
+        "power": 0,
+        "target": "ally",
+        "heal": 0.32
+      },
+      {
+        "name": "Serpentes Furiosas",
+        "desc": "As duas serpentes atacam em cruz.",
+        "fx": "serpent",
+        "cost": 0,
+        "power": 1.0,
+        "target": "enemy",
+        "energy": 12
+      },
+      {
+        "name": "Emboscada",
+        "desc": "Serpentes envolvem o alvo; atordoamento por 1 ação.",
+        "fx": "bind",
+        "cost": 32,
+        "power": 0.65,
+        "target": "enemy",
+        "effect": "stun"
+      },
+      {
+        "name": "Toxina Amarela",
+        "desc": "Veneno atinge todos os inimigos por 3 ações.",
+        "fx": "poison",
+        "cost": 55,
+        "power": 0.7,
+        "target": "all",
+        "effect": "poison",
+        "duration": 3
+      }
+    ]
+  },
+  {
+    "id": "java",
+    "name": "Java",
+    "role": "Combatente",
+    "cost": 700,
+    "color": "#fa778a",
+    "stats": [
+      4,
+      4,
+      5,
+      2
+    ],
+    "growth": [
+      2,
+      0,
+      3,
+      1,
+      2
+    ],
+    "spritePage": 4,
+    "lore": "Duas pistolas e precisão. Potencializa seus disparos antes de sequências devastadoras.",
+    "skills": [
+      {
+        "name": "Headshot",
+        "desc": "Disparo certeiro contra um alvo.",
+        "fx": "bullet",
+        "cost": 0,
+        "power": 1.05,
+        "target": "enemy",
+        "energy": 12
+      },
+      {
+        "name": "Me dá 1 minutinho",
+        "desc": "Potencializa as pistolas por 3 ações.",
+        "fx": "boost",
+        "cost": 20,
+        "power": 0,
+        "target": "self",
+        "effect": "boost",
+        "duration": 3
+      },
+      {
+        "name": "7.7.7",
+        "desc": "Dispara contra até três inimigos.",
+        "fx": "bullet",
+        "cost": 38,
+        "power": 1.1,
+        "target": "all",
+        "maxTargets": 3,
+        "hits": 3
+      },
+      {
+        "name": "Bang Bang Vrum!",
+        "desc": "Rajada seguida por um disparo potente.",
+        "fx": "barrage",
+        "cost": 65,
+        "power": 2.55,
+        "target": "enemy",
+        "hits": 6
+      }
+    ]
+  },
+  {
+    "id": "kotlin",
+    "name": "Kotlin",
+    "role": "Suporte",
+    "cost": 750,
+    "color": "#bd8bfa",
+    "stats": [
+      4,
+      5,
+      2,
+      4
+    ],
+    "growth": [
+      1,
+      3,
+      0,
+      2,
+      0
+    ],
+    "spritePage": 5,
+    "lore": "Com K.O, fortalece os aliados usando a toxina Gênesis e hackeia sistemas inimigos.",
+    "skills": [
+      {
+        "name": "Tiro laser",
+        "desc": "K.O dispara um laser contra o inimigo.",
+        "fx": "laser",
+        "cost": 0,
+        "power": 0.95,
+        "target": "enemy",
+        "energy": 14
+      },
+      {
+        "name": "Toxina Gênesis",
+        "desc": "Aumenta ataque e resistência da equipe por 2 ações.",
+        "fx": "genesis",
+        "cost": 35,
+        "power": 0,
+        "target": "team",
+        "effect": "boost",
+        "extraEffect": "fortify",
+        "duration": 2
+      },
+      {
+        "name": "Pane no Sistema",
+        "desc": "Hackeia o inimigo; atordoamento por 1 ação.",
+        "fx": "hack",
+        "cost": 30,
+        "power": 0.6,
+        "target": "enemy",
+        "effect": "stun"
+      },
+      {
+        "name": "K.O",
+        "desc": "K.O arremessa uma granada com dano em área.",
+        "fx": "grenade",
+        "cost": 60,
+        "power": 1.6,
+        "target": "all"
+      }
+    ]
+  }
+]

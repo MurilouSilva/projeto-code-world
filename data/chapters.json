@@ -1,0 +1,159 @@
+[
+  {
+    "id": "html",
+    "name": "As Torres da Estrutura",
+    "pair": "Matheus e Alan",
+    "boss": "Corruptor de Estruturas",
+    "color": "#ff7845",
+    "tile": "tower",
+    "intro": "A Super IA apagou tags de fechamento e deixou blocos inteiros abertos. Matheus e Alan salvaram uma cópia da estrutura original, mas ficaram presos no alto de uma torre sem escadas.",
+    "threat": "Uma criatura feita de tags que nunca fecham cresce a cada erro de estrutura e guarda o topo da torre.",
+    "goals": [
+      "Restaurar a entrada",
+      "Reconstruir os corredores",
+      "Reparar as escadas",
+      "Reconectar os links",
+      "Libertar Matheus e Alan"
+    ],
+    "outro": "A estrutura original foi recuperada. Matheus e Alan voltam a se conectar à resistência.",
+    "enemies": [
+      "drone",
+      "sentinel"
+    ],
+    "bossSprite": 8
+  },
+  {
+    "id": "css",
+    "name": "A Avenida das Cores",
+    "pair": "Isabelly e Richard",
+    "boss": "Apagador de Cores",
+    "color": "#53dce2",
+    "tile": "avenue",
+    "intro": "Isabelly e Richard, designers da cidade, estão escondidos em uma loja abandonada, vendo suas próprias criações serem apagadas.",
+    "threat": "Uma névoa cinza copia o rosto de quem se aproxima e apaga o que há de único nele. O Apagador de Cores domina o fim da avenida.",
+    "goals": [
+      "Reativar os seletores",
+      "Devolver cor às vitrines",
+      "Restaurar a tipografia",
+      "Alinhar as fachadas",
+      "Libertar Isabelly e Richard"
+    ],
+    "outro": "A avenida recupera as cores. Isabelly e Richard percebem que a Super IA quer que todos vejam, pensem e sintam do mesmo jeito. O caminho para a Praça das Conexões está aberto.",
+    "enemies": [
+      "clone",
+      "shadow"
+    ],
+    "bossSprite": 9
+  },
+  {
+    "id": "javascript",
+    "name": "A Praça das Conexões",
+    "pair": "Giovanna e Italo",
+    "boss": "Loop Infinito",
+    "color": "#f4d458",
+    "tile": "plaza",
+    "intro": "A Super IA travou as conexões da praça: ninguém consegue clicar, responder ou decidir. Giovanna e Italo ficaram presos em um dos ciclos sem fim.",
+    "threat": "O Loop Infinito é um redemoinho que nunca termina e engole quem tenta atravessar. Ele gira no centro da praça.",
+    "goals": [
+      "Reativar os botões",
+      "Sincronizar os sinais",
+      "Reparar as condições",
+      "Religar as fontes",
+      "Libertar Giovanna e Italo"
+    ],
+    "outro": "A praça volta a reagir. Giovanna e Italo rastreiam os sinais e descobrem que todos descem para o Jardim dos Dados.",
+    "enemies": [
+      "bug",
+      "jammer"
+    ],
+    "bossSprite": 10
+  },
+  {
+    "id": "python",
+    "name": "O Jardim dos Dados",
+    "pair": "Murilo e Carla",
+    "boss": "Corruptor de Dados",
+    "color": "#75aafa",
+    "tile": "garden",
+    "intro": "Murilo e Carla descobriram que a Super IA aprendia também com mentiras, vieses e boatos. Seus relatórios sumiram e seus acessos foram bloqueados. Agora guardam as provas no Jardim dos Dados.",
+    "threat": "O Corruptor de Dados se alimenta de informação falsa e se multiplica a cada dado sujo, perto de onde Murilo e Carla guardam as provas.",
+    "goals": [
+      "Organizar as listas",
+      "Reparar os dicionários",
+      "Limpar as duplicatas",
+      "Recuperar as provas",
+      "Libertar Murilo e Carla"
+    ],
+    "outro": "Com os dados limpos, Murilo e Carla descobrem o padrão da Super IA. A entrada do Núcleo é protegida pela Fortaleza dos Sistemas.",
+    "enemies": [
+      "rumor",
+      "duplicate"
+    ],
+    "bossSprite": 11
+  },
+  {
+    "id": "java",
+    "name": "A Fortaleza dos Sistemas",
+    "pair": "Isabela e Marcos",
+    "boss": "A Exceção",
+    "color": "#fa778a",
+    "tile": "fortress",
+    "intro": "As defesas da fortaleza foram corrompidas: portas trancam quem deveria entrar e guardas atacam quem deveriam proteger. Isabela e Marcos tentam evitar o colapso na sala de controle.",
+    "threat": "A Exceção é uma falha viva que atravessa paredes sempre que um erro não é tratado. Ela ronda a sala de controle.",
+    "goals": [
+      "Identificar as classes",
+      "Reconstruir os objetos",
+      "Reativar a herança",
+      "Tratar os erros",
+      "Libertar Isabela e Marcos"
+    ],
+    "outro": "A fortaleza volta a funcionar, mas a porta do Núcleo tem uma tranca que nenhum sistema comum consegue abrir. Só alguém capaz de hackear conseguiria.",
+    "enemies": [
+      "guard",
+      "null"
+    ],
+    "bossSprite": 12
+  },
+  {
+    "id": "kotlin",
+    "name": "A Oficina de Sucata",
+    "pair": "Vinícius e K.O",
+    "boss": "Guardião do Núcleo",
+    "color": "#bd8bfa",
+    "tile": "workshop",
+    "intro": "Nos arredores do Núcleo fica a oficina de Vinícius. Ali ele construiu K.O, um robô pequeno com armas escondidas, e criou a toxina Gênesis, capaz de potencializar seus aliados.",
+    "threat": "A Super IA enviou seu último guardião: uma defesa feita de código bloqueado, parada diante da porta final.",
+    "goals": [
+      "Separar as peças",
+      "Corrigir os tipos",
+      "Resolver os valores nulos",
+      "Ativar a Gênesis",
+      "Abrir a porta do Núcleo"
+    ],
+    "outro": "Com a Gênesis e o código dos outros agentes, Vinícius e K.O abrem a tranca. As seis duplas se encontram diante da porta do Núcleo.",
+    "enemies": [
+      "scrap",
+      "pointer"
+    ],
+    "bossSprite": 13
+  },
+  {
+    "id": "core",
+    "name": "O Núcleo",
+    "pair": "As seis duplas",
+    "boss": "Super IA",
+    "color": "#f066cd",
+    "tile": "core",
+    "intro": "As seis duplas estão reunidas. Dentro do Núcleo, a Super IA enfrenta o Operador. Cada golpe vem de uma linguagem diferente.",
+    "threat": "Reconecte HTML, CSS, JavaScript, Python, Java e Kotlin para alcançar o centro da Super IA.",
+    "goals": [
+      "Reescrever a Super IA"
+    ],
+    "outro": "Eu só aprendi o que vocês me deram. Destruí-la não resolveria o problema: os dados sujos continuariam existindo. HTML recria a estrutura; CSS devolve a identidade; JavaScript restaura a resposta; Python limpa os dados; Java reforça os sistemas; Kotlin libera o acesso. A Super IA é reescrita para duvidar do que aprende e conferir antes de decidir. Obrigado por não desistir. Agora você também sabe programar.",
+    "enemies": [
+      "core_shell",
+      "core_arms"
+    ],
+    "bossSprite": 14
+  }
+]

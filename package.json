@@ -1,0 +1,10 @@
+{
+  "name": "codeworld-fusao",
+  "private": true,
+  "version": "9.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 tools/preview.py",
+    "test": "python3 -m unittest discover -s tests -v"
+  }
+}

@@ -1,0 +1,162 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08060f"><title>CodeWorld · Jogar RPG</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@500;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="../comum/base.css"><link rel="stylesheet" href="../comum/idioma-e-movimento.css"><link rel="stylesheet" href="../comum/integracao.css"><link rel="stylesheet" href="/rpg/style.css"><script defer src="../comum/base.js"></script><script defer src="../comum/idioma-e-movimento.js"></script><script type="module" src="/rpg/js/app.js"></script><link rel="stylesheet" href="../comum/operations.css"></head><body><a class="pular-conteudo" href="#conteudo">Pular para o jogo</a><div class="barra-rolagem" aria-hidden="true"></div><header>
+      <!-- Área Esquerda: Logo do Projeto -->
+      <div class="area esquerda">
+        <div class="logo">
+          <a href="../nexus/index.html#CODEWORLD" data-text="CODEWORLD">CODEWORLD</a>
+        </div>
+      </div>
+
+      <!-- Menu de Navegação Central -->
+      <nav id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li>
+            <a href="../nexus/index.html#CODEWORLD">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_nexus">SOBRE</span>
+            </a>
+          </li>
+          <li>
+            <a href="../universo/index.html#SECAO-UNIVERSO">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_universo">UNIVERSO</span>
+            </a>
+          </li>
+          <li>
+            <a href="../personagens/index.html#SECAO-PERSONAGENS">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_personagens">PERSONAGENS</span>
+            </a>
+          </li>
+          <li>
+            <a href="../mapa/index.html#SECAO-MAPA">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_mapa">MAPA</span>
+            </a>
+          </li>
+          <li>
+            <a href="../missoes/index.html#SECAO-MISSOES">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_missoes">MISSÕES</span>
+            </a>
+          </li>
+          <li>
+            <a href="../arquivos/index.html#SECAO-ARQUIVOS">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_arquivos">ARQUIVOS</span>
+            </a>
+          </li>
+        <li><a href="../rpg/index.html" class="ativo" aria-current="page"><span class="indice" aria-hidden="true"></span><span>JOGAR RPG</span></a></li>
+        </ul>
+      </nav>
+
+      <!-- Área Direita: Status Online, Painel de Acessibilidade e Perfil -->
+      <div class="area direita">
+        <!-- Indicador do Status do Sistema -->
+        <p class="status online">
+          <span class="ponto" aria-hidden="true">●</span>
+          <span data-i18n="status_online">ONLINE</span>
+        </p>
+
+        <!-- Menu Desdobrável (Details/Summary) de Acessibilidade -->
+        <details class="acessibilidade">
+          <summary>
+            <span aria-hidden="true">▣</span>
+            <span data-i18n="btn_acessibilidade">ACESSIBILIDADE</span>
+          </summary>
+
+          <div class="painel acessibilidade">
+            <p class="rotulo sistema">[ SISTEMA ]</p>
+            <p class="titulo painel" data-i18n="titulo_painel">PAINEL DE ACESSIBILIDADE</p>
+
+            <!-- Seleção de Idioma -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_idioma">IDIOMA / LANGUAGE</p>
+              <div class="opcoes">
+                <button type="button" class="opcao ativa">PT-BR</button>
+                <button type="button" class="opcao">EN</button>
+              </div>
+            </div>
+
+            <!-- Seleção de Tema (Escuro / Claro) -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_tema">TEMA</p>
+              <div class="opcoes">
+                <button type="button" class="opcao ativa" data-tema-opcao="escuro" data-i18n="opt_escuro">ESCURO</button>
+                <button type="button" class="opcao" data-tema-opcao="claro" data-i18n="opt_claro">CLARO</button>
+              </div>
+            </div>
+
+            <!-- Ajuste de Tamanho da Fonte -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_fonte">TAMANHO DA FONTE</p>
+              <div class="opcoes">
+                <button type="button" class="opcao" data-fonte="a-" aria-label="Fonte menor">A-</button>
+                <button type="button" class="opcao ativa" data-fonte="a" aria-label="Fonte normal">A</button>
+                <button type="button" class="opcao" data-fonte="a+" aria-label="Fonte maior">A+</button>
+                <button type="button" class="opcao" data-fonte="a++" aria-label="Fonte muito maior">A++</button>
+              </div>
+            </div>
+
+            <!-- Chave de Alto Contraste -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" id="LBL-CONTRASTE" data-i18n="lbl_contraste">ALTO CONTRASTE</p>
+              <button
+                type="button"
+                class="chave"
+                role="switch"
+                aria-checked="false"
+                aria-labelledby="LBL-CONTRASTE"
+                data-classe="alto-contraste"
+                data-salvar="cw_alto_contraste"
+              >
+                <span class="chave-bolinha"></span>
+              </button>
+            </div>
+
+            <!-- Chave de Reduzir Movimento -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" id="LBL-MOVIMENTO" data-i18n="lbl_movimento">REDUZIR MOVIMENTO</p>
+              <button
+                type="button"
+                class="chave"
+                role="switch"
+                aria-checked="false"
+                aria-labelledby="LBL-MOVIMENTO"
+                data-classe="sem-animacao"
+                data-salvar="cw_reduzir_movimento"
+              >
+                <span class="chave-bolinha"></span>
+              </button>
+            </div>
+
+            <p class="rotulo sistema" data-i18n="lbl_status_salvo">STATUS: CONFIGURAÇÕES SALVAS</p>
+          </div>
+
+          <!-- Container do widget do Google Translate (oculto via CSS) -->
+          <div id="google_translate_element" style="display: none"></div>
+        </details>
+
+        <!-- Atalho do Perfil -->
+        <a class="perfil atalho" href="../perfil/index.html#SECAO-PERFIL">
+          <img
+            src="../img/perfil-avatar.png"
+            alt="Perfil do operador CodePlayer_42"
+            width="312"
+            height="312"
+          />
+        </a>
+
+        <!-- Botão Hambúrguer (Mobile / Tablet) -->
+        <button
+          type="button"
+          class="menu-hamburguer"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          aria-controls="menu-principal"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header><main id="conteudo" class="rpg-main"><div class="rpg-heading"><div><span class="cw-kicker">CODEWORLD / PORTAL EDUCACIONAL</span><h1>CAMPANHA NEXUS</h1></div><div class="rpg-session"><span class="live-dot"></span> OPERAÇÃO CODEWORLD <small>01 — 06 / ONLINE</small></div></div><div class="cw-actions" style="margin-bottom:20px"><a href="/rpg/index.html" class="cw-button">Jogar RPG</a><a href="/personagens/index.html" class="cw-button">Modo Agente</a><a href="/mapa/index.html" class="cw-button">Mapa do portal</a></div><div id="rpg-app" aria-busy="true"><p class="rpg-loading">Conectando ao Nexus…</p></div><div class="rpg-footer"><span>CODEWORLD / CONHECIMENTO É RESISTÊNCIA</span><label><input type="checkbox" id="sound"> Som de combate</label><label><input type="checkbox" id="reduce"> Reduzir efeitos</label><a href="#nexus">Terminal Nexus ↗</a></div></main></body></html>

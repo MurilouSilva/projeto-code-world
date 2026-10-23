@@ -28,7 +28,8 @@
   if (!lista || typeof AGENTES === "undefined") return;
 
   const TOTAL_NIVEIS = 5;
-  const CHAVE_PROGRESSO = "cw_progresso_agentes";
+  const identidade = () => { try { return localStorage.getItem("cw_identity") || "visitante"; } catch { return "visitante"; } };
+  let CHAVE_PROGRESSO = "cw_progresso_agentes:" + identidade();
   const LETRAS = ["A", "B", "C", "D"];
 
   const doisDigitos = (n) => String(n).padStart(2, "0");
@@ -55,7 +56,7 @@
 
   function lerProgresso() {
     try {
-      return JSON.parse(localStorage.getItem(CHAVE_PROGRESSO)) || {};
+      return JSON.parse(localStorage.getItem(CHAVE_PROGRESSO) || (identidade() === "visitante" ? localStorage.getItem("cw_progresso_agentes") : null)) || {};
     } catch (erro) {
       return {};
     }
@@ -318,11 +319,17 @@
   // O "reset" do formulário volta os selects ao padrão; depois refiltramos
   filtros.addEventListener("reset", () => setTimeout(aplicarFiltros));
 
-  document.getElementById("REINICIAR").addEventListener("click", () => {
+  document.getElementById("REINICIAR").addEventListener("click", async () => {
     const ok = window.confirm(
       "Apagar todo o progresso dos agentes? Apenas o HTML ficará desbloqueado.",
     );
     if (!ok) return;
+    if (identidade() !== "visitante") {
+      try {
+        const r=await fetch("/api/lessons/reset",{method:"POST",headers:{"Content-Type":"application/json"},body:"{}"});
+        if(!r.ok){window.alert("Não foi possível reiniciar. Entre na conta e tente novamente.");return;}
+      } catch {window.alert("Servidor indisponível. O progresso foi mantido.");return;}
+    }
     progresso = {};
     respostas = {};
     salvarProgresso();
@@ -727,12 +734,19 @@
   }
 
   // O nível só conta como concluído quando todas as perguntas foram acertadas
-  function verificarNivel() {
+  async function verificarNivel() {
     const a = atual.agente;
     const n = atual.nivel;
     const todasCertas = estadoDoNivel(a, n).every((q) => q.certa);
     if (!todasCertas || n < concluidos(a)) return;
 
+    if (identidade() !== "visitante") {
+      try {
+        const response = await fetch("/api/lesson", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:a.id,level:n,answers:a.niveis[n].questoes.map(q=>q.correta)})});
+        const result=await response.json();
+        if(!response.ok || !result.complete){avisar("Não salvo",result.error || "Revise as respostas.");return;}
+      } catch {avisar("Sem conexão","Tente concluir novamente quando o servidor responder.");return;}
+    }
     progresso[a.id] = n + 1;
     salvarProgresso();
     atualizarCartoes();
@@ -767,4 +781,10 @@
   if (doEndereco) {
     window.addEventListener("load", () => abrirModal(doEndereco[1]));
   }
+  window.addEventListener("cw-profile", event => {
+    const profile=event.detail;
+    CHAVE_PROGRESSO="cw_progresso_agentes:"+(profile?.id || "visitante");
+    progresso=profile?.progress.lessonProgress || lerProgresso();
+    atualizarCartoes();atualizarContador();aplicarFiltros();
+  });
 })();
