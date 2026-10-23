@@ -1,0 +1,18 @@
+{
+  "html_pages": 11,
+  "missing_references": [],
+  "main_files": 61,
+  "unchanged": 51,
+  "changed": [
+    "README.md",
+    "perfil/index.html",
+    "nexus/index.html",
+    "universo/index.html",
+    "missoes/index.html",
+    "missoes/script.js",
+    "mapa/index.html",
+    "personagens/index.html",
+    "personagens/script.js",
+    "arquivos/index.html"
+  ]
+}

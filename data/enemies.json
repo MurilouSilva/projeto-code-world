@@ -1,0 +1,156 @@
+[
+  {
+    "id": "drone",
+    "name": "Drone de Tags",
+    "sprite": 0,
+    "effect": "weakness",
+    "fx": "laser"
+  },
+  {
+    "id": "sentinel",
+    "name": "Sentinela de Blocos",
+    "sprite": 1,
+    "effect": "fortify",
+    "fx": "slash"
+  },
+  {
+    "id": "clone",
+    "name": "Clone Cinzento",
+    "sprite": 3,
+    "effect": "weakness",
+    "fx": "slash"
+  },
+  {
+    "id": "shadow",
+    "name": "Sombra Sem Margem",
+    "sprite": 5,
+    "effect": "bleed",
+    "fx": "slash"
+  },
+  {
+    "id": "bug",
+    "name": "Bug Saltitante",
+    "sprite": 2,
+    "effect": "bleed",
+    "fx": "slash"
+  },
+  {
+    "id": "jammer",
+    "name": "Sinal Mudo",
+    "sprite": 7,
+    "effect": "stun",
+    "fx": "laser"
+  },
+  {
+    "id": "rumor",
+    "name": "Boato Ambulante",
+    "sprite": 5,
+    "effect": "weakness",
+    "fx": "slash"
+  },
+  {
+    "id": "duplicate",
+    "name": "Praga de Duplicatas",
+    "sprite": 4,
+    "effect": "poison",
+    "fx": "slash"
+  },
+  {
+    "id": "guard",
+    "name": "Guarda Corrompido",
+    "sprite": 1,
+    "effect": "fortify",
+    "fx": "slash"
+  },
+  {
+    "id": "null",
+    "name": "Objeto Nulo",
+    "sprite": 5,
+    "effect": "stun",
+    "fx": "slash"
+  },
+  {
+    "id": "scrap",
+    "name": "Robô Sucateado",
+    "sprite": 6,
+    "effect": "bleed",
+    "fx": "laser"
+  },
+  {
+    "id": "pointer",
+    "name": "Ponteiro Nulo",
+    "sprite": 7,
+    "effect": "weakness",
+    "fx": "laser"
+  },
+  {
+    "id": "core_shell",
+    "name": "Carapaça do Núcleo",
+    "sprite": 1,
+    "effect": "fortify",
+    "fx": "slash"
+  },
+  {
+    "id": "core_arms",
+    "name": "Braços do Núcleo",
+    "sprite": 6,
+    "effect": "bleed",
+    "fx": "laser"
+  },
+  {
+    "id": "boss0",
+    "name": "Corruptor de Estruturas",
+    "sprite": 8,
+    "effect": "stun",
+    "fx": "wave",
+    "boss": true
+  },
+  {
+    "id": "boss1",
+    "name": "Apagador de Cores",
+    "sprite": 9,
+    "effect": "weakness",
+    "fx": "fear",
+    "boss": true
+  },
+  {
+    "id": "boss2",
+    "name": "Loop Infinito",
+    "sprite": 10,
+    "effect": "stun",
+    "fx": "wave",
+    "boss": true
+  },
+  {
+    "id": "boss3",
+    "name": "Corruptor de Dados",
+    "sprite": 11,
+    "effect": "poison",
+    "fx": "poison",
+    "boss": true
+  },
+  {
+    "id": "boss4",
+    "name": "A Exceção",
+    "sprite": 12,
+    "effect": "bleed",
+    "fx": "slash",
+    "boss": true
+  },
+  {
+    "id": "boss5",
+    "name": "Guardião do Núcleo",
+    "sprite": 13,
+    "effect": "fortify",
+    "fx": "laser",
+    "boss": true
+  },
+  {
+    "id": "boss6",
+    "name": "Super IA",
+    "sprite": 14,
+    "effect": "weakness",
+    "fx": "barrage",
+    "boss": true
+  }
+]

@@ -1,0 +1,287 @@
+[
+  {
+    "id": "n0",
+    "title": "Fachada da Internet",
+    "subtitle": "HTML + CSS",
+    "language": "html",
+    "starter": "<main>\n  <h1>Portal CodeWorld\n</main>",
+    "requirements": [
+      "<main>",
+      "<h1>",
+      "</h1>",
+      "</main>"
+    ],
+    "objective": "Monte um <main> com um <h1> para identificar o portal.",
+    "questions": [
+      {
+        "id": "n0q0",
+        "q": "O terminal da fachada deve mostrar um título principal: qual tag usar?",
+        "o": [
+          "<h1>",
+          "<p>",
+          "<title>",
+          "<small>"
+        ],
+        "a": 0
+      },
+      {
+        "id": "n0q1",
+        "q": "No cabeçalho do navegador da fachada, qual tag define o título da aba?",
+        "o": [
+          "<body>",
+          "<title>",
+          "<footer>",
+          "<nav>"
+        ],
+        "a": 1
+      },
+      {
+        "id": "n0q2",
+        "q": "Qual tag agrupa o conteúdo central do primeiro território?",
+        "o": [
+          "<main>",
+          "<meta>",
+          "<link>",
+          "<br>"
+        ],
+        "a": 0
+      },
+      {
+        "id": "n0q3",
+        "q": "Na fachada do Nexus, qual declaração CSS deixa o título ciano?",
+        "o": [
+          "color: cyan;",
+          "background: cyan;",
+          "font: cyan;",
+          "padding: cyan;"
+        ],
+        "a": 0
+      },
+      {
+        "id": "n0q4",
+        "q": "No card do primeiro nível, qual propriedade aumenta o espaço interno?",
+        "o": [
+          "margin",
+          "padding",
+          "gap",
+          "outline"
+        ],
+        "a": 1
+      }
+    ],
+    "reward": 150
+  },
+  {
+    "id": "n1",
+    "title": "Rede de Eventos",
+    "subtitle": "JavaScript + Java",
+    "language": "javascript",
+    "starter": "const total = 2 + 3;\n// Mostre total no console.",
+    "requirements": [
+      "const",
+      "console.log",
+      "total"
+    ],
+    "objective": "Calcule o total e mostre o resultado no console.",
+    "questions": [
+      {
+        "id": "n1q0",
+        "q": "No painel elétrico, let n = 2; n += 3; qual valor deve aparecer?",
+        "o": [
+          "2",
+          "3",
+          "5",
+          "23"
+        ],
+        "a": 2
+      },
+      {
+        "id": "n1q1",
+        "q": "Qual declaração JavaScript mantém fixa a referência do canal principal?",
+        "o": [
+          "var",
+          "let",
+          "const",
+          "eval"
+        ],
+        "a": 2
+      },
+      {
+        "id": "n1q2",
+        "q": "Qual função mostra o total no console do painel JavaScript?",
+        "o": [
+          "console.log",
+          "print",
+          "echo",
+          "println"
+        ],
+        "a": 0
+      },
+      {
+        "id": "n1q3",
+        "q": "No monitor do Nexus, qual método Java imprime uma linha?",
+        "o": [
+          "System.out.println",
+          "console.log",
+          "print()",
+          "echo"
+        ],
+        "a": 0
+      },
+      {
+        "id": "n1q4",
+        "q": "Se o contador Java faz int total = 2 + 3; System.out.println(total);, qual a saída?",
+        "o": [
+          "23",
+          "5",
+          "2 + 3",
+          "Erro"
+        ],
+        "a": 1
+      }
+    ],
+    "reward": 230
+  },
+  {
+    "id": "n2",
+    "title": "Túnel de Dados",
+    "subtitle": "Python + Kotlin",
+    "language": "python",
+    "starter": "valores = [2, 3]\n# Mostre a soma na saída.",
+    "requirements": [
+      "print(",
+      "sum(",
+      "valores"
+    ],
+    "objective": "Some os valores e mostre a saída em Python.",
+    "questions": [
+      {
+        "id": "n2q0",
+        "q": "Túnel de Dados: No túnel há filas [2,4,6]; qual saída de print([n//2 for n in [2,4,6]])?",
+        "o": [
+          "[1, 2, 3]",
+          "[2, 4, 6]",
+          "[1.0, 2.0, 3.0]",
+          "[4, 8, 12]"
+        ],
+        "a": 0
+      },
+      {
+        "id": "n2q1",
+        "q": "Túnel de Dados: A lista de pacotes contém [3,5,8]. Qual saída de print(sum(n for n in [3,5,8] if n>4))?",
+        "o": [
+          "16",
+          "13",
+          "8",
+          "5"
+        ],
+        "a": 1
+      },
+      {
+        "id": "n2q2",
+        "q": "Túnel de Dados: Um registro Kotlin pode estar ausente: val nome: String? = null. Qual resultado de nome?.length ?: 0?",
+        "o": [
+          "null",
+          "1",
+          "0",
+          "erro"
+        ],
+        "a": 2
+      },
+      {
+        "id": "n2q3",
+        "q": "Túnel de Dados: Qual resultado de listOf(1,2,3,4).filter { it>2 }.map { it*2 } em Kotlin?",
+        "o": [
+          "[2, 4, 6, 8]",
+          "[3, 4]",
+          "[8, 6, 4]",
+          "[6, 8]"
+        ],
+        "a": 3
+      },
+      {
+        "id": "n2q4",
+        "q": "Túnel de Dados: No arquivo Python, dados={'xp': 9}. Qual saída de print(dados.get('moedas', 0))?",
+        "o": [
+          "0",
+          "9",
+          "None",
+          "KeyError"
+        ],
+        "a": 0
+      }
+    ],
+    "reward": 310
+  },
+  {
+    "id": "n3",
+    "title": "Núcleo Auditável",
+    "subtitle": "SQL + C#",
+    "language": "sql",
+    "starter": "SELECT nome FROM linguagens\n-- Acrescente o filtro para nivel >= 10 antes de executar.",
+    "requirements": [
+      "SELECT",
+      "FROM",
+      "WHERE"
+    ],
+    "objective": "Consulte linguagens de nível 10 ou mais.",
+    "questions": [
+      {
+        "id": "n3q0",
+        "q": "Núcleo Auditável: O núcleo mostra setores com mais de três eventos: qual cláusula compara a contagem depois de GROUP BY?",
+        "o": [
+          "WHERE COUNT(*) > 3",
+          "HAVING COUNT(*) > 3",
+          "LIMIT COUNT(*) > 3",
+          "ORDER BY COUNT(*) > 3"
+        ],
+        "a": 1
+      },
+      {
+        "id": "n3q1",
+        "q": "Núcleo Auditável: Para unir logs.usuario_id e usuarios.id, qual condição é correta?",
+        "o": [
+          "ON logs.id = usuarios.id",
+          "ON logs.usuario_id = logs.id",
+          "ON logs.usuario_id = usuarios.id",
+          "GROUP BY logs.usuario_id"
+        ],
+        "a": 2
+      },
+      {
+        "id": "n3q2",
+        "q": "Núcleo Auditável: A chave de acesso vem de uma caixa de texto. Qual prática evita montar SQL com concatenação?",
+        "o": [
+          "Escapar somente as aspas à mão",
+          "Retirar espaços e concatenar",
+          "Guardar a chave no código cliente",
+          "Usar parâmetros na consulta"
+        ],
+        "a": 3
+      },
+      {
+        "id": "n3q3",
+        "q": "Núcleo Auditável: Em C#, int[] xs={1,3,5}; Console.WriteLine(xs.Where(n=>n>2).Sum()); qual saída?",
+        "o": [
+          "8",
+          "9",
+          "3",
+          "5"
+        ],
+        "a": 0
+      },
+      {
+        "id": "n3q4",
+        "q": "Núcleo Auditável: Há três registros em A e dois em B. Qual saída de SELECT COUNT(DISTINCT setor) FROM arquivos?",
+        "o": [
+          "3",
+          "2",
+          "5",
+          "1"
+        ],
+        "a": 1
+      }
+    ],
+    "reward": 390
+  }
+]

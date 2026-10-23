@@ -1,0 +1,448 @@
+[
+  {
+    "id": "html-intro",
+    "lang": "HTML",
+    "title": "HTML — Estrutura do portal",
+    "intro": "Comece pela marcação semântica antes de mudar as cores.",
+    "sections": [
+      {
+        "title": "1. Documento",
+        "text": "HTML descreve estrutura e significado. Títulos e parágrafos não são apenas aparência.",
+        "code": "<main>\n  <h1>CodeWorld</h1>\n  <p>Bem-vindo!</p>\n</main>"
+      },
+      {
+        "title": "2. Acessibilidade",
+        "text": "Uma imagem informativa precisa de um alt que descreva seu conteúdo.",
+        "code": "<img src=\"mapa.png\" alt=\"Mapa de quatro mundos\">"
+      },
+      {
+        "title": "3. Navegação",
+        "text": "Links apontam para destinos; botões executam ações na página.",
+        "code": "<nav><a href=\"/rpg/\">Jogar RPG</a></nav>"
+      }
+    ],
+    "activity": {
+      "type": "html",
+      "prompt": "Crie um título h1 com o texto CodeWorld dentro do conteúdo principal.",
+      "starter": "<main>\n  <h1></h1>\n</main>",
+      "answer": "<h1>CodeWorld</h1>"
+    }
+  },
+  {
+    "id": "css",
+    "lang": "CSS",
+    "title": "CSS — O mundo das ilusões",
+    "intro": "CSS controla apresentação, layout, transições e animações. Aqui a interface vira uma arma da personagem CSS.",
+    "sections": [
+      {
+        "title": "1. Seletores",
+        "text": "Um seletor escolhe quais elementos recebem regras.",
+        "code": ".card {\n  border: 1px solid #00e5ff;\n  padding: 20px;\n}"
+      },
+      {
+        "title": "2. Flexbox",
+        "text": "display:flex organiza elementos em linha ou coluna.",
+        "code": ".team {\n  display: flex;\n  gap: 16px;\n  justify-content: center;\n}"
+      },
+      {
+        "title": "3. Transformações",
+        "text": "transform permite mover, girar e escalar elementos.",
+        "code": ".runner:hover {\n  transform: translateY(-8px) scale(1.03);\n}"
+      }
+    ],
+    "activity": {
+      "type": "css",
+      "prompt": "Faça o quadrado ficar vermelho e 120px de largura. Edite apenas o CSS.",
+      "starter": ".quadrado {\n  width: 80px;\n  height: 80px;\n  background: cyan;\n}",
+      "answer": "width: 120px;\nbackground: red;"
+    }
+  },
+  {
+    "id": "css-grid",
+    "lang": "CSS",
+    "title": "CSS — Grids e responsividade",
+    "intro": "Organize as fases em colunas e preserve a leitura em telas pequenas.",
+    "sections": [
+      {
+        "title": "1. Grade",
+        "text": "display: grid transforma um container em grade.",
+        "code": ".fases { display: grid; grid-template-columns: repeat(2, 1fr); }"
+      },
+      {
+        "title": "2. Distância",
+        "text": "gap controla o espaço entre as células.",
+        "code": ".fases { gap: 16px; }"
+      },
+      {
+        "title": "3. Tela pequena",
+        "text": "Media queries permitem uma coluna no celular.",
+        "code": "@media (max-width: 700px) { .fases { grid-template-columns: 1fr; } }"
+      }
+    ],
+    "activity": {
+      "type": "css",
+      "prompt": "Faça uma grade de duas colunas para o quadro de prévia.",
+      "starter": ".quadrado {\n  display: block;\n  background: cyan;\n}",
+      "answer": "display: grid;"
+    }
+  },
+  {
+    "id": "js",
+    "lang": "JavaScript",
+    "title": "JavaScript — Eventos e lógica",
+    "intro": "JavaScript permite criar comportamento em páginas e aplicações. Nesta aula você vai praticar variáveis, condições, funções e eventos.",
+    "sections": [
+      {
+        "title": "1. Variáveis",
+        "text": "Use let quando o valor pode mudar e const quando a referência não deve ser reatribuída.",
+        "code": "let hp = 100;\nconst nome = \"Runner\";\nhp = hp - 20;\nconsole.log(nome, hp);"
+      },
+      {
+        "title": "2. Condições",
+        "text": "if executa um bloco quando uma expressão é verdadeira. else trata o caminho alternativo.",
+        "code": "const energia = 40;\nif (energia >= 30) {\n  console.log(\"Skill liberada\");\n} else {\n  console.log(\"Sem energia\");\n}"
+      },
+      {
+        "title": "3. Funções",
+        "text": "Funções agrupam uma ação reutilizável.",
+        "code": "function dano(atk, defesa) {\n  return Math.max(1, atk - defesa);\n}\nconsole.log(dano(100, 35));"
+      }
+    ],
+    "activity": {
+      "type": "js",
+      "prompt": "Faça o console mostrar 120, que é 150 - 30.",
+      "starter": "const ataque = 150;\nconst defesa = 30;\n// complete aqui",
+      "answer": "console.log(ataque - defesa);"
+    }
+  },
+  {
+    "id": "js-output",
+    "lang": "JavaScript",
+    "title": "JavaScript — Prever a saída",
+    "intro": "Calcule a expressão antes de apertar Executar.",
+    "sections": [
+      {
+        "title": "1. Precedência",
+        "text": "Multiplicação é avaliada antes da soma.",
+        "code": "console.log(2 + 3 * 4); // 14"
+      },
+      {
+        "title": "2. Texto",
+        "text": "O sinal + une strings.",
+        "code": "console.log(\"Code\" + \"World\"); // CodeWorld"
+      },
+      {
+        "title": "3. Teste",
+        "text": "Use o laboratório da aula anterior para conferir hipóteses.",
+        "code": "console.log(10 > 3); // true"
+      }
+    ],
+    "activity": {
+      "type": "quiz",
+      "prompt": "Qual será a saída de console.log(4 + 2 * 3)?",
+      "options": [
+        "18",
+        "10",
+        "12",
+        "9"
+      ],
+      "answerIndex": 1
+    }
+  },
+  {
+    "id": "java-intro",
+    "lang": "Java",
+    "title": "Java — Tipos e ponto de entrada",
+    "intro": "Entenda como uma classe simples executa e imprime uma mensagem.",
+    "sections": [
+      {
+        "title": "1. Classe",
+        "text": "O programa reúne métodos dentro de uma classe.",
+        "code": "class Main { }"
+      },
+      {
+        "title": "2. Método principal",
+        "text": "main costuma ser o ponto de entrada.",
+        "code": "public static void main(String[] args) { }"
+      },
+      {
+        "title": "3. Saída",
+        "text": "println escreve uma linha.",
+        "code": "System.out.println(5 + 2); // 7"
+      }
+    ],
+    "activity": {
+      "type": "quiz",
+      "prompt": "Qual linha escreve 7 na saída do programa Java?",
+      "options": [
+        "console.log(7);",
+        "System.out.println(7);",
+        "print(7)",
+        "echo 7"
+      ],
+      "answerIndex": 1
+    }
+  },
+  {
+    "id": "py",
+    "lang": "Python",
+    "title": "Python — Pensamento analítico",
+    "intro": "Python é usado em automação, dados, scripts e IA. Você vai praticar variáveis, listas, loops e funções.",
+    "sections": [
+      {
+        "title": "1. Variáveis e listas",
+        "text": "A sintaxe é enxuta e permite representar coleções com listas.",
+        "code": "nome = \"Python\"\nlinguagens = [\"Python\", \"JS\", \"CSS\"]\nprint(linguagens[0])"
+      },
+      {
+        "title": "2. Repetição",
+        "text": "for percorre itens de uma sequência.",
+        "code": "for linguagem in [\"Python\", \"JS\", \"CSS\"]:\n    print(linguagem)"
+      },
+      {
+        "title": "3. Funções",
+        "text": "def cria uma função.",
+        "code": "def dano(ataque, defesa):\n    return max(1, ataque - defesa)\n\nprint(dano(100, 35))"
+      }
+    ],
+    "activity": {
+      "type": "python",
+      "prompt": "Complete para imprimir 15 + 5. O navegador executará a atividade em um interpretador Python leve quando disponível.",
+      "starter": "resultado = 15 + 5\n# use print(...) aqui",
+      "answer": "print(resultado)"
+    }
+  },
+  {
+    "id": "py-lists",
+    "lang": "Python",
+    "title": "Python — Listas e saídas",
+    "intro": "Percorra listas e confira os resultados de cada operação.",
+    "sections": [
+      {
+        "title": "1. Índices",
+        "text": "A primeira posição de uma lista é zero.",
+        "code": "dados = [8, 13, 21]\nprint(dados[0]) # 8"
+      },
+      {
+        "title": "2. Comprimento",
+        "text": "len informa o número de itens.",
+        "code": "print(len([1, 2, 3])) # 3"
+      },
+      {
+        "title": "3. Soma",
+        "text": "sum calcula o total de números.",
+        "code": "print(sum([2, 3, 4])) # 9"
+      }
+    ],
+    "activity": {
+      "type": "quiz",
+      "prompt": "Qual é a saída de print(sum([3, 4, 5]))?",
+      "options": [
+        "3",
+        "9",
+        "12",
+        "345"
+      ],
+      "answerIndex": 2
+    }
+  },
+  {
+    "id": "kotlin-intro",
+    "lang": "Kotlin",
+    "title": "Kotlin — Variáveis e funções",
+    "intro": "Conheça as palavras básicas para ler código Kotlin.",
+    "sections": [
+      {
+        "title": "1. val e var",
+        "text": "val não permite reatribuição; var permite.",
+        "code": "val nome = \"CodeWorld\"\nvar energia = 10"
+      },
+      {
+        "title": "2. Funções",
+        "text": "fun define uma função.",
+        "code": "fun dobro(n: Int): Int = n * 2"
+      },
+      {
+        "title": "3. Saída",
+        "text": "println imprime o resultado.",
+        "code": "println(dobro(4)) // 8"
+      }
+    ],
+    "activity": {
+      "type": "quiz",
+      "prompt": "Qual palavra declara uma variável Kotlin que pode ser reatribuída?",
+      "options": [
+        "val",
+        "var",
+        "let",
+        "const"
+      ],
+      "answerIndex": 1
+    }
+  },
+  {
+    "id": "sql",
+    "lang": "SQL",
+    "title": "SQL — A linguagem dos dados",
+    "intro": "SQL permite consultar e organizar informações. Você vai aprender SELECT, WHERE e filtros.",
+    "sections": [
+      {
+        "title": "1. SELECT",
+        "text": "SELECT escolhe as colunas que serão retornadas.",
+        "code": "SELECT nome, nivel\nFROM linguagens;"
+      },
+      {
+        "title": "2. WHERE",
+        "text": "WHERE filtra as linhas.",
+        "code": "SELECT nome\nFROM linguagens\nWHERE nivel >= 10;"
+      },
+      {
+        "title": "3. Ordenação",
+        "text": "ORDER BY organiza o resultado.",
+        "code": "SELECT nome, nivel\nFROM linguagens\nORDER BY nivel DESC;"
+      }
+    ],
+    "activity": {
+      "type": "sql",
+      "prompt": "Qual comando consulta a tabela linguagens?",
+      "starter": "SELECT nome\nFROM linguagens\n-- complete se quiser filtrar",
+      "answer": "SELECT nome FROM linguagens;"
+    }
+  },
+  {
+    "id": "sql-aggregate",
+    "lang": "SQL",
+    "title": "SQL — Filtros e contagem",
+    "intro": "Leia registros e agregue resultados sem alterar a tabela.",
+    "sections": [
+      {
+        "title": "1. Dados de exemplo",
+        "text": "O laboratório oferece a tabela linguagens(nome, nivel).",
+        "code": "SELECT * FROM linguagens;"
+      },
+      {
+        "title": "2. Filtro",
+        "text": "WHERE seleciona linhas.",
+        "code": "SELECT nome FROM linguagens WHERE nivel >= 10;"
+      },
+      {
+        "title": "3. Contagem",
+        "text": "COUNT(*) conta as linhas encontradas.",
+        "code": "SELECT COUNT(*) FROM linguagens WHERE nivel >= 10;"
+      }
+    ],
+    "activity": {
+      "type": "quiz",
+      "prompt": "Qual consulta conta quantas linguagens têm nivel >= 10?",
+      "options": [
+        "SELECT COUNT(*) FROM linguagens WHERE nivel >= 10;",
+        "UPDATE linguagens SET nivel = 10;",
+        "SELECT nome FROM linguagens;",
+        "DELETE FROM linguagens;"
+      ],
+      "answerIndex": 0
+    }
+  },
+  {
+    "id": "cs",
+    "lang": "C#",
+    "title": "C# — Sistemas robustos",
+    "intro": "C# é usado em aplicações, jogos e sistemas. A aula apresenta tipos, classes e métodos.",
+    "sections": [
+      {
+        "title": "1. Tipos",
+        "text": "C# é fortemente tipado: a variável declara seu tipo.",
+        "code": "int hp = 100;\nstring nome = \"C#\";\nbool ativo = true;"
+      },
+      {
+        "title": "2. Métodos",
+        "text": "Métodos encapsulam comportamento dentro de classes.",
+        "code": "int Dano(int ataque, int defesa)\n{\n    return Math.Max(1, ataque - defesa);\n}"
+      },
+      {
+        "title": "3. Classes",
+        "text": "Classes agrupam estado e comportamento.",
+        "code": "class Runner\n{\n    public int HP = 100;\n}"
+      }
+    ],
+    "activity": {
+      "type": "quiz",
+      "prompt": "Qual linha declara um número inteiro chamado hp com valor 100?",
+      "options": [
+        "int hp = 100;",
+        "string hp = 100;",
+        "hp := 100",
+        "let hp = 100"
+      ],
+      "answerIndex": 0
+    }
+  },
+  {
+    "id": "cs-conditions",
+    "lang": "C#",
+    "title": "C# — Condições e métodos",
+    "intro": "Pratique leitura de código C# enquanto prepara o executor opcional.",
+    "sections": [
+      {
+        "title": "1. Condição",
+        "text": "if escolhe um caminho segundo uma expressão booleana.",
+        "code": "int nivel = 5;\nif (nivel >= 5) Console.WriteLine(\"Pronto\");"
+      },
+      {
+        "title": "2. Método",
+        "text": "Um método pode devolver um valor com return.",
+        "code": "int Dobro(int n) { return n * 2; }"
+      },
+      {
+        "title": "3. Resultado",
+        "text": "Operadores obedecem precedência; parênteses deixam claro o cálculo.",
+        "code": "Console.WriteLine(2 + 3 * 4); // 14"
+      }
+    ],
+    "activity": {
+      "type": "quiz",
+      "prompt": "Qual será a saída de Console.WriteLine(2 + 3 * 4)?",
+      "options": [
+        "20",
+        "14",
+        "24",
+        "9"
+      ],
+      "answerIndex": 1
+    }
+  },
+  {
+    "id": "web-access",
+    "lang": "Web",
+    "title": "Acessibilidade — Controles que funcionam",
+    "intro": "Recursos de acessibilidade fazem parte da experiência, não são decoração.",
+    "sections": [
+      {
+        "title": "1. Teclado",
+        "text": "Um botão HTML é acionável por teclado sem lógica extra para foco.",
+        "code": "<button type=\"button\">Abrir mapa</button>"
+      },
+      {
+        "title": "2. Rótulos",
+        "text": "Associe um label ao id de seu input.",
+        "code": "<label for=\"nome\">Nome</label>\n<input id=\"nome\">"
+      },
+      {
+        "title": "3. Movimento",
+        "text": "Respeite a preferência por movimento reduzido.",
+        "code": "@media (prefers-reduced-motion: reduce) { * { animation: none; } }"
+      }
+    ],
+    "activity": {
+      "type": "quiz",
+      "prompt": "Qual elemento é apropriado para acionar uma ação na página?",
+      "options": [
+        "<span>",
+        "<button>",
+        "<em>",
+        "<br>"
+      ],
+      "answerIndex": 1
+    }
+  }
+]

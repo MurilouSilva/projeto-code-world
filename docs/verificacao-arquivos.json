@@ -1,0 +1,19 @@
+{
+  "html_checked": 11,
+  "missing_local_references": [],
+  "javascript_checked": 19,
+  "javascript_syntax_errors": [],
+  "original_main_files": 61,
+  "unchanged_original_files": 52,
+  "modified_original_files": [
+    "README.md",
+    "perfil/index.html",
+    "nexus/index.html",
+    "universo/index.html",
+    "missoes/index.html",
+    "mapa/index.html",
+    "personagens/index.html",
+    "personagens/script.js",
+    "arquivos/index.html"
+  ]
+}

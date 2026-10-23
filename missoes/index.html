@@ -22,7 +22,10 @@
     <link rel="stylesheet" href="style.css" />
     <!-- Complemento do painel de acessibilidade: tradução e reduzir movimento -->
     <link rel="stylesheet" href="../comum/idioma-e-movimento.css" />
-  </head>
+  <link rel="stylesheet" href="../comum/integracao.css">
+    <script type="module" src="../comum/integracao.js"></script>
+  <link rel="stylesheet" href="../comum/operations.css">
+</head>
   <body>
     <!-- Atalho de teclado para pular direto ao conteúdo -->
     <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
@@ -84,6 +87,7 @@
               <span data-i18n="nav_arquivos">ARQUIVOS</span>
             </a>
           </li>
+        <li><a href="../rpg/index.html"><span class="indice" aria-hidden="true"></span><span>JOGAR RPG</span></a></li>
         </ul>
       </nav>
 
@@ -204,166 +208,7 @@
          =================================================================== -->
     <main id="conteudo">
       <!-- Seção 05: Missões - Central de Operações e Combate -->
-      <section id="SECAO-MISSOES" class="fundo missoes">
-        <!-- Título e Visão Geral da Central -->
-        <div class="visao geral das missoes">
-          <p class="rotulo sistema">CENTRAL DE OPERAÇÕES</p>
-          <h2>MISSÕES <span class="destaque">DISPONÍVEIS</span></h2>
-        </div>
-
-        <!-- Abas de Filtragem das Missões -->
-        <div class="abas missoes">
-          <span class="opcao ativa">ATIVAS</span>
-          <span class="opcao">CONCLUÍDAS</span>
-          <span class="opcao">DIÁRIAS</span>
-        </div>
-
-        <!-- Destaque da Missão Ativa -->
-        <article class="card missao ativa">
-          <p class="rotulo sistema">MISSÃO ATIVA</p>
-          <h3><span aria-hidden="true">⚠</span> BUG INVASOR</h3>
-          <p class="selo principal">PRINCIPAL</p>
-          <p>Corrupções estão se espalhando pelo território Python.</p>
-          <dl class="informacoes missao">
-            <dt class="rotulo sistema">TIPO</dt>
-            <dd>COMBATE + CÓDIGO</dd>
-            <dt class="rotulo sistema">TEMPO ESTIMADO</dt>
-            <dd>15 - 20 MIN</dd>
-            <dt class="rotulo sistema">DIFICULDADE</dt>
-            <dd>SEVERA</dd>
-          </dl>
-        </article>
-
-        <!-- Lista de Outras Missões -->
-        <ul class="lista missoes">
-          <li class="card missao">
-            <h4><span aria-hidden="true">◆</span> ESCAPE DO LOOP</h4>
-            <p>Quebre o laço infinito</p>
-            <p class="selo secundaria">SECUNDÁRIA</p>
-            <p class="nivel missao">LV.07</p>
-            <p class="experiencia missao" style="--valor: 25%">25%</p>
-          </li>
-          <li class="card missao">
-            <h4><span aria-hidden="true">◆</span> DADOS PERDIDOS</h4>
-            <p>Recupere pacotes de dados</p>
-            <p class="selo secundaria">SECUNDÁRIA</p>
-            <p class="nivel missao">LV.06</p>
-            <p class="experiencia missao" style="--valor: 68%">68%</p>
-          </li>
-          <li class="card missao">
-            <h4><span aria-hidden="true">⚠</span> FIREWALL BREACH</h4>
-            <p>Infiltre-se no firewall inimigo</p>
-            <p class="selo principal">PRINCIPAL</p>
-            <p class="nivel missao">LV.09</p>
-            <p class="experiencia missao" style="--valor: 18%">18%</p>
-          </li>
-          <li class="card missao epica">
-            <h4><span aria-hidden="true">⚠</span> PROTOCOLO RAIZ</h4>
-            <p>Encontre e neutralize o núcleo da IA vilã.</p>
-            <p class="selo epica">ÉPICA</p>
-            <p class="nivel missao">LV.10</p>
-            <p class="experiencia missao" style="--valor: 8%">8%</p>
-          </li>
-        </ul>
-
-        <!-- Painel de Combate em Andamento -->
-        <div class="painel combate">
-          <p class="rotulo sistema">COMBATE EM ANDAMENTO</p>
-          <p class="rotulo sistema">NÍVEL 1/5 — TURNO 03</p>
-
-          <div class="lado combate">
-            <p class="rotulo sistema">SEU AGENTE</p>
-            <h4>PYTHON</h4>
-            <p class="vida agente">105/128</p>
-            <div class="barra progresso">
-              <div class="preenchimento progresso" style="--valor: 82%"></div>
-            </div>
-          </div>
-
-          <p class="contra" aria-hidden="true">VS</p>
-
-          <div class="lado combate inimigo">
-            <h4>IA CORRUPTA</h4>
-            <p class="vida agente">150/150</p>
-            <div class="barra progresso">
-              <div class="preenchimento progresso" style="--valor: 100%"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Terminal de Código e Resolução de Desafio -->
-        <div class="bloco terminal">
-          <p class="rotulo sistema">OBJETIVO</p>
-          <p>
-            Corrija o código abaixo para eliminar a corrupção e enfraquecer a IA.
-          </p>
-
-          <p class="rotulo sistema">TERMINAL DE CÓDIGO — HTML</p>
-          <pre class="codigo terminal"><code>&lt;!-- Corrija o aninhamento: as tags precisam fechar
-     na ordem inversa da que foram abertas --&gt;
-&lt;main&gt;
-  &lt;section id="NIVEL-0"&gt;
-    &lt;h2&gt;NÍVEL 0&lt;/h2&gt;
-    &lt;p&gt;Território HTML + CSS
-  &lt;/main&gt;
-&lt;/section&gt;</code></pre>
-
-          <p class="dica">
-            <span aria-hidden="true">💡</span> DICA: feche as tags na ordem
-            inversa da abertura e não deixe nenhum parágrafo aberto.
-          </p>
-          <button type="button" class="botao primario">
-            EXECUTAR <span aria-hidden="true">▶</span>
-          </button>
-        </div>
-
-        <!-- Log do Console de Combate -->
-        <div class="bloco log">
-          <p class="rotulo sistema">LOG DE COMBATE</p>
-          <ul class="lista log">
-            <li>&gt; IA CORRUPTA iniciou um ataque de corrupção!</li>
-            <li>&gt; PYTHON perdeu 15 de energia.</li>
-            <li>&gt; Sua vez: resolva o código para contra-atacar!</li>
-          </ul>
-        </div>
-
-        <!-- Bloco de Recompensas da Missão -->
-        <div class="bloco recompensas">
-          <h3>RECOMPENSAS</h3>
-          <ul class="lista recompensas">
-            <li class="card recompensa">
-              <p class="valor recompensa">
-                <span aria-hidden="true">○</span> +2500
-              </p>
-              <p class="rotulo sistema">EXPERIÊNCIA</p>
-            </li>
-            <li class="card recompensa">
-              <p class="valor recompensa">
-                <span aria-hidden="true">●</span> +150
-              </p>
-              <p class="rotulo sistema">NEXUS COINS</p>
-            </li>
-            <li class="card recompensa">
-              <p class="valor recompensa">
-                <span aria-hidden="true">◆</span> +1
-              </p>
-              <p class="rotulo sistema">FRAGMENTO DE CÓDIGO</p>
-            </li>
-            <li class="card recompensa">
-              <p class="valor recompensa">
-                <span aria-hidden="true">◉</span> SLOT DE MOD
-              </p>
-              <p class="rotulo sistema">ITEM RARO</p>
-            </li>
-          </ul>
-          <p class="rotulo sistema">
-            CONCLUA A MISSÃO PARA RECEBER AS RECOMPENSAS
-          </p>
-          <a class="botao secundario" href="../missoes/index.html#SECAO-MISSOES">
-            VER TODAS AS MISSÕES <span aria-hidden="true">→</span>
-          </a>
-        </div>
-      </section>
+      <section id="SECAO-MISSOES" class="fundo missoes"><div id="missions-app" aria-live="polite">Conectando às missões…</div></section>
     </main>
 
     <!-- ===================================================================
@@ -378,7 +223,7 @@
     <!-- Comportamento compartilhado (menu, acessibilidade, animações) -->
     <script src="../comum/base.js" defer></script>
     <!-- Interações exclusivas desta tela -->
-    <script src="script.js" defer></script>
+    <script type="module" src="script.js"></script>
     <!-- Complemento do painel de acessibilidade (tradução e vídeo) -->
     <script src="../comum/idioma-e-movimento.js" defer></script>
   </body>
