@@ -1,0 +1,554 @@
+/* ==========================================================================
+   CODEWORLD // nexus/style.css
+   Estilo exclusivo da Seção 01: NEXUS (entrada do portal).
+   O que é comum a todas as telas (cabeçalho, botões, painéis, rodapé,
+   acessibilidade e responsividade geral) fica em ../comum/base.css.
+
+   Índice:
+   01. Hero em tela cheia
+   02. Título com efeito glitch
+   03. Console do sistema
+   04. Seção dos criadores
+   04B. Sobre o projeto (história, duplas, níveis e mensagem)
+   05. Responsividade
+   ========================================================================== */
+
+/* ==========================================================================
+   01. HERO EM TELA CHEIA
+   ========================================================================== */
+
+#CODEWORLD {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: var(--espaco-secao);
+  min-height: calc(100svh - var(--altura-cabecalho));
+  padding-block: clamp(2.5rem, 8vh, 5rem);
+}
+
+#CODEWORLD .visual.fundo {
+  opacity: 0.35;
+  animation: zoom-lento 30s ease-in-out infinite alternate;
+}
+
+/* Vinheta escura nas bordas para destacar o centro */
+#CODEWORLD::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 30%, var(--fundo) 85%),
+    linear-gradient(to bottom, transparent 60%, var(--fundo) 100%);
+  pointer-events: none;
+}
+
+@keyframes zoom-lento {
+  to {
+    transform: scale(1.12);
+  }
+}
+
+.conteudo.inicial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.boas-vindas {
+  color: var(--ciano);
+}
+
+.acoes.inicial {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espaco);
+  margin-top: 1.5rem;
+}
+
+/* ==========================================================================
+   02. TÍTULO COM EFEITO GLITCH
+   ========================================================================== */
+
+.titulo.glitch {
+  position: relative;
+  isolation: isolate;
+  font-family: var(--fonte-display);
+  font-size: clamp(2.2rem, 10.5vw, 7rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  background: linear-gradient(
+    90deg,
+    var(--magenta),
+    var(--roxo),
+    var(--ciano),
+    var(--magenta)
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 22px rgba(227, 0, 113, 0.45));
+  animation:
+    gradiente-flui 8s linear infinite,
+    flutuar 6s ease-in-out infinite;
+}
+
+/* Duas cópias do texto que aparecem deslocadas por um instante */
+.titulo.glitch::before,
+.titulo.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.titulo.glitch::before {
+  color: var(--ciano);
+  animation: glitch-ocasional-a 5s steps(1, end) infinite;
+}
+
+.titulo.glitch::after {
+  color: var(--magenta-claro);
+  animation: glitch-ocasional-b 5s steps(1, end) infinite;
+}
+
+@keyframes gradiente-flui {
+  to {
+    background-position: 300% center;
+  }
+}
+
+@keyframes flutuar {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes glitch-ocasional-a {
+  0%,
+  88%,
+  100% {
+    opacity: 0;
+  }
+  89% {
+    opacity: 0.85;
+    clip-path: inset(12% 0 58% 0);
+    transform: translate(-6px, 0);
+  }
+  91% {
+    opacity: 0.85;
+    clip-path: inset(62% 0 8% 0);
+    transform: translate(5px, 0);
+  }
+  93% {
+    opacity: 0.85;
+    clip-path: inset(38% 0 40% 0);
+    transform: translate(-3px, 0);
+  }
+  95% {
+    opacity: 0;
+  }
+}
+
+@keyframes glitch-ocasional-b {
+  0%,
+  89%,
+  100% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0.75;
+    clip-path: inset(50% 0 25% 0);
+    transform: translate(6px, 0);
+  }
+  92% {
+    opacity: 0.75;
+    clip-path: inset(5% 0 70% 0);
+    transform: translate(-5px, 0);
+  }
+  94% {
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   03. CONSOLE DO SISTEMA
+   ========================================================================== */
+
+.sistema.console {
+  max-width: 460px;
+  justify-self: center;
+  padding: var(--espaco);
+  border: 1px solid rgba(41, 245, 138, 0.25);
+  border-left: 3px solid var(--verde);
+  border-radius: var(--raio);
+  background-color: rgba(8, 6, 15, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 30px rgba(41, 245, 138, 0.08);
+  text-align: left;
+}
+
+html[data-tema="claro"] .sistema.console {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.sistema.console .rotulo.sistema {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.sistema.console .selo.status {
+  margin-top: 0.75rem;
+}
+
+/* ==========================================================================
+   04. SEÇÃO DOS CRIADORES
+   ========================================================================== */
+
+/* Atalho "Conheça os criadores" no fim da tela inicial */
+.rolar.criadores {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  color: var(--texto-suave);
+  transition: color var(--rapido) ease;
+}
+
+.rolar.criadores:hover {
+  color: var(--ciano);
+}
+
+.rolar.criadores span {
+  display: inline-block;
+  animation: quicar 1.6s ease-in-out infinite;
+}
+
+@keyframes quicar {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+#CRIADORES {
+  border-top: 1px solid var(--borda);
+  background-color: var(--fundo-alt);
+}
+
+/* Flex com centralização: como são 11 integrantes, a última linha
+   (incompleta) fica centralizada */
+.lista.criadores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espaco);
+}
+
+.card.criador {
+  flex: 0 1 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  position: relative;
+  padding: 1.5rem 1rem 1.25rem;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background-color: var(--superficie);
+  text-align: center;
+}
+
+/* Espaço da foto (por enquanto mostra o número do integrante) */
+.foto.criador {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  margin-bottom: 0.5rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(227, 0, 113, 0.18), transparent 70%),
+    var(--superficie-alt);
+  overflow: hidden;
+}
+
+/* Anel tracejado que gira devagar em volta da foto */
+.foto.criador::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px dashed var(--borda-magenta);
+  border-radius: 50%;
+  animation: girar-anel 18s linear infinite;
+}
+
+.foto.criador img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foto.criador .numero {
+  font-family: var(--fonte-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--magenta);
+  text-shadow: var(--brilho-magenta);
+}
+
+@keyframes girar-anel {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card.criador:hover .foto.criador::before {
+  border-style: solid;
+  border-color: var(--ciano);
+  box-shadow: var(--brilho-ciano);
+}
+
+.card.criador h3 {
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+
+.funcao.criador {
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ciano);
+}
+
+/* ==========================================================================
+   04B. SOBRE O PROJETO (história, duplas, níveis e mensagem)
+   ========================================================================== */
+
+#SOBRE {
+  border-top: 1px solid var(--borda);
+}
+
+/* Blocos com rótulo + título + texto: espaçamento igual ao da .visao.geral */
+.bloco.duplas,
+.bloco.niveis {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* O h3 do bloco é o título da parte: um pouco maior que o padrão */
+#SOBRE .bloco h3 {
+  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+}
+
+.bloco.duplas > p:not(.rotulo) {
+  max-width: 65ch;
+  margin-bottom: var(--espaco);
+  color: var(--texto-suave);
+  font-size: 1.02rem;
+}
+
+/* A mensagem final se separa do resto com um respiro maior */
+#SOBRE .visao.geral.mensagem {
+  margin-top: var(--espaco-secao);
+}
+
+/* Cartões novos: mesmo visual dos cartões do Universo. O position relative
+   é necessário para a linha de luz do hover (::after de base.css) ficar
+   dentro do cartão */
+.card.dupla,
+.card.nivel {
+  position: relative;
+  padding: var(--espaco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--superficie);
+}
+
+.card.dupla:hover,
+.card.nivel:hover {
+  border-color: var(--borda-forte);
+}
+
+/* --- Duplas --- */
+.lista.duplas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--espaco);
+}
+
+.card.dupla {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  min-height: 280px;
+  padding: 1.5rem;
+}
+
+.card.dupla img {
+  width: 300px;
+  height: 220px;
+  object-fit: contain;
+  transition: transform 400ms var(--suave);
+}
+
+.card.dupla:hover img {
+  transform: scale(1.1) rotate(-4deg);
+}
+
+.card.dupla h4 {
+  font-family: var(--fonte-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+/* O selo de base.css alinha à esquerda; aqui ele fica centralizado */
+.card.dupla .selo {
+  align-self: center;
+}
+
+/* --- Níveis --- */
+.lista.niveis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(550px, 1fr));
+  gap: var(--espaco);
+}
+
+
+.card.nivel img {
+  width: 300px;
+  height: 220px;
+  object-fit: contain;
+  align-self: center;
+}
+
+.card.nivel h4 {
+  font-family: var(--fonte-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+}
+
+.card.nivel p:not(.rotulo) {
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+/* O Núcleo é a ameaça: destaque em magenta */
+.card.nivel.nucleo {
+  border-color: var(--borda-magenta);
+}
+
+.card.nivel.nucleo:hover {
+  border-color: var(--magenta);
+}
+
+.card.nivel.nucleo h4,
+.card.nivel.nucleo .rotulo.sistema {
+  color: var(--magenta);
+}
+
+.acao.mapa {
+  display: flex;
+  margin-top: var(--espaco);
+}
+
+/* ==========================================================================
+   05. RESPONSIVIDADE
+   ========================================================================== */
+
+/* Em telas largas o console fica no canto inferior esquerdo, numa linha
+   própria do grid (assim nunca cobre os botões, mesmo em telas baixas) */
+@media (min-width: 1100px) {
+  #CODEWORLD {
+    grid-template-rows: 1fr auto;
+    gap: var(--espaco);
+    padding-bottom: var(--margem-lateral);
+  }
+
+  .sistema.console {
+    justify-self: start;
+    width: 360px;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+@media (max-width: 559px) {
+  .lista.criadores {
+    gap: 0.75rem;
+  }
+
+  .card.criador {
+    flex-basis: calc(50% - 0.375rem);
+    padding: 1.1rem 0.6rem 1rem;
+  }
+
+  .foto.criador {
+    width: 68px;
+    height: 68px;
+  }
+
+  .card.criador h3 {
+    font-size: 0.9rem;
+  }
+
+  .funcao.criador {
+    font-size: 0.65rem;
+  }
+
+  .acoes.inicial {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .boas-vindas {
+    font-size: 0.65rem;
+  }
+}
+
+/* --- Sobre: grades das duplas e dos níveis ---
+   Colunas fixas para nunca sobrar cartão sozinho na última linha:
+   celular 2x3 e 1x4, tablet 3x2 e 2x2, tela larga 6x1 e 4x1 */
+@media (max-width: 559px) {
+  .lista.duplas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .lista.niveis {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1100px) {
+  .lista.duplas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .lista.niveis {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

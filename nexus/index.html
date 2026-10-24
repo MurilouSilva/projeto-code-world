@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <!-- Configurações fundamentais de codificação e responsividade -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="CodeWorld por 11 estudantes de tecnologia" />
+    <meta name="theme-color" content="#08060f" />
+    <title>CodeWorld - Sobre</title>
+
+    <!-- Importação de fontes externas via Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@500;700;800;900&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Estilo compartilhado por todas as telas -->
+    <link rel="stylesheet" href="../comum/base.css" />
+    <!-- Estilo exclusivo desta tela -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Complemento do painel de acessibilidade: tradução e reduzir movimento -->
+    <link rel="stylesheet" href="../comum/idioma-e-movimento.css" />
+  </head>
+  <body>
+    <!-- Atalho de teclado para pular direto ao conteúdo -->
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+    <!-- Barra fina que mostra o quanto da página já foi rolado -->
+    <div class="barra-rolagem" aria-hidden="true"></div>
+
+    <!-- Cursor Duplo (Tympanus Sketch 012) — só aparece em telas com mouse -->
+    <div class="cursor-inner" aria-hidden="true"></div>
+    <div class="cursor-outer" aria-hidden="true"></div>
+
+    <!-- ===================================================================
+         CABEÇALHO PRINCIPAL DA PÁGINA
+         =================================================================== -->
+    <header>
+      <!-- Área Esquerda: Logo do Projeto -->
+      <div class="area esquerda">
+        <div class="logo">
+          <a href="../nexus/index.html#CODEWORLD" data-text="CODEWORLD">CODEWORLD</a>
+        </div>
+      </div>
+
+      <!-- Menu de Navegação Central -->
+      <nav id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li>
+            <a href="../nexus/index.html#CODEWORLD" class="ativo" aria-current="page">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_nexus">SOBRE</span>
+            </a>
+          </li>
+          <li>
+            <a href="../universo/index.html#SECAO-UNIVERSO">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_universo">UNIVERSO</span>
+            </a>
+          </li>
+          <li>
+            <a href="../personagens/index.html#SECAO-PERSONAGENS">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_personagens">PERSONAGENS</span>
+            </a>
+          </li>
+          <li>
+            <a href="../mapa/index.html#SECAO-MAPA">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_mapa">MAPA</span>
+            </a>
+          </li>
+          <li>
+            <a href="../missoes/index.html#SECAO-MISSOES">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_missoes">MISSÕES</span>
+            </a>
+          </li>
+          <li>
+            <a href="../arquivos/index.html#SECAO-ARQUIVOS">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_arquivos">ARQUIVOS</span>
+            </a>
+          </li>
+          <li>
+            <a href="../rpg/index.html#SECAO-RPG">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_rpg">RPG</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Área Direita: Status Online, Painel de Acessibilidade e Menu Mobile -->
+      <div class="area direita">
+        <!-- Indicador do Status do Sistema -->
+        <p class="status online">
+          <span class="ponto" aria-hidden="true">●</span>
+          <span data-i18n="status_online">ONLINE</span>
+        </p>
+
+        <!-- Menu Desdobrável (Details/Summary) de Acessibilidade -->
+        <details class="acessibilidade">
+          <summary>
+            <span aria-hidden="true">▣</span>
+            <span data-i18n="btn_acessibilidade">ACESSIBILIDADE</span>
+          </summary>
+
+          <div class="painel acessibilidade">
+            <p class="rotulo sistema">[ SISTEMA ]</p>
+            <p class="titulo painel" data-i18n="titulo_painel">PAINEL DE ACESSIBILIDADE</p>
+
+            <!-- Seleção de Idioma -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_idioma">IDIOMA / LANGUAGE</p>
+              <div class="opcoes">
+                <button type="button" class="opcao ativa">PT-BR</button>
+                <button type="button" class="opcao">EN</button>
+              </div>
+            </div>
+
+            <!-- Seleção de Tema (Escuro / Claro) -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_tema">TEMA</p>
+              <div class="opcoes">
+                <button type="button" class="opcao ativa" data-tema-opcao="escuro" data-i18n="opt_escuro">ESCURO</button>
+                <button type="button" class="opcao" data-tema-opcao="claro" data-i18n="opt_claro">CLARO</button>
+              </div>
+            </div>
+
+            <!-- Ajuste de Tamanho da Fonte -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_fonte">TAMANHO DA FONTE</p>
+              <div class="opcoes">
+                <button type="button" class="opcao" data-fonte="a-" aria-label="Fonte menor">A-</button>
+                <button type="button" class="opcao ativa" data-fonte="a" aria-label="Fonte normal">A</button>
+                <button type="button" class="opcao" data-fonte="a+" aria-label="Fonte maior">A+</button>
+                <button type="button" class="opcao" data-fonte="a++" aria-label="Fonte muito maior">A++</button>
+              </div>
+            </div>
+
+            <!-- Chave de Alto Contraste -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" id="LBL-CONTRASTE" data-i18n="lbl_contraste">ALTO CONTRASTE</p>
+              <button
+                type="button"
+                class="chave"
+                role="switch"
+                aria-checked="false"
+                aria-labelledby="LBL-CONTRASTE"
+                data-classe="alto-contraste"
+                data-salvar="cw_alto_contraste"
+              >
+                <span class="chave-bolinha"></span>
+              </button>
+            </div>
+
+            <!-- Chave de Reduzir Movimento -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" id="LBL-MOVIMENTO" data-i18n="lbl_movimento">REDUZIR MOVIMENTO</p>
+              <button
+                type="button"
+                class="chave"
+                role="switch"
+                aria-checked="false"
+                aria-labelledby="LBL-MOVIMENTO"
+                data-classe="sem-animacao"
+                data-salvar="cw_reduzir_movimento"
+              >
+                <span class="chave-bolinha"></span>
+              </button>
+            </div>
+
+            <p class="rotulo sistema" data-i18n="lbl_status_salvo">STATUS: CONFIGURAÇÕES SALVAS</p>
+          </div>
+
+          <!-- Container do widget do Google Translate (oculto via CSS) -->
+          <div id="google_translate_element" style="display: none"></div>
+        </details>
+
+        <!-- Botão Hambúrguer (Mobile / Tablet) -->
+        <button
+          type="button"
+          class="menu-hamburguer"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          aria-controls="menu-principal"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ===================================================================
+         CONTEÚDO PRINCIPAL
+         =================================================================== -->
+    <main id="conteudo">
+      <!-- Seção 01: Nexus - Entrada Principal do Portal -->
+      <section id="CODEWORLD" class="fundo nexus">
+        <!-- Vídeo de fundo em tela cheia -->
+        <video class="visual fundo" autoplay loop muted playsinline>
+          <source src="../img/universo-fundo.mp4" type="video/mp4" />
+          Seu navegador não suporta vídeos em HTML5.
+        </video>
+
+        <!-- Bloco Principal de Boas-Vindas -->
+        <div class="conteudo inicial">
+          <p class="rotulo sistema boas-vindas">// CONEXÃO ESTABELECIDA</p>
+
+          <!-- Título com efeito glitch (as camadas copiam o data-text) -->
+          <h1 class="titulo glitch" data-text="CODEWORLD">CODEWORLD</h1>
+
+          <p class="credito">Por 11 Estudantes de tecnologia</p>
+          
+          <!-- Botões de Ação de Início -->
+          <ul class="acoes inicial">
+            <li>
+              <a class="botao primario" href="../universo/index.html#SECAO-UNIVERSO">
+                ENTRAR NA EXPERIÊNCIA <span aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li>
+              <a class="botao secundario" href="../arquivos/index.html#SECAO-ARQUIVOS">
+                EXPLORAR A HISTÓRIA
+              </a>
+            </li>
+          </ul>
+
+          <!-- Atalho para a seção Sobre, logo abaixo (os criadores vêm depois dela) -->
+          <a class="rolar criadores" href="#SOBRE">
+            SOBRE O PROJETO <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+
+        <!-- Console / Terminal do Sistema (as linhas são "digitadas" pelo script.js) -->
+        <div class="sistema console">
+          <p class="rotulo sistema">SISTEMA CONSOLE</p>
+          <p class="linhas console">
+            <span class="linha">&gt; [SISTEMA ONLINE]</span>
+            <span class="linha">&gt; ACESSANDO CODEWORLD...</span>
+            <span class="linha">&gt; NEXUS_CONNECTION: STABLE</span>
+            <span class="linha">&gt; CARREGANDO MAPA DE TERRITÓRIOS...</span>
+            <span class="linha">&gt; STATUS: OPERACIONAL</span>
+          </p>
+          <p class="selo status">STATUS: ONLINE</p>
+        </div>
+      </section>
+
+      <!-- Seção: Sobre o projeto (história, duplas, níveis e mensagem) -->
+      <section id="SOBRE" class="sobre" aria-labelledby="TITULO-SOBRE">
+        <!-- O que é o CodeWorld -->
+        <div class="visao geral do projeto">
+          <p class="rotulo sistema">// SOBRE O PROJETO</p>
+          <h2 id="TITULO-SOBRE">O QUE É O <span class="destaque">CODEWORLD</span></h2>
+          <p>
+            O CodeWorld é um portal em formato de RPG sobre uma Super IA que quer
+            controlar a Internet. Para impedir isso, 11 jovens programadores criam
+            em segredo um código capaz de chegar ao núcleo dela. A IA descobre o
+            plano e transporta todos para dentro da própria Internet.
+          </p>
+          <p>Aqui você conhece os agentes, explora o mapa e cumpre missões.</p>
+        </div>
+
+        <!-- As duplas: 5 duplas + 1 jovem sozinho = 11 jovens, 6 linguagens -->
+        <section class="bloco duplas" aria-labelledby="TITULO-DUPLAS">
+          <p class="rotulo sistema">// FUSÃO DE CONSCIÊNCIAS</p>
+          <h3 id="TITULO-DUPLAS">AS DUPLAS</h3>
+          <p>
+            Dentro da Internet, as mentes dos jovens se fundem em duplas, e cada
+            dupla vira uma linguagem. Cinco duplas e um jovem sozinho: 11 jovens,
+            6 linguagens.
+          </p>
+          <!-- O nome da linguagem já está no título: o alt fica vazio de propósito -->
+          <ul class="lista duplas">
+            <li class="card dupla">
+              
+              <h4>HTML</h4>
+            </li>
+            <li class="card dupla">
+
+              <h4>CSS</h4>
+            </li>
+            <li class="card dupla">
+         
+              <h4>JAVASCRIPT</h4>
+            </li>
+            <li class="card dupla">
+         
+              <h4>JAVA</h4>
+            </li>
+            <li class="card dupla">
+
+              <h4>PYTHON</h4>
+            </li>
+            <li class="card dupla">
+ 
+              <h4>KOTLIN</h4>
+              <p class="selo secundaria">SOZINHO</p>
+            </li>
+          </ul>
+        </section>
+
+        <!-- A cidade em níveis (resumo; o texto completo fica no Mapa) -->
+        <section class="bloco niveis" aria-labelledby="TITULO-NIVEIS">
+          <p class="rotulo sistema">// TERRITÓRIOS</p>
+          <h3 id="TITULO-NIVEIS">A CIDADE EM NÍVEIS</h3>
+          <ul class="lista niveis">
+            <li class="card nivel">
+              <img src="../img/cidade-html-css.png" alt="" width="120" height="120" />
+              <p class="rotulo sistema">NÍVEL 0</p>
+              <h4>HTML + CSS</h4>
+              <p>A fachada da Internet.</p>
+            </li>
+            <li class="card nivel">
+              <img src="../img/cidade-javascript-java.png" alt="" width="120" height="120" />
+              <p class="rotulo sistema">NÍVEL 1</p>
+              <h4>JAVASCRIPT + JAVA</h4>
+              <p>O distrito da lógica.</p>
+            </li>
+            <li class="card nivel">
+              <img src="../img/cidade-python-kotlin.png" alt="" width="120" height="120" />
+              <p class="rotulo sistema">NÍVEL 2</p>
+              <h4>PYTHON + KOTLIN</h4>
+              <p>O jardim dos dados.</p>
+            </li>
+            <li class="card nivel nucleo">
+              <img src="../img/cidade-ia.png" alt="" width="120" height="120" />
+              <p class="rotulo sistema">NÚCLEO</p>
+              <h4>SUPER IA</h4>
+              <p>
+                O coração da Super IA. Ninguém que entrou no Núcleo voltou para
+                contar.
+              </p>
+            </li>
+          </ul>
+          <p class="acao mapa">
+            <a class="botao secundario" href="../mapa/index.html#SECAO-MAPA">
+              VER O MAPA <span aria-hidden="true">→</span>
+            </a>
+          </p>
+        </section>
+
+        <!-- A mensagem por trás da história -->
+        <div class="visao geral mensagem">
+          <p class="rotulo sistema">// A MENSAGEM</p>
+          <h2>POR QUE ISSO <span class="destaque">IMPORTA</span></h2>
+          <p>
+            A Super IA não nasceu má: ela aprendeu com os dados que a humanidade
+            criou, mentiras e vieses incluídos. Quem programa também ensina. O
+            que escrevemos hoje molda o que as máquinas fazem amanhã.
+          </p>
+        </div>
+      </section>
+
+      <!-- Seção: Criadores do Site -->
+      <section id="CRIADORES" class="criadores" aria-labelledby="TITULO-CRIADORES">
+        <div class="visao geral dos criadores">
+          <p class="rotulo sistema">// EQUIPE DE DESENVOLVIMENTO</p>
+          <h2 id="TITULO-CRIADORES">OS <span class="destaque">CRIADORES</span></h2>
+          <p>
+            O CodeWorld foi construído por 11 estudantes de tecnologia. Cada
+            integrante cuidou de uma parte do portal: das telas e do design às
+            animações e à lógica do Modo Agente.
+          </p>
+        </div>
+
+        <!-- Para cada integrante: troque o nome e a função. A foto pode ser
+             colocada depois, trocando o <span class="numero"> por uma <img>. -->
+        <ul class="lista criadores">
+            <li class="card criador">
+              <div class="foto criador" aria-hidden="true">
+                <span class="numero">01</span>
+              </div>
+              <p class="rotulo sistema">DEV-01</p>
+              <h3>Nome do Integrante 01</h3>
+            </li>
+            <li class="card criador">
+              <div class="foto criador" aria-hidden="true">
+                <span class="numero">02</span>
+              </div>
+              <p class="rotulo sistema">DEV-02</p>
+              <h3>Nome do Integrante 02</h3>
+            </li>
+            <li class="card criador">
+              <div class="foto criador" aria-hidden="true">
+                <span class="numero">03</span>
+              </div>
+              <p class="rotulo sistema">DEV-03</p>
+              <h3>Nome do Integrante 03</h3>
+            </li>
+            <li class="card criador">
+              <div class="foto criador" aria-hidden="true">
+                <span class="numero">04</span>
+              </div>
+              <p class="rotulo sistema">DEV-04</p>
+              <h3>Nome do Integrante 04</h3>
+            </li>
+            <li class="card criador">
+              <div class="foto criador" aria-hidden="true">
+                <span class="numero">05</span>
+              </div>
+              <p class="rotulo sistema">DEV-05</p>
+              <h3>Nome do Integrante 05</h3>
+            </li>
+            <li class="card criador">
+              <div class="foto criador" aria-hidden="true">
+                <span class="numero">06</span>
+              </div>
+              <p class="rotulo sistema">DEV-06</p>
+              <h3>Nome do Integrante 06</h3>
+            </li>
+            <li class="card criador">
+              <div class="foto criador" aria-hidden="true">
+                <span class="numero">07</span>
+              </div>
+              <p class="rotulo sistema">DEV-07</p>
+              <h3>Nome do Integrante 07</h3>
+            </li>
+            <li class="card criador">
+              <div class="foto criador" aria-hidden="true">
+                <span class="numero">08</span>
+              </div>
+              <p class="rotulo sistema">DEV-08</p>
+              <h3>Nome do Integrante 08</h3>
+            </li>
+            <li class="card criador">
+              <div class="foto criador" aria-hidden="true">
+                <span class="numero">09</span>
+              </div>
+              <p class="rotulo sistema">DEV-09</p>
+              <h3>Nome do Integrante 09</h3>
+            </li>
+            <li class="card criador">
+              <div class="foto criador" aria-hidden="true">
+                <span class="numero">10</span>
+              </div>
+              <p class="rotulo sistema">DEV-10</p>
+              <h3>Nome do Integrante 10</h3>
+            </li>
+            <li class="card criador">
+              <div class="foto criador" aria-hidden="true">
+                <span class="numero">11</span>
+              </div>
+              <p class="rotulo sistema">DEV-11</p>
+              <h3>Nome do Integrante 11</h3>
+            </li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- ===================================================================
+         RODAPÉ DA PÁGINA
+         =================================================================== -->
+    <footer>
+      <p class="logo rodape">CODEWORLD</p>
+      <p class="credito">Por 11 Estudantes de tecnologia</p>
+      <p class="rotulo sistema">@Codeworld 2026 - Projeto Acadêmico</p>
+    </footer>
+
+    <!-- Comportamento compartilhado (menu, acessibilidade, animações) -->
+    <script src="../comum/base.js" defer></script>
+    <!-- Interações exclusivas desta tela -->
+    <script src="script.js" defer></script>
+    <!-- Complemento do painel de acessibilidade (tradução e vídeo) -->
+    <script src="../comum/idioma-e-movimento.js" defer></script>
+  </body>
+</html>

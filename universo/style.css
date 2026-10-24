@@ -1,0 +1,417 @@
+/* ==========================================================================
+   CODEWORLD // universo/style.css
+   Estilo exclusivo da Seção 02: UNIVERSO.
+   O que é comum a todas as telas fica em ../comum/base.css.
+
+   Índice:
+   01. Visão geral e trailer
+   02. Cartões das linguagens
+   03. Mensagem da Super IA
+   04. Linha do tempo
+   05. Responsividade
+   ========================================================================== */
+
+#SECAO-UNIVERSO {
+  background-color: var(--fundo-alt);
+}
+
+/* ==========================================================================
+   01. VISÃO GERAL E TRAILER
+   ========================================================================== */
+
+.visao.geral.do.universo p:not(.rotulo) {
+  max-width: 80ch;
+  margin-top: 0.5rem;
+}
+
+.trailer {
+  position: relative;
+  overflow: hidden;
+  border: 4px solid #e300718c; 
+  box-shadow: 0 0 20px #e300718c, 0 0 40px #e300718c;
+  border-radius: 8px; 
+  padding: 10px; 
+}
+
+.trailer video,
+.trailer img {
+  width: 100%;
+  aspect-ratio: 16 / 9; 
+  object-fit: cover;
+  transition:
+    transform 1.2s var(--suave),
+    filter 600ms ease;
+}
+
+.trailer figcaption {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--espaco);
+  background: radial-gradient(
+    ellipse at center,
+  );
+}
+
+.trailer:hover video,
+.trailer:hover img {
+  transform: scale(1.04);
+  filter: saturate(1.2);
+}
+
+.trailer .botao.primario {
+  width: auto;
+  animation: chamar-atencao 2.4s ease-in-out infinite;
+}
+
+.icone.play {
+  display: inline-grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  background: rgba(227, 0, 113, 0.8);
+  color: #fff;
+  box-shadow: 0 0 20px #e300718c, 0 0 40px #e300718c;
+  cursor: pointer;
+}
+
+.trailer .botao:hover .icone.play {
+  transform: none;
+}
+
+@keyframes chamar-atencao {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 #e300718c;
+  }
+  60% {
+    box-shadow: 0 0 0 14px rgba(227, 0, 113, 0);
+  }
+}
+
+/* ==========================================================================
+   02. CARTÕES DAS LINGUAGENS
+   ========================================================================== */
+
+.lista.linguagens {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: var(--espaco);
+}
+
+.card.linguagem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.card.linguagem img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: var(--raio);
+  transition: transform 400ms var(--suave);
+}
+.card.linguagem img[src*="html"],
+.card.linguagem img[src*="html"] {
+  transform: scale(1.5);
+}
+
+.card.linguagem img[src*="css"] {
+  transform: scale(1.5);
+
+}
+
+.card.linguagem img[src*="kotlin"]
+.card.linguagem img[src*="javascript"],
+.card.linguagem img[src*="java"] {
+  transform: scale(1.3);
+}
+
+.card.linguagem:hover img {
+  transform: scale(1.7) rotate(-4deg);
+}
+
+.card.linguagem:hover img[src*="html"],
+.card.linguagem:hover img[src*="css"] {
+  transform: scale(1.7) rotate(-4deg);
+}
+
+.card.linguagem h4 {
+  font-family: var(--fonte-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+.card.linguagem .botao.secundario {
+  width: 100%;
+  margin-top: auto;
+  min-height: 38px;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+}
+
+/* Card Inimigo (Super IA): ocupa a linha inteira */
+.card.linguagem.inimiga {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "img titulo selo"
+    "img texto1 botao"
+    "img texto2 botao";
+  align-items: center;
+  gap: 0.4rem var(--espaco);
+  text-align: left;
+  border-color: var(--borda-magenta);
+  box-shadow: var(--brilho-magenta);
+  background-image: linear-gradient(
+    120deg,
+    rgba(227, 0, 113, 0.12),
+    transparent 60%
+  );
+}
+
+.card.linguagem.inimiga::after {
+  background: linear-gradient(90deg, transparent, var(--magenta), transparent);
+}
+
+.card.linguagem.inimiga img {
+  grid-area: img;
+  width: 88px;
+  height: 88px;
+}
+
+.card.linguagem.inimiga h4 {
+  grid-area: titulo;
+  font-size: 1.3rem;
+  color: var(--magenta);
+}
+
+.card.linguagem.inimiga p:nth-of-type(1) {
+  grid-area: texto1;
+}
+
+.card.linguagem.inimiga p:nth-of-type(2) {
+  grid-area: texto2;
+}
+
+.card.linguagem.inimiga p {
+  color: var(--texto-suave);
+}
+
+.card.linguagem.inimiga .selo.ameaca {
+  grid-area: selo;
+  justify-self: end;
+  align-self: center;
+  color: var(--vermelho);
+}
+
+.card.linguagem.inimiga .botao.secundario {
+  grid-area: botao;
+  width: auto;
+  border-color: var(--magenta);
+  color: var(--magenta);
+}
+
+/* ==========================================================================
+   03. MENSAGEM DA SUPER IA
+   ========================================================================== */
+
+.mensagem.superia {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: calc(var(--espaco) * 1.5) calc(var(--espaco) * 2);
+  border: 1px solid var(--borda-magenta);
+  border-left: 3px solid var(--magenta);
+  border-radius: var(--raio);
+  background-color: var(--superficie);
+  overflow: hidden;
+}
+
+/* Aspas gigantes decorativas */
+.mensagem.superia::before {
+  content: "“";
+  position: absolute;
+  top: -1.5rem;
+  right: 1rem;
+  font-family: var(--fonte-display);
+  font-size: 9rem;
+  line-height: 1;
+  color: var(--magenta);
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.mensagem.superia p:not(.rotulo) {
+  max-width: 60ch;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.mensagem.superia footer {
+  font-family: var(--fonte-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--magenta);
+}
+
+/* ==========================================================================
+   04. LINHA DO TEMPO
+   ========================================================================== */
+
+.lista.marcos {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--espaco) * 1.25);
+  padding-left: 2.25rem;
+}
+
+/* Linha vertical que "se desenha" quando a lista aparece na tela */
+.lista.marcos::before {
+  content: "";
+  position: absolute;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  left: 5px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--ciano), var(--magenta));
+  transform-origin: top;
+  transition: transform 1.6s var(--suave);
+}
+
+.js .bloco.linha:not(.visivel) .lista.marcos::before {
+  transform: scaleY(0);
+}
+
+.marco {
+  position: relative;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid transparent;
+  border-radius: var(--raio);
+  transition:
+    background-color 250ms ease,
+    border-color 250ms ease;
+}
+
+.marco:hover {
+  border-color: var(--borda);
+  background-color: var(--superficie);
+}
+
+.marco::before {
+  content: "";
+  position: absolute;
+  top: 1.25rem;
+  left: calc(-2.25rem + 0px);
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--ciano);
+  border-radius: 50%;
+  background-color: var(--fundo-alt);
+  transition:
+    background-color 250ms ease,
+    transform 250ms var(--suave);
+}
+
+.marco:hover::before {
+  background-color: var(--ciano);
+  transform: scale(1.3);
+}
+
+.marco h4 {
+  margin-bottom: 0.3rem;
+  font-size: 1.05rem;
+  color: var(--ciano);
+}
+
+.marco p {
+  max-width: 70ch;
+  color: var(--texto-suave);
+}
+
+.marco.atual::before {
+  border-color: var(--magenta);
+  background-color: var(--magenta);
+  box-shadow: var(--brilho-magenta);
+  animation: pulso 1.6s ease-in-out infinite;
+}
+
+.marco.atual {
+  border-color: var(--borda-magenta);
+  background-color: rgba(227, 0, 113, 0.06);
+}
+
+.marco.atual h4 {
+  color: var(--magenta);
+}
+
+/* ==========================================================================
+   05. RESPONSIVIDADE
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .card.linguagem.inimiga {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "img titulo"
+      "img selo"
+      "texto1 texto1"
+      "texto2 texto2"
+      "botao botao";
+  }
+
+  .card.linguagem.inimiga .selo.ameaca {
+    justify-self: start;
+  }
+
+  .card.linguagem.inimiga .botao.secundario {
+    width: 100%;
+  }
+
+  .card.linguagem.inimiga img {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 559px) {
+  .lista.linguagens {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .card.linguagem {
+    padding: 0.9rem;
+  }
+
+  .lista.marcos {
+    padding-left: 1.5rem;
+  }
+
+  .marco {
+    padding: 0.6rem 0.4rem 0.6rem 0.8rem;
+  }
+
+  .marco::before {
+    left: -1.5rem;
+  }
+
+  .mensagem.superia {
+    padding: var(--espaco);
+  }
+
+  .selo.ameaca {
+    white-space: normal;
+  }
+}

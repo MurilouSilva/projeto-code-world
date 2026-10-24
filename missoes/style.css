@@ -1,0 +1,358 @@
+/* ==========================================================================
+   CODEWORLD // missoes/style.css
+   Estilo exclusivo da Seção 05: MISSÕES.
+   O que é comum a todas as telas fica em ../comum/base.css.
+
+   Índice:
+   01. Abas e missão ativa
+   02. Lista de missões
+   03. Painel de combate
+   04. Terminal de código e log
+   05. Recompensas
+   06. Responsividade
+   ========================================================================== */
+
+/* ==========================================================================
+   01. ABAS E MISSÃO ATIVA
+   ========================================================================== */
+
+.abas.missoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.card.missao.ativa {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  align-items: flex-start;
+  border-color: var(--borda-magenta);
+  box-shadow: var(--brilho-magenta);
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 59, 78, 0.1),
+    transparent 55%
+  );
+}
+
+.card.missao.ativa::after {
+  background: linear-gradient(90deg, transparent, var(--vermelho), transparent);
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.card.missao.ativa h3 {
+  font-family: var(--fonte-display);
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  color: var(--vermelho);
+}
+
+.card.missao.ativa h3 span {
+  display: inline-block;
+  animation: piscar 1.2s steps(2, start) infinite;
+}
+
+.card.missao.ativa > p:not(.rotulo):not(.selo) {
+  color: var(--texto-suave);
+}
+
+/* ==========================================================================
+   02. LISTA DE MISSÕES
+   ========================================================================== */
+
+.lista.missoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--espaco);
+}
+
+.lista.missoes .card.missao {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-content: start;
+  gap: 0.45rem 0.75rem;
+}
+
+.lista.missoes .card.missao h4,
+.lista.missoes .card.missao p:not(.selo):not(.nivel):not(.experiencia),
+.lista.missoes .card.missao .experiencia {
+  grid-column: 1 / -1;
+}
+
+.lista.missoes .card.missao .selo {
+  align-self: center;
+}
+
+.lista.missoes .card.missao h4 {
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.lista.missoes .card.missao p:not(.selo):not(.nivel):not(.experiencia) {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+.nivel.missao,
+.experiencia.missao {
+  font-family: var(--fonte-mono);
+  font-size: 0.8rem;
+  color: var(--ciano);
+}
+
+.nivel.missao {
+  justify-self: end;
+  align-self: center;
+}
+
+/* O percentual de experiência vira uma barrinha (largura em --valor) */
+.experiencia.missao {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.3rem;
+}
+
+.experiencia.missao::before {
+  content: "";
+  order: -1;
+  height: 4px;
+  border-radius: 99px;
+  background:
+    linear-gradient(90deg, var(--ciano), var(--ciano)) left / var(--valor, 0%)
+      100% no-repeat,
+    var(--superficie-alt);
+}
+
+.card.missao.epica {
+  border-color: rgba(255, 176, 32, 0.4);
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 176, 32, 0.1),
+    transparent 60%
+  );
+}
+
+.card.missao.epica .experiencia.missao {
+  color: var(--ambar);
+}
+
+.card.missao.epica .experiencia.missao::before {
+  background:
+    linear-gradient(90deg, var(--ambar), var(--ambar)) left / var(--valor, 0%)
+      100% no-repeat,
+    var(--superficie-alt);
+}
+
+/* ==========================================================================
+   03. PAINEL DE COMBATE
+   ========================================================================== */
+
+.painel.combate {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--espaco);
+}
+
+.painel.combate > .rotulo.sistema {
+  grid-column: 1 / -1;
+}
+
+.lado.combate {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.lado.combate h4 {
+  font-family: var(--fonte-display);
+  font-size: 1.3rem;
+  color: var(--ciano);
+}
+
+.lado.combate.inimigo {
+  text-align: right;
+}
+
+.lado.combate.inimigo h4 {
+  color: var(--vermelho);
+}
+
+/* Barra de vida do inimigo em vermelho, enchendo da direita */
+.lado.combate.inimigo .preenchimento.progresso {
+  margin-left: auto;
+  transform-origin: right;
+  background-image: linear-gradient(90deg, var(--vermelho), var(--ambar));
+  box-shadow: 0 0 10px rgba(255, 59, 78, 0.5);
+}
+
+.lado.combate .barra.progresso {
+  height: 10px;
+}
+
+.vida.agente {
+  font-family: var(--fonte-mono);
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+.contra {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--magenta);
+  border-radius: 50%;
+  font-family: var(--fonte-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--magenta);
+  box-shadow: var(--brilho-magenta);
+  animation: pulso-vs 1.8s ease-in-out infinite;
+}
+
+@keyframes pulso-vs {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* ==========================================================================
+   04. TERMINAL DE CÓDIGO E LOG
+   ========================================================================== */
+
+.bloco.terminal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.codigo.terminal {
+  position: relative;
+  width: 100%;
+  padding: 2.4rem var(--espaco) var(--espaco);
+  border: 1px solid var(--borda);
+  border-left: 3px solid var(--ciano);
+  border-radius: var(--raio);
+  background-color: var(--fundo);
+  font-family: var(--fonte-mono);
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--verde);
+  overflow-x: auto;
+}
+
+/* Três "luzes" de janela no topo do terminal */
+.codigo.terminal::before {
+  content: "";
+  position: absolute;
+  top: 0.9rem;
+  left: 1rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--vermelho);
+  box-shadow:
+    16px 0 0 var(--ambar),
+    32px 0 0 var(--verde);
+}
+
+.dica {
+  font-size: 0.9rem;
+  color: var(--ambar);
+}
+
+.lista.log {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.lista.log li:first-child {
+  color: var(--vermelho);
+}
+
+.lista.log li:last-child {
+  color: var(--verde);
+}
+
+/* ==========================================================================
+   05. RECOMPENSAS
+   ========================================================================== */
+
+.lista.recompensas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--espaco);
+  margin-bottom: var(--espaco);
+}
+
+.card.recompensa {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  text-align: center;
+  align-items: center;
+}
+
+.valor.recompensa {
+  font-family: var(--fonte-mono);
+  font-size: 1.3rem;
+  color: var(--ambar);
+  text-shadow: 0 0 10px rgba(255, 176, 32, 0.35);
+}
+
+.bloco.recompensas > .rotulo.sistema {
+  margin-bottom: var(--espaco);
+}
+
+/* ==========================================================================
+   06. RESPONSIVIDADE
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .painel.combate {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .lado.combate.inimigo {
+    text-align: left;
+  }
+
+  .lado.combate.inimigo .preenchimento.progresso {
+    margin-left: 0;
+    transform-origin: left;
+  }
+
+  .contra {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 559px) {
+  .lista.recompensas {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .abas.missoes .opcao {
+    flex: 1;
+  }
+
+  .codigo.terminal {
+    font-size: 0.78rem;
+  }
+}

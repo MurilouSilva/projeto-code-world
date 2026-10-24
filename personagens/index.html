@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <!-- Configurações fundamentais de codificação e responsividade -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="CodeWorld por 11 estudantes de tecnologia" />
+    <meta name="theme-color" content="#08060f" />
+    <title>CodeWorld - Personagens</title>
+
+    <!-- Importação de fontes externas via Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@500;700;800;900&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Estilo compartilhado por todas as telas -->
+    <link rel="stylesheet" href="../comum/base.css" />
+    <!-- Estilo exclusivo desta tela -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Complemento do painel de acessibilidade: tradução e reduzir movimento -->
+    <link rel="stylesheet" href="../comum/idioma-e-movimento.css" />
+  </head>
+  <body>
+    <!-- Atalho de teclado para pular direto ao conteúdo -->
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+    <!-- Barra fina que mostra o quanto da página já foi rolado -->
+    <div class="barra-rolagem" aria-hidden="true"></div>
+
+    <!-- Cursor Duplo (Tympanus Sketch 012) — só aparece em telas com mouse -->
+    <div class="cursor-inner" aria-hidden="true"></div>
+    <div class="cursor-outer" aria-hidden="true"></div>
+
+    <!-- ===================================================================
+         CABEÇALHO PRINCIPAL DA PÁGINA
+         =================================================================== -->
+    <header>
+      <!-- Área Esquerda: Logo do Projeto -->
+      <div class="area esquerda">
+        <div class="logo">
+          <a href="../nexus/index.html#CODEWORLD" data-text="CODEWORLD">CODEWORLD</a>
+        </div>
+      </div>
+
+      <!-- Menu de Navegação Central -->
+      <nav id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li>
+            <a href="../nexus/index.html#CODEWORLD">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_nexus">SOBRE</span>
+            </a>
+          </li>
+          <li>
+            <a href="../universo/index.html#SECAO-UNIVERSO">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_universo">UNIVERSO</span>
+            </a>
+          </li>
+          <li>
+            <a href="../personagens/index.html#SECAO-PERSONAGENS" class="ativo" aria-current="page">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_personagens">PERSONAGENS</span>
+            </a>
+          </li>
+          <li>
+            <a href="../mapa/index.html#SECAO-MAPA">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_mapa">MAPA</span>
+            </a>
+          </li>
+          <li>
+            <a href="../missoes/index.html#SECAO-MISSOES">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_missoes">MISSÕES</span>
+            </a>
+          </li>
+          <li>
+            <a href="../arquivos/index.html#SECAO-ARQUIVOS">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_arquivos">ARQUIVOS</span>
+            </a>
+          </li>
+          <li>
+            <a href="../rpg/index.html#SECAO-RPG">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_rpg">RPG</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Área Direita: Status Online, Painel de Acessibilidade e Menu Mobile -->
+      <div class="area direita">
+        <!-- Indicador do Status do Sistema -->
+        <p class="status online">
+          <span class="ponto" aria-hidden="true">●</span>
+          <span data-i18n="status_online">ONLINE</span>
+        </p>
+
+        <!-- Menu Desdobrável (Details/Summary) de Acessibilidade -->
+        <details class="acessibilidade">
+          <summary>
+            <span aria-hidden="true">▣</span>
+            <span data-i18n="btn_acessibilidade">ACESSIBILIDADE</span>
+          </summary>
+
+          <div class="painel acessibilidade">
+            <p class="rotulo sistema">[ SISTEMA ]</p>
+            <p class="titulo painel" data-i18n="titulo_painel">PAINEL DE ACESSIBILIDADE</p>
+
+            <!-- Seleção de Idioma -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_idioma">IDIOMA / LANGUAGE</p>
+              <div class="opcoes">
+                <button type="button" class="opcao ativa">PT-BR</button>
+                <button type="button" class="opcao">EN</button>
+              </div>
+            </div>
+
+            <!-- Seleção de Tema (Escuro / Claro) -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_tema">TEMA</p>
+              <div class="opcoes">
+                <button type="button" class="opcao ativa" data-tema-opcao="escuro" data-i18n="opt_escuro">ESCURO</button>
+                <button type="button" class="opcao" data-tema-opcao="claro" data-i18n="opt_claro">CLARO</button>
+              </div>
+            </div>
+
+            <!-- Ajuste de Tamanho da Fonte -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_fonte">TAMANHO DA FONTE</p>
+              <div class="opcoes">
+                <button type="button" class="opcao" data-fonte="a-" aria-label="Fonte menor">A-</button>
+                <button type="button" class="opcao ativa" data-fonte="a" aria-label="Fonte normal">A</button>
+                <button type="button" class="opcao" data-fonte="a+" aria-label="Fonte maior">A+</button>
+                <button type="button" class="opcao" data-fonte="a++" aria-label="Fonte muito maior">A++</button>
+              </div>
+            </div>
+
+            <!-- Chave de Alto Contraste -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" id="LBL-CONTRASTE" data-i18n="lbl_contraste">ALTO CONTRASTE</p>
+              <button
+                type="button"
+                class="chave"
+                role="switch"
+                aria-checked="false"
+                aria-labelledby="LBL-CONTRASTE"
+                data-classe="alto-contraste"
+                data-salvar="cw_alto_contraste"
+              >
+                <span class="chave-bolinha"></span>
+              </button>
+            </div>
+
+            <!-- Chave de Reduzir Movimento -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" id="LBL-MOVIMENTO" data-i18n="lbl_movimento">REDUZIR MOVIMENTO</p>
+              <button
+                type="button"
+                class="chave"
+                role="switch"
+                aria-checked="false"
+                aria-labelledby="LBL-MOVIMENTO"
+                data-classe="sem-animacao"
+                data-salvar="cw_reduzir_movimento"
+              >
+                <span class="chave-bolinha"></span>
+              </button>
+            </div>
+
+            <p class="rotulo sistema" data-i18n="lbl_status_salvo">STATUS: CONFIGURAÇÕES SALVAS</p>
+          </div>
+
+          <!-- Container do widget do Google Translate (oculto via CSS) -->
+          <div id="google_translate_element" style="display: none"></div>
+        </details>
+
+        <!-- Botão Hambúrguer (Mobile / Tablet) -->
+        <button
+          type="button"
+          class="menu-hamburguer"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          aria-controls="menu-principal"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ===================================================================
+         CONTEÚDO PRINCIPAL
+         =================================================================== -->
+    <main id="conteudo">
+      <!-- Seção 03: Personagens - Base de Dados dos Agentes -->
+      <section id="SECAO-PERSONAGENS" class="fundo personagens">
+        <div class="layout personagens">
+          <!-- Coluna lateral: apresentação, progresso e filtros -->
+          <aside class="lateral personagens" aria-label="Progresso e filtros">
+            <div class="painel progresso">
+              <div class="visao geral dos agentes">
+                <p class="rotulo sistema">BASE DE DADOS DE AGENTES</p>
+                <h2>PERSONAGENS</h2>
+                <p>
+                  Conheça os agentes que defendem o CodeWorld. Cada um possui
+                  habilidades únicas e um papel essencial na missão contra os
+                  bugs e corrupções do sistema.
+                </p>
+              </div>
+
+              <!-- Contador de agentes liberados (atualizado pelo script.js) -->
+              <div class="status agentes">
+                <p class="rotulo sistema">
+                  <span class="luz online" aria-hidden="true"></span>
+                  AGENTES ATIVOS
+                </p>
+                <p class="contagem" id="CONTAGEM-AGENTES">01 / 06</p>
+                <div class="barra progresso">
+                  <div
+                    class="preenchimento progresso"
+                    id="BARRA-AGENTES"
+                    style="--valor: 16.6%"
+                  ></div>
+                </div>
+                <p class="rotulo sistema" id="TEXTO-PROGRESSO">
+                  16.6% DO BANCO DE DADOS DESCOBERTO
+                </p>
+              </div>
+
+              <p class="dica modo">
+                <span aria-hidden="true">▸</span> Abra um agente para entrar no
+                <strong>Modo Agente</strong>: conclua os 5 níveis de uma
+                linguagem para desbloquear o próximo.
+              </p>
+
+              <!-- Ligação com o RPG: só os agentes desbloqueados entram na equipe -->
+              <p class="dica modo">
+                <span aria-hidden="true">▸</span> Os agentes desbloqueados aqui
+                formam a sua <strong>equipe do RPG</strong> — e cada nível
+                concluído deixa o agente mais forte nas batalhas.
+              </p>
+              <a class="botao secundario" href="../rpg/index.html#equipe">
+                MONTAR EQUIPE NO RPG <span aria-hidden="true">→</span>
+              </a>
+            </div>
+
+            <!-- Painel de Filtros -->
+            <form class="painel filtros" id="FILTROS">
+              <h3>FILTROS</h3>
+
+              <div class="grupo filtro">
+                <label class="rotulo sistema" for="FILTRO-FUNCAO">FUNÇÃO</label>
+                <select id="FILTRO-FUNCAO" name="funcao">
+                  <option value="todos">TODOS</option>
+                  <option value="Construtor">CONSTRUTOR</option>
+                  <option value="Artista">ARTISTA</option>
+                  <option value="Analisador">ANALISADOR</option>
+                  <option value="Estrategista">ESTRATEGISTA</option>
+                  <option value="Guardião">GUARDIÃO</option>
+                  <option value="Veloz">VELOZ</option>
+                </select>
+              </div>
+
+              <div class="grupo filtro">
+                <label class="rotulo sistema" for="FILTRO-STATUS">STATUS</label>
+                <select id="FILTRO-STATUS" name="status">
+                  <option value="todos">TODOS</option>
+                  <option value="desbloqueado">DESBLOQUEADOS</option>
+                  <option value="concluido">CONCLUÍDOS</option>
+                  <option value="bloqueado">BLOQUEADOS</option>
+                </select>
+              </div>
+
+              <div class="grupo filtro">
+                <label class="rotulo sistema" for="FILTRO-ORDEM">ORDEM</label>
+                <select id="FILTRO-ORDEM" name="ordem">
+                  <option value="id">ID (PADRÃO)</option>
+                  <option value="nivel-maior">NÍVEL (MAIOR)</option>
+                  <option value="nivel-menor">NÍVEL (MENOR)</option>
+                  <option value="nome">NOME (A-Z)</option>
+                </select>
+              </div>
+
+              <button type="reset" class="botao limpar">
+                <span aria-hidden="true">⟲</span> LIMPAR FILTROS
+              </button>
+
+              <button type="button" class="reiniciar progresso" id="REINICIAR">
+                Reiniciar progresso dos agentes
+              </button>
+            </form>
+          </aside>
+
+          <!-- Grade de Agentes (os cartões são montados pelo script.js a
+               partir do dados.js) -->
+          <div class="area agentes">
+            <ul class="lista agentes" id="LISTA-AGENTES" aria-live="polite"></ul>
+            <p class="sem resultados" id="SEM-RESULTADOS" hidden>
+              &gt; NENHUM AGENTE ENCONTRADO COM ESSES FILTROS.
+            </p>
+            <noscript>
+              <p class="sem resultados">
+                Ative o JavaScript para acessar a base de agentes e o Modo
+                Agente.
+              </p>
+            </noscript>
+          </div>
+        </div>
+
+        <!-- Janela do Modo Agente (conteúdo montado pelo script.js) -->
+        <dialog class="modal agente" id="MODAL-AGENTE" aria-labelledby="MODAL-TITULO"></dialog>
+      </section>
+    </main>
+
+    <!-- ===================================================================
+         RODAPÉ DA PÁGINA
+         =================================================================== -->
+    <footer>
+      <p class="logo rodape">CODEWORLD</p>
+      <p class="credito">Por 11 Estudantes de tecnologia</p>
+      <p class="rotulo sistema">@Codeworld 2026 - Projeto Acadêmico</p>
+    </footer>
+
+    <!-- Comportamento compartilhado (menu, acessibilidade, animações) -->
+    <script src="../comum/base.js" defer></script>
+    <!-- Dados dos agentes e lições do Modo Agente -->
+    <script src="dados.js" defer></script>
+    <!-- Interações exclusivas desta tela (cartões, filtros e Modo Agente) -->
+    <script src="script.js" defer></script>
+    <!-- Complemento do painel de acessibilidade (tradução e vídeo) -->
+    <script src="../comum/idioma-e-movimento.js" defer></script>
+  </body>
+</html>

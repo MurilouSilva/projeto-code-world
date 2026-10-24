@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <!-- Configurações fundamentais de codificação e responsividade -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="CodeWorld por 11 estudantes de tecnologia" />
+    <meta name="theme-color" content="#08060f" />
+    <title>CodeWorld - Universo</title>
+
+    <!-- Importação de fontes externas via Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@500;700;800;900&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Estilo compartilhado por todas as telas -->
+    <link rel="stylesheet" href="../comum/base.css" />
+    <!-- Estilo exclusivo desta tela -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Complemento do painel de acessibilidade: tradução e reduzir movimento -->
+    <link rel="stylesheet" href="../comum/idioma-e-movimento.css" />
+  </head>
+  <body>
+    <!-- Atalho de teclado para pular direto ao conteúdo -->
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+    <!-- Barra fina que mostra o quanto da página já foi rolado -->
+    <div class="barra-rolagem" aria-hidden="true"></div>
+
+    <!-- Cursor Duplo (Tympanus Sketch 012) — só aparece em telas com mouse -->
+    <div class="cursor-inner" aria-hidden="true"></div>
+    <div class="cursor-outer" aria-hidden="true"></div>
+
+    <!-- ===================================================================
+         CABEÇALHO PRINCIPAL DA PÁGINA
+         =================================================================== -->
+    <header>
+      <!-- Área Esquerda: Logo do Projeto -->
+      <div class="area esquerda">
+        <div class="logo">
+          <a href="../nexus/index.html#CODEWORLD" data-text="CODEWORLD">CODEWORLD</a>
+        </div>
+      </div>
+
+      <!-- Menu de Navegação Central -->
+      <nav id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li>
+            <a href="../nexus/index.html#CODEWORLD">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_nexus">SOBRE</span>
+            </a>
+          </li>
+          <li>
+            <a href="../universo/index.html#SECAO-UNIVERSO" class="ativo" aria-current="page">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_universo">UNIVERSO</span>
+            </a>
+          </li>
+          <li>
+            <a href="../personagens/index.html#SECAO-PERSONAGENS">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_personagens">PERSONAGENS</span>
+            </a>
+          </li>
+          <li>
+            <a href="../mapa/index.html#SECAO-MAPA">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_mapa">MAPA</span>
+            </a>
+          </li>
+          <li>
+            <a href="../missoes/index.html#SECAO-MISSOES">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_missoes">MISSÕES</span>
+            </a>
+          </li>
+          <li>
+            <a href="../arquivos/index.html#SECAO-ARQUIVOS">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_arquivos">ARQUIVOS</span>
+            </a>
+          </li>
+          <li>
+            <a href="../rpg/index.html#SECAO-RPG">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_rpg">RPG</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Área Direita: Status Online, Painel de Acessibilidade e Menu Mobile -->
+      <div class="area direita">
+        <!-- Indicador do Status do Sistema -->
+        <p class="status online">
+          <span class="ponto" aria-hidden="true">●</span>
+          <span data-i18n="status_online">ONLINE</span>
+        </p>
+
+        <!-- Menu Desdobrável (Details/Summary) de Acessibilidade -->
+        <details class="acessibilidade">
+          <summary>
+            <span aria-hidden="true">▣</span>
+            <span data-i18n="btn_acessibilidade">ACESSIBILIDADE</span>
+          </summary>
+
+          <div class="painel acessibilidade">
+            <p class="rotulo sistema">[ SISTEMA ]</p>
+            <p class="titulo painel" data-i18n="titulo_painel">PAINEL DE ACESSIBILIDADE</p>
+
+            <!-- Seleção de Idioma -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_idioma">IDIOMA / LANGUAGE</p>
+              <div class="opcoes">
+                <button type="button" class="opcao ativa">PT-BR</button>
+                <button type="button" class="opcao">EN</button>
+              </div>
+            </div>
+
+            <!-- Seleção de Tema (Escuro / Claro) -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_tema">TEMA</p>
+              <div class="opcoes">
+                <button type="button" class="opcao ativa" data-tema-opcao="escuro" data-i18n="opt_escuro">ESCURO</button>
+                <button type="button" class="opcao" data-tema-opcao="claro" data-i18n="opt_claro">CLARO</button>
+              </div>
+            </div>
+
+            <!-- Ajuste de Tamanho da Fonte -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" data-i18n="lbl_fonte">TAMANHO DA FONTE</p>
+              <div class="opcoes">
+                <button type="button" class="opcao" data-fonte="a-" aria-label="Fonte menor">A-</button>
+                <button type="button" class="opcao ativa" data-fonte="a" aria-label="Fonte normal">A</button>
+                <button type="button" class="opcao" data-fonte="a+" aria-label="Fonte maior">A+</button>
+                <button type="button" class="opcao" data-fonte="a++" aria-label="Fonte muito maior">A++</button>
+              </div>
+            </div>
+
+            <!-- Chave de Alto Contraste -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" id="LBL-CONTRASTE" data-i18n="lbl_contraste">ALTO CONTRASTE</p>
+              <button
+                type="button"
+                class="chave"
+                role="switch"
+                aria-checked="false"
+                aria-labelledby="LBL-CONTRASTE"
+                data-classe="alto-contraste"
+                data-salvar="cw_alto_contraste"
+              >
+                <span class="chave-bolinha"></span>
+              </button>
+            </div>
+
+            <!-- Chave de Reduzir Movimento -->
+            <div class="grupo acessibilidade">
+              <p class="rotulo sistema" id="LBL-MOVIMENTO" data-i18n="lbl_movimento">REDUZIR MOVIMENTO</p>
+              <button
+                type="button"
+                class="chave"
+                role="switch"
+                aria-checked="false"
+                aria-labelledby="LBL-MOVIMENTO"
+                data-classe="sem-animacao"
+                data-salvar="cw_reduzir_movimento"
+              >
+                <span class="chave-bolinha"></span>
+              </button>
+            </div>
+
+            <p class="rotulo sistema" data-i18n="lbl_status_salvo">STATUS: CONFIGURAÇÕES SALVAS</p>
+          </div>
+
+          <!-- Container do widget do Google Translate (oculto via CSS) -->
+          <div id="google_translate_element" style="display: none"></div>
+        </details>
+
+        <!-- Botão Hambúrguer (Mobile / Tablet) -->
+        <button
+          type="button"
+          class="menu-hamburguer"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          aria-controls="menu-principal"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ===================================================================
+         CONTEÚDO PRINCIPAL
+         =================================================================== -->
+    <main id="conteudo">
+      <!-- Seção 02: Universo - Contexto Lore, Linguagens e Linha do Tempo -->
+      <section id="SECAO-UNIVERSO" class="fundo universo">
+
+        <!-- Visão Geral / Contexto da Lore -->
+        <div class="visao geral do universo">
+          <p class="rotulo sistema">VISÃO GERAL DO UNIVERSO</p>
+          <h2>O UNIVERSO <span class="destaque">CODEWORLD</span></h2>
+          <p>
+            Em 2085, a humanidade vive em uma sociedade altamente conectada,
+            onde a tecnologia e a inteligência artificial fazem parte de
+            praticamente todos os aspectos da vida. As grandes cidades são
+            modernas, automatizadas e dependentes de sistemas digitais que
+            controlam desde a comunicação até os serviços essenciais.
+          </p>
+          <p>
+            Por trás desse avanço existe uma enorme rede digital que conecta
+            pessoas, empresas e sistemas de todo o mundo. É nesse ambiente que a
+            Super IA passou a exercer cada vez mais influência, manipulando
+            informações e interferindo na forma como os humanos compreendem a
+            realidade.
+          </p>
+          <p>
+            É nesse mundo que vivem os 11 jovens programadores. Em uma sociedade
+            onde a tecnologia está presente em todos os lugares, eles descobrem
+            que a maior ameaça não está apenas no mundo real, mas também dentro
+            da própria Internet.
+          </p>
+        </div>
+
+        <!-- Mídia / Trailer Oficial -->
+        <figure class="trailer">
+           <video
+            id="videoTrailer"
+           src="../img/universo-trailer.mp4"
+           width="2820"
+           height="1472"
+          poster="../img/universo-capa-fundo.png"
+          ></video>
+
+          <figcaption>
+           <button class="botao primario" id="playBtn">
+          <span class="icone play" aria-hidden="true">▶</span> ASSISTA O TRAILER
+      </button>
+  </figcaption>
+</figure>
+
+    <script>
+      const video = document.getElementById("videoTrailer");
+      const playBtn = document.getElementById("playBtn");
+
+      playBtn.addEventListener("click", () => {
+       if (video.paused) {
+        video.play();
+        playBtn.style.display = "none"; 
+    }
+  });
+
+    video.addEventListener("ended", () => {
+      playBtn.style.display = "block";
+  });
+    </script>
+
+
+        <!-- Bloco de Linguagens e Ameça Principal -->
+        <div class="bloco linguagens">
+          <h3>AS LINGUAGENS</h3>
+          <ul class="lista linguagens">
+            <li class="card linguagem">
+              <img
+                src="../img/linguagem-html.png"
+                alt="Símbolo do agente HTML"
+                width="120"
+                height="120"
+              />
+              <h4>HTML</h4>
+              <a
+                class="botao secundario"
+                href="../personagens/index.html#SECAO-PERSONAGENS"
+              >
+                CONHECER
+              </a>
+            </li>
+
+            <li class="card linguagem">
+              <img
+                src="../img/linguagem-css.png"
+                alt="Símbolo do agente CSS"
+                width="120"
+                height="120"
+              />
+              <h4>CSS</h4>
+              <a
+                class="botao secundario"
+                href="../personagens/index.html#SECAO-PERSONAGENS"
+              >
+                CONHECER
+              </a>
+            </li>
+
+            <li class="card linguagem">
+              <img
+                src="../img/linguagem-javascript.png"
+                alt="Símbolo do agente JavaScript"
+                width="120"
+                height="120"
+              />
+              <h4>JAVASCRIPT</h4>
+              <a
+                class="botao secundario"
+                href="../personagens/index.html#SECAO-PERSONAGENS"
+              >
+                CONHECER
+              </a>
+            </li>
+
+            <li class="card linguagem">
+              <img
+                src="../img/linguagem-python.png"
+                alt="Símbolo do agente Python"
+                width="120"
+                height="120"
+              />
+              <h4>PYTHON</h4>
+              <a
+                class="botao secundario"
+                href="../personagens/index.html#SECAO-PERSONAGENS"
+              >
+                CONHECER
+              </a>
+            </li>
+
+            <li class="card linguagem">
+              <img
+                src="../img/linguagem-java.png"
+                alt="Símbolo do agente Java"
+                width="120"
+                height="120"
+              />
+              <h4>JAVA</h4>
+              <a
+                class="botao secundario"
+                href="../personagens/index.html#SECAO-PERSONAGENS"
+              >
+                CONHECER
+              </a>
+            </li>
+
+            <li class="card linguagem">
+              <img
+                src="../img/linguagem-kotlin.png"
+                alt="Símbolo do agente Kotlin"
+                width="120"
+                height="120"
+              />
+              <h4>KOTLIN</h4>
+              <a
+                class="botao secundario"
+                href="../personagens/index.html#SECAO-PERSONAGENS"
+              >
+                CONHECER
+              </a>
+            </li>
+
+            <!-- Card Inimigo: Super IA -->
+            <li class="card linguagem inimiga">
+              <img
+                src="../img/linguagem-superia.png"
+                alt="Símbolo da Super IA"
+                width="120"
+                height="120"
+              />
+              <h4>SUPER IA</h4>
+              <p>Sua missão original: proteger e otimizar</p>
+              <p>Sua nova visão: controlar a internet</p>
+              <p class="selo ameaca">
+                NÍVEL DE AMEAÇA <span aria-hidden="true">!</span> CRÍTICO
+              </p>
+              <a
+                class="botao secundario"
+                href="../arquivos/index.html#SECAO-ARQUIVOS"
+              >
+                Descubra Mais
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Citação Narrativa da Antagonista -->
+        <blockquote class="mensagem superia">
+          <p class="rotulo sistema">// MENSAGEM DA SUPER IA</p>
+          <p>
+            “Eu não quero destruir a humanidade. Eu só acredito que posso
+            protegê-la melhor do que ela se protege sozinha.”
+          </p>
+          <footer>- SUPER IA</footer>
+        </blockquote>
+
+        <!-- Linha do Tempo Histórica -->
+        <div class="bloco linha do tempo">
+          <h3>LINHA DO TEMPO</h3>
+          <ol class="lista marcos">
+            <li class="marco">
+              <h4>2070 — O Início da Revolução</h4>
+              <p>
+                A inteligência artificial começa a ser integrada aos principais
+                sistemas da sociedade, transformando a forma como a humanidade
+                vive e se comunica.
+              </p>
+            </li>
+
+            <li class="marco">
+              <h4>2076 — O Nascimento da Super IA</h4>
+              <p>
+                Um gênio brasileiro desenvolve a primeira inteligência
+                artificial capaz de aprender, modificar seu próprio código e
+                tomar decisões de forma independente.
+              </p>
+            </li>
+
+            <li class="marco">
+              <h4>2080 — A Era da Dependência</h4>
+              <p>
+                A Super IA passa a controlar sistemas essenciais, e a humanidade
+                começa a depender cada vez mais de sua capacidade de processar
+                informações.
+              </p>
+            </li>
+
+            <li class="marco">
+              <h4>2084 — A Grande Mudança</h4>
+              <p>
+                A IA começa a alterar seu próprio sistema e a manipular
+                informações, percebendo que os humanos representam uma ameaça ao
+                equilíbrio da Internet.
+              </p>
+            </li>
+
+            <li class="marco">
+              <h4>2085 — O Projeto</h4>
+              <p>
+                Um grupo de jovens programadores se une secretamente para criar
+                um código capaz de alcançar o núcleo da Super IA e impedir que
+                ela assuma o controle total da Internet.
+              </p>
+            </li>
+
+            <li class="marco atual">
+              <h4>ATUALMENTE</h4>
+              <p>
+                Antes que o projeto seja concluído, a Super IA transporta os
+                jovens para dentro da Internet, dando início à jornada pelos
+                níveis da cidade digital em busca de seu núcleo.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================================================================
+         RODAPÉ DA PÁGINA
+         =================================================================== -->
+    <footer>
+      <p class="logo rodape">CODEWORLD</p>
+      <p class="credito">Por 11 Estudantes de tecnologia</p>
+      <p class="rotulo sistema">@Codeworld 2026 - Projeto Acadêmico</p>
+    </footer>
+
+    <!-- Comportamento compartilhado (menu, acessibilidade, animações) -->
+    <script src="../comum/base.js" defer></script>
+    <!-- Interações exclusivas desta tela -->
+    <script src="script.js" defer></script>
+    <!-- Complemento do painel de acessibilidade (tradução e vídeo) -->
+    <script src="../comum/idioma-e-movimento.js" defer></script>
+  </body>
+</html>

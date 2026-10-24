@@ -1,0 +1,1683 @@
+/* ==========================================================================
+   CODEWORLD // personagens/style.css
+   Estilo exclusivo da Seção 03: PERSONAGENS e do Modo Agente.
+   O que é comum a todas as telas fica em ../comum/base.css.
+
+   Índice:
+   01. Layout (coluna lateral + grade)
+   02. Painel de progresso
+   03. Painel de filtros
+   04. Cartões dos agentes
+   05. Modo Agente: janela e cabeçalho
+   06. Modo Agente: ficha do agente
+   07. Modo Agente: seletor de níveis
+   08. Modo Agente: seções, terminal e conceitos
+   09. Modo Agente: mini desafio
+   10. Modo Agente: rodapé e aviso de conquista
+   11. Responsividade
+   ========================================================================== */
+
+/* Ícone de cadeado desenhado só com CSS (usado nos cartões e na janela) */
+.icone-cadeado {
+  position: relative;
+  display: inline-block;
+  width: 10px;
+  height: 8px;
+  margin-top: 5px;
+  border-radius: 2px;
+  background-color: currentColor;
+  vertical-align: middle;
+}
+
+.icone-cadeado::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: -5px;
+  width: 6px;
+  height: 6px;
+  border: 2px solid currentColor;
+  border-bottom: 0;
+  border-radius: 4px 4px 0 0;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   01. LAYOUT
+   ========================================================================== */
+
+/* "clip" em vez de "hidden": assim a coluna lateral consegue ficar fixa */
+#SECAO-PERSONAGENS {
+  overflow: clip;
+}
+
+.layout.personagens {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.lateral.personagens {
+  position: sticky;
+  top: calc(var(--altura-cabecalho) + 1.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco);
+}
+
+/* ==========================================================================
+   02. PAINEL DE PROGRESSO
+   ========================================================================== */
+
+.lateral .painel.progresso {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: clamp(1.1rem, 2vw, 1.5rem);
+  border-radius: 12px;
+}
+
+.lateral .visao.geral h2 {
+  font-size: clamp(1.5rem, 2.3vw, 1.65rem);
+  overflow-wrap: normal;
+}
+
+.lateral .visao.geral p:not(.rotulo) {
+  font-size: 0.92rem;
+}
+
+.status.agentes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1.1rem;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+html[data-tema="claro"] .status.agentes {
+  background-color: var(--superficie-alt);
+}
+
+.status.agentes .rotulo.sistema:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--texto);
+}
+
+/* Bolinha verde "online" */
+.luz.online {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--verde);
+  box-shadow: 0 0 8px var(--verde);
+  animation: pulso 1.6s ease-in-out infinite;
+}
+
+.status.agentes .barra.progresso {
+  height: 7px;
+}
+
+.dica.modo {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--texto-suave);
+}
+
+.dica.modo strong {
+  color: var(--ciano);
+}
+
+/* ==========================================================================
+   03. PAINEL DE FILTROS
+   ========================================================================== */
+
+.painel.filtros {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1.1rem, 2vw, 1.5rem);
+  border-radius: 12px;
+}
+
+.painel.filtros h3 {
+  margin-bottom: 0;
+  color: var(--texto);
+}
+
+.grupo.filtro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+/* Select personalizado com setinha desenhada em SVG */
+.grupo.filtro select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.6rem 2.5rem 0.6rem 0.9rem;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background-color: var(--superficie-alt);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2300f2fe' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  color: var(--texto);
+  font-family: var(--fonte-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition:
+    border-color var(--rapido) ease,
+    box-shadow var(--rapido) ease;
+}
+
+.grupo.filtro select:hover {
+  border-color: var(--borda-forte);
+}
+
+.grupo.filtro select:focus-visible {
+  outline: none;
+  border-color: var(--ciano);
+  box-shadow: var(--brilho-ciano);
+}
+
+.grupo.filtro option {
+  background-color: var(--superficie-solida);
+  color: var(--texto);
+}
+
+.botao.limpar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  margin-top: 0.4rem;
+  border: 1px solid var(--magenta);
+  border-radius: 8px;
+  color: var(--magenta);
+  font-family: var(--fonte-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition:
+    background-color var(--rapido) ease,
+    box-shadow var(--rapido) ease;
+}
+
+.botao.limpar:hover {
+  background-color: rgba(227, 0, 113, 0.12);
+  box-shadow: var(--brilho-magenta);
+}
+
+.botao.limpar:hover span {
+  display: inline-block;
+  animation: girar 600ms var(--suave);
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.reiniciar.progresso {
+  align-self: center;
+  padding: 0.3rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  color: var(--texto-fraco);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.reiniciar.progresso:hover {
+  color: var(--vermelho);
+}
+
+/* ==========================================================================
+   04. CARTÕES DOS AGENTES
+   ========================================================================== */
+
+.lista.agentes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: var(--espaco);
+}
+
+.card.agente {
+  --cor: var(--magenta);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.card.agente.bloqueado {
+  cursor: not-allowed;
+}
+
+.topo.agente {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.selo.funcao {
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--magenta);
+  border-radius: 4px;
+  background-color: rgba(227, 0, 113, 0.12);
+  font-family: var(--fonte-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--magenta);
+}
+
+.card.agente .selo.bloqueado {
+  gap: 0.4rem;
+  border-radius: 4px;
+  border-color: var(--borda);
+  background-color: var(--superficie-alt);
+  font-size: 0.62rem;
+}
+
+.card.agente .selo.bloqueado .icone-cadeado {
+  transform: scale(0.75);
+  margin-top: 3px;
+}
+
+/* Tela onde a imagem do agente aparece */
+.tela.sprite {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--cor) 22%, transparent), transparent 65%),
+    #07050d;
+  overflow: hidden;
+}
+
+/* Imagem do agente (quando o campo "imagem" do dados.js for preenchido) */
+.imagem-agente {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8%;
+  filter: drop-shadow(0 0 12px color-mix(in srgb, var(--cor) 50%, transparent));
+  transition: transform 400ms var(--suave);
+}
+
+.card.agente:not(.bloqueado):hover .imagem-agente {
+  transform: scale(1.05);
+}
+
+/* Espaço reservado enquanto a imagem não é escolhida */
+.sem-imagem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 62%;
+  height: 72%;
+  border: 1px dashed color-mix(in srgb, var(--cor) 55%, var(--borda));
+  border-radius: 8px;
+  color: color-mix(in srgb, var(--cor) 70%, var(--texto-suave));
+  text-align: center;
+}
+
+.sem-imagem .texto {
+  font-family: var(--fonte-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+}
+
+/* Ícone de "imagem" (moldura com montanha e sol) feito só com CSS */
+.icone-imagem {
+  position: relative;
+  width: 34px;
+  height: 26px;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: 0.85;
+}
+
+.icone-imagem::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  bottom: -6px;
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+  transform: rotate(45deg);
+}
+
+.icone-imagem::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.card.agente:not(.bloqueado):hover .sem-imagem {
+  border-style: solid;
+}
+
+/* Cadeado sobre a imagem dos agentes bloqueados */
+.trava {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--borda-forte);
+  border-radius: 50%;
+  background-color: rgba(20, 17, 31, 0.85);
+  color: var(--texto-suave);
+}
+
+.card.agente h3 {
+  margin-top: 0.4rem;
+  font-family: var(--fonte-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.funcao.agente {
+  margin-top: -0.4rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--texto-suave);
+}
+
+.nivel.agente {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--borda);
+  font-family: var(--fonte-mono);
+  font-size: 0.78rem;
+  color: var(--texto-suave);
+}
+
+.nivel.agente .lv {
+  font-weight: 700;
+  color: var(--magenta);
+}
+
+.card.agente .barra.progresso {
+  height: 5px;
+}
+
+.abrir.agente {
+  display: grid;
+  place-items: center;
+  min-height: 40px;
+  margin-top: 0.4rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: var(--superficie-alt);
+  color: var(--magenta);
+  font-size: 1.1rem;
+  transition:
+    background-color var(--rapido) ease,
+    color var(--rapido) ease,
+    border-color var(--rapido) ease;
+}
+
+.card.agente:not(.bloqueado):hover .abrir.agente,
+.abrir.agente:focus-visible {
+  border-color: var(--magenta);
+  background-color: var(--magenta);
+  color: #fff;
+}
+
+.card.agente:not(.bloqueado):hover .abrir.agente span {
+  animation: seta 700ms ease-in-out infinite alternate;
+}
+
+@keyframes seta {
+  to {
+    transform: translateX(6px);
+  }
+}
+
+.abrir.agente:disabled {
+  color: var(--texto-fraco);
+  cursor: not-allowed;
+}
+
+/* Estados dos cartões */
+.card.agente.ativo {
+  border-color: var(--borda-magenta);
+  box-shadow: var(--brilho-magenta);
+}
+
+.card.agente.ativo::after {
+  background: linear-gradient(90deg, transparent, var(--magenta), transparent);
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.card.agente.concluido {
+  border-color: color-mix(in srgb, var(--verde) 45%, transparent);
+}
+
+.card.agente.concluido .nivel.agente .lv {
+  color: var(--verde);
+}
+
+.card.agente.bloqueado > :not(.topo):not(.tela) {
+  opacity: 0.45;
+}
+
+.card.agente.bloqueado .topo .rotulo,
+.card.agente.bloqueado h3 {
+  color: var(--texto-fraco);
+}
+
+.card.agente.bloqueado .imagem-agente,
+.card.agente.bloqueado .sem-imagem {
+  filter: brightness(0.4) saturate(0.4);
+}
+
+.card.agente.bloqueado .sem-imagem .texto {
+  visibility: hidden;
+}
+
+.sem.resultados {
+  padding: 2rem;
+  border: 1px dashed var(--borda);
+  border-radius: 12px;
+  font-family: var(--fonte-mono);
+  color: var(--texto-suave);
+  text-align: center;
+}
+
+/* ==========================================================================
+   05. MODO AGENTE: JANELA E CABEÇALHO
+   ========================================================================== */
+
+html.modal-aberto {
+  overflow: hidden;
+}
+
+.modal.agente {
+  width: min(1100px, 100% - 2rem);
+  max-width: none;
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  background-color: var(--fundo-alt);
+  color: var(--texto);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(227, 0, 113, 0.15);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--magenta) transparent;
+}
+
+.modal.agente[open] {
+  animation: modal-entra 450ms var(--suave);
+}
+
+.modal.agente::backdrop {
+  background-color: rgba(4, 3, 10, 0.78);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+@keyframes modal-entra {
+  from {
+    opacity: 0;
+    translate: 0 30px;
+    scale: 0.97;
+  }
+}
+
+.modal-moldura {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 clamp(0.75rem, 2vw, 1.25rem) 1rem;
+}
+
+.modal-moldura.trocando {
+  animation: troca-conteudo 500ms var(--suave);
+}
+
+.modal-topo {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 0 calc(clamp(0.75rem, 2vw, 1.25rem) * -1);
+  padding: 0.9rem clamp(0.75rem, 2vw, 1.25rem);
+  border-bottom: 1px solid var(--borda);
+  background-color: color-mix(in srgb, var(--fundo-alt) 92%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.modal-topo > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.icone.terminal {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--ciano);
+  border-radius: 6px;
+  font-family: var(--fonte-mono);
+  font-size: 0.8rem;
+  color: var(--ciano);
+}
+
+.modal-topo .rotulo.sistema {
+  font-size: 0.65rem;
+}
+
+.ciano {
+  color: var(--ciano);
+}
+
+#MODAL-TITULO {
+  font-family: var(--fonte-display);
+  font-size: clamp(0.9rem, 2vw, 1.15rem);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fechar.modal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 38px;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  background-color: var(--superficie-alt);
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  transition:
+    border-color var(--rapido) ease,
+    color var(--rapido) ease;
+}
+
+.fechar.modal:hover {
+  border-color: var(--vermelho);
+  color: var(--vermelho);
+}
+
+/* Janela estilo "programa" */
+.janela {
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background-color: var(--superficie-solida);
+  overflow: hidden;
+}
+
+.janela-barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--borda);
+  background-color: rgba(0, 0, 0, 0.25);
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--texto-suave);
+}
+
+.luzes {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.luzes i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--texto-fraco);
+}
+
+.luzes i:first-child {
+  background-color: var(--magenta);
+  box-shadow: 0 0 6px var(--magenta);
+}
+
+.nome-arquivo {
+  color: var(--texto);
+}
+
+.memoria {
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  background-color: rgba(227, 0, 113, 0.15);
+  color: var(--magenta);
+}
+
+.arquivo-fonte {
+  margin-left: auto;
+}
+
+.arquivo-fonte code {
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--borda);
+  border-radius: 4px;
+  color: var(--ciano);
+}
+
+/* ==========================================================================
+   06. MODO AGENTE: FICHA DO AGENTE
+   ========================================================================== */
+
+.ficha {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  background:
+    radial-gradient(ellipse 40% 60% at 90% 20%, rgba(227, 0, 113, 0.14), transparent 70%),
+    radial-gradient(ellipse 35% 55% at 45% 100%, rgba(0, 242, 254, 0.1), transparent 70%);
+}
+
+.canvas.sprite {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.palco.sprite {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 50% 55%, color-mix(in srgb, var(--cor) 25%, transparent), transparent 60%),
+    linear-gradient(rgba(0, 242, 254, 0.06) 1px, transparent 1px) 0 0 / 16px 16px,
+    linear-gradient(90deg, rgba(0, 242, 254, 0.06) 1px, transparent 1px) 0 0 / 16px 16px,
+    #07050d;
+  overflow: hidden;
+}
+
+/* Linha de "scanner" passando pela imagem */
+.palco.sprite::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--cor) 25%, transparent),
+    transparent
+  );
+  animation: scanner-ficha 3.2s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scanner-ficha {
+  from {
+    top: -30%;
+  }
+  to {
+    top: 100%;
+  }
+}
+
+.palco.sprite .sem-imagem {
+  width: 70%;
+  height: 70%;
+}
+
+.palco.sprite .sem-imagem .texto {
+  font-size: 0.7rem;
+}
+
+.canvas.sprite .fps {
+  align-self: flex-end;
+  margin-top: -2.2rem;
+  margin-right: 0.6rem;
+  position: relative;
+  color: var(--verde);
+  font-size: 0.62rem;
+}
+
+.canvas.sprite figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.7rem;
+  color: var(--texto-suave);
+}
+
+.sintonia {
+  color: var(--verde);
+}
+
+.dados.ficha {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.etiqueta {
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--borda);
+  border-radius: 4px;
+  font-family: var(--fonte-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--texto-suave);
+}
+
+.etiqueta.funcao {
+  border-color: var(--magenta);
+  background-color: var(--magenta);
+  color: #fff;
+}
+
+.etiqueta.estado {
+  border-color: color-mix(in srgb, var(--verde) 40%, transparent);
+  color: var(--verde);
+}
+
+.etiqueta.estado::before {
+  content: "● ";
+}
+
+.etiqueta.afinidade {
+  border-color: transparent;
+}
+
+.nome.agente {
+  font-family: var(--fonte-display);
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.descricao.agente {
+  max-width: 60ch;
+  font-size: 1.02rem;
+  color: var(--texto-suave);
+}
+
+.progresso.agente {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 420px;
+  margin-top: auto;
+}
+
+.progresso.agente strong {
+  color: var(--ciano);
+}
+
+.progresso.agente .barra.progresso {
+  height: 7px;
+}
+
+/* ==========================================================================
+   07. MODO AGENTE: SELETOR DE NÍVEIS
+   ========================================================================== */
+
+.niveis {
+  scroll-margin-top: 80px;
+  padding: 0 clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.niveis ol {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.botao-nivel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  width: 100%;
+  height: 100%;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background-color: var(--superficie-alt);
+  text-align: left;
+  transition:
+    border-color var(--rapido) ease,
+    background-color var(--rapido) ease,
+    transform var(--rapido) ease;
+}
+
+.botao-nivel:not(:disabled):hover {
+  border-color: var(--borda-forte);
+  transform: translateY(-2px);
+}
+
+.botao-nivel .numero {
+  font-family: var(--fonte-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--ciano);
+}
+
+.botao-nivel .titulo {
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.botao-nivel .estado {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--ciano);
+}
+
+.botao-nivel.feito {
+  border-color: color-mix(in srgb, var(--verde) 40%, transparent);
+}
+
+.botao-nivel.feito .estado,
+.botao-nivel.feito .numero {
+  color: var(--verde);
+}
+
+.botao-nivel.atual {
+  border-color: var(--magenta);
+  background-color: rgba(227, 0, 113, 0.12);
+  box-shadow: var(--brilho-magenta);
+}
+
+.botao-nivel.atual .numero {
+  color: var(--magenta);
+}
+
+.botao-nivel.travado {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.botao-nivel.travado .estado {
+  color: var(--texto-fraco);
+}
+
+/* ==========================================================================
+   08. MODO AGENTE: SEÇÕES, TERMINAL E CONCEITOS
+   ========================================================================== */
+
+.conteudo.nivel {
+  display: flex;
+  flex-direction: column;
+}
+
+.conteudo.nivel.trocando {
+  animation: troca-conteudo 500ms var(--suave);
+}
+
+@keyframes troca-conteudo {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+}
+
+.secao.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1.1rem, 2.5vw, 1.6rem) clamp(1rem, 2.5vw, 1.5rem);
+  border-top: 1px solid var(--borda);
+}
+
+.conteudo.nivel .secao.modal:first-child {
+  border-top: 0;
+}
+
+.titulo.secao {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+}
+
+.titulo.secao h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.75rem;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  font-weight: 700;
+}
+
+.titulo.secao .marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--magenta);
+}
+
+.titulo.secao .marca::before {
+  content: "";
+  width: 4px;
+  height: 1.1rem;
+  border-radius: 2px;
+  background-color: var(--magenta);
+  box-shadow: var(--brilho-magenta);
+}
+
+.desafio .titulo.secao .marca,
+.desafio .titulo.secao .marca::before {
+  color: var(--ciano);
+}
+
+.desafio .titulo.secao .marca::before {
+  background-color: var(--ciano);
+  box-shadow: var(--brilho-ciano);
+}
+
+.titulo.secao .info {
+  font-size: 0.66rem;
+  color: var(--ciano);
+}
+
+.resumo.nivel {
+  max-width: 75ch;
+  color: var(--texto-suave);
+}
+
+/* Código dentro de textos: <main>, <head>... */
+.modal.agente p code,
+.modal.agente h5 code {
+  padding: 0.05rem 0.3rem;
+  border-radius: 3px;
+  background-color: rgba(0, 242, 254, 0.08);
+  font-family: var(--fonte-mono);
+  font-size: 0.9em;
+  color: var(--ciano);
+}
+
+/* --- Terminal com o código do nível (sempre escuro) --- */
+.terminal.codigo {
+  border: 1px solid rgba(0, 242, 254, 0.18);
+  border-radius: 10px;
+  background-color: #07050d;
+  overflow: hidden;
+}
+
+.terminal-barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.9rem;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid rgba(0, 242, 254, 0.12);
+  background-color: #0c0a16;
+}
+
+.terminal-barra .comando {
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  background-color: rgba(0, 242, 254, 0.08);
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  color: #00f2fe;
+}
+
+.terminal-barra .rotulo.sistema {
+  margin-left: auto;
+  font-size: 0.66rem;
+  color: #9a94ad;
+}
+
+.terminal.codigo pre {
+  margin: 0;
+  padding: 1rem 0;
+  overflow-x: auto;
+  font-family: var(--fonte-mono);
+  font-size: 0.86rem;
+  line-height: 1.75;
+  color: #e8e6f0;
+  counter-reset: linha;
+  tab-size: 2;
+}
+
+.terminal.codigo pre:focus-visible {
+  outline: 2px solid var(--ciano);
+  outline-offset: -2px;
+}
+
+.linha-codigo {
+  display: block;
+  padding-right: 1.25rem;
+  white-space: pre;
+}
+
+/* Número da linha à esquerda */
+.linha-codigo::before {
+  counter-increment: linha;
+  content: counter(linha, decimal-leading-zero);
+  display: inline-block;
+  width: 3.2rem;
+  padding-right: 1rem;
+  text-align: right;
+  color: #4b4563;
+  user-select: none;
+}
+
+.linha-codigo:hover {
+  background-color: rgba(0, 242, 254, 0.05);
+}
+
+/* Cores do realce de sintaxe */
+.tk-comentario { color: #6b6585; font-style: italic; }
+.tk-texto { color: #29f58a; }
+.tk-tag { color: #ff5fa2; }
+.tk-atributo { color: #ffb020; }
+.tk-palavra { color: #c792ea; }
+.tk-numero { color: #ffb020; }
+.tk-funcao { color: #00f2fe; }
+.tk-propriedade { color: #00f2fe; }
+.tk-seletor { color: #ff5fa2; }
+.tk-tipo { color: #7dd3fc; }
+
+/* --- Cartões de conceitos --- */
+.grade.conceitos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--espaco);
+}
+
+.conceito {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.1rem;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background-color: var(--superficie-alt);
+  transition:
+    border-color 250ms ease,
+    transform 300ms var(--suave);
+}
+
+.conceito:hover {
+  border-color: var(--borda-forte);
+  transform: translateY(-3px);
+}
+
+.conceito-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.conceito .icone {
+  color: var(--magenta);
+}
+
+.conceito .tag {
+  padding: 0.1rem 0.45rem;
+  border: 1px solid var(--borda);
+  border-radius: 3px;
+  font-family: var(--fonte-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--ciano);
+}
+
+.conceito h5 {
+  font-size: 1.02rem;
+}
+
+.conceito p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--texto-suave);
+}
+
+/* ==========================================================================
+   09. MODO AGENTE: MINI DESAFIO
+   ========================================================================== */
+
+.recompensa {
+  padding: 0.3rem 0.8rem;
+  border-radius: 99px;
+  background-color: var(--magenta);
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: #fff;
+  box-shadow: var(--brilho-magenta);
+}
+
+.recompensa.obtida {
+  background-color: transparent;
+  border: 1px solid var(--verde);
+  color: var(--verde);
+  box-shadow: none;
+  animation: conquista 600ms var(--suave);
+}
+
+@keyframes conquista {
+  40% {
+    transform: scale(1.12);
+  }
+}
+
+.instrucao {
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+.instrucao strong {
+  color: var(--texto);
+}
+
+.questoes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco);
+}
+
+.questao {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: clamp(1rem, 2.5vw, 1.4rem);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background-color: var(--superficie-alt);
+  transition: border-color 300ms ease;
+}
+
+.questao.resolvida {
+  border-color: color-mix(in srgb, var(--verde) 45%, transparent);
+}
+
+.questao.tremendo {
+  animation: tremer 400ms ease;
+}
+
+@keyframes tremer {
+  20%,
+  60% {
+    translate: -6px 0;
+  }
+  40%,
+  80% {
+    translate: 6px 0;
+  }
+}
+
+.questao > .rotulo.sistema {
+  color: var(--magenta);
+}
+
+.pergunta {
+  font-size: clamp(1.02rem, 2.2vw, 1.25rem);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.opcoes-questao {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.opcao-questao {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 52px;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background-color: var(--superficie-solida);
+  text-align: left;
+  transition:
+    border-color var(--rapido) ease,
+    background-color var(--rapido) ease,
+    transform var(--rapido) ease;
+}
+
+.opcao-questao:not(:disabled):hover {
+  border-color: var(--ciano);
+  background-color: rgba(0, 242, 254, 0.06);
+  transform: translateX(3px);
+}
+
+.opcao-questao .letra {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  background-color: var(--superficie-alt);
+  font-family: var(--fonte-mono);
+  font-size: 0.78rem;
+}
+
+.opcao-questao .texto-opcao {
+  flex: 1;
+  font-family: var(--fonte-mono);
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+
+.opcao-questao .marcador {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--texto-fraco);
+  border-radius: 50%;
+  transition:
+    background-color var(--rapido) ease,
+    border-color var(--rapido) ease;
+}
+
+.opcao-questao:disabled {
+  cursor: default;
+}
+
+.opcao-questao.certa {
+  border-color: var(--verde);
+  background-color: color-mix(in srgb, var(--verde) 12%, transparent);
+  animation: conquista 500ms var(--suave);
+}
+
+.opcao-questao.certa .letra {
+  background-color: var(--verde);
+  color: #04110a;
+}
+
+.opcao-questao.certa .marcador {
+  border-color: var(--verde);
+  background:
+    radial-gradient(circle, var(--verde) 45%, transparent 50%);
+}
+
+.opcao-questao.errada {
+  border-color: color-mix(in srgb, var(--vermelho) 60%, transparent);
+  background-color: color-mix(in srgb, var(--vermelho) 8%, transparent);
+  opacity: 0.7;
+}
+
+.opcao-questao.errada .texto-opcao {
+  text-decoration: line-through;
+}
+
+.opcao-questao.errada .marcador {
+  border-color: var(--vermelho);
+}
+
+/* Outras opções ficam apagadas depois que a certa é encontrada */
+.questao.resolvida .opcao-questao:not(.certa):not(.errada) {
+  opacity: 0.45;
+}
+
+.retorno {
+  min-height: 1.4em;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+.retorno .ok {
+  font-weight: 700;
+  color: var(--verde);
+}
+
+.retorno .erro {
+  font-weight: 700;
+  color: var(--vermelho);
+}
+
+/* ==========================================================================
+   10. MODO AGENTE: RODAPÉ E AVISO DE CONQUISTA
+   ========================================================================== */
+
+.modal-rodape {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background-color: var(--superficie-solida);
+}
+
+.acoes.modal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.botao-modal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 42px;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  background-color: var(--superficie-alt);
+  font-family: var(--fonte-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  transition:
+    background-color var(--rapido) ease,
+    border-color var(--rapido) ease,
+    box-shadow var(--rapido) ease,
+    transform var(--rapido) ease;
+}
+
+.botao-modal:not(:disabled):hover {
+  transform: translateY(-2px);
+}
+
+.botao-modal.voltar:hover {
+  border-color: var(--borda-forte);
+}
+
+.botao-modal.proximo-nivel {
+  border-color: color-mix(in srgb, var(--verde) 60%, transparent);
+  color: var(--verde);
+}
+
+.botao-modal.proximo-nivel:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--verde) 12%, transparent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--verde) 35%, transparent);
+}
+
+.botao-modal.proximo-agente {
+  border-color: var(--ciano);
+  background-color: var(--ciano);
+  color: #04121a;
+  font-weight: 700;
+}
+
+.botao-modal.proximo-agente:not(:disabled):hover {
+  box-shadow: var(--brilho-ciano);
+}
+
+.botao-modal:disabled {
+  border-color: var(--borda);
+  background-color: transparent;
+  color: var(--texto-fraco);
+  cursor: not-allowed;
+}
+
+.salvo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  font-size: 0.66rem;
+  color: var(--verde);
+}
+
+/* Aviso de conquista (nível concluído / agente desbloqueado) */
+.aviso.conquista {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  padding: 0.9rem 1.4rem;
+  border: 1px solid var(--verde);
+  border-radius: 10px;
+  background-color: #06140d;
+  box-shadow:
+    0 0 30px rgba(41, 245, 138, 0.35),
+    0 20px 40px rgba(0, 0, 0, 0.5);
+  color: #e8e6f0;
+  text-align: center;
+  opacity: 0;
+  translate: -50% -20px;
+  pointer-events: none;
+  transition:
+    opacity 300ms ease,
+    translate 400ms var(--suave);
+}
+
+.aviso.conquista.visivel {
+  opacity: 1;
+  translate: -50% 0;
+}
+
+.aviso.conquista strong {
+  font-family: var(--fonte-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: #29f58a;
+}
+
+.aviso.conquista span {
+  font-size: 0.88rem;
+}
+
+/* ==========================================================================
+   11. RESPONSIVIDADE
+   ========================================================================== */
+
+/* Tablet: a coluna lateral vai para cima, com os painéis lado a lado */
+@media (max-width: 1023px) {
+  .layout.personagens {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lateral.personagens {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .grade.conceitos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .niveis ol {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 0.4rem;
+    scroll-snap-type: x mandatory;
+  }
+
+  .niveis li {
+    flex: 0 0 170px;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 767px) {
+  .lateral.personagens {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Filtros compactos em duas colunas, para os cartões aparecerem antes */
+  .painel.filtros {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .painel.filtros h3,
+  .painel.filtros .grupo.filtro:nth-of-type(3),
+  .botao.limpar,
+  .reiniciar.progresso {
+    grid-column: 1 / -1;
+  }
+
+  .botao.limpar {
+    margin-top: 0;
+  }
+
+  .modal.agente {
+    width: 100%;
+    max-height: 100dvh;
+    height: 100dvh;
+    border-radius: 0;
+    border: 0;
+  }
+
+  .ficha {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .canvas.sprite {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .canvas.sprite > .rotulo.sistema:first-child,
+  .canvas.sprite .fps {
+    display: none;
+  }
+
+  .palco.sprite {
+    width: 110px;
+  }
+
+  .canvas.sprite figcaption {
+    flex: 1;
+    flex-direction: column;
+    margin-top: 0;
+  }
+
+  .opcoes-questao {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .arquivo-fonte {
+    margin-left: 0;
+  }
+
+  .memoria {
+    display: none;
+  }
+
+  .modal-rodape,
+  .acoes.modal {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .salvo {
+    justify-content: center;
+  }
+
+  .fechar.modal .texto {
+    display: none;
+  }
+}
+
+@media (max-width: 559px) {
+  .lista.agentes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .card.agente {
+    padding: 0.75rem;
+  }
+
+  .card.agente h3 {
+    font-size: 0.9rem;
+  }
+
+  .topo.agente {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nivel.agente {
+    flex-direction: column;
+    gap: 0.1rem;
+    font-size: 0.7rem;
+  }
+
+  .linha-codigo::before {
+    width: 2.4rem;
+    padding-right: 0.7rem;
+  }
+
+  .terminal.codigo pre {
+    font-size: 0.78rem;
+  }
+}

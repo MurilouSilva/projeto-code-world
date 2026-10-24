@@ -1,0 +1,704 @@
+/* ==========================================================================
+   CODEWORLD // mapa/style.css
+   Estilo exclusivo da Seção 04: MAPA.
+   O que é comum a todas as telas fica em ../comum/base.css.
+
+   Índice:
+   01. Explorador (mapa + detalhes)
+   02. Mapa interativo e andares clicáveis
+   03. Moldura de radar (HUD)
+   04. Barra de ferramentas
+   05. Painel de detalhes do andar
+   06. Eventos globais
+   07. Responsividade
+   ========================================================================== */
+
+#SECAO-MAPA {
+  /* "clip" em vez de "hidden": assim o painel de detalhes consegue ficar fixo */
+  overflow: clip;
+  background-color: var(--fundo-alt);
+}
+
+/* ==========================================================================
+   01. EXPLORADOR (MAPA + DETALHES)
+   ========================================================================== */
+
+.explorador.mapa {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 1fr);
+  align-items: start;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+/* ==========================================================================
+   02. MAPA INTERATIVO E ANDARES CLICÁVEIS
+   ========================================================================== */
+
+.mapa.codeworld {
+  --cor-andar: var(--ciano);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.viewport.mapa {
+  --cor-andar: var(--ciano);
+  position: relative;
+  aspect-ratio: 1312 / 1199;
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(0, 242, 254, 0.07), transparent 65%),
+    linear-gradient(rgba(0, 242, 254, 0.05) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(90deg, rgba(0, 242, 254, 0.05) 1px, transparent 1px) 0 0 / 32px 32px,
+    #06040c;
+  overflow: hidden;
+  touch-action: pan-y;
+  transition: border-color 300ms ease;
+}
+
+.viewport.mapa:focus-visible {
+  outline: 2px solid var(--ciano);
+  outline-offset: 3px;
+}
+
+/* Com zoom o mapa pode ser arrastado */
+.viewport.mapa.com-zoom {
+  cursor: grab;
+  touch-action: none;
+}
+
+.viewport.mapa.arrastando {
+  cursor: grabbing;
+}
+
+.palco.mapa {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+  transition: transform 600ms var(--suave);
+}
+
+.arrastando .palco.mapa {
+  transition: none;
+}
+
+.palco.mapa img {
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 0 30px rgba(0, 242, 254, 0.15));
+}
+
+/* Área clicável de cada andar (posição e tamanho vêm do style no HTML) */
+.andar-mapa {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--l);
+  height: var(--a);
+  border: 2px solid transparent;
+  border-radius: 18px;
+  background: transparent;
+  transition:
+    border-color 250ms ease,
+    background-color 250ms ease,
+    box-shadow 250ms ease;
+}
+
+.andar-mapa:hover,
+.andar-mapa:focus-visible {
+  border-color: color-mix(in srgb, var(--ciano) 60%, transparent);
+  background-color: rgba(0, 242, 254, 0.06);
+  outline: none;
+}
+
+.andar-mapa.selecionado {
+  border-color: var(--cor-andar);
+  background-color: color-mix(in srgb, var(--cor-andar) 10%, transparent);
+  box-shadow:
+    0 0 24px color-mix(in srgb, var(--cor-andar) 45%, transparent),
+    inset 0 0 24px color-mix(in srgb, var(--cor-andar) 25%, transparent);
+  animation: andar-pulsa 2.4s ease-in-out infinite;
+}
+
+@keyframes andar-pulsa {
+  50% {
+    box-shadow:
+      0 0 36px color-mix(in srgb, var(--cor-andar) 60%, transparent),
+      inset 0 0 32px color-mix(in srgb, var(--cor-andar) 35%, transparent);
+  }
+}
+
+/* Marcador "você está aqui" no centro do andar selecionado */
+.marcador {
+  position: absolute;
+  left: var(--px);
+  top: var(--py);
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background-color: var(--cor-andar);
+  box-shadow: 0 0 12px var(--cor-andar);
+  opacity: 0;
+  transform: scale(0.4);
+  transition:
+    opacity 300ms ease,
+    transform 400ms var(--suave);
+}
+
+.marcador::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border: 2px solid var(--cor-andar);
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.andar-mapa.selecionado .marcador {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.andar-mapa.selecionado .marcador::after {
+  animation: onda 1.8s ease-out infinite;
+}
+
+@keyframes onda {
+  from {
+    opacity: 0.9;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.2);
+  }
+}
+
+/* Nome do andar que aparece no hover / seleção */
+.etiqueta-andar {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--cor-andar);
+  border-radius: 4px;
+  background-color: rgba(6, 4, 12, 0.85);
+  font-family: var(--fonte-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  color: #e8e6f0;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity 200ms ease,
+    transform 250ms var(--suave);
+  pointer-events: none;
+}
+
+.andar-mapa:not(.selecionado) .etiqueta-andar {
+  border-color: var(--ciano);
+}
+
+/* Andar ainda bloqueado no RPG: fica escurecido e com listras de "acesso
+   negado" (continua clicável para ver o que falta para liberar) */
+.andar-mapa.bloqueado {
+  background-color: rgba(4, 3, 10, 0.55);
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0 14px,
+    rgba(255, 59, 78, 0.08) 14px 16px
+  );
+}
+
+.andar-mapa.bloqueado:hover,
+.andar-mapa.bloqueado:focus-visible {
+  background-color: rgba(4, 3, 10, 0.45);
+}
+
+.andar-mapa.bloqueado:not(.selecionado) .etiqueta-andar {
+  border-color: var(--vermelho);
+}
+
+/* Andar com todas as operações vencidas no RPG */
+.andar-mapa.recuperado:not(.selecionado) {
+  border-color: color-mix(in srgb, var(--verde) 35%, transparent);
+}
+
+.andar-mapa:hover .etiqueta-andar,
+.andar-mapa:focus-visible .etiqueta-andar,
+.andar-mapa.selecionado .etiqueta-andar {
+  opacity: 1;
+  transform: none;
+}
+
+/* ==========================================================================
+   03. MOLDURA DE RADAR (HUD)
+   ========================================================================== */
+
+.hud.mapa {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.canto {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--cor-andar);
+  opacity: 0.8;
+  transition: border-color 400ms ease;
+}
+
+.canto.sup-esq {
+  top: 10px;
+  left: 10px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.canto.sup-dir {
+  top: 10px;
+  right: 10px;
+  border-left: 0;
+  border-bottom: 0;
+}
+
+.canto.inf-esq {
+  bottom: 10px;
+  left: 10px;
+  border-right: 0;
+  border-top: 0;
+}
+
+.canto.inf-dir {
+  bottom: 10px;
+  right: 10px;
+  border-left: 0;
+  border-top: 0;
+}
+
+/* Linha de varredura descendo pelo mapa */
+.varredura {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 18%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--cor-andar) 14%, transparent),
+    transparent
+  );
+  animation: varrer-mapa 5s linear infinite;
+}
+
+@keyframes varrer-mapa {
+  from {
+    top: -18%;
+  }
+  to {
+    top: 100%;
+  }
+}
+
+.leitura.hud {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  translate: -50% 0;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--borda);
+  border-radius: 4px;
+  background-color: rgba(6, 4, 12, 0.8);
+  font-family: var(--fonte-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: #9a94ad;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   04. BARRA DE FERRAMENTAS
+   ========================================================================== */
+
+.barra-ferramentas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background-color: var(--superficie);
+}
+
+.ferramenta {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--borda);
+  border-bottom-width: 3px;
+  border-radius: 8px;
+  background-color: var(--superficie-alt);
+  font-family: var(--fonte-mono);
+  font-size: 1.05rem;
+  color: var(--ciano);
+  transition:
+    border-color var(--rapido) ease,
+    background-color var(--rapido) ease,
+    transform 120ms ease;
+}
+
+.ferramenta:hover {
+  border-color: var(--ciano);
+  background-color: rgba(0, 242, 254, 0.1);
+}
+
+/* Efeito de tecla sendo apertada */
+.ferramenta:active {
+  transform: translateY(2px);
+  border-bottom-width: 1px;
+}
+
+.ferramenta.texto {
+  font-weight: 700;
+}
+
+.zoom-atual {
+  min-width: 3.4rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--texto-suave);
+}
+
+.separador {
+  width: 1px;
+  height: 26px;
+  margin: 0 0.3rem;
+  background-color: var(--borda);
+}
+
+.mapa.codeworld figcaption {
+  text-align: center;
+}
+
+/* ==========================================================================
+   05. PAINEL DE DETALHES DO ANDAR
+   ========================================================================== */
+
+.painel.detalhes {
+  --cor-andar: var(--verde);
+  position: sticky;
+  top: calc(var(--altura-cabecalho) + 1.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1.1rem, 2.5vw, 1.6rem);
+  border-top: 3px solid var(--cor-andar);
+  border-radius: 12px;
+  transition: border-color 400ms ease;
+}
+
+/* Animação de "troca de sinal" quando outro andar é escolhido */
+.painel.detalhes.trocando > * {
+  animation: sinal-entra 550ms var(--suave) both;
+}
+
+.painel.detalhes.trocando > *:nth-child(2) { animation-delay: 40ms; }
+.painel.detalhes.trocando > *:nth-child(3) { animation-delay: 80ms; }
+.painel.detalhes.trocando > *:nth-child(4) { animation-delay: 120ms; }
+.painel.detalhes.trocando > *:nth-child(5) { animation-delay: 160ms; }
+.painel.detalhes.trocando > *:nth-child(6) { animation-delay: 200ms; }
+.painel.detalhes.trocando > *:nth-child(7) { animation-delay: 240ms; }
+.painel.detalhes.trocando > *:nth-child(8) { animation-delay: 280ms; }
+
+@keyframes sinal-entra {
+  0% {
+    opacity: 0;
+    translate: 12px 0;
+    filter: blur(3px);
+  }
+  60% {
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.cabeca.detalhes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.selo.andar {
+  padding: 0.2rem 0.65rem;
+  border: 1px solid currentColor;
+  border-radius: 99px;
+  font-family: var(--fonte-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+}
+
+.selo.andar.recuperado {
+  color: var(--verde);
+}
+
+.selo.andar.explorando {
+  color: var(--ambar);
+}
+
+.selo.andar.bloqueado {
+  color: var(--vermelho);
+}
+
+.painel.detalhes h3 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  margin-bottom: 0;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  letter-spacing: 0.04em;
+  color: var(--texto);
+}
+
+.painel.detalhes h3::before {
+  display: none;
+}
+
+.painel.detalhes h3 .linguagens {
+  font-family: var(--fonte-mono);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--cor-andar);
+}
+
+.descricao.andar {
+  color: var(--texto-suave);
+}
+
+.painel.detalhes .informacoes.nivel {
+  margin-top: 0;
+}
+
+.painel.detalhes .informacoes.nivel dd {
+  color: var(--cor-andar);
+}
+
+/* Medidor do nível de ameaça (verde → vermelho) */
+.ameaca.andar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ameaca.andar strong {
+  color: var(--texto);
+}
+
+.medidor.ameaca {
+  height: 8px;
+  border-radius: 99px;
+  background-color: var(--superficie-alt);
+  overflow: hidden;
+}
+
+/* O degradê ocupa a barra toda; o recorte mostra só até o valor da ameaça */
+.medidor.ameaca span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--verde), var(--ambar), var(--vermelho));
+  clip-path: inset(0 calc(100% - var(--valor)) 0 0 round 99px);
+  animation: encher 900ms var(--suave) both;
+}
+
+@keyframes encher {
+  from {
+    clip-path: inset(0 100% 0 0 round 99px);
+  }
+}
+
+.bloco-detalhe {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.missoes.andar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.missoes.andar li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.45rem 0.7rem;
+  border-left: 2px solid var(--cor-andar);
+  border-radius: 0 6px 6px 0;
+  background-color: var(--superficie-alt);
+  font-size: 0.92rem;
+}
+
+.missoes.andar .numero {
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  color: var(--cor-andar);
+}
+
+/* Linha "corrompida" do Núcleo */
+.missoes.andar .corrompido {
+  border-left-color: var(--vermelho);
+  font-family: var(--fonte-mono);
+  font-size: 0.8rem;
+  color: var(--vermelho);
+  animation: piscar 1.2s steps(2, start) infinite;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--borda);
+  border-radius: 99px;
+  font-family: var(--fonte-mono);
+  font-size: 0.78rem;
+}
+
+.chip.agente {
+  border-color: var(--cor-andar);
+  color: var(--texto);
+  transition:
+    background-color var(--rapido) ease,
+    box-shadow var(--rapido) ease;
+}
+
+.chip.agente:hover {
+  background-color: color-mix(in srgb, var(--cor-andar) 18%, transparent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--cor-andar) 40%, transparent);
+}
+
+.chip.vazio {
+  color: var(--texto-fraco);
+}
+
+.acoes.detalhes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.aviso.bloqueio {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px dashed var(--vermelho);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--vermelho);
+}
+
+/* ==========================================================================
+   06. EVENTOS GLOBAIS
+   ========================================================================== */
+
+.lista.eventos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--espaco);
+}
+
+.card.evento {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-left: 3px solid var(--ambar);
+}
+
+.card.evento p:not(.rotulo):not(.tempo) {
+  color: var(--texto-suave);
+}
+
+.card.evento.alerta {
+  border-left-color: var(--vermelho);
+  animation: alerta 2.2s ease-in-out infinite;
+}
+
+/* Cronômetro (o mapa/script.js faz a contagem regressiva) */
+.tempo.evento {
+  font-family: var(--fonte-mono);
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  color: var(--ambar);
+  font-variant-numeric: tabular-nums;
+}
+
+.card.evento.alerta .tempo.evento {
+  color: var(--vermelho);
+}
+
+/* ==========================================================================
+   07. RESPONSIVIDADE
+   ========================================================================== */
+
+/* Tablet e celular: detalhes vão para baixo do mapa */
+@media (max-width: 959px) {
+  .explorador.mapa {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .painel.detalhes {
+    position: static;
+  }
+}
+
+@media (max-width: 559px) {
+  .ferramenta {
+    width: 40px;
+    height: 40px;
+  }
+
+  .separador {
+    display: none;
+  }
+
+  /* No celular a etiqueta do andar fica menor */
+  .etiqueta-andar {
+    font-size: 0.55rem;
+    padding: 0.15rem 0.4rem;
+  }
+
+  .leitura.hud {
+    font-size: 0.58rem;
+  }
+
+  .acoes.detalhes {
+    flex-direction: column;
+  }
+}
