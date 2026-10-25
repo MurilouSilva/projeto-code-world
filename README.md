@@ -39,8 +39,9 @@ Cada pasta de seção tem:
 - `style.css` — apenas o estilo exclusivo daquela tela (carregado depois do
   `comum/base.css`)
 - `script.js` — interações exclusivas daquela tela (o do Mapa controla o mapa
-  interativo; o de Personagens monta o Modo Agente; os demais
-  estão prontos para receber interações)
+  interativo; o de Personagens monta o Modo Agente; o de Missões monta as
+  missões de código e o terminal; os demais estão prontos para receber
+  interações)
 
 ### Modo Agente (Personagens)
 
@@ -71,6 +72,48 @@ Cada pasta de seção tem:
   `mapa/script.js`. A posição das áreas clicáveis está no `style` de cada
   botão `.andar-mapa` no `mapa/index.html` (em % da imagem).
 - Dá para abrir um andar direto pelo endereço, ex.: `mapa/index.html#nivel-2`.
+- O status de cada andar vem do progresso do RPG (bloqueado, explorando ou
+  recuperado), e o botão **JOGAR ESTE ANDAR NO RPG** abre o jogo já naquele
+  capítulo.
+
+### Missões
+
+A tela tem três filtros:
+
+- **Ativas** — o card **MISSÃO ATIVA** mostra a operação atual da campanha
+  do RPG (capítulo, fase e recompensa) com o botão **JOGAR NO RPG**, que leva
+  o personagem até o capítulo dela. Abaixo ficam as 6 missões de código que
+  ainda faltam.
+- **Concluídas** — as missões de código vencidas e as operações já vencidas
+  no RPG.
+- **Diárias** — 3 missões de código por dia, sorteadas pela data (horário de
+  Brasília), e um atalho para os desafios rápidos do RPG.
+
+Cada missão abre no **terminal**, no mesmo estilo do terminal do Modo Agente
+(número das linhas e cores no código). O jogador corrige o código e clica em
+**EXECUTAR**; **RESTAURAR CÓDIGO** volta ao código inicial. O próprio
+navegador confere a resposta:
+
+- **HTML** — se as tags fecham na ordem certa e se os elementos pedidos estão
+  no lugar (ex.: `button` dentro de `main`)
+- **CSS** — as propriedades do seletor pedido (ex.: `display: grid`)
+- **JavaScript** — o último valor mostrado com `console.log`. O código roda
+  separado da página (Web Worker) e é parado depois de 1,5 s, o que protege
+  contra loop infinito
+- **Python** — uma versão simplificada: variáveis, listas, `print()`, `sum()`
+  e `len()`
+
+Errar tira vida do agente; acertar derruba a IA Corrupta. O agente do
+combate é o líder da equipe do RPG.
+
+- `missoes/dados.js` — as 6 missões permanentes e os modelos das 3 diárias
+  (objetivo, código inicial, dica, regra de conferência e recompensa). As
+  missões vieram da versão com servidor em Python e agora rodam só no
+  navegador. Para mudar uma missão, basta editar esse arquivo.
+- **Recompensas** — a tela Missões só anota a vitória no navegador
+  (localStorage, chave `cw_missoes`). Os itens entram na mochila do RPG na
+  próxima vez que ele for aberto: uma vez por missão, e as diárias uma vez
+  por dia. Assim a tela Missões nunca altera o progresso salvo do jogo.
 
 ### RPG
 
@@ -85,7 +128,8 @@ salvo no navegador (localStorage, chave `cw_rpg_progresso`).
   capítulos, mapas, as 31 operações da história, itens e desafios rápidos.
   Para mudar uma pergunta, um texto ou um mapa, basta editar esse arquivo.
 - `rpg/regras.js` — regras do jogo: progresso salvo, campanha, combate por
-  turnos, loja e equipe (antes eram feitas por um servidor em Python)
+  turnos, loja, equipe e a entrega dos itens das missões de código (antes
+  eram feitas por um servidor em Python)
 - `rpg/desenho.js` — tudo o que é desenhado no `<canvas>`: sprites, o mapa
   explorável e a arena de batalha
 - `rpg/script.js` — interações da tela: abas, janelas de diálogo, comandos
@@ -153,9 +197,12 @@ repetir a tela Personagens. Tudo vem do **Modo Agente**:
 - "Reduzir movimento" desliga todas as animações; a preferência de movimento
   reduzido do sistema operacional também é respeitada
 - O cursor customizado só aparece em telas com mouse
+- Na tela Missões, o código é digitado num campo de texto comum (funciona com
+  teclado e leitor de tela) e cada linha nova do log de combate é anunciada
 
 ## Como visualizar
 
 Abra `nexus/index.html` no navegador para começar pela tela inicial —
 a navegação entre as telas leva às demais pastas. Não há build nem dependências.
-O RPG abre pelo item **RPG** do menu (ou direto em `rpg/index.html`).
+O RPG abre pelo item **RPG** do menu (ou direto em `rpg/index.html`), e as
+missões de código pelo item **MISSÕES** (`missoes/index.html`).
