@@ -12,7 +12,7 @@ Feito somente com HTML, CSS e JavaScript (sem bibliotecas nem build).
 - `mapa/` — Seção 04: MAPA
 - `missoes/` — Seção 05: MISSÕES
 - `arquivos/` — Seção 06: ARQUIVOS
-- `perfil/` — Seção 07: SISTEMA (perfil do operador)
+- `rpg/` — Seção 07: RPG (exploração e batalhas por turnos)
 - `comum/` — arquivos compartilhados por todas as telas
 - `img/` — imagens compartilhadas entre as telas
 
@@ -56,6 +56,8 @@ Cada pasta de seção tem:
   de cada agente no `dados.js` estiver vazio, aparece "IMAGEM EM BREVE".
 - Dá para abrir um agente direto pelo endereço, ex.:
   `personagens/index.html#agente-css` (se ele já estiver desbloqueado).
+- Os agentes desbloqueados aqui são os que podem entrar na equipe do RPG
+  (botão "Montar equipe no RPG", no painel ao lado da lista).
 
 ### Mapa interativo
 
@@ -69,6 +71,70 @@ Cada pasta de seção tem:
   `mapa/script.js`. A posição das áreas clicáveis está no `style` de cada
   botão `.andar-mapa` no `mapa/index.html` (em % da imagem).
 - Dá para abrir um andar direto pelo endereço, ex.: `mapa/index.html#nivel-2`.
+
+### RPG
+
+Jogo 2D em que o jogador explora os 7 capítulos da cidade, responde aos
+terminais e enfrenta a Super IA em batalhas por turnos. Funciona só com
+HTML, CSS e JavaScript: não há servidor, conta nem login, e o progresso fica
+salvo no navegador (localStorage, chave `cw_rpg_progresso`).
+
+- `rpg/index.html` — marcação da tela, com o mesmo cabeçalho e rodapé do site
+- `rpg/style.css` — estilo exclusivo do RPG (usa as variáveis do `comum/base.css`)
+- `rpg/dados.js` — conteúdo do jogo: personagens e habilidades, inimigos,
+  capítulos, mapas, as 31 operações da história, itens e desafios rápidos.
+  Para mudar uma pergunta, um texto ou um mapa, basta editar esse arquivo.
+- `rpg/regras.js` — regras do jogo: progresso salvo, campanha, combate por
+  turnos, loja e equipe (antes eram feitas por um servidor em Python)
+- `rpg/desenho.js` — tudo o que é desenhado no `<canvas>`: sprites, o mapa
+  explorável e a arena de batalha
+- `rpg/script.js` — interações da tela: abas, janelas de diálogo, comandos
+  da batalha, equipe, loja, desafios e diário
+- `rpg/img/` — pranchas de sprites (pixel art) usadas no mapa e na batalha
+
+A página do RPG também carrega o `personagens/dados.js`: dele vêm a ordem
+de desbloqueio dos agentes e as imagens usadas na equipe.
+
+Abas do RPG:
+
+- **Explorar** — a faixa **OBJETIVO** diz o que fazer e uma trilha rosa
+  mostra o caminho até lá; o botão **IR ATÉ LÁ** leva o personagem sozinho
+  até o terminal e já começa a operação. Também dá para clicar em qualquer
+  ponto do chão para andar até ele, ou usar W A S D / setas (sem precisar
+  clicar no mapa antes; no celular há setas na tela). Um balão **E** mostra
+  o que dá para fazer onde o personagem está (iniciar operação, conversar
+  com o NPC, abrir as aulas). Cada operação tem 5 perguntas, respondidas na
+  própria janela: errou, a alternativa fica marcada e você tenta outra;
+  acertou, aparece a explicação.
+- **Batalha** — a arena fica à esquerda, com as ações rápidas (ataque
+  básico, defender, itens) logo abaixo; os poderes ficam numa coluna
+  lateral à direita (no celular e no tablet, abaixo da arena). Três passos
+  numerados: **1** quem age (seta ciano), **2** o alvo (seta rosa; clique
+  no inimigo na arena ou na lista) e **3** o poder. Cartões desativados
+  dizem o motivo (falta energia ou nível) e há atalhos: 1–4 poderes,
+  5 ataque básico, 6 defender.
+- **Equipe** — até 3 agentes desbloqueados na tela Personagens. No mapa, o
+  primeiro lidera e os outros andam em fila atrás dele. Os bloqueados aparecem apagados, com o que falta para
+  liberá-los.
+- **Loja** — suprimentos para a batalha, pagos com Nexus Coins.
+- **Desafios** — perguntas rápidas que rendem itens, uma vez cada.
+- **Diário** — as 31 operações, com status e recompensas.
+
+### Ligação entre Personagens e RPG
+
+O RPG não tem tela própria de aulas nem compra de personagens, para não
+repetir a tela Personagens. Tudo vem do **Modo Agente**:
+
+- **Desbloqueio** — a mesma regra da tela Personagens: HTML começa liberado
+  e cada agente seguinte é liberado ao concluir os 5 níveis do anterior. Só
+  os agentes desbloqueados podem entrar na equipe; se o progresso dos agentes
+  for reiniciado, quem ficou bloqueado sai da equipe (com um aviso).
+- **Imagem** — a equipe, os cartões e os diálogos usam a mesma imagem do
+  agente da tela Personagens (campo `imagem` do `personagens/dados.js`).
+  O mapa e a batalha continuam com os sprites animados de `rpg/img/`.
+- **Evolução** — cada nível concluído no Modo Agente vale 2 níveis no RPG
+  (até o nível 10), libera habilidades nos níveis 3 e 7 e rende +50 Nexus
+  Coins uma única vez.
 
 ## Responsividade
 
@@ -92,3 +158,4 @@ Cada pasta de seção tem:
 
 Abra `nexus/index.html` no navegador para começar pela tela inicial —
 a navegação entre as telas leva às demais pastas. Não há build nem dependências.
+O RPG abre pelo item **RPG** do menu (ou direto em `rpg/index.html`).

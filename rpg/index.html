@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="CodeWorld por 11 estudantes de tecnologia" />
     <meta name="theme-color" content="#08060f" />
-    <title>CodeWorld - Perfil do Operador</title>
+    <title>CodeWorld - RPG</title>
 
     <!-- Importação de fontes externas via Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -84,10 +84,16 @@
               <span data-i18n="nav_arquivos">ARQUIVOS</span>
             </a>
           </li>
+          <li>
+            <a href="../rpg/index.html#SECAO-RPG" class="ativo" aria-current="page">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_rpg">RPG</span>
+            </a>
+          </li>
         </ul>
       </nav>
 
-      <!-- Área Direita: Status Online, Painel de Acessibilidade e Perfil -->
+      <!-- Área Direita: Status Online, Painel de Acessibilidade e Menu Mobile -->
       <div class="area direita">
         <!-- Indicador do Status do Sistema -->
         <p class="status online">
@@ -174,16 +180,6 @@
           <div id="google_translate_element" style="display: none"></div>
         </details>
 
-        <!-- Atalho do Perfil -->
-        <a class="perfil atalho" href="../perfil/index.html#SECAO-PERFIL" aria-current="page">
-          <img
-            src="../img/perfil-avatar.png"
-            alt="Perfil do operador CodePlayer_42"
-            width="312"
-            height="312"
-          />
-        </a>
-
         <!-- Botão Hambúrguer (Mobile / Tablet) -->
         <button
           type="button"
@@ -203,150 +199,77 @@
          CONTEÚDO PRINCIPAL
          =================================================================== -->
     <main id="conteudo">
-      <!-- Seção 07: Sistema - Perfil do Operador -->
-      <section id="SECAO-PERFIL" class="fundo perfil">
-        <!-- Imagem de Fundo da Seção Sistema -->
-        <img
-          class="visual fundo"
-          src="../img/sistema-visual.png"
-          alt=""
-          width="1680"
-          height="1680"
-        />
-
+      <!-- Seção 07: RPG - Exploração e batalhas por turnos -->
+      <section id="SECAO-RPG" class="fundo rpg">
         <!-- Visão Geral -->
-        <div class="visao geral do perfil">
-          <p class="rotulo sistema">PERFIL DO OPERADOR</p>
-          <h2>SISTEMA</h2>
+        <div class="visao geral do rpg">
+          <p class="rotulo sistema">RESISTÊNCIA NEXUS // RPG 2D</p>
+          <h2>RECONECTE <span class="destaque">A CIDADE</span></h2>
+          <p>
+            Explore os setores do CodeWorld, responda aos terminais e enfrente
+            a Super IA em batalhas por turnos. A equipe é formada pelos agentes
+            desbloqueados na tela
+            <a class="link rpg" href="../personagens/index.html#SECAO-PERSONAGENS">Personagens</a>,
+            que ficam mais fortes a cada nível concluído no Modo Agente.
+          </p>
         </div>
 
-        <!-- Cartão Principal do Operador -->
-        <div class="cartao operador">
-          <img
-            src="../img/perfil-avatar.png"
-            alt="Foto de perfil de CodePlayer_42"
-            width="312"
-            height="312"
-          />
-          <h3>CodePlayer_42</h3>
-          <p class="patente operador">CYBER DECKER • LVL 18</p>
-          <button type="button" class="botao secundario">Alterar foto</button>
+        <!-- Painel de Progresso da Campanha (atualizado pelo script.js) -->
+        <div class="painel progresso campanha" aria-live="polite">
+          <div class="dado campanha">
+            <p class="rotulo sistema">OPERAÇÕES CONCLUÍDAS</p>
+            <p class="contagem" id="CONTAGEM-OPERACOES">00/31</p>
+          </div>
+          <div class="dado campanha">
+            <p class="rotulo sistema">CAPÍTULO ATUAL</p>
+            <p class="valor campanha" id="CAPITULO-ATUAL">01 · AS TORRES DA ESTRUTURA</p>
+          </div>
+          <div class="dado campanha">
+            <p class="rotulo sistema">NEXUS COINS</p>
+            <p class="valor campanha moedas" id="MOEDAS">0 NC</p>
+          </div>
+          <div class="barra progresso">
+            <div class="preenchimento progresso" id="BARRA-CAMPANHA" style="--valor: 0%"></div>
+          </div>
         </div>
 
-        <!-- Abas do Perfil -->
-        <div class="abas perfil">
-          <span class="opcao ativa">Dados Pessoais</span>
-          <span class="opcao">Segurança</span>
-          <span class="opcao">Configurações do Site</span>
+        <!-- Abas das áreas do RPG -->
+        <nav class="abas rpg" aria-label="Áreas do RPG">
+          <a class="opcao" href="#explorar" data-aba="explorar"><span class="indice">01</span> EXPLORAR</a>
+          <a class="opcao" href="#equipe" data-aba="equipe"><span class="indice">02</span> EQUIPE</a>
+          <a class="opcao" href="#loja" data-aba="loja"><span class="indice">03</span> LOJA</a>
+          <a class="opcao" href="#desafios" data-aba="desafios"><span class="indice">04</span> DESAFIOS</a>
+          <a class="opcao" href="#diario" data-aba="diario"><span class="indice">05</span> DIÁRIO</a>
+        </nav>
+
+        <!-- Tela da aba escolhida (montada pelo script.js a partir do dados.js) -->
+        <div class="tela rpg" id="TELA-RPG">
+          <noscript>
+            <p class="sem resultados">Ative o JavaScript para jogar o RPG.</p>
+          </noscript>
         </div>
 
-        <!-- Bloco de Diagnóstico do Sistema -->
-        <div class="bloco diagnostico">
-          <p class="rotulo sistema">&gt; SYSTEM DIAGNOSTICS</p>
-          <ul class="lista diagnostico">
-            <li>CORE_SYS: ONLINE</li>
-            <li>DECK_CONNECTION: SECURE (SSH)</li>
-            <li>LATENCY: 14ms</li>
-            <li>ENCRYPTION: AES-256</li>
-          </ul>
-        </div>
-
-        <!-- Formulário 1: Dados Pessoais -->
-        <form class="formulario dados">
-          <p class="rotulo sistema">[ SEÇÃO CONFIGURAÇÃO 01 ]</p>
-          <h3>DADOS PESSOAIS</h3>
-
-          <div class="campo formulario">
-            <label for="USUARIO">Nome de Usuário</label>
-            <input
-              type="text"
-              id="USUARIO"
-              name="usuario"
-              value="CodePlayer_42"
-            />
-          </div>
-
-          <div class="campo formulario">
-            <label for="EMAIL">E-mail</label>
-            <input
-              type="email"
-              id="EMAIL"
-              name="email"
-              value="player@codeworld.com"
-            />
-          </div>
-
-          <div class="campo formulario">
-            <label for="TELEFONE">Telefone</label>
-            <input
-              type="tel"
-              id="TELEFONE"
-              name="telefone"
-              value="+55 (11) 98765-4321"
-            />
-          </div>
-
-          <div class="campo formulario">
-            <label for="NASCIMENTO">Data de Nascimento</label>
-            <input
-              type="date"
-              id="NASCIMENTO"
-              name="nascimento"
-              value="1998-03-15"
-            />
-          </div>
-
-          <div class="acoes formulario">
-            <button class="botao primario" type="submit">
-              SALVAR ALTERAÇÕES
+        <!-- Preferências do jogo -->
+        <div class="preferencias rpg">
+          <div class="acoes jogo">
+            <button type="button" class="botao jogo" id="GUIA-RPG">
+              <span aria-hidden="true">?</span> COMO JOGAR
             </button>
-            <button class="botao secundario" type="reset">CANCELAR</button>
+            <label class="rotulo sistema">
+              <input type="checkbox" id="SOM-RPG" />
+              SOM DE COMBATE
+            </label>
           </div>
-        </form>
-
-        <!-- Formulário 2: Alterar Senha -->
-        <form class="formulario senha">
-          <p class="rotulo sistema">[ SEÇÃO CONFIGURAÇÃO 02 ]</p>
-          <h3>ALTERAR SENHA</h3>
-
-          <div class="campo formulario">
-            <label for="SENHA-ATUAL">Senha Atual</label>
-            <input
-              type="password"
-              id="SENHA-ATUAL"
-              name="senha-atual"
-              placeholder="••••••••••••••"
-            />
-          </div>
-
-          <div class="campo formulario">
-            <label for="SENHA-NOVA">Nova Senha</label>
-            <input
-              type="password"
-              id="SENHA-NOVA"
-              name="senha-nova"
-              placeholder="••••••••••••••"
-            />
-          </div>
-
-          <div class="campo formulario">
-            <label for="SENHA-CONFIRMA">Confirmar Nova Senha</label>
-            <input
-              type="password"
-              id="SENHA-CONFIRMA"
-              name="senha-confirma"
-              placeholder="••••••••••••••"
-            />
-          </div>
-
-          <div class="acoes formulario">
-            <button class="botao primario" type="submit">
-              ATUALIZAR SENHA
-            </button>
-          </div>
-        </form>
+          <button type="button" class="reiniciar progresso" id="REINICIAR-RPG">
+            Reiniciar progresso do RPG
+          </button>
+        </div>
       </section>
     </main>
+
+    <!-- Aviso rápido no rodapé da tela (as janelas de diálogo são criadas
+         pelo script.js quando necessário) -->
+    <p class="aviso rpg" id="AVISO-RPG" role="status" aria-live="polite" hidden></p>
 
     <!-- ===================================================================
          RODAPÉ DA PÁGINA
@@ -359,7 +282,15 @@
 
     <!-- Comportamento compartilhado (menu, acessibilidade, animações) -->
     <script src="../comum/base.js" defer></script>
-    <!-- Interações exclusivas desta tela -->
+    <!-- Agentes da tela Personagens: imagens e ordem de desbloqueio da equipe -->
+    <script src="../personagens/dados.js" defer></script>
+    <!-- Conteúdo do jogo: personagens, mapas, operações e itens -->
+    <script src="dados.js" defer></script>
+    <!-- Regras do jogo: progresso salvo, campanha e combate -->
+    <script src="regras.js" defer></script>
+    <!-- Desenho no canvas: sprites, mapa e arena de batalha -->
+    <script src="desenho.js" defer></script>
+    <!-- Interações exclusivas desta tela (abas, exploração e batalha) -->
     <script src="script.js" defer></script>
     <!-- Complemento do painel de acessibilidade (tradução e vídeo) -->
     <script src="../comum/idioma-e-movimento.js" defer></script>

@@ -205,6 +205,31 @@
   border-color: var(--ciano);
 }
 
+/* Andar ainda bloqueado no RPG: fica escurecido e com listras de "acesso
+   negado" (continua clicável para ver o que falta para liberar) */
+.andar-mapa.bloqueado {
+  background-color: rgba(4, 3, 10, 0.55);
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0 14px,
+    rgba(255, 59, 78, 0.08) 14px 16px
+  );
+}
+
+.andar-mapa.bloqueado:hover,
+.andar-mapa.bloqueado:focus-visible {
+  background-color: rgba(4, 3, 10, 0.45);
+}
+
+.andar-mapa.bloqueado:not(.selecionado) .etiqueta-andar {
+  border-color: var(--vermelho);
+}
+
+/* Andar com todas as operações vencidas no RPG */
+.andar-mapa.recuperado:not(.selecionado) {
+  border-color: color-mix(in srgb, var(--verde) 35%, transparent);
+}
+
 .andar-mapa:hover .etiqueta-andar,
 .andar-mapa:focus-visible .etiqueta-andar,
 .andar-mapa.selecionado .etiqueta-andar {
@@ -429,7 +454,7 @@
   letter-spacing: 0.1em;
 }
 
-.selo.andar.liberado {
+.selo.andar.recuperado {
   color: var(--verde);
 }
 

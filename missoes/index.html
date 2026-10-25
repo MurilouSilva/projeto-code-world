@@ -84,10 +84,16 @@
               <span data-i18n="nav_arquivos">ARQUIVOS</span>
             </a>
           </li>
+          <li>
+            <a href="../rpg/index.html#SECAO-RPG">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_rpg">RPG</span>
+            </a>
+          </li>
         </ul>
       </nav>
 
-      <!-- Área Direita: Status Online, Painel de Acessibilidade e Perfil -->
+      <!-- Área Direita: Status Online, Painel de Acessibilidade e Menu Mobile -->
       <div class="area direita">
         <!-- Indicador do Status do Sistema -->
         <p class="status online">
@@ -174,16 +180,6 @@
           <div id="google_translate_element" style="display: none"></div>
         </details>
 
-        <!-- Atalho do Perfil -->
-        <a class="perfil atalho" href="../perfil/index.html#SECAO-PERFIL">
-          <img
-            src="../img/perfil-avatar.png"
-            alt="Perfil do operador CodePlayer_42"
-            width="312"
-            height="312"
-          />
-        </a>
-
         <!-- Botão Hambúrguer (Mobile / Tablet) -->
         <button
           type="button"
@@ -209,17 +205,24 @@
         <div class="visao geral das missoes">
           <p class="rotulo sistema">CENTRAL DE OPERAÇÕES</p>
           <h2>MISSÕES <span class="destaque">DISPONÍVEIS</span></h2>
+          <!-- Resumo do progresso, preenchido pelo script.js -->
+          <p class="rotulo sistema" id="RESUMO-MISSOES" aria-live="polite"></p>
         </div>
 
-        <!-- Abas de Filtragem das Missões -->
-        <div class="abas missoes">
-          <span class="opcao ativa">ATIVAS</span>
-          <span class="opcao">CONCLUÍDAS</span>
-          <span class="opcao">DIÁRIAS</span>
+        <!-- Filtros das Missões (o script.js troca a lista ao clicar) -->
+        <div class="abas missoes" role="group" aria-label="Filtrar missões">
+          <button type="button" class="opcao ativa" aria-pressed="true" data-filtro="ativas" aria-controls="LISTA-MISSOES">ATIVAS</button>
+          <button type="button" class="opcao" aria-pressed="false" data-filtro="concluidas" aria-controls="LISTA-MISSOES">CONCLUÍDAS</button>
+          <button type="button" class="opcao" aria-pressed="false" data-filtro="diarias" aria-controls="LISTA-MISSOES">DIÁRIAS</button>
         </div>
 
-        <!-- Destaque da Missão Ativa -->
-        <article class="card missao ativa">
+        <noscript>
+          <p class="rotulo sistema">Ative o JavaScript para jogar as missões.</p>
+        </noscript>
+
+        <!-- Destaque da Missão Ativa: a operação atual do RPG (o script.js
+             troca este conteúdo de exemplo pelos dados do jogo) -->
+        <article class="card missao ativa" id="MISSAO-RPG">
           <p class="rotulo sistema">MISSÃO ATIVA</p>
           <h3><span aria-hidden="true">⚠</span> BUG INVASOR</h3>
           <p class="selo principal">PRINCIPAL</p>
@@ -232,10 +235,13 @@
             <dt class="rotulo sistema">DIFICULDADE</dt>
             <dd>SEVERA</dd>
           </dl>
+          <a class="botao primario" data-jogar href="../rpg/index.html#explorar">
+            JOGAR NO RPG <span aria-hidden="true">→</span>
+          </a>
         </article>
 
-        <!-- Lista de Outras Missões -->
-        <ul class="lista missoes">
+        <!-- Lista de Missões (o script.js monta de acordo com o filtro) -->
+        <ul class="lista missoes" id="LISTA-MISSOES">
           <li class="card missao">
             <h4><span aria-hidden="true">◆</span> ESCAPE DO LOOP</h4>
             <p>Quebre o laço infinito</p>
@@ -269,14 +275,14 @@
         <!-- Painel de Combate em Andamento -->
         <div class="painel combate">
           <p class="rotulo sistema">COMBATE EM ANDAMENTO</p>
-          <p class="rotulo sistema">NÍVEL 1/5 — TURNO 03</p>
+          <p class="rotulo sistema" id="ROTULO-COMBATE">NÍVEL 1/5 — TURNO 03</p>
 
           <div class="lado combate">
             <p class="rotulo sistema">SEU AGENTE</p>
-            <h4>PYTHON</h4>
-            <p class="vida agente">105/128</p>
+            <h4 id="NOME-AGENTE">PYTHON</h4>
+            <p class="vida agente"><span class="somente-leitor">Vida: </span><span id="VIDA-AGENTE">105/128</span></p>
             <div class="barra progresso">
-              <div class="preenchimento progresso" style="--valor: 82%"></div>
+              <div class="preenchimento progresso" id="BARRA-AGENTE" style="--valor: 82%"></div>
             </div>
           </div>
 
@@ -284,9 +290,9 @@
 
           <div class="lado combate inimigo">
             <h4>IA CORRUPTA</h4>
-            <p class="vida agente">150/150</p>
+            <p class="vida agente"><span class="somente-leitor">Vida: </span><span id="VIDA-INIMIGO">150/150</span></p>
             <div class="barra progresso">
-              <div class="preenchimento progresso" style="--valor: 100%"></div>
+              <div class="preenchimento progresso" id="BARRA-INIMIGO" style="--valor: 100%"></div>
             </div>
           </div>
         </div>
@@ -294,43 +300,71 @@
         <!-- Terminal de Código e Resolução de Desafio -->
         <div class="bloco terminal">
           <p class="rotulo sistema">OBJETIVO</p>
-          <p>
+          <!-- tabindex="-1": recebe o foco quando uma missão é aberta -->
+          <p id="OBJETIVO-MISSAO" tabindex="-1">
             Corrija o código abaixo para eliminar a corrupção e enfraquecer a IA.
           </p>
 
-          <p class="rotulo sistema">TERMINAL DE CÓDIGO — HTML</p>
-          <pre class="codigo terminal"><code>&lt;!-- Corrija o aninhamento: as tags precisam fechar
-     na ordem inversa da que foram abertas --&gt;
-&lt;main&gt;
-  &lt;section id="NIVEL-0"&gt;
-    &lt;h2&gt;NÍVEL 0&lt;/h2&gt;
-    &lt;p&gt;Território HTML + CSS
-  &lt;/main&gt;
-&lt;/section&gt;</code></pre>
+          <p class="rotulo sistema" id="ROTULO-TERMINAL">TERMINAL DE CÓDIGO — HTML</p>
+          <!-- Terminal no mesmo estilo do Modo Agente (tela Personagens).
+               O código não é traduzido (translate="no"). -->
+          <div class="terminal codigo notranslate" translate="no">
+            <div class="terminal-barra">
+              <span class="luzes" aria-hidden="true"><i></i><i></i><i></i></span>
+              <code class="comando" id="COMANDO-TERMINAL">bash - run/inspect --file index.html</code>
+              <span class="rotulo sistema" id="FORMATO-TERMINAL">UTF-8 LF HTML</span>
+            </div>
+            <!-- Duas camadas: atrás, o código colorido com o número das linhas
+                 (montado pelo script.js); na frente, o campo onde se digita -->
+            <div class="editor" id="EDITOR-AREA">
+              <pre class="realce" aria-hidden="true"><code id="REALCE-CODIGO"></code></pre>
+              <textarea
+              id="EDITOR-CODIGO"
+              aria-labelledby="ROTULO-TERMINAL"
+              spellcheck="false"
+              autocapitalize="off"
+              autocomplete="off"
+              rows="9"
+            >&lt;main&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Nível 0&lt;/h2&gt;
+    &lt;p&gt;Território HTML
+&lt;/main&gt;
+&lt;/section&gt;</textarea>
+            </div>
+          </div>
 
-          <p class="dica">
-            <span aria-hidden="true">💡</span> DICA: feche as tags na ordem
+          <p class="dica" id="DICA-MISSAO">
+            <span aria-hidden="true">◆</span> DICA: feche as tags na ordem
             inversa da abertura e não deixe nenhum parágrafo aberto.
           </p>
-          <button type="button" class="botao primario">
-            EXECUTAR <span aria-hidden="true">▶</span>
-          </button>
+          <div class="acoes terminal">
+            <button type="button" class="botao primario" id="BOTAO-EXECUTAR">
+              EXECUTAR <span aria-hidden="true">▶</span>
+            </button>
+            <button type="button" class="botao secundario" id="BOTAO-RESTAURAR">
+              RESTAURAR CÓDIGO <span aria-hidden="true">↺</span>
+            </button>
+          </div>
         </div>
 
         <!-- Log do Console de Combate -->
         <div class="bloco log">
-          <p class="rotulo sistema">LOG DE COMBATE</p>
-          <ul class="lista log">
-            <li>&gt; IA CORRUPTA iniciou um ataque de corrupção!</li>
-            <li>&gt; PYTHON perdeu 15 de energia.</li>
-            <li>&gt; Sua vez: resolva o código para contra-atacar!</li>
-          </ul>
+          <p class="rotulo sistema" id="TITULO-LOG">LOG DE COMBATE</p>
+          <!-- role="log": o leitor de tela anuncia cada linha nova -->
+          <div role="log" aria-labelledby="TITULO-LOG">
+            <ul class="lista log" id="LOG-COMBATE">
+              <li class="erro">&gt; IA CORRUPTA iniciou um ataque de corrupção!</li>
+              <li>&gt; PYTHON perdeu 15 de energia.</li>
+              <li class="ok">&gt; Sua vez: resolva o código para contra-atacar!</li>
+            </ul>
+          </div>
         </div>
 
         <!-- Bloco de Recompensas da Missão -->
         <div class="bloco recompensas">
           <h3>RECOMPENSAS</h3>
-          <ul class="lista recompensas">
+          <ul class="lista recompensas" id="LISTA-RECOMPENSAS">
             <li class="card recompensa">
               <p class="valor recompensa">
                 <span aria-hidden="true">○</span> +2500
@@ -356,10 +390,11 @@
               <p class="rotulo sistema">ITEM RARO</p>
             </li>
           </ul>
-          <p class="rotulo sistema">
+          <p class="rotulo sistema" id="STATUS-RECOMPENSA">
             CONCLUA A MISSÃO PARA RECEBER AS RECOMPENSAS
           </p>
-          <a class="botao secundario" href="../missoes/index.html#SECAO-MISSOES">
+          <!-- As 31 operações da campanha ficam no Diário do RPG -->
+          <a class="botao secundario" href="../rpg/index.html#diario">
             VER TODAS AS MISSÕES <span aria-hidden="true">→</span>
           </a>
         </div>
@@ -377,6 +412,11 @@
 
     <!-- Comportamento compartilhado (menu, acessibilidade, animações) -->
     <script src="../comum/base.js" defer></script>
+    <!-- Conteúdo e regras do RPG: a missão ativa e a equipe vêm do jogo -->
+    <script src="../rpg/dados.js" defer></script>
+    <script src="../rpg/regras.js" defer></script>
+    <!-- Missões de código desta tela -->
+    <script src="dados.js" defer></script>
     <!-- Interações exclusivas desta tela -->
     <script src="script.js" defer></script>
     <!-- Complemento do painel de acessibilidade (tradução e vídeo) -->

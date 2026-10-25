@@ -1,0 +1,1811 @@
+/* ==========================================================================
+   CODEWORLD // rpg/style.css
+   Estilo exclusivo da Seção 07: RPG.
+   O que é comum a todas as telas fica em ../comum/base.css.
+
+   Índice:
+   01. Cabeçalho da seção, progresso e abas
+   02. Peças reaproveitadas nas abas
+   03. Explorar: janela do mapa e painel lateral
+   04. Batalha: arena, HUD e comandos
+   05. Equipe e cartões de personagem
+   06. Loja e suprimentos
+   07. Desafios e diário da campanha
+   08. Janela de diálogo, perguntas e aviso
+   09. Preferências do jogo
+   10. Responsividade
+   ========================================================================== */
+
+/* ==========================================================================
+   01. CABEÇALHO DA SEÇÃO, PROGRESSO E ABAS
+   ========================================================================== */
+
+.link.rpg {
+  color: var(--ciano);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link.rpg:hover {
+  color: var(--magenta-claro);
+}
+
+/* Painel com os números da campanha */
+.painel.progresso.campanha {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 1rem var(--espaco);
+}
+
+.dado.campanha {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.valor.campanha {
+  font-family: var(--fonte-display);
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--texto);
+}
+
+.valor.campanha.moedas {
+  color: var(--ambar);
+  text-align: right;
+}
+
+.painel.progresso.campanha .barra.progresso {
+  grid-column: 1 / -1;
+}
+
+/* Abas EXPLORAR / EQUIPE / LOJA / DESAFIOS / DIÁRIO */
+.abas.rpg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.abas.rpg .opcao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 42px;
+  padding-inline: 1.1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.abas.rpg .indice {
+  font-size: 0.68rem;
+  color: var(--magenta);
+}
+
+.tela.rpg {
+  min-height: 420px;
+}
+
+.tela.rpg.carregando {
+  display: grid;
+  place-items: center;
+  font-family: var(--fonte-mono);
+  color: var(--texto-suave);
+}
+
+/* ==========================================================================
+   02. PEÇAS REAPROVEITADAS NAS ABAS
+   ========================================================================== */
+
+/* Título de cada aba */
+.cabecalho.aba {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: var(--espaco);
+}
+
+.cabecalho.aba h3 {
+  margin-top: 0.3rem;
+  font-family: var(--fonte-display);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  letter-spacing: 0.04em;
+}
+
+.cabecalho.aba p:not(.rotulo) {
+  max-width: 65ch;
+  margin-top: 0.4rem;
+  color: var(--texto-suave);
+}
+
+.subtitulo.aba {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: calc(var(--espaco) * 1.5) 0 var(--espaco);
+  font-family: var(--fonte-display);
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ciano);
+}
+
+.subtitulo.aba::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+/* Botão compacto usado dentro de cartões, HUD e janelas */
+.botao.jogo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 40px;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--superficie-alt);
+  font-family: var(--fonte-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto);
+  transition:
+    border-color var(--rapido) ease,
+    background-color var(--rapido) ease,
+    box-shadow var(--rapido) ease,
+    color var(--rapido) ease;
+}
+
+.botao.jogo:not(:disabled):hover {
+  border-color: var(--ciano);
+  color: var(--ciano);
+}
+
+.botao.jogo.destaque {
+  border-color: var(--magenta);
+  background-color: rgba(227, 0, 113, 0.14);
+  color: var(--texto);
+  text-shadow: none;
+}
+
+.botao.jogo.destaque:not(:disabled):hover {
+  box-shadow: var(--brilho-magenta);
+  color: var(--texto);
+}
+
+.botao.jogo:disabled {
+  color: var(--texto-fraco);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.botao.jogo svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.acoes.jogo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+/* Imagem do agente (a mesma da tela Personagens) */
+.retrato {
+  object-fit: contain;
+}
+
+/* Cadeado desenhado só com CSS (igual ao da tela Personagens) */
+.icone-cadeado {
+  position: relative;
+  display: inline-block;
+  width: 10px;
+  height: 8px;
+  margin-top: 3px;
+  border-radius: 2px;
+  background-color: currentColor;
+  vertical-align: middle;
+  transform: scale(0.75);
+}
+
+.icone-cadeado::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: -5px;
+  width: 6px;
+  height: 6px;
+  border: 2px solid currentColor;
+  border-bottom: 0;
+  border-radius: 4px 4px 0 0;
+  box-sizing: border-box;
+}
+
+/* Pílulas de recompensa (itens) */
+.recompensas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.item-pilula {
+  --item: var(--verde);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--item) 55%, transparent);
+  border-radius: 99px;
+  background-color: color-mix(in srgb, var(--item) 10%, transparent);
+  font-family: var(--fonte-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--item);
+  white-space: nowrap;
+}
+
+.item-pilula svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Cores dos 4 itens (usadas em pílulas, cartões e botões) */
+.patch {
+  --item: var(--verde);
+}
+
+.antidote {
+  --item: #b9a1ff;
+}
+
+.battery {
+  --item: var(--ambar);
+}
+
+.shield {
+  --item: #68d8ff;
+}
+
+/* ==========================================================================
+   03. EXPLORAR: JANELA DO MAPA E PAINEL LATERAL
+   ========================================================================== */
+
+.layout.jogo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: var(--espaco);
+  align-items: start;
+}
+
+/* Janela estilo "programa" (a mesma linguagem do Modo Agente) */
+.janela.jogo {
+  position: relative;
+  border: 1px solid var(--borda-forte);
+  border-radius: 12px;
+  background-color: #0b0b19;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+}
+
+.janela-barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--borda);
+  background-color: var(--superficie-solida);
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--texto-suave);
+}
+
+.janela-barra strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 400;
+  color: var(--ciano);
+}
+
+.luzes {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.luzes i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--texto-fraco);
+}
+
+.luzes i:first-child {
+  background-color: var(--magenta);
+  box-shadow: 0 0 6px var(--magenta);
+}
+
+.mapa-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 25 / 17;
+  image-rendering: pixelated;
+  outline: none;
+  touch-action: none;
+}
+
+.mapa-canvas:focus-visible {
+  outline: 2px solid var(--ciano);
+  outline-offset: -3px;
+}
+
+.controles.jogo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--borda);
+  background-color: var(--superficie-solida);
+}
+
+/* "INICIAR OPERAÇÃO · E" numa linha só */
+.controles.jogo .botao.jogo {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.dica.teclas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  color: var(--texto-suave);
+}
+
+.dica.teclas .tecla {
+  min-width: 28px;
+  height: 28px;
+  font-size: 0.72rem;
+}
+
+/* Tecla pequena dentro de botões e dicas (atalhos 1 a 6) */
+.botao.jogo .tecla,
+.comando-custo .tecla,
+.dica.batalha .tecla {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 0.3rem;
+  border-bottom-width: 2px;
+  font-size: 0.68rem;
+}
+
+/* Faixa "OBJETIVO" acima do mapa */
+.objetivo.jogo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--borda-magenta);
+  background-image: linear-gradient(90deg, rgba(227, 0, 113, 0.16), transparent 70%);
+  background-color: var(--superficie-solida);
+}
+
+.objetivo.jogo p {
+  flex: 1;
+  min-width: 220px;
+  font-size: 0.92rem;
+  color: var(--texto);
+}
+
+.objetivo.jogo .rotulo.sistema {
+  margin-right: 0.5rem;
+  color: var(--magenta-claro);
+}
+
+/* Setas para tocar no celular */
+.direcional {
+  display: grid;
+  grid-template-columns: repeat(3, 38px);
+  gap: 4px;
+}
+
+.direcional button {
+  height: 34px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--fundo);
+  color: var(--ciano);
+  touch-action: none;
+}
+
+.direcional button:first-child {
+  grid-column: 2;
+}
+
+.direcional button:nth-child(2) {
+  grid-column: 1;
+}
+
+.seletor.capitulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  margin-top: var(--espaco);
+}
+
+.seletor.capitulo select {
+  flex: 1;
+  min-width: 220px;
+  min-height: 44px;
+  padding: 0.6rem 2.5rem 0.6rem 0.9rem;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background-color: var(--superficie-alt);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2300f2fe' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  color: var(--texto);
+  font-family: var(--fonte-mono);
+  font-size: 0.82rem;
+  appearance: none;
+  cursor: pointer;
+}
+
+.seletor.capitulo select:focus-visible {
+  outline: none;
+  border-color: var(--ciano);
+  box-shadow: var(--brilho-ciano);
+}
+
+.seletor.capitulo option {
+  background-color: var(--superficie-solida);
+  color: var(--texto);
+}
+
+/* Painel lateral: capítulo, esquadrão e dicas */
+.lateral.jogo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco);
+}
+
+.lateral.jogo .painel.detalhes {
+  border-radius: 12px;
+}
+
+.lateral.jogo .painel.detalhes h3 {
+  margin-block: 0.4rem 0.6rem;
+  font-size: 0.9rem;
+}
+
+.lateral.jogo .painel.detalhes p:not(.rotulo) {
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+.etapas.capitulo {
+  display: flex;
+  gap: 6px;
+  margin: 0.9rem 0;
+}
+
+.etapas.capitulo span {
+  flex: 1;
+  height: 5px;
+  border-radius: 99px;
+  background-color: var(--superficie-alt);
+}
+
+.etapas.capitulo .feita {
+  background-color: var(--ciano);
+  box-shadow: var(--brilho-ciano);
+}
+
+.etapas.capitulo .proxima {
+  background-color: var(--magenta);
+  box-shadow: var(--brilho-magenta);
+}
+
+.lista.fases {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.lista.fases li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.lista.fases b {
+  font-family: var(--fonte-mono);
+  font-weight: 400;
+  color: var(--texto-fraco);
+}
+
+.lista.fases .atual {
+  color: var(--magenta-claro);
+}
+
+.lista.fases .feita {
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+.esquadrao.mini {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.8rem 0;
+}
+
+.esquadrao.mini figure {
+  display: grid;
+  justify-items: center;
+  gap: 0.2rem;
+  padding: 0.35rem;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background-color: var(--fundo);
+}
+
+.esquadrao.mini img {
+  width: 56px;
+  height: 56px;
+}
+
+.esquadrao.mini figcaption {
+  font-family: var(--fonte-mono);
+  font-size: 0.65rem;
+  color: var(--texto-suave);
+}
+
+.legenda.mapa {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.6rem;
+  font-size: 0.82rem;
+  color: var(--texto-suave);
+}
+
+.legenda.mapa li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.legenda.mapa i {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   04. BATALHA: ARENA, HUD E COMANDOS
+   ========================================================================== */
+
+/* Arena e registro à esquerda; quem age, alvo e poderes na coluna lateral */
+.layout.batalha {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: var(--espaco);
+  align-items: start;
+}
+
+.coluna.batalha {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.linha-topo.batalha {
+  position: absolute;
+  top: 0.8rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: #d5d5ef;
+  pointer-events: none;
+}
+
+.linha-topo.batalha strong {
+  font-weight: 400;
+  color: #00f2fe;
+}
+
+.arena-canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 960 / 420;
+  image-rendering: pixelated;
+}
+
+/* Lista de unidades: clicar escolhe quem age e quem é o alvo */
+.hud.batalha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border-top: 1px solid var(--borda);
+  background-color: var(--superficie-solida);
+}
+
+.lista.unidades {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+}
+
+.unidade {
+  display: grid;
+  grid-template-columns: minmax(70px, 110px) 1fr 70px;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: var(--raio);
+  background-color: var(--fundo);
+  font-size: 0.78rem;
+  text-align: left;
+}
+
+.unidade:not(:disabled):hover {
+  border-color: var(--borda-forte);
+}
+
+.unidade.vez {
+  border-color: var(--ciano);
+  box-shadow: inset 3px 0 var(--ciano);
+}
+
+.unidade.alvo {
+  border-color: var(--magenta);
+  box-shadow: inset 3px 0 var(--magenta);
+}
+
+.unidade.desmaiada {
+  opacity: 0.4;
+}
+
+.unidade.agiu {
+  opacity: 0.6;
+}
+
+.unidade:disabled {
+  cursor: default;
+}
+
+.unidade small {
+  grid-column: 1 / -1;
+  font-family: var(--fonte-mono);
+  font-size: 0.66rem;
+  color: var(--texto-suave);
+}
+
+.vida-barra {
+  height: 7px;
+  border-radius: 99px;
+  background-color: #29243a;
+  overflow: hidden;
+}
+
+.vida-barra span {
+  display: block;
+  height: 100%;
+  background-color: var(--verde);
+  transition: width 350ms ease;
+}
+
+.lista.unidades.inimigos .vida-barra span {
+  background-color: #fa658f;
+}
+
+.vida-valor {
+  font-family: var(--fonte-mono);
+  font-size: 0.68rem;
+  text-align: right;
+}
+
+/* Coluna lateral com os poderes */
+.comandos.batalha {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1rem;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background-color: var(--superficie);
+}
+
+.log.batalha {
+  min-height: 2.8rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--fundo);
+  font-family: var(--fonte-mono);
+  font-size: 0.85rem;
+  color: var(--verde);
+}
+
+/* Quem age em cima e o alvo logo abaixo */
+.vez.batalha {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.derrota.batalha {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.derrota.batalha .rotulo.sistema {
+  color: var(--vermelho);
+}
+
+.derrota.batalha h4 {
+  font-family: var(--fonte-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+}
+
+.derrota.batalha p:not(.rotulo) {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+/* Passos numerados: 1 quem age, 2 alvo, 3 ação */
+.passo.batalha {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.passo.batalha b {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--magenta);
+  font-weight: 700;
+  color: #fff;
+}
+
+.dica.batalha {
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: var(--texto-suave);
+}
+
+.agente.batalha {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.agente.batalha img {
+  width: 64px;
+  height: 64px;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.12), transparent 70%);
+}
+
+.agente.batalha h4 {
+  margin: 0.2rem 0 0.35rem;
+  font-family: var(--fonte-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+}
+
+.agente.batalha h4 small {
+  font-family: var(--fonte-mono);
+  font-size: 0.7rem;
+  color: var(--texto-suave);
+}
+
+.energia-barra {
+  width: 170px;
+  height: 6px;
+  border-radius: 99px;
+  background-color: color-mix(in srgb, var(--ambar) 18%, transparent);
+  overflow: hidden;
+}
+
+.energia-barra span {
+  display: block;
+  height: 100%;
+  background-color: var(--ambar);
+}
+
+.agente.batalha .rotulo.energia {
+  margin-top: 0.3rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.7rem;
+  color: var(--ambar);
+}
+
+.alvo.batalha {
+  display: grid;
+  gap: 0.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--borda);
+}
+
+.alvo.batalha .passo.batalha {
+  justify-self: start;
+}
+
+.alvo.batalha strong {
+  font-size: 1.05rem;
+  color: var(--magenta-claro);
+}
+
+.alvo.batalha small {
+  font-size: 0.75rem;
+  color: var(--texto-suave);
+}
+
+/* Cartões das 4 habilidades, um embaixo do outro na lateral */
+.grade.comandos {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.5rem;
+}
+
+.comando {
+  --poder: var(--ambar);
+  display: flex;
+  flex-direction: column;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--poder) 45%, transparent);
+  border-bottom: 3px solid color-mix(in srgb, var(--poder) 70%, transparent);
+  border-radius: 10px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--poder) 14%, var(--superficie-solida)),
+    var(--superficie-solida)
+  );
+  text-align: left;
+  transition:
+    transform var(--rapido) ease,
+    box-shadow var(--rapido) ease,
+    border-color var(--rapido) ease;
+}
+
+.comando.suporte {
+  --poder: #68d8ff;
+}
+
+.comando.controle {
+  --poder: #b9a1ff;
+}
+
+.comando.cura {
+  --poder: var(--verde);
+}
+
+.comando:not(:disabled):hover {
+  transform: translateX(-3px);
+  border-color: var(--poder);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.comando:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Ícone, nome e custo na mesma linha */
+.comando-topo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.35rem;
+}
+
+.comando-topo strong {
+  flex: 1;
+  min-width: 0;
+}
+
+.comando-icone {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background-color: color-mix(in srgb, var(--poder) 16%, transparent);
+  color: var(--poder);
+}
+
+.comando-icone svg {
+  width: 20px;
+  height: 20px;
+}
+
+.comando-custo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 99px;
+  background-color: var(--fundo);
+  font-family: var(--fonte-mono);
+  font-size: 0.7rem;
+  color: var(--poder);
+}
+
+.comando strong {
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+.comando .descricao {
+  margin-bottom: 0.35rem;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: var(--texto-suave);
+}
+
+.comando small {
+  margin-top: auto;
+  font-family: var(--fonte-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  color: var(--poder);
+}
+
+/* Ações rápidas embaixo da arena: ataque básico, defender, itens e abandonar */
+.acoes.secundarias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.acoes.secundarias .botao.jogo small {
+  color: var(--texto-suave);
+}
+
+.botao.jogo.item {
+  border-color: color-mix(in srgb, var(--item) 45%, transparent);
+  color: var(--item);
+}
+
+.botao.jogo.abandonar {
+  margin-left: auto;
+}
+
+.botao.jogo.abandonar:not(:disabled):hover {
+  border-color: var(--vermelho);
+  color: var(--vermelho);
+}
+
+/* Faixas diagonais da transição para a batalha */
+.transicao.rpg {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: repeating-linear-gradient(165deg, #00f2fe 0 12px, #08060f 12px 80px);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   05. EQUIPE E CARTÕES DE PERSONAGEM
+   ========================================================================== */
+
+.lista.esquadrao {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--espaco);
+}
+
+.vaga.esquadrao {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-height: 110px;
+  padding: 0.9rem;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background-color: var(--superficie);
+}
+
+.vaga.esquadrao.vazia {
+  justify-content: center;
+  border-style: dashed;
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  color: var(--texto-fraco);
+}
+
+.vaga.esquadrao .posicao {
+  font-family: var(--fonte-mono);
+  font-size: 1.4rem;
+  color: var(--magenta);
+}
+
+.vaga.esquadrao img {
+  width: 64px;
+  height: 64px;
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--cor) 50%, transparent));
+}
+
+.vaga.esquadrao h4 {
+  font-family: var(--fonte-display);
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+}
+
+.vaga.esquadrao p {
+  font-size: 0.78rem;
+  color: var(--texto-suave);
+}
+
+.vaga.esquadrao .acoes.jogo {
+  margin-left: auto;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.vaga.esquadrao .botao.jogo {
+  min-height: 32px;
+  padding: 0.25rem 0.6rem;
+}
+
+/* Grade de cartões (Equipe e Loja) */
+.lista.cartoes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--espaco);
+}
+
+.card.personagem {
+  --cor: var(--ciano);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background-color: var(--superficie);
+}
+
+.card.personagem.bloqueado .visual.personagem img {
+  filter: brightness(0.4) saturate(0.4);
+}
+
+.dica.equipe {
+  margin: calc(var(--espaco) * -0.5) 0 var(--espaco);
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+.visual.personagem {
+  display: grid;
+  place-items: center;
+  height: 170px;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--cor) 24%, transparent), transparent 65%),
+    #07050d;
+}
+
+.visual.personagem img {
+  width: 150px;
+  height: 150px;
+  filter: drop-shadow(0 0 12px color-mix(in srgb, var(--cor) 50%, transparent));
+  transition: transform 400ms var(--suave);
+}
+
+.card.personagem:not(.bloqueado):hover .visual.personagem img {
+  transform: scale(1.05);
+}
+
+.topo.personagem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.funcao.personagem {
+  font-family: var(--fonte-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cor);
+}
+
+.card.personagem h4 {
+  font-family: var(--fonte-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+}
+
+.card.personagem > p:not(.rotulo) {
+  min-height: 2.8em;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+/* No lugar da descrição, o que falta para liberar o agente */
+.card.personagem > p.requisito {
+  font-family: var(--fonte-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--ambar);
+}
+
+.grade.atributos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.35rem;
+}
+
+.grade.atributos div {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.4rem 0.2rem;
+  border-radius: 6px;
+  background-color: var(--fundo);
+  text-align: center;
+}
+
+.grade.atributos b {
+  font-family: var(--fonte-mono);
+  font-size: 1.15rem;
+  color: var(--texto);
+}
+
+.grade.atributos span {
+  font-family: var(--fonte-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  color: var(--texto-suave);
+}
+
+.estudo.personagem {
+  display: grid;
+  gap: 0.35rem;
+}
+
+/* As barras criadas depois do carregamento já nascem cheias */
+.estudo.personagem .preenchimento.progresso {
+  transform: none;
+}
+
+.card.personagem .acoes.jogo {
+  margin-top: auto;
+}
+
+.card.personagem .acoes.jogo > * {
+  flex: 1;
+}
+
+.lista.habilidades {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.lista.habilidades li {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.75rem;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background-color: var(--superficie-solida);
+}
+
+.lista.habilidades li.bloqueada {
+  opacity: 0.6;
+}
+
+.lista.habilidades small {
+  font-size: 0.82rem;
+  color: var(--texto-suave);
+}
+
+.lista.habilidades .rotulo.sistema {
+  font-size: 0.66rem;
+}
+
+/* Aviso com chamada para outra tela */
+.chamada.rpg {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco);
+  margin-top: calc(var(--espaco) * 1.5);
+  padding: var(--espaco);
+  border: 1px solid var(--borda-magenta);
+  border-radius: 12px;
+  background-image: linear-gradient(120deg, rgba(227, 0, 113, 0.1), transparent 60%);
+}
+
+.chamada.rpg h4 {
+  font-family: var(--fonte-display);
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+}
+
+.chamada.rpg p {
+  max-width: 60ch;
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+/* ==========================================================================
+   06. LOJA E SUPRIMENTOS
+   ========================================================================== */
+
+.lista.suprimentos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--espaco);
+}
+
+.card.suprimento {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--item) 40%, transparent);
+  border-radius: 12px;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--item) 9%, var(--superficie-solida)),
+    var(--superficie-solida)
+  );
+}
+
+.icone.suprimento {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background-color: color-mix(in srgb, var(--item) 15%, transparent);
+  color: var(--item);
+}
+
+.icone.suprimento svg {
+  width: 28px;
+  height: 28px;
+}
+
+.card.suprimento h4 {
+  font-family: var(--fonte-display);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.card.suprimento p:not(.rotulo) {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.card.suprimento .quantidade {
+  color: var(--item);
+}
+
+.card.suprimento .botao.jogo {
+  width: 100%;
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   07. DESAFIOS E DIÁRIO DA CAMPANHA
+   ========================================================================== */
+
+.filtros.desafios {
+  margin-bottom: var(--espaco);
+}
+
+.filtros.desafios .opcao {
+  flex: 0 1 auto;
+}
+
+.lista.linhas {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.linha.rpg {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco);
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background-color: var(--superficie);
+}
+
+.linha.rpg .numero {
+  flex-shrink: 0;
+  min-width: 2.2ch;
+  font-family: var(--fonte-mono);
+  font-size: 1.4rem;
+  color: var(--ciano);
+}
+
+.linha.rpg > div {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.linha.rpg h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.linha.rpg > :last-child {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.linha.rpg.feita .numero {
+  color: var(--verde);
+}
+
+.linha.rpg.bloqueada {
+  opacity: 0.5;
+}
+
+.linha.rpg.atual {
+  border-color: var(--borda-magenta);
+  box-shadow: inset 3px 0 var(--magenta);
+}
+
+.bloco.capitulo {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.bloco.capitulo + .bloco.capitulo {
+  margin-top: calc(var(--espaco) * 1.5);
+}
+
+.bloco.capitulo > h4 {
+  font-family: var(--fonte-display);
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  color: var(--cor, var(--ciano));
+}
+
+.bloco.capitulo > p:not(.rotulo) {
+  max-width: 75ch;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+/* ==========================================================================
+   08. JANELA DE DIÁLOGO, PERGUNTAS E AVISO
+   ========================================================================== */
+
+html.modal-aberto {
+  overflow: hidden;
+}
+
+.modal.rpg {
+  width: min(680px, 100% - 2rem);
+  max-width: none;
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  background-color: var(--fundo-alt);
+  color: var(--texto);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(227, 0, 113, 0.15);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* A animação fica na moldura (e não na janela) para não deslocar o cursor
+   estilizado, que entra na janela enquanto ela está aberta */
+.modal.rpg[open] .moldura.modal {
+  animation: modal-entra 400ms var(--suave);
+}
+
+.modal.rpg::backdrop {
+  background-color: rgba(4, 3, 10, 0.78);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+@keyframes modal-entra {
+  from {
+    opacity: 0;
+    translate: 0 30px;
+    scale: 0.97;
+  }
+}
+
+.topo.modal {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid var(--borda);
+  background-color: color-mix(in srgb, var(--fundo-alt) 92%, transparent);
+}
+
+.fechar.modal {
+  min-height: 36px;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  background-color: var(--superficie-alt);
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  transition:
+    border-color var(--rapido) ease,
+    color var(--rapido) ease;
+}
+
+.fechar.modal:hover {
+  border-color: var(--vermelho);
+  color: var(--vermelho);
+}
+
+.conteudo.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.2rem;
+}
+
+.conteudo.modal h3 {
+  font-family: var(--fonte-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+}
+
+.conteudo.modal > p:not(.rotulo) {
+  color: var(--texto-suave);
+}
+
+/* Fala de um personagem, com retrato e texto sendo digitado */
+.fala {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  align-items: start;
+  gap: 1.1rem;
+}
+
+.fala img {
+  width: 88px;
+  height: 88px;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background: radial-gradient(circle, rgba(227, 0, 113, 0.18), transparent 70%), #07050d;
+}
+
+.fala .texto {
+  min-height: 7.5em;
+  margin-top: 0.35rem;
+  line-height: 1.75;
+}
+
+.rodape.modal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+/* Pergunta de múltipla escolha */
+.pergunta.rpg {
+  font-size: 1.1rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  outline: none;
+}
+
+.alternativas {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.alternativas button {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background-color: var(--superficie);
+  text-align: left;
+  overflow-wrap: anywhere;
+  transition:
+    border-color var(--rapido) ease,
+    background-color var(--rapido) ease;
+}
+
+.alternativas button:not(:disabled):hover {
+  border-color: var(--ciano);
+  background-color: var(--superficie-alt);
+}
+
+.alternativas button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.alternativas .letra {
+  flex-shrink: 0;
+  font-family: var(--fonte-mono);
+  color: var(--magenta);
+}
+
+/* Resposta na hora: verde quando acerta, vermelho quando erra */
+.alternativas button.certa,
+.alternativas button.errada {
+  opacity: 1;
+}
+
+.alternativas button.certa {
+  border-color: var(--verde);
+  background-color: color-mix(in srgb, var(--verde) 14%, transparent);
+}
+
+.alternativas button.errada {
+  border-color: var(--vermelho);
+  background-color: color-mix(in srgb, var(--vermelho) 12%, transparent);
+  text-decoration: line-through;
+}
+
+.alternativas button.certa .letra {
+  color: var(--verde);
+}
+
+.alternativas button.errada .letra {
+  color: var(--vermelho);
+}
+
+.retorno:empty {
+  display: none;
+}
+
+.retorno {
+  padding: 0.75rem 1rem;
+  border-left: 3px solid currentColor;
+  border-radius: 0 8px 8px 0;
+  background-color: color-mix(in srgb, currentColor 8%, transparent);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.retorno.certa {
+  color: var(--verde);
+}
+
+.retorno.errada {
+  color: var(--vermelho);
+}
+
+/* Quantas perguntas do terminal já foram acertadas */
+.passos.perguntas {
+  display: flex;
+  gap: 6px;
+}
+
+.passos.perguntas span {
+  flex: 1;
+  height: 5px;
+  border-radius: 99px;
+  background-color: var(--superficie-alt);
+}
+
+.passos.perguntas .feito {
+  background-color: var(--verde);
+}
+
+.passos.perguntas .atual {
+  background-color: var(--magenta);
+  box-shadow: var(--brilho-magenta);
+}
+
+.quiz {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+/* Aviso rápido (fica alguns segundos no rodapé da tela) */
+.aviso.rpg {
+  position: fixed;
+  left: 50%;
+  bottom: 1.2rem;
+  z-index: 95;
+  width: max-content;
+  max-width: min(560px, 100% - 2rem);
+  padding: 0.8rem 1.1rem;
+  border: 1px solid var(--ciano);
+  border-radius: 8px;
+  background-color: var(--superficie-solida);
+  box-shadow: var(--brilho-ciano), var(--sombra);
+  font-size: 0.9rem;
+  transform: translateX(-50%);
+}
+
+.aviso.rpg[hidden] {
+  display: none;
+}
+
+/* ==========================================================================
+   09. PREFERÊNCIAS DO JOGO
+   ========================================================================== */
+
+.preferencias.rpg {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: var(--espaco);
+  border-top: 1px solid var(--borda);
+}
+
+.preferencias.rpg label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.preferencias.rpg input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--magenta);
+}
+
+.reiniciar.progresso {
+  padding: 0.3rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  color: var(--texto-fraco);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.reiniciar.progresso:hover {
+  color: var(--vermelho);
+}
+
+/* ==========================================================================
+   10. RESPONSIVIDADE
+   ========================================================================== */
+
+@media (max-width: 1099px) {
+  /* A coluna dos poderes desce para baixo da arena */
+  .layout.jogo,
+  .layout.batalha {
+    grid-template-columns: 1fr;
+  }
+
+  .lateral.jogo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+
+  .lista.cartoes,
+  .lista.esquadrao {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lista.suprimentos,
+  .grade.comandos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .painel.progresso.campanha {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .painel.progresso.campanha .dado.campanha:nth-child(2) {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+
+  .valor.campanha.moedas {
+    text-align: left;
+  }
+
+  .dica.teclas {
+    display: none;
+  }
+
+  .hud.batalha {
+    grid-template-columns: 1fr;
+  }
+
+  .lista.esquadrao {
+    grid-template-columns: 1fr;
+  }
+
+  .linha.rpg {
+    flex-wrap: wrap;
+  }
+
+  .linha.rpg > :last-child {
+    margin-left: 0;
+  }
+
+  .botao.jogo.abandonar {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 559px) {
+  .abas.rpg .opcao {
+    flex: 1 1 calc(50% - 0.5rem);
+    justify-content: center;
+  }
+
+  .lista.cartoes,
+  .lista.suprimentos,
+  .grade.comandos {
+    grid-template-columns: 1fr;
+  }
+
+  .unidade {
+    grid-template-columns: minmax(70px, 1fr) 1fr 64px;
+  }
+
+  .fala {
+    grid-template-columns: 64px 1fr;
+  }
+
+  .fala img {
+    width: 64px;
+    height: 64px;
+  }
+}

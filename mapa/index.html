@@ -84,10 +84,16 @@
               <span data-i18n="nav_arquivos">ARQUIVOS</span>
             </a>
           </li>
+          <li>
+            <a href="../rpg/index.html#SECAO-RPG">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_rpg">RPG</span>
+            </a>
+          </li>
         </ul>
       </nav>
 
-      <!-- Área Direita: Status Online, Painel de Acessibilidade e Perfil -->
+      <!-- Área Direita: Status Online, Painel de Acessibilidade e Menu Mobile -->
       <div class="area direita">
         <!-- Indicador do Status do Sistema -->
         <p class="status online">
@@ -174,16 +180,6 @@
           <div id="google_translate_element" style="display: none"></div>
         </details>
 
-        <!-- Atalho do Perfil -->
-        <a class="perfil atalho" href="../perfil/index.html#SECAO-PERFIL">
-          <img
-            src="../img/perfil-avatar.png"
-            alt="Perfil do operador CodePlayer_42"
-            width="312"
-            height="312"
-          />
-        </a>
-
         <!-- Botão Hambúrguer (Mobile / Tablet) -->
         <button
           type="button"
@@ -212,18 +208,20 @@
           <p>
             Explore os territórios que compõem o CodeWorld. Cada região abriga
             desafios, segredos e sistemas que sustentam o equilíbrio digital.
-            Selecione um território para obter detalhes.
+            Os andares são liberados conforme você avança no RPG. Selecione um
+            território para obter detalhes.
           </p>
         </div>
 
-        <!-- Painel de Progresso da Exploração -->
+        <!-- Painel de Progresso da Exploração (em sincronia com o RPG,
+             atualizado pelo script.js) -->
         <div class="painel progresso">
-          <p class="rotulo sistema">TERRITÓRIOS DESCOBERTOS</p>
-          <p class="contagem">3/4</p>
+          <p class="rotulo sistema">TERRITÓRIOS LIBERADOS</p>
+          <p class="contagem" id="CONTAGEM-TERRITORIOS">1/4</p>
           <div class="barra progresso">
-            <div class="preenchimento progresso" style="--valor: 85%"></div>
+            <div class="preenchimento progresso" id="BARRA-TERRITORIOS" style="--valor: 0%"></div>
           </div>
-          <p class="rotulo sistema">85% DO MAPA EXPLORADO</p>
+          <p class="rotulo sistema" id="TEXTO-TERRITORIOS">0% DO MAPA RECUPERADO NO RPG</p>
         </div>
 
         <!-- Explorador: mapa interativo + detalhes do andar selecionado -->
@@ -361,6 +359,9 @@
 
     <!-- Comportamento compartilhado (menu, acessibilidade, animações) -->
     <script src="../comum/base.js" defer></script>
+    <!-- Conteúdo e regras do RPG: os andares liberam junto com o jogo -->
+    <script src="../rpg/dados.js" defer></script>
+    <script src="../rpg/regras.js" defer></script>
     <!-- Interações exclusivas desta tela -->
     <script src="script.js" defer></script>
     <!-- Complemento do painel de acessibilidade (tradução e vídeo) -->

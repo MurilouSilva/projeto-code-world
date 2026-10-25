@@ -4,10 +4,15 @@
  * (Menu, acessibilidade e animações gerais ficam em ../comum/base.js)
  *
  *   1. Dados dos andares (territórios)
+ *   1.1 Sincronia com o RPG (andares liberados e progresso)
  *   2. Seleção de andar e painel de detalhes
  *   3. Zoom e arraste do mapa
  *   4. Controles (botões e teclado)
  *   5. Cronômetros regressivos dos eventos globais
+ *
+ * Os andares seguem o progresso do RPG (../rpg/regras.js, carregado antes):
+ * um andar é liberado junto com o primeiro capítulo dele no jogo e fica
+ * RECUPERADO quando todas as operações dos seus capítulos são vencidas.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -22,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
       linguagens: "HTML + CSS",
       cor: "#ff7a1a",
       centro: { x: 52, y: 15 },
-      status: "liberado",
+      capitulos: ["html", "css"], // capítulos do RPG que ficam neste andar
       descricao:
         "A fachada da Internet. Aqui o HTML ergue a estrutura de cada página e o CSS dá cor, forma e movimento ao distrito mais iluminado do CodeWorld.",
       dificuldade: "Fácil",
@@ -44,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       linguagens: "JavaScript + Java",
       cor: "#2f8dff",
       centro: { x: 55, y: 40 },
-      status: "liberado",
+      capitulos: ["javascript", "java"],
       descricao:
         "O distrito da lógica. Os sistemas de decisão da cidade rodam aqui: o JavaScript reage a cada ação e o Java guarda as regras que mantêm tudo seguro.",
       dificuldade: "Média",
@@ -67,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
       linguagens: "Python + Kotlin",
       cor: "#19d38a",
       centro: { x: 54, y: 62 },
-      status: "explorando",
+      capitulos: ["python", "kotlin"],
       descricao:
         "O jardim dos dados. Entre árvores digitais, o Python organiza as estratégias e o Kotlin acelera os aplicativos — mas corrupções já se espalham pela região.",
       dificuldade: "Difícil",
@@ -91,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
       linguagens: "Super IA",
       cor: "#e30071",
       centro: { x: 53, y: 85 },
-      status: "bloqueado",
+      capitulos: ["core"],
       descricao:
         "O coração da Super IA. Ninguém que entrou no Núcleo voltou para contar. Os sensores só captam fragmentos de dados corrompidos...",
       dificuldade: "Extrema",
@@ -103,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const NOMES_STATUS = {
-    liberado: "LIBERADO",
+    recuperado: "RECUPERADO",
     explorando: "EM EXPLORAÇÃO",
     bloqueado: "BLOQUEADO",
   };
@@ -116,6 +121,80 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!viewport || !palco || !detalhes) return;
 
   const doisDigitos = (n) => String(n).padStart(2, "0");
+
+  // ==========================================================================
+  // 1.1 SINCRONIA COM O RPG
+  // ==========================================================================
+  const comRpg = typeof Regras !== "undefined" && typeof DADOS_RPG !== "undefined";
+  const indiceDoCapitulo = (id) => DADOS_RPG.capitulos.findIndex((c) => c.id === id);
+
+  // Status de cada andar e quantas operações dele já foram vencidas no RPG
+  function sincronizarComRpg() {
+    if (!comRpg) {
+      ANDARES.forEach((andar, i) => (andar.status = i === 0 ? "explorando" : "bloqueado"));
+      return;
+    }
+    const { operacoes } = DADOS_RPG;
+    const { concluidas } = Regras.progresso;
+
+    ANDARES.forEach((andar) => {
+      const indices = andar.capitulos.map(indiceDoCapitulo);
+      const doAndar = operacoes.filter((o) => indices.includes(o.world));
+      const primeiro = Math.min(...indices);
+      andar.total = doAndar.length;
+      andar.vencidas = doAndar.filter((o) => concluidas.includes(o.id)).length;
+      // As operações são vencidas em ordem: o andar abre quando todas as
+      // operações antes do seu primeiro capítulo forem vencidas
+      andar.faltam = Math.max(0, operacoes.findIndex((o) => o.world === primeiro) - concluidas.length);
+
+      if (primeiro > Regras.mundoLiberado()) andar.status = "bloqueado";
+      else if (andar.vencidas === andar.total) andar.status = "recuperado";
+      else andar.status = "explorando";
+    });
+  }
+
+  // Andar onde o jogador está agora no RPG (começa selecionado no mapa)
+  function andarNoRpg() {
+    if (!comRpg) return 0;
+    const capitulo = DADOS_RPG.capitulos[Regras.progresso.posicao.mundo].id;
+    return Math.max(0, ANDARES.findIndex((andar) => andar.capitulos.includes(capitulo)));
+  }
+
+  // Capítulo do andar para onde o RPG deve abrir: o último já liberado
+  function capituloParaJogar(andar) {
+    const liberados = andar.capitulos.map(indiceDoCapitulo).filter((i) => i <= Regras.mundoLiberado());
+    return Math.max(...liberados);
+  }
+
+  const contagem = document.getElementById("CONTAGEM-TERRITORIOS");
+  const barra = document.getElementById("BARRA-TERRITORIOS");
+  const textoProgresso = document.getElementById("TEXTO-TERRITORIOS");
+
+  // Aplica os status nos andares da imagem e no painel do topo
+  function atualizarAndares() {
+    sincronizarComRpg();
+
+    palco.querySelectorAll(".andar-mapa").forEach((botao) => {
+      const andar = ANDARES[Number(botao.dataset.andar)];
+      botao.classList.toggle("bloqueado", andar.status === "bloqueado");
+      botao.classList.toggle("recuperado", andar.status === "recuperado");
+      botao.setAttribute("aria-label", `${andar.nome}: ${andar.linguagens} — ${NOMES_STATUS[andar.status]}`);
+      const etiqueta = botao.querySelector(".etiqueta-andar");
+      if (etiqueta) {
+        const extra = andar.status === "bloqueado" ? " • BLOQUEADO" : "";
+        etiqueta.textContent = `${andar.nome.toUpperCase()} • ${andar.linguagens.toUpperCase()}${extra}`;
+      }
+    });
+
+    // Territórios liberados e quanto da campanha do RPG já foi vencido
+    const liberados = ANDARES.filter((andar) => andar.status !== "bloqueado").length;
+    const porcentagem = comRpg
+      ? Math.round((Regras.progresso.concluidas.length / DADOS_RPG.operacoes.length) * 100)
+      : 0;
+    if (contagem) contagem.textContent = `${liberados}/${ANDARES.length}`;
+    barra?.style.setProperty("--valor", `${porcentagem}%`);
+    if (textoProgresso) textoProgresso.textContent = `${porcentagem}% DO MAPA RECUPERADO NO RPG`;
+  }
 
   // ==========================================================================
   // 2. SELEÇÃO DE ANDAR E PAINEL DE DETALHES
@@ -146,6 +225,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const proximo = ANDARES[i + 1];
 
+    // Progresso do andar no RPG (operações vencidas dos seus capítulos)
+    const progressoRpg = comRpg
+      ? `
+      <div class="bloco-detalhe">
+        <p class="rotulo sistema">PROGRESSO NO RPG <strong>${doisDigitos(a.vencidas)}/${doisDigitos(a.total)} OPERAÇÕES</strong></p>
+        <div class="barra progresso">
+          <div class="preenchimento progresso visivel" style="--valor: ${(a.vencidas / a.total) * 100}%"></div>
+        </div>
+      </div>`
+      : "";
+
+    const aviso = a.faltam
+      ? `Vença mais ${a.faltam} ${a.faltam === 1 ? "operação" : "operações"} no RPG para liberar este andar.`
+      : "Avance no RPG para liberar este andar.";
+
     return `
       <div class="cabeca detalhes">
         <p class="rotulo sistema">DETALHES DO NÍVEL // ANDAR ${doisDigitos(i)}</p>
@@ -171,6 +265,8 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
 
+      ${progressoRpg}
+
       <div class="bloco-detalhe">
         <p class="rotulo sistema">MISSÕES DO ANDAR</p>
         <ol class="missoes andar">
@@ -187,8 +283,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="acoes detalhes">
         ${
           bloqueado
-            ? `<p class="aviso bloqueio">Conclua os níveis anteriores para acessar o Núcleo.</p>`
-            : `<a class="botao primario" href="../missoes/index.html#SECAO-MISSOES">VER MISSÕES <span aria-hidden="true">→</span></a>`
+            ? `<p class="aviso bloqueio">${aviso}</p>
+               <a class="botao secundario" href="../rpg/index.html#explorar">JOGAR RPG <span aria-hidden="true">→</span></a>`
+            : `<button type="button" class="botao primario" data-jogar="${i}">JOGAR ESTE ANDAR NO RPG <span aria-hidden="true">→</span></button>
+               <a class="botao secundario" href="../missoes/index.html#SECAO-MISSOES">VER MISSÕES <span aria-hidden="true">→</span></a>`
         }
         ${
           proximo
@@ -242,6 +340,16 @@ document.addEventListener("DOMContentLoaded", () => {
   detalhes.addEventListener("click", (e) => {
     const botao = e.target.closest("[data-ir-andar]");
     if (botao) selecionarAndar(Number(botao.dataset.irAndar));
+
+    // Abre o RPG já no capítulo deste andar (se não houver operação aberta)
+    const jogar = e.target.closest("[data-jogar]");
+    if (!jogar) return;
+    if (comRpg && !Regras.progresso.ativa) {
+      try {
+        Regras.viajar(capituloParaJogar(ANDARES[Number(jogar.dataset.jogar)]));
+      } catch (erro) {}
+    }
+    location.href = "../rpg/index.html#explorar";
   });
 
   // ==========================================================================
@@ -367,10 +475,27 @@ document.addEventListener("DOMContentLoaded", () => {
     acoes[tecla]();
   });
 
-  // Começa no andar do endereço (ex.: mapa/index.html#nivel-2) ou no Nível 0
+  // Começa no andar do endereço (ex.: mapa/index.html#nivel-2) ou no andar
+  // onde o jogador está agora no RPG
+  atualizarAndares();
   const doEndereco = location.hash.match(/^#nivel-(\d)/);
-  selecionarAndar(doEndereco ? Number(doEndereco[1]) : 0, { focarNoMapa: false });
+  selecionarAndar(doEndereco ? Number(doEndereco[1]) : andarNoRpg(), { focarNoMapa: false });
   aplicarTransformacao();
+
+  // O RPG avançou em outra aba (ou a página voltou pelo botão "voltar"):
+  // atualiza os andares sem trocar o andar selecionado
+  function ressincronizar() {
+    if (!comRpg) return;
+    Regras.recarregar();
+    atualizarAndares();
+    selecionarAndar(atual, { focarNoMapa: false });
+  }
+  window.addEventListener("storage", (e) => {
+    if (e.key === "cw_rpg_progresso" || e.key === "cw_progresso_agentes") ressincronizar();
+  });
+  window.addEventListener("pageshow", (e) => {
+    if (e.persisted) ressincronizar();
+  });
 
   // ==========================================================================
   // 5. CRONÔMETROS REGRESSIVOS DOS EVENTOS GLOBAIS

@@ -336,8 +336,13 @@
   // ==========================================================================
   const modal = document.getElementById("MODAL-AGENTE");
   const atual = { agente: null, nivel: 0 };
-  let cursorEstavaAtivo = false;
   let temporizadorAviso;
+
+  // A janela fica numa camada acima de tudo, inclusive do cursor estilizado
+  // (comum/base.js). Para ele continuar aparecendo, o cursor entra na janela
+  // enquanto ela está aberta e volta para o <body> quando ela fecha.
+  const cursores = document.querySelectorAll(".cursor-inner, .cursor-outer");
+  const moverCursor = (destino) => cursores.forEach((cursor) => destino.appendChild(cursor));
 
   // Respostas dadas nesta visita: { "html-0": [{ certa, erradas, ordem }, ...] }
   // "ordem" embaralha as alternativas para a resposta certa não ficar
@@ -374,23 +379,31 @@
     // Sem nível informado, abre no primeiro nível ainda não concluído
     atual.nivel = nivel ?? Math.min(concluidos(agente), TOTAL_NIVEIS - 1);
 
+    // Trocar de agente redesenha a janela inteira: se o cursor estava nela,
+    // ele precisa entrar de novo
+    const cursorNaJanela = cursores[0]?.parentElement === modal;
     renderizarModal();
     modal.scrollTop = 0;
+    if (cursorNaJanela) moverCursor(modal);
 
     if (!modal.open) {
-      // A janela fica numa camada acima de tudo, inclusive do cursor
-      // customizado: enquanto ela está aberta, volta o cursor normal
-      cursorEstavaAtivo = root.classList.contains("cursor-ativo");
-      root.classList.remove("cursor-ativo");
       root.classList.add("modal-aberto");
       modal.showModal();
+      // Sem animação de abertura (reduzir movimento), o cursor entra já
+      if (getComputedStyle(modal).animationName === "none") moverCursor(modal);
     }
     history.replaceState(null, "", `#agente-${agente.id}`);
   }
 
+  // Com animação, o cursor só entra quando ela termina: enquanto a janela
+  // desliza, um elemento "fixed" dentro dela ficaria fora do lugar
+  modal.addEventListener("animationend", (e) => {
+    if (e.target === modal && modal.open) moverCursor(modal);
+  });
+
   modal.addEventListener("close", () => {
+    moverCursor(document.body);
     root.classList.remove("modal-aberto");
-    if (cursorEstavaAtivo) root.classList.add("cursor-ativo");
     history.replaceState(null, "", location.pathname);
   });
 

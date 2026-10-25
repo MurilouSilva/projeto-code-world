@@ -875,7 +875,7 @@ header nav a.ativo {
   color: var(--magenta);
 }
 
-/* --- 6.3 Status online e atalho do perfil --- */
+/* --- 6.3 Status online --- */
 .status.online {
   display: flex;
   align-items: center;
@@ -891,27 +891,6 @@ header nav a.ativo {
   font-size: 0.6rem;
   text-shadow: 0 0 6px var(--verde);
   animation: pulso 1.4s ease-in-out infinite;
-}
-
-.perfil.atalho {
-  display: block;
-  border-radius: 50%;
-  transition:
-    box-shadow var(--rapido) ease,
-    transform var(--rapido) ease;
-}
-
-.perfil.atalho:hover {
-  box-shadow: var(--brilho-ciano);
-  transform: scale(1.06);
-}
-
-.perfil.atalho img {
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--borda-forte);
-  border-radius: 50%;
-  object-fit: cover;
 }
 
 /* --- 6.4 Botão Hambúrguer --- */

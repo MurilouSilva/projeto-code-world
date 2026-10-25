@@ -84,10 +84,16 @@
               <span data-i18n="nav_arquivos">ARQUIVOS</span>
             </a>
           </li>
+          <li>
+            <a href="../rpg/index.html#SECAO-RPG">
+              <span class="indice" aria-hidden="true"></span>
+              <span data-i18n="nav_rpg">RPG</span>
+            </a>
+          </li>
         </ul>
       </nav>
 
-      <!-- Área Direita: Status Online, Painel de Acessibilidade e Perfil -->
+      <!-- Área Direita: Status Online, Painel de Acessibilidade e Menu Mobile -->
       <div class="area direita">
         <!-- Indicador do Status do Sistema -->
         <p class="status online">
@@ -174,16 +180,6 @@
           <div id="google_translate_element" style="display: none"></div>
         </details>
 
-        <!-- Atalho do Perfil -->
-        <a class="perfil atalho" href="../perfil/index.html#SECAO-PERFIL">
-          <img
-            src="../img/perfil-avatar.png"
-            alt="Perfil do operador CodePlayer_42"
-            width="312"
-            height="312"
-          />
-        </a>
-
         <!-- Botão Hambúrguer (Mobile / Tablet) -->
         <button
           type="button"
@@ -243,6 +239,16 @@
                 <strong>Modo Agente</strong>: conclua os 5 níveis de uma
                 linguagem para desbloquear o próximo.
               </p>
+
+              <!-- Ligação com o RPG: só os agentes desbloqueados entram na equipe -->
+              <p class="dica modo">
+                <span aria-hidden="true">▸</span> Os agentes desbloqueados aqui
+                formam a sua <strong>equipe do RPG</strong> — e cada nível
+                concluído deixa o agente mais forte nas batalhas.
+              </p>
+              <a class="botao secundario" href="../rpg/index.html#equipe">
+                MONTAR EQUIPE NO RPG <span aria-hidden="true">→</span>
+              </a>
             </div>
 
             <!-- Painel de Filtros -->
