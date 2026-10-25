@@ -26,6 +26,8 @@ const Regras = (() => {
   const CHAVE_SAVE = "cw_rpg_progresso";
   // Progresso do Modo Agente, salvo pela tela Personagens: { html: 5, css: 2 }
   const CHAVE_AGENTES = "cw_progresso_agentes";
+  // Missões de código vencidas na tela Missões: { "bug-invasor": { patch: 2 } }
+  const CHAVE_MISSOES = "cw_missoes";
   const NIVEIS_MODO_AGENTE = 5;
   const MOEDAS_POR_NIVEL = 50;
   const LIMITE_ITEM = 20;
@@ -95,6 +97,7 @@ const Regras = (() => {
       ativa: null, // { id, etapa: "perguntas" | "batalha" | "derrota", pergunta, batalha }
       aulasPagas: [], // níveis do Modo Agente que já renderam moedas ("html:0")
       desafios: [], // desafios rápidos que já renderam itens
+      missoesPagas: [], // missões de código (tela Missões) que já renderam itens
     };
   }
 
@@ -220,6 +223,37 @@ const Regras = (() => {
   }
 
   const recompensaDesafio = (indice) => ({ [Object.keys(itens)[indice % 4]]: 1 });
+
+  // Paga os itens das missões de código vencidas na tela Missões. Aquela tela
+  // só anota a vitória na chave dela (cw_missoes); quem coloca os itens na
+  // mochila é o RPG, uma vez por missão (o mesmo jeito das moedas do Modo Agente)
+  function sincronizarMissoes() {
+    let vencidas = {};
+    try {
+      vencidas = JSON.parse(localStorage.getItem(CHAVE_MISSOES)) || {};
+    } catch (erro) {}
+    if (typeof vencidas !== "object" || Array.isArray(vencidas)) vencidas = {};
+    // Save antigo ou estragado: começa a lista de pagas do zero
+    if (!Array.isArray(progresso.missoesPagas)) progresso.missoesPagas = [];
+
+    const recebido = {};
+    let mudou = false;
+    Object.entries(vencidas).forEach(([id, recompensas]) => {
+      if (progresso.missoesPagas.includes(id)) return;
+      progresso.missoesPagas.push(id);
+      mudou = true;
+      Object.entries(recompensas || {}).forEach(([item, quantidade]) => {
+        // Só itens que existem no jogo e quantidades inteiras
+        if (itens[item] && Number.isInteger(quantidade) && quantidade >= 1) {
+          recebido[item] = (recebido[item] || 0) + quantidade;
+        }
+      });
+    });
+
+    conceder(recebido);
+    if (mudou) salvar();
+    return recebido;
+  }
 
   // ==========================================================================
   // 4. EXPLORAÇÃO E OPERAÇÕES DA HISTÓRIA
@@ -815,6 +849,7 @@ const Regras = (() => {
     nivel,
     atributos,
     sincronizarModoAgente,
+    sincronizarMissoes,
     recompensaOperacao,
     recompensaDesafio,
     mundoLiberado,

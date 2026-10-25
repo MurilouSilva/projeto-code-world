@@ -1442,8 +1442,9 @@
       .addEventListener("click", (e) => e.target.closest("dialog").close());
   }
 
-  // Lê o progresso da tela Personagens: moedas dos níveis novos e equipe só
-  // com agentes que continuam desbloqueados
+  // Lê o progresso da tela Personagens (moedas dos níveis novos e equipe só
+  // com agentes que continuam desbloqueados) e os itens das missões de código
+  // vencidas na tela Missões
   function sincronizarModoAgente() {
     const { moedas, removidos } = Regras.sincronizarModoAgente();
     const mensagens = [];
@@ -1451,6 +1452,10 @@
     if (removidos.length) {
       const nomes = removidos.map((id) => personagem(id).name).join(", ");
       mensagens.push(`${nomes} saiu da equipe: está bloqueado na tela Personagens.`);
+    }
+    const suprimentos = Regras.sincronizarMissoes();
+    if (Object.keys(suprimentos).length) {
+      mensagens.push(`Missões de código: ${textoRecompensas(suprimentos)} na mochila.`);
     }
     if (mensagens.length) avisar(mensagens.join(" "));
   }
@@ -1502,10 +1507,13 @@
     else botao.click();
   });
 
-  // Concluir níveis do Modo Agente em outra aba atualiza esta (no meio de
-  // uma batalha ou de uma operação, só o painel é atualizado)
+  // Concluir níveis do Modo Agente ou missões de código em outra aba atualiza
+  // esta (no meio de uma batalha ou de uma operação, só o painel é atualizado)
   window.addEventListener("storage", (e) => {
-    if (e.key !== "cw_progresso_agentes") return;
+    if (e.key !== "cw_progresso_agentes" && e.key !== "cw_missoes") return;
+    // Fora de batalha, relê o save antes de pagar: outra aba do RPG pode ter
+    // salvo um progresso mais novo, que não pode ser apagado
+    if (!arena && !ocupado) Regras.recarregar();
     sincronizarModoAgente();
     if (arena || ocupado) atualizarPainel();
     else mostrar();

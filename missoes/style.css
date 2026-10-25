@@ -22,6 +22,12 @@
   gap: 0.5rem;
 }
 
+/* O script esconde partes da tela com o atributo hidden; sem esta regra o
+   display: flex/grid dos cards ganharia do hidden */
+#SECAO-MISSOES [hidden] {
+  display: none;
+}
+
 .card.missao.ativa {
   display: flex;
   flex-direction: column;
@@ -146,6 +152,27 @@
     var(--superficie-alt);
 }
 
+/* Botão "ABRIR NO TERMINAL" ocupa a linha inteira do card (mesmo botão
+   contornado das ações do Mapa, só um pouco menor para caber no card) */
+.lista.missoes .card.missao .botao {
+  grid-column: 1 / -1;
+  margin-top: 0.3rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.78rem;
+}
+
+/* Card da missão que está aberta no terminal */
+.lista.missoes .card.missao.aberta {
+  border-color: var(--borda-magenta);
+  box-shadow: var(--brilho-magenta);
+}
+
+/* Mensagem de lista vazia (ex.: nenhuma missão concluída ainda) */
+.lista.missoes .vazio {
+  grid-column: 1 / -1;
+  color: var(--texto-suave);
+}
+
 /* ==========================================================================
    03. PAINEL DE COMBATE
    ========================================================================== */
@@ -193,6 +220,20 @@
   height: 10px;
 }
 
+/* A vida muda durante o combate: a largura também anima (o transform
+   continua com a animação de encher ao aparecer, do base.css) */
+.lado.combate .preenchimento.progresso {
+  transition:
+    transform 1.4s var(--suave) 200ms,
+    width 0.4s ease;
+}
+
+/* Ao abrir uma missão, a rolagem para aqui sem ficar atrás do cabeçalho */
+.painel.combate,
+.bloco.terminal {
+  scroll-margin-top: calc(var(--altura-cabecalho) + 1rem);
+}
+
 .vida.agente {
   font-family: var(--fonte-mono);
   font-size: 0.9rem;
@@ -235,39 +276,171 @@
   align-items: flex-start;
 }
 
-.codigo.terminal {
-  position: relative;
+/* --- Terminal no mesmo estilo do Modo Agente (personagens/style.css),
+       sempre escuro, também no tema claro --- */
+.terminal.codigo {
   width: 100%;
-  padding: 2.4rem var(--espaco) var(--espaco);
-  border: 1px solid var(--borda);
-  border-left: 3px solid var(--ciano);
-  border-radius: var(--raio);
-  background-color: var(--fundo);
-  font-family: var(--fonte-mono);
-  font-size: 0.85rem;
-  line-height: 1.8;
-  color: var(--verde);
-  overflow-x: auto;
+  border: 1px solid rgba(0, 242, 254, 0.18);
+  border-radius: 10px;
+  background-color: #07050d;
+  overflow: hidden;
 }
 
-/* Três "luzes" de janela no topo do terminal */
-.codigo.terminal::before {
-  content: "";
-  position: absolute;
-  top: 0.9rem;
-  left: 1rem;
-  width: 10px;
-  height: 10px;
+/* Contorno de foco no terminal inteiro quando o campo está em uso */
+.terminal.codigo:focus-within {
+  outline: 2px solid var(--ciano);
+  outline-offset: 3px;
+}
+
+.terminal-barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.9rem;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid rgba(0, 242, 254, 0.12);
+  background-color: #0c0a16;
+}
+
+.luzes {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.luzes i {
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background-color: var(--vermelho);
-  box-shadow:
-    16px 0 0 var(--ambar),
-    32px 0 0 var(--verde);
+  background-color: var(--texto-fraco);
+}
+
+.luzes i:first-child {
+  background-color: var(--magenta);
+  box-shadow: 0 0 6px var(--magenta);
+}
+
+.terminal-barra .comando {
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  background-color: rgba(0, 242, 254, 0.08);
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  color: #00f2fe;
+}
+
+.terminal-barra .rotulo.sistema {
+  margin-left: auto;
+  font-size: 0.66rem;
+  color: #9a94ad;
+}
+
+/* --- Editor em duas camadas ---
+   Atrás fica o código colorido (pre.realce), que define a altura; na frente
+   fica o textarea, do mesmo tamanho e com a mesma fonte, mas com o texto
+   transparente: o jogador vê as cores de trás e digita no campo da frente.
+   Os dois quebram a linha do mesmo jeito (pre-wrap), então as letras ficam
+   sempre uma em cima da outra. */
+.editor {
+  position: relative;
+}
+
+/* As duas camadas usam a mesma fonte (a monoespaçada do sistema, a mesma
+   que a tag code mostra no terminal do Modo Agente). Se a fonte for
+   diferente, as letras de trás e da frente não ficam uma em cima da outra. */
+.editor pre,
+.editor pre code,
+.editor textarea {
+  font-family: monospace;
+}
+
+.editor pre code {
+  font-size: inherit;
+}
+
+.editor pre,
+.editor textarea {
+  margin: 0;
+  padding: 1rem 1.25rem 1rem 3.2rem;
+  font-size: 0.86rem;
+  line-height: 1.75;
+  letter-spacing: normal;
+  tab-size: 2;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.editor pre {
+  min-height: 12em;
+  padding-left: 0; /* o espaço do número fica em cada linha */
+  color: #e8e6f0;
+  counter-reset: linha;
+}
+
+.editor textarea {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #e8e6f0;
+  caret-color: #e8e6f0;
+  overflow: hidden;
+  resize: none;
+}
+
+/* Só fica transparente depois que o script desenha as cores (sem
+   JavaScript, o texto do campo continua visível) */
+.editor.com-realce textarea {
+  color: transparent;
+}
+
+.editor .linha-codigo {
+  position: relative;
+  display: block;
+  padding-left: 3.2rem;
+}
+
+/* Número da linha à esquerda (como no Modo Agente) */
+.editor .linha-codigo::before {
+  counter-increment: linha;
+  content: counter(linha, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  width: 3.2rem;
+  padding-right: 1rem;
+  text-align: right;
+  color: #4b4563;
+}
+
+/* Cores do realce de sintaxe (as mesmas do Modo Agente) */
+.tk-comentario { color: #6b6585; font-style: italic; }
+.tk-texto { color: #29f58a; }
+.tk-tag { color: #ff5fa2; }
+.tk-atributo { color: #ffb020; }
+.tk-palavra { color: #c792ea; }
+.tk-numero { color: #ffb020; }
+.tk-funcao { color: #00f2fe; }
+.tk-propriedade { color: #00f2fe; }
+.tk-seletor { color: #ff5fa2; }
+
+/* No editor, o comentário fica sem itálico: o itálico muda a largura das
+   letras e a camada colorida sairia de baixo do texto digitado */
+.editor .tk-comentario {
+  font-style: normal;
 }
 
 .dica {
   font-size: 0.9rem;
   color: var(--ambar);
+}
+
+/* Botões EXECUTAR e RESTAURAR CÓDIGO */
+.acoes.terminal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .lista.log {
@@ -280,21 +453,35 @@
   color: var(--texto-suave);
 }
 
-.lista.log li:first-child {
+/* Linhas do log: erro em vermelho, acerto em verde */
+.lista.log li.erro {
   color: var(--vermelho);
 }
 
-.lista.log li:last-child {
+.lista.log li.ok {
   color: var(--verde);
+}
+
+/* No tema claro, um verde um pouco mais escuro para o texto pequeno do log */
+html[data-tema="claro"] .lista.log li.ok {
+  color: #087a41;
+}
+
+/* EXECUTAR enquanto o código roda (continua focável pelo teclado) */
+.botao[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: progress;
 }
 
 /* ==========================================================================
    05. RECOMPENSAS
    ========================================================================== */
 
+/* auto-fill: com 1 ou 2 recompensas, cada card continua do tamanho de uma
+   coluna (com auto-fit, um card sozinho esticava pela tela inteira) */
 .lista.recompensas {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: var(--espaco);
   margin-bottom: var(--espaco);
 }
@@ -312,6 +499,13 @@
   font-size: 1.3rem;
   color: var(--ambar);
   text-shadow: 0 0 10px rgba(255, 176, 32, 0.35);
+}
+
+/* Ícones dos itens: os mesmos desenhos do RPG */
+.valor.recompensa svg {
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.15em;
 }
 
 .bloco.recompensas > .rotulo.sistema {
@@ -352,7 +546,11 @@
     flex: 1;
   }
 
-  .codigo.terminal {
-    font-size: 0.78rem;
+  /* 16px evita que o celular dê zoom ao tocar no campo; max() respeita
+     o A+ / A++ do painel. As duas camadas mudam juntas para continuarem
+     alinhadas. */
+  .editor pre,
+  .editor textarea {
+    font-size: max(16px, 1rem);
   }
 }
