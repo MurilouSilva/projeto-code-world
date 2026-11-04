@@ -414,9 +414,12 @@ html[data-tema="claro"] .sistema.console {
 }
 
 .card.dupla img {
+  display: block;
   width: 300px;
   height: 220px;
   object-fit: contain;
+  object-position: center;
+  margin-inline: auto;
   transition: transform 400ms var(--suave);
 }
 
