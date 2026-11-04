@@ -277,10 +277,12 @@ html[data-tema="claro"] .sistema.console {
   text-align: center;
 }
 
-/* Espaço da foto (por enquanto mostra o número do integrante) */
+/* Foto do integrante em círculo (o .numero é o reserva, caso falte a foto) */
 .foto.criador {
   position: relative;
   display: grid;
+  /* Célula do tamanho do círculo: sem isso o height: 100% da foto é ignorado */
+  grid-template: 100% / 100%;
   place-items: center;
   width: 88px;
   height: 88px;
@@ -306,6 +308,8 @@ html[data-tema="claro"] .sistema.console {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Várias fotos são em pé: ancora perto do topo para não cortar o rosto */
+  object-position: center 20%;
 }
 
 .foto.criador .numero {

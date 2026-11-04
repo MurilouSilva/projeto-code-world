@@ -15,6 +15,10 @@ Feito somente com HTML, CSS e JavaScript (sem bibliotecas nem build).
 - `rpg/` — Seção 07: RPG (exploração e batalhas por turnos)
 - `comum/` — arquivos compartilhados por todas as telas
 - `img/` — imagens compartilhadas entre as telas
+  - `img/criadores/` — fotos dos 11 criadores, usadas na seção "Os criadores"
+    da tela Sobre (`nexus/index.html`). O número no nome do arquivo é o do
+    cartão (DEV-01 a DEV-11), na ordem das duplas: HTML, CSS, JavaScript,
+    Python, Java e Kotlin
 
 ### Pasta `comum/`
 
